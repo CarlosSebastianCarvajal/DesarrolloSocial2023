@@ -1,0 +1,168 @@
+=========================================
+CREATE TABLE depertamento
+(
+    departamento_id serial,
+    departamento_descripcion character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    departamento_estado character varying(25) COLLATE pg_catalog."default" DEFAULT 'Activo'::character varying,
+    created_at timestamp(0) without time zone DEFAULT now(),
+    updated_at timestamp(0) without time zone,
+    CONSTRAINT pk_depertamento_departamento_id PRIMARY KEY (departamento_id),
+    CONSTRAINT unq_depertamento UNIQUE (departamento_descripcion)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.depertamento
+    OWNER to postgres;
+=============================================
+CREATE TABLE detalle_recetamedica
+(
+    id_detalle_recetamedica serial,
+    id_recetamedica integer,
+    medicamento character varying COLLATE pg_catalog."default",
+    indicaciones character varying COLLATE pg_catalog."default",
+    CONSTRAINT detalle_recetamedica_pkey PRIMARY KEY (id_detalle_recetamedica)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.detalle_recetamedica
+    OWNER to postgres;
+=============================================
+CREATE TABLE galeno
+(
+    galeno_id serial,
+    galeno_tipo_dni character varying(25) COLLATE pg_catalog."default" NOT NULL DEFAULT 'Cédula'::character varying,
+    galeno_dni character varying(15) COLLATE pg_catalog."default" NOT NULL,
+    galeno_apellido_paterno character varying(200) COLLATE pg_catalog."default" NOT NULL,
+    galeno_primer_nombre character varying(200) COLLATE pg_catalog."default" NOT NULL,
+    galeno_telefono character varying(10) COLLATE pg_catalog."default" DEFAULT '9999999999'::character varying,
+    galeno_direccion character varying(200) COLLATE pg_catalog."default" DEFAULT ''::character varying,
+    created_at timestamp(0) without time zone DEFAULT now(),
+    updated_at timestamp(0) without time zone,
+    galeno_user character varying(25) COLLATE pg_catalog."default" NOT NULL,
+    galeno_pass character varying(250) COLLATE pg_catalog."default" NOT NULL,
+    galeno_apellido_materno character varying(200) COLLATE pg_catalog."default" NOT NULL,
+    galeno_segundo_nombre character varying(200) COLLATE pg_catalog."default" DEFAULT ''::character varying,
+    galeno_provincia character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    galeno_canton character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    galeno_parroquia character varying(200) COLLATE pg_catalog."default" DEFAULT ''::character varying,
+    galeno_estado character varying(25) COLLATE pg_catalog."default" DEFAULT 'Activo'::character varying,
+    galeno_departamento integer NOT NULL,
+    galeno_correoelectronico character varying(200) COLLATE pg_catalog."default",
+    CONSTRAINT pk_galeno_galeno_id PRIMARY KEY (galeno_id),
+    CONSTRAINT unq_galeno UNIQUE (galeno_dni),
+    CONSTRAINT unq_galeno_usr UNIQUE (galeno_user),
+    CONSTRAINT fk_galeno_depertamento FOREIGN KEY (galeno_departamento)
+        REFERENCES public.depertamento (departamento_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.galeno
+    OWNER to postgres;
+======================================================
+CREATE TABLE medicinageneral
+(
+    idmedicinageneral serial,
+    paciente_dni character varying(250) COLLATE pg_catalog."default" NOT NULL,
+    estatura character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    peso character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    tipossangre character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    pc character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    pt character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    pa character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    antecedentesalergicos text COLLATE pg_catalog."default",
+    antecedentespersonales text COLLATE pg_catalog."default",
+    antecedentesfamiliares text COLLATE pg_catalog."default",
+    antecedentesquirurgicos text COLLATE pg_catalog."default",
+    fechaconsulta character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    motivoconsulta text COLLATE pg_catalog."default",
+    enfermedad text COLLATE pg_catalog."default",
+    diagnositico text COLLATE pg_catalog."default",
+    tipo character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    galeno_user character varying(25) COLLATE pg_catalog."default",
+    cargararchivo character varying(255) COLLATE pg_catalog."default",
+    patch character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT pk_medicinageneral_idmedicinageneral PRIMARY KEY (idmedicinageneral),
+    CONSTRAINT fk_paciente_dni FOREIGN KEY (paciente_dni)
+        REFERENCES public.paciente (paciente_dni) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.medicinageneral
+    OWNER to postgres;
+===========================================================
+CREATE TABLE paciente
+(
+    paciente_id serial,
+    paciente_tipo_dni character varying(25) COLLATE pg_catalog."default" DEFAULT 'Cédula'::character varying,
+    paciente_dni character varying(15) COLLATE pg_catalog."default" NOT NULL,
+    paciente_apellido_paterno character varying(200) COLLATE pg_catalog."default" NOT NULL,
+    paciente_primer_nombre character varying(200) COLLATE pg_catalog."default" NOT NULL,
+    paciente_fnacimiento character varying(25) COLLATE pg_catalog."default" NOT NULL,
+    paciente_direccion character varying(200) COLLATE pg_catalog."default" DEFAULT ''::character varying,
+    paciente_telefono character varying(10) COLLATE pg_catalog."default" DEFAULT '9999999999'::character varying,
+    paciente_genero character varying(25) COLLATE pg_catalog."default" DEFAULT ''::character varying,
+    paciente_grupo character varying(15) COLLATE pg_catalog."default" NOT NULL DEFAULT 'Ninguno'::character varying,
+    paciente_ayudasocial character varying(2) COLLATE pg_catalog."default",
+    created_at timestamp(0) without time zone DEFAULT now(),
+    updated_at timestamp(0) without time zone,
+    paciente_apellido_materno character varying(200) COLLATE pg_catalog."default" NOT NULL,
+    paciente_segundo_nombre character varying(200) COLLATE pg_catalog."default" DEFAULT ''::character varying,
+    paciente_estado character varying(25) COLLATE pg_catalog."default" DEFAULT 'Activo'::character varying,
+    paciente_provincia character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    paciente_canton character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    paciente_parroquia character varying(200) COLLATE pg_catalog."default" DEFAULT ''::character varying,
+    paciente_nacionalidad character varying(150) COLLATE pg_catalog."default" DEFAULT 'Ecuatoriano'::character varying,
+    paciente_estado_civil character varying(100) COLLATE pg_catalog."default" DEFAULT 'Soltero'::character varying,
+    paciente_convencional character varying(10) COLLATE pg_catalog."default" DEFAULT '999999999'::character varying,
+    paciente_tipo_sangre character varying(5) COLLATE pg_catalog."default" DEFAULT 'O+'::character varying,
+    paciente_correoelectronico character varying(150) COLLATE pg_catalog."default",
+    CONSTRAINT pk_paciente_paciente_id PRIMARY KEY (paciente_id),
+    CONSTRAINT unq_paciente UNIQUE (paciente_dni)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.paciente
+    OWNER to postgres;
+=====================================================
+CREATE TABLE recetamedica
+(
+    id_recetamedica serial,
+    galeno_id integer NOT NULL,
+    paciente_id integer NOT NULL,
+    fecha character varying COLLATE pg_catalog."default",
+    CONSTRAINT recetamedica_pkey PRIMARY KEY (id_recetamedica),
+    CONSTRAINT fk_galeno_id FOREIGN KEY (galeno_id)
+        REFERENCES public.galeno (galeno_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_paciente_id FOREIGN KEY (paciente_id)
+        REFERENCES public.paciente (paciente_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.recetamedica
+    OWNER to postgres;

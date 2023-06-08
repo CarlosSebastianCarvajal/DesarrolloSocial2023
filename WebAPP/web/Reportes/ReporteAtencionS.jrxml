@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="334aae38-e07c-4488-b37a-d6da09f320ac">
+	<property name="ireport.zoom" value="1.7715610000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaDesde" class="java.util.Date"/>
+	<parameter name="fechaHasta" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[select p.paciente_dni, CONCAT(p.paciente_primer_nombre,' ',p.paciente_apellido_paterno,' ',p.paciente_apellido_materno)as nombre,
+cast(s.fecha as text), s.sesion_numero, CONCAT(g.galeno_primer_nombre,' ',g.galeno_apellido_paterno,' ',g.galeno_apellido_materno) as medico from seguimiento as s,paciente p, galeno g  where p.paciente_id=s.paciente_id and s.galeno_id=g.galeno_id and 
+fecha BETWEEN $P{fechaDesde} AND $P{fechaHasta}
+order by s.fecha desc]]>
+	</queryString>
+	<field name="paciente_dni" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="sesion_numero" class="java.lang.Integer"/>
+	<field name="medico" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="62" y="5" width="492" height="20" uuid="7136f791-1373-4df9-81ea-aa0324c117d8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GOBIERNO AUTÓNOMO DESCENTRALIZADO DE QUEVEDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="25" width="447" height="16" uuid="d3335002-3563-439f-8a87-b4e6ea5bce24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="40" width="447" height="18" uuid="e2e9e411-78c3-4e38-8b50-39a08f40ae09"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ÁREA DE PSICOLOGÍA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="6" y="5" width="81" height="53" uuid="48642e28-91e4-4634-8ba2-b5e1de3ac0e4"/>
+				<imageExpression><![CDATA["logo_quevedo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="87" y="58" width="447" height="18" uuid="15d24a84-24d7-48b1-b697-88c03187bcb0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HISTORIAL DE ATENCIONES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="52" splitType="Stretch">
+			<rectangle>
+				<reportElement x="390" y="31" width="164" height="20" backcolor="#FFFFFF" uuid="f1763502-822c-4cee-aff6-7c88725a48b4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="311" y="31" width="79" height="20" backcolor="#FFFFFF" uuid="89cb0e9f-f6cb-4d8e-aeac-36f95d4d65d1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="226" y="31" width="85" height="20" backcolor="#FFFFFF" uuid="96cde315-f512-4c6f-96d0-5f048691035c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="31" width="79" height="20" backcolor="#FFFFFF" uuid="1bac2bb7-5828-49ba-8eb1-211b33134405"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="80" y="31" width="146" height="20" backcolor="#FFFFFF" uuid="46716da0-445e-4a2c-a490-e545a3f445c6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="113" y="3" width="326" height="20" forecolor="#000000" backcolor="#000000" uuid="e8aeceaf-a73f-477d-9518-f744463a840a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[PACIENTES ATENDIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="31" width="79" height="20" forecolor="#000000" backcolor="#000000" uuid="d218d602-c78d-44d4-a432-18e66fa51d26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Cédula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="31" width="146" height="20" forecolor="#000000" backcolor="#000000" uuid="be54fd36-62a6-47f7-90a4-72386cb70691"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="31" width="85" height="20" forecolor="#000000" backcolor="#000000" uuid="09dab891-6c7d-4e4c-bdbc-601fb05ac9b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[No de Sesión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="31" width="79" height="20" forecolor="#000000" backcolor="#000000" uuid="3c8f1ac1-ba9f-4aa0-a859-180753ee1346"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="31" width="163" height="20" forecolor="#000000" backcolor="#000000" uuid="caefd409-c955-4c0e-b9dc-4a56435a8ca0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Médico]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<rectangle>
+				<reportElement x="391" y="1" width="164" height="20" backcolor="#FFFFFF" uuid="436fd820-7c08-4c2c-a9d0-0d3f2e300678"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="311" y="1" width="79" height="20" backcolor="#FFFFFF" uuid="d0a35f16-d6d1-4a77-8c23-f5152a047ce0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="226" y="1" width="85" height="20" backcolor="#FFFFFF" uuid="47345c31-12c0-4081-bab1-15f04d1a0327"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="80" y="1" width="146" height="20" backcolor="#FFFFFF" uuid="097efb7d-48e6-4ab6-ad58-415528170fae"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="1" width="79" height="20" backcolor="#FFFFFF" uuid="9a768dee-baae-4235-aa47-8b154c67a650"/>
+			</rectangle>
+			<textField>
+				<reportElement x="2" y="0" width="79" height="20" uuid="3419ba94-475f-4b80-85e5-d2bca62dad83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{paciente_dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="0" width="146" height="20" uuid="94771237-a186-4619-bb79-60b9b9231dfa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="312" y="0" width="79" height="20" uuid="786f2166-7a3b-4d1a-ba18-4ed2304bd903"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="0" width="162" height="20" uuid="d5f49d05-9408-4890-98a1-f62b7bedbffb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="227" y="0" width="85" height="20" uuid="5d6a725a-dcb9-42ef-bc3a-7f13c8a45a1b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sesion_numero}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="34" width="114" height="20" uuid="5c812dff-9cdc-46ec-931e-26e5c7c3afd7"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Documento generado el]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="114" y="34" width="137" height="20" uuid="cdb25bb9-d7f6-4025-b555-4cfb4a115392"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
