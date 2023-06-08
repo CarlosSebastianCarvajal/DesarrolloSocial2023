@@ -54,7 +54,7 @@
                         </tbody>
                         <thead >
                             <tr>
-                                <th>Cédula de Identidad</th>
+                                <th>Cédula de ciudadania</th>
                                 <th>Número Telefónico</th>
                                 <th>Escolaridad</th>
                                 <th>Ocupación</th>
