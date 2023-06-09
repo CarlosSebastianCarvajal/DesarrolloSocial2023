@@ -37,6 +37,17 @@
     background-image: url('../img/bngGoni.png');
 
 }
+.div-head-titli
+{
+    width: 100%;
+    height: 7.333vh; 
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;        
+    background-image: url('../img/bngGoni.png');
+
+}
 
 .div-head-tittle
 {
@@ -70,6 +81,15 @@
 .div-head-titl h2:before
 {
     content: 'HISTORIA CLINICA GINECO-OBSTETRICO';
+    font: 900;
+    font-size: 1.5em;
+    margin-left: 90px;
+    color: #ffffff;
+}
+
+.div-head-titli h2:before
+{
+    content: 'SOLICITUD HISTOPATOLOGICO';
     font: 900;
     font-size: 1.5em;
     margin-left: 90px;
@@ -258,6 +278,22 @@
     height: auto; 
     padding-bottom: 25px;
     margin-top:230%; 
+    -webkit-box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
+    -moz-box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
+    box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
+    border-radius:15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    -webkit-border-radius: 15px 15px 15px 15px;
+    border: 0px solid #f7f4f7;
+
+}
+
+.div-cont-main3
+{
+    width: 95%;
+    height: auto; 
+    padding-bottom: 25px;
+    margin-top:200%; 
     -webkit-box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
     -moz-box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
     box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
