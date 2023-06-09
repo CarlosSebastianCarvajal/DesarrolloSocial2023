@@ -26,6 +26,18 @@
 
 }
 
+.div-head-titl
+{
+    width: 100%;
+    height: 7.333vh; 
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;        
+    background-image: url('../img/bngGoni.png');
+
+}
+
 .div-head-tittle
 {
     width: 100%;
@@ -49,6 +61,15 @@
 .div-head-ti h2:before
 {
     content: 'ACTUALIZAR DATOS DEL PACIENTE';
+    font: 900;
+    font-size: 1.5em;
+    margin-left: 90px;
+    color: #ffffff;
+}
+
+.div-head-titl h2:before
+{
+    content: 'HISTORIA CLINICA GINECO-OBSTETRICO';
     font: 900;
     font-size: 1.5em;
     margin-left: 90px;
