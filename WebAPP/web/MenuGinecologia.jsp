@@ -157,7 +157,7 @@
             
             function abrirHistoriaNormal(){
               // Aqui coloca lo de ingresar historia clinica Cholota
-              //window.location.href = "./Terapiafisica.jsp?user="+document.getElementById("usuario").innerHTML;
+              window.location.href = "./HistoriaClinica_Ginecologia.jsp?user="+document.getElementById("usuario").innerHTML;
             }
             function actuaHistoriaNormal(){
               //window.location.href = "./Terapiafisica.jsp?user="+document.getElementById("usuario").innerHTML;
