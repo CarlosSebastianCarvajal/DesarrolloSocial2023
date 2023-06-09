@@ -145,7 +145,6 @@
         </section>
         
         <script>
-            
             function principal(){
               window.location.href = "./Principal.jsp";
             }
@@ -156,12 +155,15 @@
               window.location.href = "./Actualizardatospaciente.jsp?idx=g";
             }
             
-            function abrirHistoriaNormal()(){
+            function abrirHistoriaNormal(){
               // Aqui coloca lo de ingresar historia clinica Cholota
               //window.location.href = "./Terapiafisica.jsp?user="+document.getElementById("usuario").innerHTML;
             }
-            function actuaHistoriaNormal()(){
+            function actuaHistoriaNormal(){
               //window.location.href = "./Terapiafisica.jsp?user="+document.getElementById("usuario").innerHTML;
+            }
+            function abrirSeguimientoNormal(){
+                window.location.href = "./SeguimientoGinecologia.jsp?user="+document.getElementById("usuario").innerHTML;
             }
             function abrirHistoriaEmba(){
               //window.location.href = "./Terapiafisica.jsp?user="+document.getElementById("usuario").innerHTML;
