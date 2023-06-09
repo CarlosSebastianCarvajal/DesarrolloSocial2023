@@ -80,6 +80,8 @@ public class AddPaciente extends HttpServlet {
                         response.sendRedirect("MenuMedicinaGeneral.jsp");
                     }else if(red.equals("tf")){
                         response.sendRedirect("MenuTerapiaFisica.jsp");
+                    }else if(red.equals("g")){
+                        response.sendRedirect("MenuGinecologia.jsp");
                     }else{
                         response.sendRedirect("Principal.jsp");
                     }

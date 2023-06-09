@@ -104,6 +104,20 @@
                         </div>
                     </section>
                     
+                    <!-- GINECOLOGIA MODULO -->
+                    <section class="animadoagregarinformacion">
+                        <div class="content">
+                            <header>
+                                <a href="" >
+                                    <img alt="" src="img/icon_ginecologia_principal_96.png">
+                                    <span class="label"></span></a>
+                                <h3 style="color:#007653; font-weight: bold" class="textgrueso">GINECOLOGÍA</h3>
+                            </header>
+                            <p>Ingresar al módulo ginecología para gestionar la informacion de atención a las pacientes atendidas</p>
+                            <input type="button" onclick="javascript:abrirGinecologia();" value="Ingresar" class="button primary" style=" background: #007653 !important;"/>
+                            
+                        </div>
+                    </section>
                     
                     <!-- QUINTO MODULO -->
                     <section class="animadoagregarinformacion">
@@ -144,6 +158,13 @@
                 }else{
                     alert("Acceso permitido solo para el departamento de Terapia Física");
                 }//*/
+            }
+            function abrirGinecologia(){
+                //if(document.getElementById("departamento").innerHTML === "3"){
+                    window.location.href = "./MenuGinecologia.jsp"; 
+                //}else{
+                    //alert("Acceso permitido solo para el departamento de Terapia Física");
+                //}//*/
             }
             function abrirActualizarDatos(){
                 window.location.href = "./ActualizarDatosPersonalesMedicos.jsp";
