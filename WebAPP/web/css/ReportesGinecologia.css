@@ -4,11 +4,10 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 26-nov-2022, 21:50:00
+    Created on : 09-jun-2023, 1:53:16
     Author     : Sebastian Carvajal
 */
-
-*
+ *
 {
     margin: 0;
     padding: 0;    
@@ -18,130 +17,45 @@ and open the template in the editor.
 .nav-tp
 {
     width: 100%;
-    margin-top: -40px;
+    margin-top: -10px;
     height: 7.22014388489208vh;    
     background-color: #007653;
 }
 
+
 .div-head-tittle
 {
-    width: 100%;
+    width: 100%;    
     height: 7.333vh;
     background-color: transparent;
     display: flex;
     align-items: center;
-    justify-content: center;        
+    justify-content: center;   
     background-image: url('../img/bngGoni.png');
-
 }
 
 .div-head-tittle h2:before
 {
-    content: 'ATENCIÓN TERAPIA FÍSICA';
+    content: 'REPORTES - GINECOLOGÍA';
     font: 900;
     font-size: 1.5em;
     margin-left: 90px;
     color: #ffffff;
 }
-
-
-.sec-input-data
-{
-    width: 90%;
-    height: 15vh;    
-    margin-left: 5%;
-    margin-top: 15px;
-    -webkit-box-shadow: 4px -9px 43px 0px rgba(0, 118, 83,1);
-    -moz-box-shadow: 4px -9px 43px 0px rgba(0, 118, 83,1);
-    box-shadow: 4px -9px 43px 0px rgba(0, 118, 83,1);
-    border-radius: 15px 15px 15px 15px;
-    -moz-border-radius: 15px 15px 15px 15px;
-    -webkit-border-radius: 15px 15px 15px 15px;
-    border: 0px solid #f7f4f7;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sec-input-data .form
-{
-    width: 90%;
-    height: 15vh;    
-    margin-left: 5%;    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 .sec-main
 {    
     width: 100%;
-    height: 85.46762589928058vh;
-    margin-top: 75px;
     background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.div-cont-date, .div-cont-ced, .div-cont-search
-{
-    width: 33% !important;    
-    height: 10vh;
+    height: 85.46762589928058vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.div-cont-search
-{
-    width: 30%;
-    justify-content: flex-end;
-}
-
-.div-cont-search
-{
-    justify-content: flex-start;
-}
-.inp-date, .inp-search
-{
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-.inp-date:focus, .inp-ced:focus
-{
-    -webkit-box-shadow: 1px 1px 7px 1px rgba(195,218,195,1);
-    -moz-box-shadow: 1px 1px 7px 1px rgba(195,218,195,1);
-    box-shadow: 1px 1px 7px 1px rgba(195,218,195,1);
-}
-
-.inp-date::placeholder, .inp-ced::placeholder
-{
-    color: #007653;
-}
-
-.inp-search
-{
-    width: 125px;
-    margin-left: 50px;
-    height: 6.9vh;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #007653;
-    outline-offset: 0;
-    outline: 0px;
-}
-
-.inp-search:hover
-{background-color: #00AC79;}
-
-.form1
+form
 {
     width:100%;
-    height: 130.46762589928058vh;
+    height: 60.46762589928058vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -149,34 +63,30 @@ and open the template in the editor.
 
 .div-cont-main
 {
-    width: 90%;
-    height: auto; 
-    padding-bottom: 50px;
-    margin-top:65%; 
-    -webkit-box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
-    -moz-box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
-    box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
-    border-radius:15px 15px 15px 15px;
+  width: 70%;
+    height: 50.94244604316546vh;    
+    -webkit-box-shadow: 4px -9px 43px 0px rgba(0, 118, 83,1);
+    -moz-box-shadow: 4px -9px 43px 0px rgba(0, 118, 83,1);
+    box-shadow: 4px -9px 43px 0px rgba(0, 118, 83,1);
+     border-radius:15px 15px 15px 15px;
     -moz-border-radius: 15px 15px 15px 15px;
     -webkit-border-radius: 15px 15px 15px 15px;
-    border: 0px solid #f7f4f7;
-
 }
 
-.div-row-one, .div-row-two, .div-row-three, .div-row-four, .div-row-five, .div-row-six, .div-row-seven, .div-row-eigth, .div-row-nine, .div-row-ten, .div-row-eleven
+
+.div-row-one, .div-row-two, .div-row-three, .div-row-four
 {    
     width: 90%;
     height: 17.67vh;
     margin-left: 5%;
-    margin-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+
 .div-cont-ced, .div-cont-name, .div-cont-lname, .div-cont-edad, .div-cont-cod
-{  
-   
+{    
     width: 90% !important;
     margin-top: 6px !important;
     height: 15vh;  
@@ -184,18 +94,26 @@ and open the template in the editor.
     justify-content: center;
 }
 
+
 .inp-ced, .inp-name, .inp-lname, .inp-edad, .inp-cod
 {
-    resize:none;
-    width: 90%;
+    width: 275px;
     height: 6.9vh;
     border-radius: 10px;
     border: none;
     background-color: #D5DCD5;
-    padding: 0px 20px;
+    padding-left: 20px;
     color: #000000;
-    font-size: 1em; 
+    font-size: 1em;
+    outline-offset: 0;
+    outline: 0px;
 }
+
+.inp-edad::-webkit-inner-spin-button, .inp-edad::-webkit-outer-spin-button
+{
+    -webkit-appearance: none;
+}
+
 .inp-ced:focus, .inp-name:focus, .inp-lname:focus, .sel-dep-transf:focus, .sel-dep-to-transf:focus, .inp-cod:focus, .inp-edad:focus, .txt-ar-ob:focus, .btn-accept
 {
     -webkit-box-shadow: 1px 1px 7px 1px rgba(195,218,195,1);
@@ -208,12 +126,14 @@ and open the template in the editor.
     color: #007653;
 }
 
+
 .div-cont-sel-dep-transf, .div-cont-sel-dep-to-transf
 {    
     width: 40%;
-    height: auto; 
-    margin: 2%;
-    margin-top: 1%; 
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
 }
 
 .sel-dep-transf, .sel-dep-to-transf
@@ -231,6 +151,7 @@ and open the template in the editor.
     outline: 0px;
     color: #000000;    
 }
+
 
 .div-observation
 {    
@@ -256,7 +177,6 @@ and open the template in the editor.
     font-size: 1em;
     border-radius: 10px;
 }
-
 .btn-accept
 {
     width: 125px;
@@ -277,9 +197,31 @@ and open the template in the editor.
 {
     background-color: #00AC79;
 }
-footer
-{
-    width: 100%;
-    height: 20vh;
 
-}
+
+/* Button */
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button,
+.button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    height: 3.25rem;
+    line-height: 3.25rem;
+    padding: 0 1.75rem;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap; }
+

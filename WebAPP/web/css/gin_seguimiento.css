@@ -4,10 +4,9 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 26-nov-2022, 21:50:00
+    Created on : 09-jun-2023, 1:13:50
     Author     : Sebastian Carvajal
 */
-
 *
 {
     margin: 0;
@@ -37,7 +36,7 @@ and open the template in the editor.
 
 .div-head-tittle h2:before
 {
-    content: 'ATENCIÓN TERAPIA FÍSICA';
+    content: 'HISTORIA DE EVOLUCIÓN';
     font: 900;
     font-size: 1.5em;
     margin-left: 90px;
@@ -152,7 +151,7 @@ and open the template in the editor.
     width: 90%;
     height: auto; 
     padding-bottom: 50px;
-    margin-top:65%; 
+    margin-top:40%; 
     -webkit-box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
     -moz-box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
     box-shadow: 4px -9px 23px 0px rgba(0, 118, 83,1);
@@ -283,3 +282,4 @@ footer
     height: 20vh;
 
 }
+

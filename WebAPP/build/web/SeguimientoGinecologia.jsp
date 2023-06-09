@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
         <a href="../src/java/DAO/Buscador.java"></a>
-        <link href="css/TerapiaFisica.css" rel="stylesheet" type="text/css"/>
+        <link href="css/gin_seguimiento.css" rel="stylesheet" type="text/css"/>
         <title>Terapia Física</title>
     </head>
     <body>
@@ -89,9 +89,9 @@
                     <tbody>
                         <tr>
                             <td> <div class="div-cont-ced" style='margin-top: -40px !important;'><input type="text" id="txt-pa" class="inp-ced" placeholder="Presion arterial" name="cedula" onkeypress='return validaNumericos(event)'/></div> </td>
-                            <td> <div class="div-cont-name"  ><input type="text" id="txt-temp" class="inp-name" placeholder="Nombres" name="Temperatura" onkeypress="return validaNumericos(event)" /></div> </td>
-                            <td> <div class="div-cont-name"><input type="text" id="txt-fc" class="inp-name" placeholder="Discapacidad" name="Frecuencia cardiaca" onkeypress="return validaNumericos(event)"/></div> </td>
-                            <td> <div class="div-cont-name"><input type="text" id="txt-sat" class="inp-name" placeholder="Discapacidad" name="Saturación" onkeypress="return validaNumericos(event)"/></div> </td>
+                            <td> <div class="div-cont-name"  ><input type="text" id="txt-temp" class="inp-name" placeholder="Temperatura" name="Temperatura" onkeypress="return validaNumericos(event)" /></div> </td>
+                            <td> <div class="div-cont-name"><input type="text" id="txt-fc" class="inp-name" placeholder="Frecuencia Cardiaca" name="Frecuencia cardiaca" onkeypress="return validaNumericos(event)"/></div> </td>
+                            <td> <div class="div-cont-name"><input type="text" id="txt-sat" class="inp-name" placeholder="Saturación" name="Saturación" onkeypress="return validaNumericos(event)"/></div> </td>
                             <input hidden type="text" id="txt-id" class="inp-lname" placeholder="txt-id" name="txtid"/>
                         </tr>
                     </tbody>
@@ -104,9 +104,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-peso" class="inp-lname" placeholder="Peso" name="Ayuda economica" onkeypress="return validaNumericos(event)"disabled="true"/></div></td>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-estatura" class="inp-lname" placeholder="Estatura" name="Correo Electronico" onkeypress="return validaNumericos(event)"disabled="true"/></div></td>
-                            <td> <div class="div-cont-edad"><input type="text" id="txt-imc" class="inp-edad" placeholder="Indice de masa corporal" name="Celular" onkeypress='return validaNumericos(event)'disabled="true"/></div>  </td>
+                            <td><div class="div-cont-lname"><input type="text" id="txt-peso" class="inp-lname" placeholder="Peso" name="Ayuda economica" onkeypress="return validaNumericos(event)"/></div></td>
+                            <td><div class="div-cont-lname"><input type="text" id="txt-estatura" class="inp-lname" placeholder="Estatura" name="Correo Electronico" onkeypress="return validaNumericos(event)"/></div></td>
+                            <td> <div class="div-cont-edad"><input type="text" id="txt-imc" class="inp-edad" placeholder="Indice de masa corporal" name="Celular" onkeypress='return validaNumericos(event)'/></div>  </td>
                         </tr>
                     </tbody>
                     
@@ -114,105 +114,20 @@
                 </table>
                 <hr />
 
-                <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
+                <table style='width: 100%; text-align: center; margin-top: 30px;'>
                     <thead>
                         <tr>
-                            <th>Código Factura</th> 
-                            <th>Motivo de Terapia</th> 
+                            <th>NOTAS DE EVOLUCIÓN</th> 
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-motivocon" class="inp-lname" placeholder="Código Factura" name="codigof"/></div></td> 
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-motivocon" class="inp-lname" required=""placeholder="Motivo de Terapia" name="motivot" onkeyup="mayus(this);"style='height: 85px;'/></textarea> </td> 
+                            <td><div ><textarea type="text" id="txt-ne" class="inp-lname" required=""placeholder="Notas de evolución" name="notasE" style='height: 85px;'/></textarea> </div></td> 
                         </tr>
                     </tbody>
-                    <thead>
-                        <tr>
-                            <td>Diagnostico</td> 
-                            <td>Procedimiento Realizado</td> 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-diagnostico" class="inp-lname"required="" placeholder="Diagnostico" name="diagnosticot" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td>
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-procedimiento" class="inp-lname" required="" placeholder="Procedimeinto Realizado" name="procedimientot" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td> 
-                        </tr>
-                    </tbody>
-                    
-                    
-                    <thead>
-                        <tr>
-                            <td>Evaluación al paciente</td> 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-evaluacion" class="inp-lname"required="" placeholder="Evaluación al paciente" name="evaluaciont" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td>
-                        </tr>
-                    </tbody>
-                    
-                    
-                    
-                    
                 </table > 
-                <hr />
-                <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px; margin-bottom: 30px'> 
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="col-sm-4 col-xs well">
-                                    <a href="#info1" class="inf"><h3>Agregar recomendaciones de terapia en casa</h3></a>
-                                </div>
-                            </td>
-                            
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="info1" class="oculto">
-                                    <section>
-                                        <div>
-                                            <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
-                                                <thead >
-                                                    <tr>                          
-                                                        <th>Actividad</th>
-                                                        <th>Indicación Médica</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <input  hidden type="text" id="txt-tabla-datos-recomendacion" name="txt-tabla-datos-recomendacion" class="inp-lname"/>
-                                                        <td><div class="div-cont-lname"><input type="text" onkeyup="mayus(this);" id="txt-recomendacion" class="inp-lname" placeholder="Actividad a realizar" name="medicamento"/></div></td>
-                                                        <td><div class="div-cont-name"><input type="text"onkeyup="mayus(this);" id="txt-rec-indicacion" class="inp-name" placeholder="Indicación Médica" name="indicaciones"/></div></td>
-                                                        <td><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action-recomendacion" class="btn-accept" value="+"> 
-                                                    </tr>
-                                                </tbody>                        
-                                            </table> 
-
-                                            <div style="width: 80%; height: auto; margin-left: auto; margin-right: auto" >
-                                                <div >
-                                                    <table id="tablaRecomendacion" style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
-                                                        <thead>
-                                                            <tr> 
-
-                                                                <td>Nª</td>
-                                                                <td>Actividades</td>
-                                                                <td>Indicaciones Médicas</td>
-                                                                <td>Acciones</td>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </div>
-                            </td>
-                            
-                        </tr>
-                        
-                    </tbody>
-                </table>
+                <br>
+                
                 <hr />
                 
                 <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px; margin-bottom: 30px'> 
@@ -220,7 +135,7 @@
                         <tr>
                             <td>
                                 <div class="col-sm-4 col-xs well">
-                                    <a href="#info2" class="inf"><h3>Agregar Receta Médica</h3></a>
+                                    <a href="#info2" class="inf"><h3>PRESCRIPCIONES</h3></a>
                                 </div>
                             </td>
                             
@@ -297,8 +212,7 @@
     </body>
     <footer></footer>
     <script src="js/JQuery.js" type="text/javascript"></script> 
-    <script src="js/GinecologiaFunciones.js" type="text/javascript"></script> 
-    <script src="js/TF-AddRecomendaciones.js" type="text/javascript"></script>
+    <script src="js/GinecologiaFunciones.js" type="text/javascript"></script>
     <script src="js/TF-AddReceta.js" type="text/javascript"></script>
     <script type="text/javascript">
         function validaNumericos(event) {

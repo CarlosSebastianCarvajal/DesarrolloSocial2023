@@ -132,10 +132,10 @@
                                 <a href="" >
                                     <img alt="" src="img/icon-reporte-terapia-fisica.png" width="96" height="96">
                                     <span class="label"></span></a>
-                                <h3 style="color:#007653; font-weight: bold" class="textgrueso">REPORTES TERAPIA FÍSICA</h3>
+                                <h3 style="color:#007653; font-weight: bold" class="textgrueso">REPORTES GINECOLOGÍA</h3>
                             </header>
                             <p>Generar archivos PDF de distintos reportes</p>
-                            <a href="ReportesTerapiaFisica.jsp" class="button primary" style=" background: #007653 !important;">Acceder</a>
+                            <a href="ReportesGinecologia.jsp" class="button primary" style=" background: #007653 !important;">Acceder</a>
                         </div>
                     </section>
                     

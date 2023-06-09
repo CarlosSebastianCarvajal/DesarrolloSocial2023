@@ -273,7 +273,7 @@
         </form>
         <script>
                 function cancel(){
-                    window.location.href = "./MenuPsicologia.jsp";
+                    window.location.href = "./MenuGinecologia.jsp";
                 }
             </script>
     <script src="js/JQuery.js" type="text/javascript"></script>  

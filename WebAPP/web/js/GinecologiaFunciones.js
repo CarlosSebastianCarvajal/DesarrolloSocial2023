@@ -5,7 +5,7 @@
  */
 
 var divv = document.getElementById('divv');
-var porc_div = 65;
+var porc_div = 40;
 
 $(document).ready(function () {
     
@@ -15,13 +15,13 @@ $(document).ready(function () {
           
           if ($(nodo).is(":visible")){
                $(nodo).hide();
-               porc_div = 65;
+               porc_div = 40;
                divv.style.marginTop= porc_div + "%";
                return false;
           }else{
             $(".oculto").hide("slow");                             
             $(nodo).fadeToggle("fast");
-            porc_div = 85;
+            porc_div = 60;
             divv.style.marginTop= porc_div + "%";
             return false;
           }
