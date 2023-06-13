@@ -125,42 +125,45 @@
                             <tr>
                                 <th style='background: #007653; text-align: left' colspan="4">3.- ANTECEDENTES PATOLOGICOS</th>
                             </tr>
-                       </thead>
-                       <thead >
+                        </thead>
+                        <table align="center" style='width: 98%; margin-left: 10px; margin-top: 10px'>
+                        <thead>
                             <tr>                                
-                                <th>Personales:</th>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Personales" name="Personales" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <th style="width: 300px;">Personales:</th>
+                                <td><div class="div-cont-name"><input style="width: 1000px;" style='text-align: left' type="text" id="txt-name" class="inp-name" placeholder="Personales" name="Personales" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </thead>
                         <thead >
                             <tr>                                
-                                <th>Familiares:</th>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Familiares" name="Familiares" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <th style="width: 300px;">Familiares:</th>
+                                <td><div class="div-cont-name"><input style="width: 1000px;" style= 'text-align: left' type="text" id="txt-name" class="inp-name" placeholder="Familiares" name="Familiares" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </thead>
                         <thead >
                             <tr>                                
-                                <th>Quirúrgicos:</th>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Quirúrgicos" name="Quirurgicos" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <th style="width: 300px;">Quirúrgicos:</th>
+                                <td><div class="div-cont-name"><input style="width: 1000px;" style= 'text-align: left' type="text" id="txt-name" class="inp-name" placeholder="Quirúrgicos" name="Quirurgicos" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </thead>
                         <thead >
                             <tr>                                
-                                <th>Alérgicos:</th>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Alérgicos" name="Alergicos" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <th style="width: 300px;">Alérgicos:</th>
+                                <td><div class="div-cont-name"><input style="width: 1000px;" style= 'text-align: left' type="text" id="txt-name" class="inp-name" placeholder="Alérgicos" name="Alergicos" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </thead>
                         <thead >
                             <tr>                                
-                                <th>Hábitos Nocivos:</th>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Hábitos Nocivos" name="HabitosNocivos" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <th style="width: 300px;">Hábitos Nocivos:</th>
+                                <td><div class="div-cont-name"><input style="width: 1000px;" style= 'text-align: left' type="text" id="txt-name" class="inp-name" placeholder="Hábitos Nocivos" name="HabitosNocivos" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </thead>
+                        </table>
+                        <table align="center" style='width: 98%; margin-left: 10px; margin-top: 30px'>
                         <thead>
                             <tr>
                                 <th style='background: #007653; text-align: left' colspan="4">4.- ANTECEDENTES GINECOLOGICOS Y OBSTETRICOS</th>
                             </tr>
-                       </thead>
+                        </thead>
                        <thead >
                             <tr>                                
                                 <th>Menarquia</th>
@@ -177,12 +180,16 @@
                                 <td><div class="div-cont-lname"><input type="date" id="txt-fechaNaci" class="inp-lname" placeholder="Ultimo PAP"required=""  name="UltimoPAP"/></div></td> 
                             </tr>
                         </tbody>
+                        </table>
+                        <table align="center" style='width: 98%; margin-left: 10px; margin-top: 10px'>
                         <thead >
                             <tr>                                
-                                <th>Métodos Anticonceptivos</th>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Métodos Anticonceptivos" name="MetodosAnticonceptivos" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <th style="width: 300px;">Métodos Anticonceptivos</th>
+                                <td><div class="div-cont-name"><input style="width: 1000px;" style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Métodos Anticonceptivos" name="MetodosAnticonceptivos" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </thead>
+                        </table>
+                         <table align="center" style='width: 98%; margin-left: 10px; margin-top: 10px'>
                         <thead >
                             <tr>                                
                                 <th>FUM</th>
@@ -215,18 +222,22 @@
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="1" maxlength="2" placeholder="Edad Gestacional" name="EdadGestacional" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
                             </tr>
                         </tbody>
+                         </table>
+                         <table align="center" style='width: 98%; margin-left: 10px; margin-top: 10px'>
                         <thead >
                             <tr>                                
-                                <th>Complicaciones</th>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Complicaciones" name="Complicaciones" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <th style="width: 300px;">Complicaciones</th>
+                                <td><div class="div-cont-name"><input input style="width: 1000px;" style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Complicaciones" name="Complicaciones" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </thead>
+                        </table>
+                        <table align="center" style='width: 98%; margin-left: 10px; margin-top: 10px'>
                         <thead>
                             <tr>
                                 <th style='background: #007653; text-align: left' colspan="4">5.- MOTIVO DE LA CONSULTA</th>
                             </tr>
                        </thead>
-                       <tbody>
+                         <tbody>
                             <tr style='height: 175px'>
                                 <td colspan="4" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="Motivo de la Consulta" name="MotivoConsulta" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
                             </tr>
@@ -275,6 +286,13 @@
                 function cancel(){
                     window.location.href = "./MenuGinecologia.jsp";
                 }
+                
+                function validaNumericos(event) {
+                        if (event.charCode >= 48 && event.charCode <= 57) {
+                            return true;
+                        }
+                        return false;
+                    }
             </script>
     <script src="js/JQuery.js" type="text/javascript"></script>  
 </html>
