@@ -11,6 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" > 
         <a href="../src/java/DAO/Buscador.java"></a>
         <link href="css/Ingresos_2.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+        
         <title>Ficha Psicológica</title>
     </head>
     <body>
@@ -24,7 +26,7 @@
         <div class="div-head-titli" style="margin-top:-18px"><h2></h2></div>
 
 
-        <form class="form1" action="AddFichaPsicologica" method="GET" style="margin-top:-20px">
+        <form class="form1" action="AddHistopatologico" method="GET" style="margin-top:-20px">
             <section class="sec-main">
                 <div class="div-cont-main3">
                     <div class="div-cont-ced">
@@ -62,21 +64,21 @@
                                 <th style='background: #007653; text-align: left' colspan="4">1 ESTUDIO SOLICITADO</th>
                             </tr>
                        </thead>
-                       <thead >
+                    </table>
+                    <table align="center" style='width: 98%; margin-left: 10px; margin-top: 30px'>
+                        <tbody align="left">
                             <tr>
-                                <th>Estudio Solicitado</th>
-                            </tr>
-                        </thead>
-                        <tbody align="center">
-                            <tr>
-                                <td><div class="div-cont-sel-dep-to-transf"  ><select class="sel-dep-to-transf"required=""  name="estadoCivil">
-                                            <option>Seleccione el estudio solicitado</option>
-                                            <option>Histopatologia</option>
-                                            <option>Citologia</option>
-                                            <option>Otro</option>
+                                <td><div class="div-cont-sel-dep-to-transf"  ><select id="estudio" name="estudio" style="text-align:center; width: 350px;" class="sel-dep-to-transf"required="">
+                                            <option value="">Seleccione el estudio solicitado</option>
+                                            <option value="Histopatologia">Histopatologia</option>
+                                            <option value="Citologia">Citologia</option>
+                                            <option value="Otro">Otro</option>
                                         </select></div></td>
+                                        <td><div class="div-cont-name"><input style="width: 870px; visibility:visible; display: none" style= 'text-align: center' type="text" id="txtOtro" class="inp-name" placeholder="Otro" name="OtroEstudio" required=""  onkeypress="return soloLetras(event)"/></div></td>
                             </tr> 
                         </tbody>
+                    </table>
+                    <table align="center" style='width: 98%; margin-left: 10px; margin-top: 30px'>
                         <thead>
                             <tr>
                                 <th style='background: #007653; text-align: left' colspan="4">2 RESUMEN CLINICO</th>
@@ -92,9 +94,10 @@
                                 <th style='background: #007653; text-align: left' colspan="4">3 DIAGNOSTICO</th>
                             </tr>
                        </thead>
-                       <tbody>
+                       <tbody> 
                             <tr style='height: 175px'>
-                                <td colspan="4" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="Diagnostico" name="Diagnostico" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
+                                <td colspan="3" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="Diagnostico" name="Diagnostico" onkeyup="mayus(this);"style='height: 120px; width: 1100px'/></textarea></td>
+                                <td align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="CIE" name="CIE" onkeyup="mayus(this);"style='height: 120px; width: 200px;'/></textarea></td>
                             </tr>
                         </tbody>
                         <thead>
@@ -167,10 +170,10 @@
                         </thead>
                         <tbody align="center">
                             <tr>
-                                <td><div class="div-cont-name"><input style= 'text-align: left' type="checkbox" id="txt-name" class="inp-name" name="Oral" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-lname"><input style= 'text-align: center' type="checkbox" id="txt-lname" class="inp-lname" name="DIU"required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="checkbox" id="txt-name" class="inp-name" name="Ligadura"required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-lname"><input style= 'text-align: center' type="checkbox" id="txt-lname" class="inp-lname" name="Otro"required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: left' type="checkbox" id="txt-name" class="inp-name" name="Oral" required=""  onkeypress="return soloLetras(event)"/></div></td>
+                                <td><div class="div-cont-lname"><input style= 'text-align: center' type="checkbox" id="txt-lname" class="inp-lname" name="DIU"required=""  onkeypress="return soloLetras(event)"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="checkbox" id="txt-name" class="inp-name" name="Ligadura"required=""  onkeypress="return soloLetras(event)"/></div></td>
+                                <td><div class="div-cont-lname"><input style= 'text-align: center' type="checkbox" id="txt-lname" class="inp-lname" name="OtroO"required=""  onkeypress="return soloLetras(event)"/></div></td>
                             </tr>
                         </tbody>
                     </table>
@@ -261,12 +264,25 @@
                                 <td colspan="2"><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action" class="btn-accept" value="Cancelar" onclick="javascript:cancel();"/> </div></td>
                             </tr>
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
             </section>
         </form>
         <script>
-                function cancel(){
+            let opciones  = document.getElementById("estudio");
+            let cajaTexto = document.getElementById("txtOtro");
+
+            opciones.addEventListener("change", () => {
+            let eleccion = opciones.options[opciones.selectedIndex].text;
+
+            if(eleccion === "Otro") {
+            cajaTexto.style.display = "inline";
+            } else {
+            cajaTexto.style.display = "none";
+            }
+            });
+            
+            function cancel(){
                     window.location.href = "./MenuGinecologia.jsp";
                 }
                 function muestraReloj() {
@@ -296,7 +312,7 @@
                         return true;
                     }
                     return false;
-                }
-            </script>
-    <script src="js/JQuery.js" type="text/javascript"></script>  
-</html>
+                }         
+        </script>            
+    <script src="js/JQuery.js" type="text/javascript"></script>
+    </html>
