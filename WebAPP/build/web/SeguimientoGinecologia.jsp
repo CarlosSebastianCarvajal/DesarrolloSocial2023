@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
         <a href="../src/java/DAO/Buscador.java"></a>
         <link href="css/gin_seguimiento.css" rel="stylesheet" type="text/css"/>
-        <title>Terapia Física</title>
+        <title>Historia de Evolución</title>
     </head>
     <body>
         <header id="header" style=" background: #007653 !important;">
@@ -22,7 +22,7 @@
         </header>     
         <div class="div-head-tittle"><h2></h2></div>
         
-        <form id="form1" action="AddTerapiaFisica" method="GET" enctype="multipart/form-data">
+        <form id="form1" action="AddGineHistoriaEvolucion" method="GET" enctype="multipart/form-data">
         <section class="sec-main">
             
             <div id="divv" class="div-cont-main">
@@ -88,10 +88,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td> <div class="div-cont-ced" style='margin-top: -40px !important;'><input type="text" id="txt-pa" class="inp-ced" placeholder="Presion arterial" name="cedula" onkeypress='return validaNumericos(event)'/></div> </td>
-                            <td> <div class="div-cont-name"  ><input type="text" id="txt-temp" class="inp-name" placeholder="Temperatura" name="Temperatura" onkeypress="return validaNumericos(event)" /></div> </td>
-                            <td> <div class="div-cont-name"><input type="text" id="txt-fc" class="inp-name" placeholder="Frecuencia Cardiaca" name="Frecuencia cardiaca" onkeypress="return validaNumericos(event)"/></div> </td>
-                            <td> <div class="div-cont-name"><input type="text" id="txt-sat" class="inp-name" placeholder="Saturación" name="Saturación" onkeypress="return validaNumericos(event)"/></div> </td>
+                            <td> <div class="div-cont-ced" style='margin-top: -40px !important;'><input type="text" id="txt-pa" class="inp-ced" placeholder="Presion Arterial" name="presion_arterial" onkeypress='return validaNumericos(event)'/></div> </td>
+                            <td> <div class="div-cont-name"  ><input type="text" id="txt-temp" class="inp-name" placeholder="Temperatura" name="temperatura" /></div> </td>
+                            <td> <div class="div-cont-name"><input type="text" id="txt-fc" class="inp-name" placeholder="Frecuencia Cardiaca" name="frecuencia_cardiaca" onkeypress="return validaNumericos(event)"/></div> </td>
+                            <td> <div class="div-cont-name"><input type="text" id="txt-sat" class="inp-name" placeholder="Saturación" name="saturacion" onkeypress="return validaNumericos(event)"/></div> </td>
                             <input hidden type="text" id="txt-id" class="inp-lname" placeholder="txt-id" name="txtid"/>
                         </tr>
                     </tbody>
@@ -104,9 +104,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-peso" class="inp-lname" placeholder="Peso" name="Ayuda economica" onkeypress="return validaNumericos(event)"/></div></td>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-estatura" class="inp-lname" placeholder="Estatura" name="Correo Electronico" onkeypress="return validaNumericos(event)"/></div></td>
-                            <td> <div class="div-cont-edad"><input type="text" id="txt-imc" class="inp-edad" placeholder="Indice de masa corporal" name="Celular" onkeypress='return validaNumericos(event)'/></div>  </td>
+                            <td><div class="div-cont-lname"><input type="text" id="txt-peso" class="inp-lname" placeholder="Peso" name="peso" onkeypress="return validaNumericos(event)"/></div></td>
+                            <td><div class="div-cont-lname"><input type="text" id="txt-estatura" class="inp-lname" placeholder="Estatura" name="estatura" onkeypress="return validaNumericos(event)"/></div></td>
+                            <td> <div class="div-cont-edad"><input type="text" id="txt-imc" class="inp-edad" placeholder="Indice de masa corporal" name="imc" /></div>  </td>
                         </tr>
                     </tbody>
                     
@@ -122,7 +122,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div ><textarea type="text" id="txt-ne" class="inp-lname" required=""placeholder="Notas de evolución" name="notasE" style='height: 85px;'/></textarea> </div></td> 
+                            <td><div ><textarea type="text" id="txt-ne" class="inp-lname" required=""placeholder="Notas de evolución" name="notas" style='height: 85px;'/></textarea> </div></td> 
                         </tr>
                     </tbody>
                 </table > 
@@ -154,7 +154,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <input hidden type="text" id="txt-tabla-datos-medicamentos" name="txt-tabla-datos-medicamentos" class="inp-lname"/>
+                                                        <input  type="text" id="txt-tabla-datos-medicamentos" name="txt-tabla-datos-medicamentos" class="inp-lname"/>
                                                         <td><div class="div-cont-lname"><input type="text" onkeyup="mayus(this);" id="txt-medicamento" class="inp-lname" placeholder="Medicamento" name="medicamento"/></div></td>
                                                         <td><div class="div-cont-name"><input type="text"onkeyup="mayus(this);" id="txt-med-indicacion" class="inp-name" placeholder="Indicación Médica" name="indicaciones"/></div></td>
                                                         <td><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action-receta" class="btn-accept" value="+"> 
@@ -212,7 +212,7 @@
     </body>
     <footer></footer>
     <script src="js/JQuery.js" type="text/javascript"></script> 
-    <script src="js/GinecologiaFunciones.js" type="text/javascript"></script>
+    <script src="js/Gine-SeguimientoFunciones.js" type="text/javascript"></script>
     <script src="js/TF-AddReceta.js" type="text/javascript"></script>
     <script type="text/javascript">
         function validaNumericos(event) {

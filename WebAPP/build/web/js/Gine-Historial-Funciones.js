@@ -4,35 +4,11 @@
  * and open the template in the editor.
  */
 
-var divv = document.getElementById('divv');
-var porc_div = 40;
+
+console.log('aaaa');
 
 $(document).ready(function () {
-    
-    $(".oculto").hide();              
-    $(".inf").click(function(){
-          var nodo = $(this).attr("href");  
-          
-          if ($(nodo).is(":visible")){
-               $(nodo).hide();
-               porc_div = 40;
-               divv.style.marginTop= porc_div + "%";
-               return false;
-          }else{
-            $(".oculto").hide("slow");                             
-            $(nodo).fadeToggle("fast");
-            porc_div = 60;
-            divv.style.marginTop= porc_div + "%";
-            return false;
-          }
-    });
-
-    $("#btn-actionc").click(function () {
-        window.location.href = "./MenuGinecologia.jsp";
-        //window.location.href = "./RecetaMedica.jsp?user=" + getQueryVariableRe();
-    });
     usermedico();
-    
     
 });
 
@@ -73,12 +49,14 @@ $(function () {
                 console.log(data);
                 nombres = data.paciente_primer_segundo_nombre; apellidos = data.paciente_primer_segundo_apellido;
                 $("#txt-id").val(data.pacienteid);
-                $("#txt-cedi").val(data.paciente_dni);
-                $("#txt-namen").val( nombres + ' ' + apellidos);
-                $("#txt-namef").val(data.paciente_grupo);
-                $("#txt-cel").val(data.paciente_telefono);
-                $("#txt-ayudaeconomica").val(data.paciente_ayudasocial);
-                $("#txt-tiposangre").val(data.paciente_correoelectronico);
+                $("#txt-cedula").val(data.paciente_dni);
+                $("#txt-nombres").val(nombres);
+                $("#txt-apellidos").val(apellidos);
+                $("#txt-estadoc").val(data.paciente_estadocivil);
+                $("#txt-fn").val(data.paciente_fechanacimiento);
+                $("#txt-edad").val('aqui va la edad');
+                $("#txt-telefono").val(data.paciente_telefono);
+                $("#txt-domicilio").val(data.paciente_telefono);
             }
         });
     };
@@ -87,6 +65,7 @@ $(function () {
 $(function () {
     $('#btn-actionb').click(function (e) {
         buscador();
+        console.log('aaaa');
     });
     const buscador = () => {
 
@@ -107,17 +86,33 @@ $(function () {
                 console.log(data);
                 nombres = data.paciente_primer_segundo_nombre; apellidos = data.paciente_primer_segundo_apellido;
                 $("#txt-id").val(data.pacienteid);
-                $("#txt-cedi").val(data.paciente_dni);
-                $("#txt-namen").val( nombres + ' ' + apellidos);
-                $("#txt-namef").val(data.paciente_grupo);
-                $("#txt-cel").val(data.paciente_telefono);
-                $("#txt-ayudaeconomica").val(data.paciente_ayudasocial);
-                $("#txt-tiposangre").val(data.paciente_correoelectronico);
+                $("#txt-cedula").val(data.paciente_dni);
+                $("#txt-nombres").val(nombres);
+                $("#txt-apellidos").val(apellidos);
+                $("#txt-estadoc").val(data.paciente_estadocivil);
+                $("#txt-fn").val(data.paciente_fechanacimiento);
+                $("#txt-edad").val(calcularEdad(data.paciente_fechanacimiento));
+                $("#txt-telefono").val(data.paciente_telefono);
+                $("#txt-domicilio").val(data.paciente_telefono);
+                
             }
 
         });
     };
 });
+
+function calcularEdad(fecha) {
+    var hoy = new Date();
+    var cumpleanos = new Date(fecha);
+    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    var m = hoy.getMonth() - cumpleanos.getMonth();
+
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+    }
+
+    return edad;
+}
 
 //Datos del paciente
 var ideusuario;

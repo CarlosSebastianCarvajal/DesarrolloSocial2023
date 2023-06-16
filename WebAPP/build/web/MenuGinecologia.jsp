@@ -58,12 +58,14 @@
                                 <a href="">
                                     <img alt="" src="img/historia_clinica_96.png" width="96" height="96">
                                     <span class="label"></span></a>
-                                <h3 style="color:#007653; font-weight: bold">HISTORIA CLÍNICA PACIENTE NORMAL</h3>
+                                <h3 style="color:#007653; font-weight: bold">HISTORIA CLÍNICA DEL PACIENTE</h3>
 
                             </header>
                             <p>Registre o actualice la Historia Clínica Gineco-Obstetrico de las pacientes</p>
-                            <input type="button" onclick="javascript:abrirHistoriaNormal();" value="Registrar" class="button primary" style=" background: #007653 !important;"/>
-                            <input type="button" onclick="javascript:actuaHistoriaNormal();" value="Actualizar" class="button primary" style=" background: #007653 !important;"/>
+                            <input type="button" onclick="javascript:abrirHistoriaNormal();" value="Agregar" class="button primary" style=" background: #007653 !important;"/>
+                            <!--
+                            <input type="button" onclick="javascript:actuaHistoriaNormal();" value="Modificar" class="button primary" style=" background: #007653 !important;"/>
+                            -->
                         </div>
                     </section>
                     
@@ -74,10 +76,10 @@
                                 <a href="" >
                                     <img alt="" src="img/gine_seguimiento_96.png" width="96" height="96">
                                     <span class="label"></span></a>
-                                <h3 style="color:#007653; font-weight: bold" class="textgrueso">SEGUIMIENTO PACIENTE NORMAL</h3>
+                                <h3 style="color:#007653; font-weight: bold" class="textgrueso">SEGUIMIENTO A PACIENTE</h3>
                             </header>
                             <p>Ingrese la información correspondiente al seguimiento realizado a la paciente</p>
-                            <input type="button" onclick="javascript:abrirSeguimientoNormal();" value="Ingresar" class="button primary" style=" background: #007653 !important;"/>
+                            <input type="button" onclick="javascript:abrirSeguimientoNormal();" value="Registrar" class="button primary" style=" background: #007653 !important;"/>
                         </div>
                     </section>
                     

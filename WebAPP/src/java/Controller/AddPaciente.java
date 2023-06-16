@@ -88,7 +88,7 @@ public class AddPaciente extends HttpServlet {
                   
 //                    request.getRequestDispatcher("Principal.jsp").forward(request, response);
                 } else {
-//                    out.println("Si estas viendo este mensaje es por que algo salio mal, no se pudo completar tu solicitud.");
+                    out.println("Si estas viendo este mensaje es por que algo salio mal, no se pudo completar tu solicitud.");
                 }
             }
         }

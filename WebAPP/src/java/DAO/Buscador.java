@@ -27,6 +27,8 @@ public class Buscador {
                     + "CONCAT(paciente_apellido_paterno, ' ',paciente_apellido_materno)as apellido,paciente_grupo,"
                     + "paciente_convencional,paciente_telefono,paciente_provincia,paciente_direccion,\n"
                     + " paciente_genero, paciente_ayudasocial,paciente_nacionalidad, "
+                    + "	   paciente_estado_civil,\n"
+                    + "	   paciente_fnacimiento,\n"
                     + "paciente_correoelectronico from paciente "
                     + "where paciente_dni = '" + cedula + "'";
             pst = cn.getConecction().prepareStatement(sql_command);
@@ -45,6 +47,8 @@ public class Buscador {
                 newbuscar.setPaciente_genero(String.valueOf(rs.getString("paciente_genero")));
                 newbuscar.setPaciente_ayudasocial(String.valueOf(rs.getString("paciente_ayudasocial")));
                 newbuscar.setPaciente_nacionalidad(String.valueOf(rs.getString("paciente_nacionalidad")));
+                newbuscar.setPaciente_estadocivil(String.valueOf(rs.getString("paciente_estado_civil")));
+                newbuscar.setPaciente_fechanacimiento(String.valueOf(rs.getString("paciente_fnacimiento")));
                 newbuscar.setPaciente_correoelectronico(String.valueOf(rs.getString("paciente_correoelectronico")));
 
             }
@@ -85,6 +89,8 @@ public class Buscador {
                     + "	   paciente_genero,\n"
                     + "	   paciente_ayudasocial,\n"
                     + "	   paciente_nacionalidad,\n"
+                    + "	   paciente_estado_civil,\n"
+                    + "	   paciente_fnacimiento,\n"
                     + "	   paciente_correoelectronico from paciente) as T1\n"
                     + "	   where apellido = '" + apellido + "' AND nombre = '" + nombre + "'";
             pst = cn.getConecction().prepareStatement(sql_command);
@@ -102,6 +108,8 @@ public class Buscador {
                 newbuscar.setPaciente_genero(String.valueOf(rs.getString("paciente_genero")));
                 newbuscar.setPaciente_ayudasocial(String.valueOf(rs.getString("paciente_ayudasocial")));
                 newbuscar.setPaciente_nacionalidad(String.valueOf(rs.getString("paciente_nacionalidad")));
+                newbuscar.setPaciente_estadocivil(String.valueOf(rs.getString("paciente_estado_civil")));
+                newbuscar.setPaciente_fechanacimiento(String.valueOf(rs.getString("paciente_fnacimiento")));
                 newbuscar.setPaciente_correoelectronico(String.valueOf(rs.getString("paciente_correoelectronico")));
 
             }

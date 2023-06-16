@@ -27,7 +27,7 @@
         
        -->
          <!-- Reporte General de pacientes atendidos -->
-        <form name="form1" method="post" action="REPORTETerapiaFisicaGeneral.jsp" target="_blank" >
+        <form name="form1" method="post" action="REPORTEGinPacAtendidos.jsp" target="_blank" >
             <section class="sec-main">
                 <div class="div-cont-main"> 
                     <div class="div-cont-ced">
@@ -98,7 +98,7 @@
         
         
         <!-- Consulta de recetario-->
-        <form name="form1" method="post" action="REPORTETerapiaFisicaReceta.jsp" target="_blank" >
+        <form name="form1" method="post" action="REPORTEGinReceta.jsp" target="_blank" >
             <section class="sec-main">
                 <div class="div-cont-main"> 
                     <div class="div-cont-ced">
