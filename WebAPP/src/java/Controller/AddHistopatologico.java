@@ -32,37 +32,64 @@ public class AddHistopatologico extends javax.servlet.http.HttpServlet {
     PreparedStatement ps = null;
     HttpSession session = null;
     conexion c = new conexion();
-
+    
+    public boolean Covertir(String condicion)
+    {
+        boolean respuesta = true;
+        System.out.println("1"+condicion+"2");
+        if(condicion=="on")
+        {
+            System.out.println("sdentro");
+            respuesta = true;
+        }
+        else
+        {
+            respuesta = false;
+        }
+        return respuesta;
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/plain;charset=UTF-8");
-
+        
         try {
             out = response.getWriter();
             session = request.getSession(true);
-
+            String OtroEstudio=" ";
             String fecha = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
 
             String cedula = request.getParameter("cedula");
             String estudio = request.getParameter("estudio");
-            String OtroEstudio = request.getParameter("OtroEstudio");
+            OtroEstudio = request.getParameter("OtroEstudio");
             String ResumenClinico = request.getParameter("ResumenClinico");
             String Diagnostico = request.getParameter("Diagnostico");
             String CIE = request.getParameter("CIE");
             String MuestraPieza = request.getParameter("MuestraPieza");
             String TratamientoRecibe = request.getParameter("TratamientoRecibe");
-            boolean Endocervix = Boolean.valueOf(request.getParameter("Endocervix"));
-            boolean Exocervix = Boolean.valueOf(request.getParameter("Exocervix"));
-            boolean ParedVaginal = Boolean.valueOf(request.getParameter("ParedVaginal"));
-            boolean UnionEscamo = Boolean.valueOf(request.getParameter("UnionEscamo"));
-            boolean MuñonCervical = Boolean.valueOf(request.getParameter("MuñonCervical"));
-            boolean Otro = Boolean.valueOf(request.getParameter("Otro"));
-            boolean Oral = Boolean.valueOf(request.getParameter("Oral"));
-            boolean DIU = Boolean.valueOf(request.getParameter("DIU"));
-            boolean Ligadura = Boolean.valueOf(request.getParameter("Ligadura"));
-            boolean OtroO = Boolean.valueOf(request.getParameter("OtroO"));
-            boolean TerapiaHormonal = Boolean.valueOf(request.getParameter("TerapiaHormonal"));
+            String Endocervix =request.getParameter("Endocervix");
+            String Exocervix = request.getParameter("Exocervix");
+            String ParedVaginal = request.getParameter("ParedVaginal");
+            String UnionEscamo = request.getParameter("UnionEscamo");
+            String MuñonCervical = request.getParameter("MuñonCervical");
+            String Otro = request.getParameter("Otro");
+            String Oral = request.getParameter("Oral");
+            String DIU = request.getParameter("DIU");
+            String Ligadura = request.getParameter("Ligadura");
+            String OtroO = request.getParameter("OtroO");
+            String TerapiaHormonal = request.getParameter("TerapiaHormonal");
+            boolean Endocervi = Covertir(Endocervix);
+            boolean Exocervi = Covertir(Exocervix);
+            boolean ParedVagina = Covertir(ParedVaginal);
+            boolean UnionEscam = Covertir(UnionEscamo);
+            boolean MuñonCervica = Covertir(MuñonCervical);
+            boolean Otr = Covertir(Otro);
+            boolean Ora = Covertir(Oral);
+            boolean DI = Covertir(DIU);
+            boolean Ligadur = Covertir(Ligadura);
+            boolean OtroO1 = Covertir(OtroO);
+            boolean TerapiaHormona = Covertir(TerapiaHormonal);
             int Menarquia = Integer.parseInt(request.getParameter("Menarquia"));
             int Menopausia = Integer.parseInt(request.getParameter("Menopausia"));
             int InicioRelaciones = Integer.parseInt(request.getParameter("InicioRelaciones"));
@@ -77,7 +104,7 @@ public class AddHistopatologico extends javax.servlet.http.HttpServlet {
             String galenoUser = (String) session.getAttribute("galeno_user11");
             //String  = request.getParameter("");
 
-            //System.out.println("cedula: "+cedula+" Resumen: "+ResumenClinico+" Endocervix: "+Endocervix);
+            System.out.println("cedula: "+cedula+" Resumen: "+ResumenClinico+" Endocervix: "+Endocervi+" Endocervix1:"+Endocervix+"f");
             try {
                 String sqlInsertarPaciente = "INSERT INTO public.solicitud_hispatologico(\n"
                         + "	galeno_id, paciente_id, estudio_solicitado, otro_estudio, resumen_clinico, "
@@ -98,17 +125,17 @@ public class AddHistopatologico extends javax.servlet.http.HttpServlet {
                 ps.setString(7, CIE);
                 ps.setString(8, MuestraPieza);
                 ps.setString(9, TratamientoRecibe);
-                ps.setBoolean(10, Endocervix);
-                ps.setBoolean(11, Exocervix);
-                ps.setBoolean(12, ParedVaginal);
-                ps.setBoolean(13, UnionEscamo);
-                ps.setBoolean(14, MuñonCervical);
-                ps.setBoolean(15, Otro);
-                ps.setBoolean(16, Oral);
-                ps.setBoolean(17, DIU);
-                ps.setBoolean(18, Ligadura);
-                ps.setBoolean(19, OtroO);
-                ps.setBoolean(20, TerapiaHormonal);
+                ps.setBoolean(10, Endocervi);
+                ps.setBoolean(11, Exocervi);
+                ps.setBoolean(12, ParedVagina);
+                ps.setBoolean(13, UnionEscam);
+                ps.setBoolean(14, MuñonCervica);
+                ps.setBoolean(15, Otr);
+                ps.setBoolean(16, Ora);
+                ps.setBoolean(17, DI);
+                ps.setBoolean(18, Ligadur);
+                ps.setBoolean(19, OtroO1);
+                ps.setBoolean(20, TerapiaHormona);
                 ps.setInt(21, Menarquia);
                 ps.setInt(22, Menopausia);
                 ps.setInt(23, InicioRelaciones);
@@ -118,7 +145,8 @@ public class AddHistopatologico extends javax.servlet.http.HttpServlet {
                 ps.setInt(27, Cesareas);
                System.out.println(sqlInsertarPaciente);
                 int resultado = 0;
-                //resultado = ps.executeUpdate();
+                resultado = ps.executeUpdate();
+                 response.sendRedirect("MenuGinecologia.jsp");
                 System.out.println("Paciente add: " + resultado);
             } catch (SQLException e) {
                 out.println("Exception: " + e);

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="277ece90-5a86-49e5-9f4d-7fcd41505a7c">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="165"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="112" y="40" width="377" height="18" uuid="e237bab1-0613-4159-94f1-d853329b79b8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ÁREA DE GINECOLOGIA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="5" width="81" height="46" uuid="e003f2cf-824a-4f38-a679-7eb93242be9e"/>
+				<imageExpression><![CDATA["logo_quevedo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="111" y="58" width="377" height="18" uuid="ee8824b3-2f66-42ad-a056-8793cc4ea835"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SOLICITUD HISTOPATOLOGICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="5" width="486" height="20" uuid="4c85d1cf-6557-4e08-a538-5d3009bec407"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GOBIERNO AUTÓNOMO DESCENTRALIZADO DE QUEVEDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="25" width="376" height="16" uuid="eb6b823c-4e2f-488a-9de5-b83fa4c8daec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="669" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="3" width="105" height="18" backcolor="#FFFFFF" uuid="620820a5-d03a-48b6-9f2a-ff792aa963db"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="3" width="105" height="18" backcolor="#FFFFFF" uuid="672026f2-9345-457e-96e1-ba1883527b3f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRIMER APELLIDO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="106" y="3" width="105" height="18" backcolor="#FFFFFF" uuid="66b91a3c-e0fb-4cef-b5e7-fe69f64d609e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="106" y="3" width="105" height="18" uuid="0dc7ffaf-8bf7-4a78-bda3-68829b091b90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEGUNDO APELLIDO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="212" y="3" width="105" height="18" backcolor="#FFFFFF" uuid="f7a78a8d-932d-4488-8476-c9d50321f577"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="212" y="3" width="105" height="18" uuid="40a1b5a5-4ded-4884-9cb7-05bedf6da64a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRIMER NOMBRE]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="318" y="3" width="105" height="18" backcolor="#FFFFFF" uuid="974c9959-4db6-4748-9242-e043d9abbfc3"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="318" y="3" width="105" height="18" uuid="499b1692-958c-4c1b-998e-1067e07f4189"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEGUNDO NOMBRE]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="423" y="3" width="132" height="18" backcolor="#FFFFFF" uuid="e0b4af49-a5ac-4141-a93b-19f6eb225584"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="423" y="3" width="132" height="18" uuid="5459d38d-21f5-4528-93bc-4bea680732ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÉDULA DE IDENTIDAD]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="21" width="105" height="18" backcolor="#FFFFFF" uuid="f02b2762-5a53-408d-b14f-808e2b0872a5"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="20" width="105" height="20" uuid="0fc1cb52-8c33-4122-bdbf-24f27bb487f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="106" y="21" width="105" height="18" backcolor="#FFFFFF" uuid="e12392ec-f998-4edd-901e-36a30241bb47"/>
+			</rectangle>
+			<textField>
+				<reportElement x="106" y="20" width="105" height="20" uuid="f9447ed9-26cf-43c3-bfb6-271b2932f9ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="212" y="21" width="105" height="18" backcolor="#FFFFFF" uuid="b7000b87-ce0a-4193-adce-12e648886757"/>
+			</rectangle>
+			<textField>
+				<reportElement x="212" y="20" width="105" height="20" uuid="9291a006-da0c-44fc-acf8-175dce46a8b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="318" y="21" width="105" height="18" backcolor="#FFFFFF" uuid="fef0e453-73bd-4860-9f39-e51f4e8ccecb"/>
+			</rectangle>
+			<textField>
+				<reportElement x="318" y="20" width="105" height="20" uuid="89d65da3-b3a1-434e-a572-e11c994fa057"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="423" y="21" width="132" height="18" backcolor="#FFFFFF" uuid="d5da1ae3-5c3d-49cb-a943-c35166bd3a59"/>
+			</rectangle>
+			<textField>
+				<reportElement x="423" y="20" width="132" height="20" uuid="a9779308-9ca7-4032-a5ff-fbb3b7c9aacf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="41" width="555" height="20" backcolor="#00CC66" uuid="0bba33c7-2ca8-4bd0-ba79-7862c15b1b54"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="6" y="43" width="294" height="18" uuid="37f3043a-7a35-407e-ba74-1e25d8a6cd72"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1 ESTUDIO SOLICITADO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="61" width="91" height="18" backcolor="#FFFFFF" uuid="10d9e306-5fa7-4da7-8977-0775c108dcda"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="61" width="91" height="18" backcolor="#FFFFFF" uuid="a175a508-08a8-4948-b797-6440b3f9ddb2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HISTOPATOLOGIA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="92" y="61" width="40" height="18" backcolor="#FFFFFF" uuid="ddb72c20-321c-4fe2-a32e-c6d42768d685"/>
+			</rectangle>
+			<textField>
+				<reportElement x="92" y="60" width="40" height="20" uuid="24b6f1ac-e4fd-4377-b50a-72f1c5f780b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="132" y="61" width="65" height="18" backcolor="#FFFFFF" uuid="2d7f9900-82d7-4bbf-9bee-d68a7f079a28"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="132" y="61" width="65" height="18" backcolor="#FFFFFF" uuid="06f8601a-eccc-4f05-b6cd-6f1e383a9139"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CITOLOGIA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="198" y="61" width="40" height="18" backcolor="#FFFFFF" uuid="11b7bd37-c52b-40d0-a5d3-328b31a0cf84"/>
+			</rectangle>
+			<textField>
+				<reportElement x="198" y="60" width="40" height="20" uuid="5a46bcef-96a6-40ce-b3a0-0a61e8b4d71d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="239" y="61" width="46" height="18" backcolor="#FFFFFF" uuid="f075c840-48c9-4e9e-a4a2-e612e2d92314"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="239" y="61" width="46" height="18" backcolor="#FFFFFF" uuid="1a912efc-4c9c-4958-9f80-565208b198a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OTRO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="285" y="61" width="270" height="18" backcolor="#FFFFFF" uuid="f7671c02-9715-47f6-9222-3e13102250ff"/>
+			</rectangle>
+			<textField>
+				<reportElement x="285" y="61" width="269" height="20" uuid="bdeedb39-b9e9-4874-a362-56ec444984d8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="81" width="555" height="20" backcolor="#00CC66" uuid="f81edaf2-a7ee-4834-bc36-552813cfe14b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="6" y="83" width="294" height="18" uuid="20527d5f-05e9-414f-8824-879511ecd209"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2 RESUMEN CLINICO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="101" width="555" height="72" backcolor="#FFFFFF" uuid="d937a9eb-5ae2-447b-b29a-073ab06824c7"/>
+			</rectangle>
+			<textField>
+				<reportElement x="-8" y="101" width="554" height="72" uuid="f33dd4a1-8ee2-449e-bef8-d8d3be8594bc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="175" width="266" height="20" backcolor="#00CC66" uuid="81f67aae-a80d-4083-b752-e22187c67fb7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="6" y="176" width="260" height="18" uuid="94153343-28a1-4bc4-a656-037d415c6c56"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3 DIAGNOSTICO                                                           CIE]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="195" width="239" height="72" backcolor="#FFFFFF" uuid="177feee8-d451-41b7-8422-e4660ca473bc"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="195" width="238" height="72" uuid="b4832d17-bdce-4db1-9bc3-86531db79f8f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+			</textField>
+			<rectangle>
+				<reportElement x="239" y="195" width="27" height="72" backcolor="#FFFFFF" uuid="8e8af596-df33-45c4-823b-f7b4869a87fe"/>
+			</rectangle>
+			<textField>
+				<reportElement x="239" y="195" width="27" height="72" uuid="f3cf3716-c6d7-49fa-8d47-da3754158e2d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+			</textField>
+			<rectangle>
+				<reportElement x="285" y="195" width="270" height="72" backcolor="#FFFFFF" uuid="b9dbdca8-37a8-46b5-8558-1e7d6f5c2bc7"/>
+			</rectangle>
+			<textField>
+				<reportElement x="285" y="195" width="269" height="72" uuid="4880481f-0fe9-43b3-8a4a-1aad76d1071e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+			</textField>
+			<rectangle>
+				<reportElement x="285" y="175" width="270" height="20" backcolor="#00CC66" uuid="79975014-afd1-4e42-8fa6-23dd80af5989"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="289" y="177" width="257" height="18" uuid="f3f7d55c-5f2e-4cfa-8b00-74443c0abae3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4 MUESTRA O PIEZA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="270" width="555" height="20" backcolor="#00CC66" uuid="4e6fa83c-8ff3-488c-b5a0-088cd5413fb0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="6" y="272" width="294" height="18" uuid="e56e0948-2a7b-4647-9df5-4ccc05cd60e4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[5 TRATAMIENTO QUE RECIBE]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="290" width="555" height="57" backcolor="#FFFFFF" uuid="dfb46642-13a0-4d6a-81fd-1893c6c44fe2"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="290" width="554" height="57" uuid="5bfe45a4-b92a-4a72-a278-f41d480c4bb3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="349" width="555" height="20" backcolor="#00CC66" uuid="aa5752f4-1b15-4a89-bd7e-fcdaa26fa2c0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="6" y="351" width="382" height="18" uuid="4acdf851-2763-4741-8c3e-e0ee854a6f87"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[6 DATOS BASICOS PARA LA CITOLOGIA CERVICAL]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

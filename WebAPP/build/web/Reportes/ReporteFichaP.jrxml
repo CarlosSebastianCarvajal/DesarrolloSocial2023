@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="07a58213-ce39-44a2-8db7-baec1c74dcb5">
 	<property name="ireport.zoom" value="1.6500000000000001"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="33"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="cedulaPaciente" class="java.lang.String"/>
 	<queryString>
@@ -65,6 +65,17 @@ where p.paciente_id=c.paciente_id and a.galeno_id=g.galeno_id and a.paciente_id=
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="10" y="5" width="81" height="46" uuid="a6f54dcb-d2bd-47ef-8585-72f95db715aa"/>
+				<imageExpression><![CDATA["logo_quevedo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="111" y="58" width="377" height="18" uuid="3f9c58f0-e3a0-4e7a-8189-9e24412cfab0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FICHA PSICOLÓGICA]]></text>
+			</staticText>
 			<staticText>
 				<reportElement x="68" y="5" width="486" height="20" uuid="3cdc3a32-683f-4a88-baaa-4de5a0cb8e05"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -85,17 +96,6 @@ where p.paciente_id=c.paciente_id and a.galeno_id=g.galeno_id and a.paciente_id=
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ÁREA DE PSICOLOGÍA]]></text>
-			</staticText>
-			<image>
-				<reportElement x="10" y="5" width="81" height="46" uuid="a6f54dcb-d2bd-47ef-8585-72f95db715aa"/>
-				<imageExpression><![CDATA["logo_quevedo.jpg"]]></imageExpression>
-			</image>
-			<staticText>
-				<reportElement x="111" y="58" width="377" height="18" uuid="3f9c58f0-e3a0-4e7a-8189-9e24412cfab0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[FICHA PSICOLÓGICA]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -194,7 +194,7 @@ where p.paciente_id=c.paciente_id and a.galeno_id=g.galeno_id and a.paciente_id=
 				<textFieldExpression><![CDATA[$F{paciente_segundo_nombre}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement x="423" y="39" width="132" height="18" backcolor="#FFFFFF" uuid="a7b24409-915c-4b82-b68e-6fbd30bdf47a"/>
+				<reportElement x="423" y="40" width="132" height="18" backcolor="#FFFFFF" uuid="a7b24409-915c-4b82-b68e-6fbd30bdf47a"/>
 			</rectangle>
 			<textField>
 				<reportElement x="423" y="38" width="132" height="20" uuid="55733ece-35f0-48fa-a724-2a653bd62290"/>
