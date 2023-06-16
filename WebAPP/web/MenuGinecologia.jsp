@@ -81,7 +81,7 @@
                         </div>
                     </section>
                     
-                    <!-- HISTORIA CLINICA PACIENTES EMBARAZADAS -->
+                    <!-- HISTORIA CLINICA PACIENTES EMBARAZADAS 
                     <section class="animadoagregarinformacion">
                         <div class="content">
                             <header>
@@ -95,9 +95,9 @@
                             <input type="button" onclick="javascript:abrirHistoriaEmba();" value="Registrar" class="button primary" style=" background: #007653 !important;"/>
                             <input type="button" onclick="javascript:actuaHistoriaEmba();" value="Actualizar" class="button primary" style=" background: #007653 !important;"/>
                         </div>
-                    </section>
+                    </section>-->
                     
-                    <!-- SEGUIMIENTO PACIENTES EMBARAZADAS -->
+                    <!-- SEGUIMIENTO PACIENTES EMBARAZADAS
                     <section class="animadoagregarinformacion">
                         <div class="content">
                             <header>
@@ -109,7 +109,7 @@
                             <p>Ingrese la información correspondiente al seguimiento realizado a la paciente embarazada</p>
                             <input type="button" onclick="javascript:abrirSeguimientoEmba();" value="Ingresar" class="button primary" style=" background: #007653 !important;"/>
                         </div>
-                    </section>
+                    </section> -->
                     
                     <!-- SOLICITUD HISTOPATOLOGICA -->
                     <section class="animadoagregarinformacion">
@@ -172,8 +172,7 @@
               //window.location.href = "./Terapiafisica.jsp?user="+document.getElementById("usuario").innerHTML;
             }
             function abrirSH(){
-              //Aqui va lo de solicitud hispatologica
-              //window.location.href = "./Terapiafisica.jsp?user="+document.getElementById("usuario").innerHTML;
+              window.location.href = "./Histopatologico.jsp?user="+document.getElementById("usuario").innerHTML;
             }
             
             
