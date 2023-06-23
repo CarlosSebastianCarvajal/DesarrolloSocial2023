@@ -36,8 +36,9 @@ public class AddHistopatologico extends javax.servlet.http.HttpServlet {
     public boolean Covertir(String condicion)
     {
         boolean respuesta = true;
+        condicion=String.valueOf(condicion);
         System.out.println("1"+condicion+"2");
-        if(condicion=="on")
+        if(condicion.equals("on"))
         {
             System.out.println("sdentro");
             respuesta = true;
@@ -146,7 +147,7 @@ public class AddHistopatologico extends javax.servlet.http.HttpServlet {
                System.out.println(sqlInsertarPaciente);
                 int resultado = 0;
                 resultado = ps.executeUpdate();
-                 response.sendRedirect("MenuGinecologia.jsp");
+                response.sendRedirect("MenuGinecologia.jsp");
                 System.out.println("Paciente add: " + resultado);
             } catch (SQLException e) {
                 out.println("Exception: " + e);
