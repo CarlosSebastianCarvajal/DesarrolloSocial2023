@@ -8,6 +8,7 @@
 console.log('aaaa');
 
 $(document).ready(function () {
+    
     usermedico();
     
 });

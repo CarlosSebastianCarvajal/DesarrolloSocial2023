@@ -51,23 +51,25 @@
                             <input type="button" onclick="javascript:Actualizar();" value="Actualizar" class="button primary" style=" background: #007653 !important;"/>
                         </div>
                     </section>
-                    <!-- HISTORIA CLINICA NORMAL -->
+                    <!--  HISTORIA CLINICA NORMAL -->
                     <section class="animadoagregarinformacion">
                         <div class="content">
                             <header>
                                 <a href="">
                                     <img alt="" src="img/historia_clinica_96.png" width="96" height="96">
                                     <span class="label"></span></a>
-                                <h3 style="color:#007653; font-weight: bold">HISTORIA CLÍNICA DEL PACIENTE</h3>
+                                <h3 style="color:#007653; font-weight: bold">HISTORIA CLÍNICA DE LA PACIENTE</h3>
 
                             </header>
                             <p>Registre o actualice la Historia Clínica Gineco-Obstetrico de las pacientes</p>
-                            <input type="button" onclick="javascript:abrirHistoriaNormal();" value="Agregar" class="button primary" style=" background: #007653 !important;"/>
-                            <!--
-                            <input type="button" onclick="javascript:actuaHistoriaNormal();" value="Modificar" class="button primary" style=" background: #007653 !important;"/>
-                            -->
+                            <input type="button" onclick="javascript:nuevaHistoriaNormal();" value="Nueva" class="button primary" style=" background: #007653 !important;"/>
+                            
+                            <input type="button" onclick="javascript:actuaHistoriaNormal();" value="Ver/Modificar" class="button primary" style=" background: #007653 !important;"/>
+                            
                         </div>
                     </section>
+                    
+                    
                     
                     <!-- SEGUIMIENTO NORMAL -->
                     <section class="animadoagregarinformacion">
@@ -157,9 +159,11 @@
               window.location.href = "./Actualizardatospaciente.jsp?idx=g";
             }
             
-            function abrirHistoriaNormal(){
+            function nuevaHistoriaNormal(){
               // Aqui coloca lo de ingresar historia clinica Cholota
+              alert('Usted va a registrar una nueva historia clínica a una paciente. El seguimiento a la paciente ahora estará basada en la nueva historia clínica, en caso que desee cancelar la accion puede ralizarlo presionando el boton CANCELAR al fianl de la página');
               window.location.href = "./HistoriaClinica_Ginecologia.jsp?user="+document.getElementById("usuario").innerHTML;
+              
             }
             function actuaHistoriaNormal(){
               //window.location.href = "./Terapiafisica.jsp?user="+document.getElementById("usuario").innerHTML;

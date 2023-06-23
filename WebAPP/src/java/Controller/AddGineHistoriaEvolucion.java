@@ -51,7 +51,8 @@ public class AddGineHistoriaEvolucion extends HttpServlet {
             String galenoid = "", hcid = "";
             String pacienteid,
                 //Datos de los signos vitales  (Crear Variable)   
-                presion_arterial,
+                presion_arterial_s,
+                presion_arterial_d,
                 temperatura,
                 frecuencia_cardiaca,
                 saturacion,
@@ -67,7 +68,8 @@ public class AddGineHistoriaEvolucion extends HttpServlet {
             
             pacienteid = request.getParameter("txtid");
             // Capturar valores de signos vitales
-            presion_arterial = request.getParameter("presion_arterial");
+            presion_arterial_s = request.getParameter("presion_arterial_s");
+            presion_arterial_d = request.getParameter("presion_arterial_d");
             temperatura = request.getParameter("temperatura");
             frecuencia_cardiaca = request.getParameter("frecuencia_cardiaca");
             saturacion = request.getParameter("saturacion");
@@ -83,7 +85,6 @@ public class AddGineHistoriaEvolucion extends HttpServlet {
             
             //Capturar usuario de la sesion
             String galenoUser = (String) session.getAttribute("galeno_user11");
-            
             try {
                 System.out.println("connection done");
                 
@@ -94,8 +95,9 @@ public class AddGineHistoriaEvolucion extends HttpServlet {
                 while (resultId.next()) {
                     galenoid = String.valueOf(resultId.getString("galeno_id"));
                 }
+                
                 //Obtener el id de Historia Clinica
-                String sqlidHC = "SELECT * from ginecologia_historia_clinica order by ghc_id desc";
+                String sqlidHC = "SELECT  * from ginecologia_historia_clinica where paciente_id = "+pacienteid+" order by ghc_id desc limit 1";
                 ps = c.getConecction().prepareStatement(sqlidHC);
                 resultId = ps.executeQuery();
                 while (resultId.next()) {
@@ -105,28 +107,28 @@ public class AddGineHistoriaEvolucion extends HttpServlet {
                
                 //Guardar las signos vitales
                 String sqlSignos = "INSERT INTO public.signos_vitales(\n" +
-                                "	paciente_id, presion_arterial, temperatura, frecuencia_cardiaca, saturacion, peso, estatura, imc, fecha, hora)\n" +
-                                "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
+                                "	paciente_id, galeno_id, pa_sistolica, pa_diastolica, temperatura, frecuencia_cardiaca, saturacion, peso, estatura, imc, fecha, hora)\n" +
+                                "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
+
                 ps = c.getConecction().prepareStatement(sqlSignos, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, Integer.parseInt(pacienteid));
-                ps.setInt(2, Integer.parseInt(presion_arterial));
-                ps.setFloat(3, Float.parseFloat(temperatura));
-                ps.setInt(4, Integer.parseInt(frecuencia_cardiaca));
-                ps.setInt(5, Integer.parseInt(saturacion));
-                ps.setFloat(6, Float.parseFloat(peso));
-                ps.setInt(7, Integer.parseInt(estatura));
-                ps.setFloat(8, Float.parseFloat(imc));
+                ps.setInt(2, Integer.parseInt(galenoid));
+                ps.setInt(3, Integer.parseInt(presion_arterial_s));
+                ps.setInt(4, Integer.parseInt(presion_arterial_d));
+                ps.setFloat(5, Float.parseFloat(temperatura));
+                ps.setInt(6, Integer.parseInt(frecuencia_cardiaca));
+                ps.setInt(7, Integer.parseInt(saturacion));
+                ps.setFloat(8, Float.parseFloat(peso));
+                ps.setInt(9, Integer.parseInt(estatura));
+                ps.setFloat(10, Float.parseFloat(imc));
                 int resSignos = 0;
                 resSignos = ps.executeUpdate();
-                
-                
                 
                 if (resSignos != 0) {
                     int id_signos = 0;
                     ResultSet resultSet = ps.getGeneratedKeys();
                     if (resultSet.next()) {
                         id_signos = resultSet.getInt(1);
-                        int xd = 0;
                         
                         //Verificar datos de receta medica y guardar
                         if(receta.length() > 2){
@@ -166,14 +168,13 @@ public class AddGineHistoriaEvolucion extends HttpServlet {
                             // Guardar Notas de evolucion con receta
                             int aaaa = idR;
                             String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
-                                            "	galeno_id, ghc_id, signos_id, id_recetamedica, notas, fecha, hora)\n" +
-                                            "	VALUES (?, ?, ?, ?, ?, now(), now());";
+                                            "	ghc_id, signos_id, id_recetamedica, notas, fecha, hora)\n" +
+                                            "	VALUES (?, ?, ?, ?, now(), now());";
                             ps = c.getConecction().prepareStatement(sqlNotas);
-                            ps.setInt(1, Integer.parseInt(galenoid));
-                            ps.setInt(2, Integer.parseInt(hcid));
-                            ps.setInt(3, id_signos);
-                            ps.setInt(4, idR);
-                            ps.setString(5, notas);
+                            ps.setInt(1, Integer.parseInt(hcid));
+                            ps.setInt(2, id_signos);
+                            ps.setInt(3, idR);
+                            ps.setString(4, notas);
                             
                             int resSe = 0;
                             resSe = ps.executeUpdate();
@@ -183,13 +184,12 @@ public class AddGineHistoriaEvolucion extends HttpServlet {
                         }else{
                             // Guardar Notas de evolucion sin receta
                             String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
-                                            "	galeno_id, ghc_id, signos_id, notas, fecha, hora)\n" +
-                                            "	VALUES (?, ?, ?, ?, now(), now());";
-                            ps = c.getConecction().prepareStatement(sqlNotas);
-                            ps.setInt(1, Integer.parseInt(galenoid));
-                            ps.setInt(2, Integer.parseInt(hcid));
-                            ps.setInt(3, id_signos);
-                            ps.setString(4, notas);
+                                                "	ghc_id, signos_id, notas, fecha, hora)\n" +
+                                                "	VALUES (?, ?, ?, now(), now());";
+                                ps = c.getConecction().prepareStatement(sqlNotas);
+                                ps.setInt(1, Integer.parseInt(hcid));
+                                ps.setInt(2, id_signos);
+                                ps.setString(3, notas);
                             
                             int resSe = 0;
                             resSe = ps.executeUpdate();

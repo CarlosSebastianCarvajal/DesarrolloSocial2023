@@ -76,37 +76,39 @@
                 
                 <!-- Seccion de signos vitales -->
                 <hr />
-                <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
-                    <thead>
-                        <tr>
-                            <th>Presión arterial</th>
+                <table style='width: 100%; text-align: center;  margin-top: 30px'>
+                    <thead >
+                        <tr>                                
+                            <th>Presión Arterial Sistólica</th>
+                            <th>Presión Arterial Diastólica</th>
                             <th>Temperatura</th>
-                            <th>Frecuencia Cardiaca</th>
-                            <th>Saturación</th>
-                            
+                            <th>Frecuencia Cardíaca</th>
+
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td> <div class="div-cont-ced" style='margin-top: -40px !important;'><input type="text" id="txt-pa" class="inp-ced" placeholder="Presion Arterial" name="presion_arterial" onkeypress='return validaNumericos(event)'/></div> </td>
-                            <td> <div class="div-cont-name"  ><input type="text" id="txt-temp" class="inp-name" placeholder="Temperatura" name="temperatura" /></div> </td>
-                            <td> <div class="div-cont-name"><input type="text" id="txt-fc" class="inp-name" placeholder="Frecuencia Cardiaca" name="frecuencia_cardiaca" onkeypress="return validaNumericos(event)"/></div> </td>
-                            <td> <div class="div-cont-name"><input type="text" id="txt-sat" class="inp-name" placeholder="Saturación" name="saturacion" onkeypress="return validaNumericos(event)"/></div> </td>
-                            <input hidden type="text" id="txt-id" class="inp-lname" placeholder="txt-id" name="txtid"/>
+                    <tbody align="center">
+                        <tr> 
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="P/A Sistólica" name="presion_arterial_s" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="P/A Daistólica" name="presion_arterial_d" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Temperatura (Ejem: 36.8)" name="temperatura" required=""  onkeypress="return validaNumericosDec(event)" onkeyup="mayus(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Frecuencia Cardíaca" name="frecuencia_cardiaca" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+
                         </tr>
                     </tbody>
-                    <thead>
-                        <tr>
-                            <td>Peso</td>
-                            <td>Estatura</td>
-                            <td>IMC</td>
+                    <thead >
+                        <tr>            
+                            <th>Saturación</th>
+                            <th>Peso</th>
+                            <th>Talla</th>
+                            <th>IMC</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-peso" class="inp-lname" placeholder="Peso" name="peso" onkeypress="return validaNumericos(event)"/></div></td>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-estatura" class="inp-lname" placeholder="Estatura" name="estatura" onkeypress="return validaNumericos(event)"/></div></td>
-                            <td> <div class="div-cont-edad"><input type="text" id="txt-imc" class="inp-edad" placeholder="Indice de masa corporal" name="imc" /></div>  </td>
+                    <tbody align="center">
+                        <tr> 
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Saturación de oxígeno" name="saturacion" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-peso" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="peso" required=""  onkeypress="return validaNumericosDec(event)" onchange="clacularIMC(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla" class="inp-name" placeholder="Talla en Cemtímetros" name="estatura" required=""  onkeypress="return validaNumericos(event)" onchange="clacularIMC(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-imc" class="inp-name" placeholder="IMC" name="imc" readonly="readonly"  /></div></td>
                         </tr>
                     </tbody>
                     
@@ -154,7 +156,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <input  type="text" id="txt-tabla-datos-medicamentos" name="txt-tabla-datos-medicamentos" class="inp-lname"/>
+                                                        <input hidden type="text" id="txt-tabla-datos-medicamentos" name="txt-tabla-datos-medicamentos" class="inp-lname"/>
                                                         <td><div class="div-cont-lname"><input type="text" onkeyup="mayus(this);" id="txt-medicamento" class="inp-lname" placeholder="Medicamento" name="medicamento"/></div></td>
                                                         <td><div class="div-cont-name"><input type="text"onkeyup="mayus(this);" id="txt-med-indicacion" class="inp-name" placeholder="Indicación Médica" name="indicaciones"/></div></td>
                                                         <td><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action-receta" class="btn-accept" value="+"> 
@@ -221,6 +223,28 @@
             }
             return false;
         }
+        
+        function validaNumericosDec(event) {
+                if (event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46) {
+                    return true;
+                }
+                return false;
+        }   
+        
+        function clacularIMC(e) {
+            //e.value = e.value.toUpperCase();
+            var imc = 0;
+            var peso = Number(document.getElementById("txt-peso").value);
+            var talla = Number(document.getElementById("txt-talla").value); 
+            if(peso > 0 && talla > 0){
+                imc = peso / Math.pow((talla * 0.01), 2);
+                imc = Number(imc.toFixed(3));
+                document.getElementById("txt-imc").value = imc;
+            }else{
+                document.getElementById("txt-imc").value = '';
+            }
+        }
+        
         function soloLetras(e) {
             key = e.keyCode || e.which;
             tecla = String.fromCharCode(key).toLowerCase();

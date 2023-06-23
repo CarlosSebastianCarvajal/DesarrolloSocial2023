@@ -65,7 +65,7 @@
                                 <input hidden type="text" id="txt-id" class="inp-lname" placeholder="txt-id" name="txtid"/>
                             </tr>
                         </tbody>
-                    <thead >
+                        <thead >
                             <tr>
                                 <th>Fecha De Nacimiento</th>
                                 <th>Edad</th>
@@ -89,22 +89,25 @@
                        </thead>
                         <thead >
                             <tr>                                
-                                <th>Presión Arterial</th>
+                                <th>Presión Arterial Sistólica</th>
+                                <th>Presión Arterial Diastólica</th>
                                 <th>Temperatura</th>
                                 <th>Frecuencia Cardíaca</th>
-                                <th>Saturación</th>
+                                
                             </tr>
                         </thead>
                         <tbody align="center">
                             <tr> 
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Presión Arterial" name="presion_arterial" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Temperatura" name="temperatura" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Frecuencia Cardíaca" name="frecuencia_cardiaca" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Saturación" name="saturacion" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="P/A Sistólica" name="presion_arterial_s" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="P/A Daistólica" name="presion_arterial_d" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Temperatura (Ejem: 36.8)" name="temperatura" required=""  onkeypress="return validaNumericosDec(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Frecuencia Cardíaca" name="frecuencia_cardiaca" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                
                             </tr>
                         </tbody>
                         <thead >
-                            <tr>                                
+                            <tr>            
+                                <th>Saturación</th>
                                 <th>Peso</th>
                                 <th>Talla</th>
                                 <th>IMC</th>
@@ -112,9 +115,10 @@
                         </thead>
                         <tbody align="center">
                             <tr> 
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Peso" name="peso" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Talla" name="estatura" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="IMC" name="imc" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Saturación de oxígeno" name="saturacion" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-peso" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="peso" required=""  onkeypress="return validaNumericosDec(event)" onchange="clacularIMC(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla" class="inp-name" placeholder="Talla en Cemtímetros" name="estatura" required=""  onkeypress="return validaNumericos(event)" onchange="clacularIMC(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-imc" class="inp-name" placeholder="IMC" name="imc" readonly="readonly"  /></div></td>
                             </tr>
                         </tbody>
                         <thead>
@@ -170,8 +174,8 @@
                         </thead>
                         <tbody align="center">
                             <tr>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Menarquia" name="ago_menarquia" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Inicio Relaciones Sexuales" name="ago_irs" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Menarquia" name="ago_menarquia" value=""  onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Inicio Relaciones Sexuales" name="ago_irs" value=""  onkeypress='return validaNumericos(event)'/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="1" maxlength="2" placeholder="Parejas Sexuales" name="ago_parejas" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
                                 <td><div class="div-cont-lname"><input type="date" id="txt-fechaNaci" class="inp-lname" placeholder="Ultimo PAP"required=""  name="ago_ultimo_pap"/></div></td> 
                             </tr>
@@ -198,7 +202,7 @@
                             <tr>
                                 <td><div class="div-cont-lname"><input type="date" id="txt-fechaNaci" class="inp-lname" placeholder="FUM"required=""  name="ago_fum"/></div></td> 
                                 <td><div class="div-cont-lname"><input type="date" id="txt-fechaNaci" class="inp-lname" placeholder="FPP"required=""  name="ago_fpp"/></div></td> 
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Menopausia" name="ago_menopausia" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Menopausia" name="ago_menopausia" value="" onkeypress='return validaNumericos(event)'/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="1" maxlength="2" placeholder="Gestas" name="ago_gestas" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
                             </tr>
                         </tbody>
@@ -214,7 +218,7 @@
                             <tr>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Partos" name="ago_partos" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="1" maxlength="2" placeholder="Abortos" name="ago_abortos" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Cesárea" name="ago_cesareas" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Cesárea" name="ago_cesareas" value="" required="" onkeypress='return validaNumericos(event)' /></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="1" maxlength="2" placeholder="Edad Gestacional" name="ago_edad_gestacional" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
                             </tr>
                         </tbody>
@@ -294,6 +298,27 @@
                     return true;
                 }
                 return false;
+        }
+        
+        function validaNumericosDec(event) {
+                if (event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46) {
+                    return true;
+                }
+                return false;
+        }   
+        
+        function clacularIMC(e) {
+            //e.value = e.value.toUpperCase();
+            var imc = 0;
+            var peso = Number(document.getElementById("txt-peso").value);
+            var talla = Number(document.getElementById("txt-talla").value); 
+            if(peso > 0 && talla > 0){
+                imc = peso / Math.pow((talla * 0.01), 2);
+                imc = Number(imc.toFixed(3));
+                document.getElementById("txt-imc").value = imc;
+            }else{
+                document.getElementById("txt-imc").value = '';
+            }
         }
     </script>
           
