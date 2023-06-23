@@ -57,7 +57,7 @@ $(function () {
                 $("#txt-fn").val(data.paciente_fechanacimiento);
                 $("#txt-edad").val('aqui va la edad');
                 $("#txt-telefono").val(data.paciente_telefono);
-                $("#txt-domicilio").val(data.paciente_telefono);
+                $("#txt-domicilio").val(data.paciente_direccion);
             }
         });
     };
@@ -94,7 +94,7 @@ $(function () {
                 $("#txt-fn").val(data.paciente_fechanacimiento);
                 $("#txt-edad").val(calcularEdad(data.paciente_fechanacimiento));
                 $("#txt-telefono").val(data.paciente_telefono);
-                $("#txt-domicilio").val(data.paciente_telefono);
+                $("#txt-domicilio").val(data.paciente_direccion);
                 
             }
 
