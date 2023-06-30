@@ -1,15 +1,17 @@
 package Controller;
 
 import DAO.Buscador;
+import DAO.BuscadorHistoriaCli_Gine;
 import com.google.gson.Gson;
 import java.io.IOException;
 import static java.lang.System.out;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Controllerbuscarpaciente extends HttpServlet {
+public class BuscadorHC_Gi extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -23,10 +25,10 @@ public class Controllerbuscarpaciente extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String cedula = request.getParameter("cedula");
-        System.out.print("este es la cedual"+cedula);
-        Buscador buscar = new Buscador();
-        String json = new Gson().toJson(buscar.Listbuscarpaciente(cedula));
+        String cedul = request.getParameter("cedul");
+        System.out.print("este es la cedual"+cedul);
+        BuscadorHistoriaCli_Gine buscar = new BuscadorHistoriaCli_Gine();
+        String json = new Gson().toJson(buscar.Listbuscarpaciente(cedul));
         out.print(json);
         // Establece el tipo de respuesta en formato json
         response.setContentType("text/javascript");

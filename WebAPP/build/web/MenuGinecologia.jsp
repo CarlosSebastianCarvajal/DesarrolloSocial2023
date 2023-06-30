@@ -166,7 +166,7 @@
               
             }
             function actuaHistoriaNormal(){
-              //window.location.href = "./Terapiafisica.jsp?user="+document.getElementById("usuario").innerHTML;
+              window.location.href = "./Actualizar_HistoriaCli_Ginecologia.jsp?user="+document.getElementById("usuario").innerHTML;
             }
             function abrirSeguimientoNormal(){
                 window.location.href = "./SeguimientoGinecologia.jsp?user="+document.getElementById("usuario").innerHTML;
