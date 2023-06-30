@@ -27,10 +27,11 @@ public class BuscadorHC_Gi extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String cedul = request.getParameter("cedul");
-        System.out.print("este es la cedual"+cedul);
+        String apellido = request.getParameter("apellido");
+        String nombre = request.getParameter("nombre");
+        
         BuscadorHistoriaCli_Gine buscar = new BuscadorHistoriaCli_Gine();
-        String json = new Gson().toJson(buscar.Listbuscarpaciente(cedul));
+        String json = new Gson().toJson(buscar.Listbuscarpaciente(nombre,apellido));
         out.print(json);
         // Establece el tipo de respuesta en formato json
         response.setContentType("text/javascript");

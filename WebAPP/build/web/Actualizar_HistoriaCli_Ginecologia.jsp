@@ -27,7 +27,7 @@
         <div class="div-head-titl" style="margin-top:-18px"><h2></h2></div>
 
 
-        <form class="form1" action="AddGineHistoriaClinica" method="GET" style="margin-top:140px">
+        <form class="form1" action="ActulizarHC_Ginecologia" method="GET" style="margin-top:140px">
             <section class="sec-main">
                 <div class="div-cont-main2">
                         <div class="div-cont-ced">
@@ -37,9 +37,9 @@
                         <hr />
                         <div class="div-cont-ced">
                             <input type="button" id="btn-actionbusc" class="inp-search" value="Buscar"/></th>
-                            <input style='width: 40%' type="text" id="txt-namea" class="inp-name" placeholder="Nombres" name="PrimerNombre"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/>
+                            <input style='width: 40%' type="text" id="txt-nombreB" class="inp-name" placeholder="Nombres" name="PrimerNombre"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/>
                             <p></p>
-                            <input  style='width: 40%; margin-left:5%;'  type="text" id="txt-lnamesega" class="inp-lname" placeholder="Apellidos" name="SegundoNombre"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/>
+                            <input  style='width: 40%; margin-left:5%;'  type="text" id="txt-apellidoB" class="inp-lname" placeholder="Apellidos" name="SegundoNombre"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/>
                         </div>
                         <hr />
                     <table align="center" style='width: 98%; margin-left: 10px; margin-top: 30px'>
