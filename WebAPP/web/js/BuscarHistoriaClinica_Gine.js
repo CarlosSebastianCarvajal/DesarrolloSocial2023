@@ -1,14 +1,13 @@
 $(function () {
-    $('#btn-actionbu').click(function (e) {
+    $('#btn-actionb').click(function (e) {
         buscadoract();
     });
     const buscadoract = () => {
-
-        var cedul = document.getElementById("txt-cedee").value;
+        var cedul = document.getElementById("txt-cede").value;
         $.ajax({
             cache: false,
             type: "POST",
-            url: "BuscadorHC_Gi",
+            url: "BuscadorHC_Gineco",
             data: {cedul: cedul},
             dataType: 'json',
             error: function (request, status, error)

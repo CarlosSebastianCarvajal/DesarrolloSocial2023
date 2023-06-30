@@ -282,12 +282,10 @@
                     </table> 
                 </div>
             </section>
-        </form>
-        <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
-        
+        </form>   
     </body>
-    <footer></footer>
-    <script src="js/JQuery.js" type="text/javascript"></script>
+    <script src="js/JQuery.js" type="text/javascript"></script> 
+    <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="js/BuscarHistoriaClinica_Gine.js" type="text/javascript"></script>
     <script type="text/javascript">
         function cancel(){
