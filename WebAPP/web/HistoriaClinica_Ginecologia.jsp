@@ -174,10 +174,10 @@
                         </thead>
                         <tbody align="center">
                             <tr>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Menarquia" name="ago_menarquia" value=""  onkeypress='return validaNumericos(event)'/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Inicio Relaciones Sexuales" name="ago_irs" value=""  onkeypress='return validaNumericos(event)'/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="1" maxlength="2" placeholder="Parejas Sexuales" name="ago_parejas" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
-                                <td><div class="div-cont-lname"><input type="date" id="txt-fechaNaci" class="inp-lname" placeholder="Ultimo PAP"required=""  name="ago_ultimo_pap"/></div></td> 
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  maxlength="2" placeholder="Menarquia" name="ago_menarquia" value=""  onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  maxlength="2" placeholder="Inicio Relaciones Sexuales" name="ago_irs" value=""  onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad" required=""  maxlength="2" placeholder="Parejas Sexuales" name="ago_parejas" value="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-lname"><input type="date" id="txt-fechaNaci" class="inp-lname" placeholder="Ultimo PAP"  name="ago_ultimo_pap"/></div></td> 
                             </tr>
                         </tbody>
                         </table>
@@ -200,10 +200,10 @@
                         </thead>
                         <tbody align="center">
                             <tr>
-                                <td><div class="div-cont-lname"><input type="date" id="txt-fechaNaci" class="inp-lname" placeholder="FUM"required=""  name="ago_fum"/></div></td> 
-                                <td><div class="div-cont-lname"><input type="date" id="txt-fechaNaci" class="inp-lname" placeholder="FPP"required=""  name="ago_fpp"/></div></td> 
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Menopausia" name="ago_menopausia" value="" onkeypress='return validaNumericos(event)'/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="1" maxlength="2" placeholder="Gestas" name="ago_gestas" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-lname"><input type="date" id="txt-fechaNaci" class="inp-lname" placeholder="FUM"  name="ago_fum"/></div></td> 
+                                <td><div class="div-cont-lname"><input type="date" id="txt-fechaNaci" class="inp-lname" placeholder="FPP"  name="ago_fpp"/></div></td> 
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad" maxlength="2" placeholder="Menopausia" name="ago_menopausia" value="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" required="" class="inp-edad"  maxlength="2" placeholder="Gestas" name="ago_gestas" value=""  onkeypress='return validaNumericos(event)'/></div> </td>
                             </tr>
                         </tbody>
                         <thead >
@@ -216,10 +216,10 @@
                         </thead>
                         <tbody align="center">
                             <tr>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Partos" name="ago_partos" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="1" maxlength="2" placeholder="Abortos" name="ago_abortos" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  minlength="1" maxlength="2" placeholder="Cesárea" name="ago_cesareas" value="" required="" onkeypress='return validaNumericos(event)' /></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="1" maxlength="2" placeholder="Edad Gestacional" name="ago_edad_gestacional" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  maxlength="2" placeholder="Partos" name="ago_partos" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"   maxlength="2" placeholder="Abortos" name="ago_abortos" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edadA" class="inp-edad"  maxlength="2" placeholder="Cesárea" name="ago_cesareas" value="" required="" onkeypress='return validaNumericos(event)' /></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"   maxlength="2" placeholder="Edad Gestacional" name="ago_edad_gestacional" value=""  onkeypress='return validaNumericos(event)'/></div> </td>
                             </tr>
                         </tbody>
                          </table>
@@ -227,7 +227,7 @@
                         <thead >
                             <tr>                                
                                 <th style="width: 300px;">Complicaciones</th>
-                                <td><div class="div-cont-name"><input input style="width: 1000px;" style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Complicaciones" name="ago_complicaciones" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input input style="width: 1000px;" style= 'text-align: center' type="text" id="txt-name" required="" class="inp-name" placeholder="Complicaciones" name="ago_complicaciones"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </thead>
                         </table>
@@ -239,7 +239,7 @@
                        </thead>
                          <tbody>
                             <tr style='height: 175px'>
-                                <td colspan="4" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="Motivo de la Consulta" name="motivo_consulta" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
+                                <td colspan="4" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" placeholder="Motivo de la Consulta" name="motivo_consulta" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
                             </tr>
                         </tbody>
                         <thead>
@@ -249,7 +249,7 @@
                        </thead>
                        <tbody>
                             <tr style='height: 175px'>
-                                <td colspan="4" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="Enfermedad Actual" name="enfermedad_acual" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
+                                <td colspan="4" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname"  placeholder="Enfermedad Actual" name="enfermedad_acual" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
                             </tr>
                         </tbody>
                         <thead>
@@ -259,7 +259,7 @@
                        </thead>
                        <tbody>
                             <tr style='height: 175px'>
-                                <td colspan="4" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="Diagnostico" name="diagnostico" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
+                                <td colspan="4" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname"  placeholder="Diagnostico" name="diagnostico" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
                             </tr>
                         </tbody>
                         <thead>
@@ -269,7 +269,7 @@
                        </thead>
                        <tbody>
                             <tr style='height: 175px'>
-                                <td colspan="4" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="Tratamiento" name="tratamiento" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
+                                <td colspan="4" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname"  placeholder="Tratamiento" name="tratamiento" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
                             </tr>
                         </tbody>
                         <tbody align="center">

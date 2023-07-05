@@ -20,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpSession;
@@ -189,15 +190,16 @@ public class AddGineHistoriaClinica extends HttpServlet {
                         ps.setString(7, ap_alergicos);
                         ps.setString(8, ap_habitos);
                         
-                        ps.setInt(9, Integer.parseInt(ago_menarquia));
-                        ps.setInt(10, Integer.parseInt(ago_irs));
+                        if(ago_menarquia != null && ago_menarquia.length() > 0){ ps.setInt(9, Integer.parseInt(ago_menarquia)); }else{ ps.setNull(9, Types.INTEGER); }
+                        if(ago_irs != null && ago_irs.length() > 0){ ps.setInt(10, Integer.parseInt(ago_irs)); }else{ ps.setNull(10, Types.INTEGER); }
                         ps.setInt(11, Integer.parseInt(ago_parejas));
-                        ps.setDate(12, Date.valueOf(ago_ultimo_pap));
+                        if(ago_ultimo_pap != null && ago_ultimo_pap.length() > 0){ ps.setDate(12, Date.valueOf(ago_ultimo_pap)); }else{ ps.setNull(12, Types.DATE); }
+                        
                         ps.setString(13, ago_metodos_anti);
                         
-                        ps.setDate(14, Date.valueOf(ago_fum));
-                        ps.setDate(15, Date.valueOf(ago_fpp));
-                        ps.setInt(16, Integer.parseInt(ago_menopausia));
+                        if(ago_fum != null && ago_fum.length() > 0){ ps.setDate(14, Date.valueOf(ago_fum)); }else{ ps.setNull(14, Types.DATE); }
+                        if(ago_fpp != null && ago_fpp.length() > 0){ ps.setDate(15, Date.valueOf(ago_fpp)); }else{ ps.setNull(15, Types.DATE); }
+                        if(ago_menopausia != null && ago_menopausia.length() > 0){ ps.setInt(16, Integer.parseInt(ago_menopausia)); }else{ ps.setNull(16, Types.INTEGER); }
                         ps.setInt(17, Integer.parseInt(ago_gestas));
                         ps.setInt(18, Integer.parseInt(ago_partos));
                         ps.setInt(19, Integer.parseInt(ago_abortos));
@@ -210,6 +212,7 @@ public class AddGineHistoriaClinica extends HttpServlet {
                         ps.setString(24, enfermedad_acual);
                         ps.setString(25, diagnostico);
                         ps.setString(26, tratamiento);
+                        //ps.setNull(26, 1);
                         
                         int resSe = 0;
 

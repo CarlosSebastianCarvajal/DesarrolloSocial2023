@@ -10,13 +10,18 @@ package Model;
  * @author Miguel
  */
 public class BuscadorHistoria_Gine {
-    private String  paciente_dni, nombres, apellidos, paciente_estado_civil,
+    private String  paciente_dni, ghc_id, nombres, apellidos, paciente_estado_civil,
                     paciente_fnacimiento, paciente_edad, paciente_telefono, paciente_direccion,
+                    paciente_canton, paciente_etnia, paciente_nivel_estudio, paciente_anios_nivel,
                     ap_personales, ap_familiares, ap_quirurgicos, ap_alergicos, 
                     ap_habitos, ago_menarquia, ago_irs, ago_parejas, ago_ultimo_pap, ago_metodos_anti, ago_fum, ago_fpp, 
                     ago_menopausia, ago_gestas, ago_partos, ago_abortos, ago_cesareas, ago_edad_gestacional, ago_complicaciones, 
                     motivo_consulta, enfermedad_acual, diagnostico, tratamiento,
                     pa_sistolica, pa_diastolica, temperatura, frecuencia_cardiaca, saturacion, peso, estatura, imc;
+
+    
+    
+ 
     
 public BuscadorHistoria_Gine(){
     
@@ -28,7 +33,8 @@ public BuscadorHistoria_Gine(String paciente_dni, String nombres, String apellid
                     String ap_habitos, String ago_menarquia, String ago_irs, String ago_parejas, String ago_ultimo_pap, String ago_metodos_anti, String ago_fum, String ago_fpp, 
                     String ago_menopausia, String ago_gestas, String ago_partos, String ago_abortos, String ago_cesareas, String ago_edad_gestacional, String ago_complicaciones, 
                     String motivo_consulta, String enfermedad_acual, String diagnostico, String tratamiento,
-                    String pa_sistolica, String pa_diastolica, String temperatura, String frecuencia_cardiaca, String saturacion, String peso, String estatura, String imc){
+                    String pa_sistolica, String pa_diastolica, String temperatura, String frecuencia_cardiaca, String saturacion, String peso, String estatura, String imc, String ghcp_id,
+                    String paciente_canton, String paciente_etnia, String paciente_nivel_estudio, String paciente_anios_nivel){
                     this.paciente_dni=paciente_dni;
                     this.nombres=nombres;
                     this.apellidos=apellidos;
@@ -68,7 +74,54 @@ public BuscadorHistoria_Gine(String paciente_dni, String nombres, String apellid
                     this.peso=peso;
                     this.estatura=estatura;
                     this.imc=imc;
+                    this.ghc_id = ghcp_id;
+                    this.paciente_canton = paciente_canton;
+                    this.paciente_etnia = paciente_etnia;
+                    this.paciente_nivel_estudio = paciente_nivel_estudio;
+                    this.paciente_anios_nivel = paciente_anios_nivel;
 }
+
+    public String getPaciente_canton() {
+        return paciente_canton;
+    }
+
+    public void setPaciente_canton(String paciente_canton) {
+        this.paciente_canton = paciente_canton;
+    }
+
+    public String getPaciente_etnia() {
+        return paciente_etnia;
+    }
+
+    public void setPaciente_etnia(String paciente_etnia) {
+        this.paciente_etnia = paciente_etnia;
+    }
+
+    public String getPaciente_nivel_estudio() {
+        return paciente_nivel_estudio;
+    }
+
+    public void setPaciente_nivel_estudio(String paciente_nivel_estudio) {
+        this.paciente_nivel_estudio = paciente_nivel_estudio;
+    }
+
+    public String getPaciente_anios_nivel() {
+        return paciente_anios_nivel;
+    }
+
+    public void setPaciente_anios_nivel(String paciente_anios_nivel) {
+        this.paciente_anios_nivel = paciente_anios_nivel;
+    }
+
+
+
+    public String getGhc_id() {
+        return ghc_id;
+    }
+
+    public void setGhc_id(String ghcp_id) {
+        this.ghc_id = ghcp_id;
+    }
 
     public String getPaciente_dni() {
         return paciente_dni;

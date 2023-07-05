@@ -17,6 +17,7 @@ $(function () {
             success: function (data)
             {
                 console.log(data);
+                $("#ghc_id").val(data.ghc_id);
                 $("#txt-cedula").val(data.paciente_dni);
                 $("#txt-nombres").val(data.nombres);
                 $("#txt-apellidos").val(data.apellidos);
@@ -59,6 +60,7 @@ $(function () {
             }
         });
     };
+    
 });
 
 $(function () {
@@ -123,8 +125,11 @@ $(function () {
                 $("#txt-EnfermedadAc").val(data.enfermedad_acual);
                 $("#txt-Diagnostico").val(data.diagnostico);
                 $("#txt-Tratamiento").val(data.tratamiento);
+                
             }
         });
     };
+    
+    
 });
 

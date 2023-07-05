@@ -19,7 +19,7 @@
         <div class="div-head-tittle" style="margin-top:-18px"><h2></h2></div>
 
 
-        <form class="form1" action="AddPaciente" autocomplete="off" style="margin-top:-30px">
+        <form class="form1" action="AddPaciente" autocomplete="off" style="margin-top:15px">
             <section class="sec-main">
                 <div class="div-cont-main">
                     <input hidden type="text" id="txt-idx" class="inp-ced"  name="idx" value="<%=request.getParameter("idx")%>"/>
@@ -128,6 +128,42 @@
                                         </select></div></td> 
                                 <td><div class="div-cont-lname"><input type="text" id="nacionalidad" class="inp-lname" placeholder="nacionalidad"required="" value="Ecuatoriana" name="nacionalidad" onkeyup="mayus(this);"/></div></td>
                                 <td><div class="div-cont-lname"><input type="text" id="txt-lname" class="inp-lname" placeholder="Discapacidad" value="Ninguna" required=""  name="discapacidad" onkeyup="mayus(this);"/></div></td>
+
+                            </tr>
+                        </tbody>
+                        <thead >
+                            <tr>                                
+                                <th>Etnia</th>
+                                <th>Nivel de estudios</th>
+                                <th>Años en el nivel de estudio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr> 
+                                <td>
+                                    <div class="div-cont-sel-dep-to-transf"  >
+                                        <select class="sel-dep-to-transf"required=""  name="paciente_etnia">
+                                            <option>Eliga etnia</option>
+                                            <option>Blanca</option>
+                                            <option>Indígena</option>
+                                            <option>Mestiza</option>
+                                            <option>Negra</option>
+                                            <option>Otra</option>
+                                        </select>
+                                    </div>
+                                </td> 
+                                <td>
+                                    <div class="div-cont-sel-dep-to-transf"  >
+                                        <select class="sel-dep-to-transf"required=""  name="paciente_nivel_estudio">
+                                            <option>Eliga nivel de estudios</option>
+                                            <option>Inicial</option>
+                                            <option>Basico</option>
+                                            <option>Bachillerato</option>
+                                            <option>Superior</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td><div style='margin-top: -40px !important;'class="div-cont-ced"><input type="text" id="txt-ced" minlength="1" maxlength="2" class="inp-ced" placeholder="Años en el nivel de estudio" name="paciente_anios_nivel" required="" onkeypress='return validaNumericos(event)'/></div></td>
 
                             </tr>
                         </tbody>

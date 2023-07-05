@@ -37,13 +37,14 @@ public class BuscadorHistoriaCli_Gine {
             sql_command = "SELECT p.paciente_dni, CONCAT(p.paciente_primer_nombre, ' ',p.paciente_segundo_nombre) as nombres,\n" +
             "CONCAT(p.paciente_apellido_paterno, ' ',p.paciente_apellido_materno)as apellidos, p.paciente_estado_civil,\n" +
             "p.paciente_fnacimiento, p.paciente_edad, p.paciente_telefono, p.paciente_direccion,\n" +
+            "p.paciente_canton, p.paciente_etnia, p.paciente_nivel_estudio, p.paciente_anios_nivel, \n"+
             "s.pa_sistolica, s.pa_diastolica, s.temperatura, s.frecuencia_cardiaca, s.saturacion, s.peso, s.estatura, s.imc,\n" +
-            "g.ap_personales, g.ap_familiares, g.ap_quirurgicos, g.ap_alergicos, g.ap_habitos, g.ago_menarquia, g.ago_irs, \n" +
+            "g.ghc_id, g.ap_personales, g.ap_familiares, g.ap_quirurgicos, g.ap_alergicos, g.ap_habitos, g.ago_menarquia, g.ago_irs, \n" +
             "g.ago_parejas, g.ago_ultimo_pap, g.ago_metodos_anti, g.ago_fum, g.ago_fpp, g.ago_menopausia, g.ago_gestas, \n" +
             "g.ago_partos, g.ago_abortos, g.ago_cesareas, g.ago_edad_gestacional, g.ago_complicaciones, g.motivo_consulta, \n" +
             "g.enfermedad_acual, g.diagnostico, g.tratamiento\n" +
             "FROM paciente as p, signos_vitales as s, ginecologia_historia_clinica as g \n" +
-            "where p.paciente_id=g.paciente_id and g.signos_id=g.signos_id and p.paciente_dni='" + cedula + "'";
+            "where p.paciente_id=g.paciente_id and g.signos_id=s.signos_id and p.paciente_dni='" + cedula + "' order by g.ghc_id desc limit 1";
             pst = cn.getConecction().prepareStatement(sql_command);
             rs = pst.executeQuery();
             while (rs.next()) {
@@ -87,7 +88,11 @@ public class BuscadorHistoriaCli_Gine {
                 newbuscar.setPeso(String.valueOf(rs.getString("peso")));
                 newbuscar.setEstatura(String.valueOf(rs.getString("estatura")));
                 newbuscar.setImc(String.valueOf(rs.getString("imc")));
-                
+                newbuscar.setGhc_id(String.valueOf(rs.getString("ghc_id")));
+                newbuscar.setPaciente_canton(String.valueOf(rs.getString("paciente_canton")));
+                newbuscar.setPaciente_etnia(String.valueOf(rs.getString("paciente_etnia")));
+                newbuscar.setPaciente_nivel_estudio(String.valueOf(rs.getString("paciente_nivel_estudio")));
+                newbuscar.setPaciente_anios_nivel(String.valueOf(rs.getString("paciente_anios_nivel")));
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -117,15 +122,16 @@ public class BuscadorHistoriaCli_Gine {
             sql_command = "SELECT p.paciente_dni, CONCAT(p.paciente_primer_nombre, ' ',p.paciente_segundo_nombre) as nombres,\n" +
 "            CONCAT(p.paciente_apellido_paterno, ' ',p.paciente_apellido_materno)as apellidos, p.paciente_estado_civil,\n" +
 "            p.paciente_fnacimiento, p.paciente_edad, p.paciente_telefono, p.paciente_direccion,\n" +
+             "p.paciente_canton, p.paciente_etnia, p.paciente_nivel_estudio, p.paciente_anios_nivel, \n"+
 "            s.pa_sistolica, s.pa_diastolica, s.temperatura, s.frecuencia_cardiaca, s.saturacion, s.peso, s.estatura, s.imc,\n" +
-"            g.ap_personales, g.ap_familiares, g.ap_quirurgicos, g.ap_alergicos, g.ap_habitos, g.ago_menarquia, g.ago_irs,\n" +
+"            g.ghc_id, g.ap_personales, g.ap_familiares, g.ap_quirurgicos, g.ap_alergicos, g.ap_habitos, g.ago_menarquia, g.ago_irs,\n" +
 "            g.ago_parejas, g.ago_ultimo_pap, g.ago_metodos_anti, g.ago_fum, g.ago_fpp, g.ago_menopausia, g.ago_gestas, \n" +
 "            g.ago_partos, g.ago_abortos, g.ago_cesareas, g.ago_edad_gestacional, g.ago_complicaciones, g.motivo_consulta, \n" +
 "            g.enfermedad_acual, g.diagnostico, g.tratamiento\n" +
 "            FROM paciente as p, signos_vitales as s, ginecologia_historia_clinica as g\n" +
-"            where p.paciente_id=g.paciente_id and g.signos_id=g.signos_id and \n" +
+"            where p.paciente_id=g.paciente_id and g.signos_id=s.signos_id and \n" +
 "			CONCAT(p.paciente_primer_nombre, ' ',p.paciente_segundo_nombre) like '%"+nombres+"%' and\n" +
-"			 CONCAT(p.paciente_apellido_paterno, ' ',p.paciente_apellido_materno) like '%"+apellidos+"%'";
+"			 CONCAT(p.paciente_apellido_paterno, ' ',p.paciente_apellido_materno) like '%"+apellidos+"%' order by g.ghc_id desc limit 1";
             pst = cn.getConecction().prepareStatement(sql_command);
             rs = pst.executeQuery();
             while (rs.next()) {
@@ -169,7 +175,11 @@ public class BuscadorHistoriaCli_Gine {
                 newbuscar.setPeso(String.valueOf(rs.getString("peso")));
                 newbuscar.setEstatura(String.valueOf(rs.getString("estatura")));
                 newbuscar.setImc(String.valueOf(rs.getString("imc")));
-                
+                newbuscar.setGhc_id(String.valueOf(rs.getString("ghc_id")));
+                newbuscar.setPaciente_canton(String.valueOf(rs.getString("paciente_canton")));
+                newbuscar.setPaciente_etnia(String.valueOf(rs.getString("paciente_etnia")));
+                newbuscar.setPaciente_nivel_estudio(String.valueOf(rs.getString("paciente_nivel_estudio")));
+                newbuscar.setPaciente_anios_nivel(String.valueOf(rs.getString("paciente_anios_nivel")));
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());

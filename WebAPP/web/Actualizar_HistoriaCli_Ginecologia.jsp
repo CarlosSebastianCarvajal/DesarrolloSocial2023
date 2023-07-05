@@ -64,6 +64,7 @@
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-apellidos" class="inp-name" placeholder="Apellidos" name="hg_apellidos"required=""  onkeypress="return soloLetras(event)" readonly="readonly"/></div></td>
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-estadoc" class="inp-lname" placeholder="Estado Civil" name="hg_estado_civil"required=""  onkeypress="return soloLetras(event)" readonly="readonly"/></div></td>
                                 <input hidden type="text" id="txt-id" class="inp-lname" placeholder="txt-id" name="txtid"/>
+                                <input  type="text" id="ghc_id" class="inp-lname" placeholder="txt-id" name="ghc_id"/>
                             </tr>
                         </tbody>
                         <thead >

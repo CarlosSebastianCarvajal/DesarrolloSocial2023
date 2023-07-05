@@ -49,6 +49,7 @@ public class ActulizarHC_Ginecologia extends javax.servlet.http.HttpServlet {
             String imc = request.getParameter("imc");
 
             // Capturar valores de Historia clinica
+            String ghc_id = request.getParameter("ghc_id");
             String ap_personales = request.getParameter("ap_personales");
             String ap_familiares = request.getParameter("ap_familiares");
             String ap_quirurgicos = request.getParameter("ap_quirurgicos");
@@ -77,8 +78,7 @@ public class ActulizarHC_Ginecologia extends javax.servlet.http.HttpServlet {
             try {
                 String sqlInsertarSeguimiento = "UPDATE signos_vitales\n"
                         + "SET pa_sistolica=?, pa_diastolica=?, temperatura=?, frecuencia_cardiaca=?, saturacion=?, peso=?, estatura=?, imc=?\n"
-                        + "WHERE signos_id=(select signos_id from ginecologia_historia_clinica as g, paciente as p where p.paciente_id=g.paciente_id\n"
-                        + "and p.paciente_dni ='" + cedula + "')";
+                        + "WHERE signos_id=(select signos_id from ginecologia_historia_clinica where ghc_id = "+ghc_id+")";
                 ps = c.getConecction().prepareStatement(sqlInsertarSeguimiento, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, Integer.parseInt(presion_arterial_s));
                 ps.setInt(2, Integer.parseInt(presion_arterial_d));
@@ -99,8 +99,8 @@ public class ActulizarHC_Ginecologia extends javax.servlet.http.HttpServlet {
                             + "ago_parejas=?, ago_ultimo_pap='" + ago_ultimo_pap + "', ago_metodos_anti=?, ago_fum='" + ago_fum + "', ago_fpp='" + ago_fpp + "', ago_menopausia=?, ago_gestas=?, \n"
                             + "ago_partos=?, ago_abortos=?, ago_cesareas=?, ago_edad_gestacional=?, ago_complicaciones=?, motivo_consulta=?, \n"
                             + "enfermedad_acual=?, diagnostico=?, tratamiento=?\n"
-                            + "WHERE paciente_id=(select p.paciente_id from ginecologia_historia_clinica as g, paciente as p where p.paciente_id=g.paciente_id\n"
-                            + "and p.paciente_dni ='" + cedula + "')";
+                            + "WHERE ghc_id=(select g.ghc_id from ginecologia_historia_clinica as g, paciente as p where p.paciente_id=g.paciente_id \n" +
+                              "	and p.paciente_dni ='"+cedula+"' order by g.ghc_id desc limit 1)";
                     ps = c.getConecction().prepareStatement(sqlInsertar, Statement.RETURN_GENERATED_KEYS);
                     ps.setString(1, ap_personales);
                     ps.setString(2, ap_familiares);

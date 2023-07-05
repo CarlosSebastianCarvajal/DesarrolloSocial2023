@@ -20,9 +20,10 @@ public class ControladorPaciente {
             paciente_estado, paciente_provincia, paciente_canton, paciente_parroquia,
             paciente_nacionalidad, paciente_estado_civil, paciente_convencional,
             paciente_tipo_sangre;
+    String paciente_etnia, paciente_nivel_estudio, paciente_anios_nivel;
     String created_at,paciente_email;
 
-    public ControladorPaciente(String paciente_tipo_dni, String paciente_dni, String paciente_apellido_paterno, String paciente_primer_nombre, String paciente_fnacimiento, String paciente_direccion, String paciente_telefono, String paciente_genero, String paciente_grupo, String paciente_ayudasocial, String paciente_apellido_materno, String paciente_segundo_nombre, String paciente_provincia, String paciente_canton, String paciente_parroquia, String paciente_nacionalidad, String paciente_estado_civil, String paciente_convencional, String paciente_tipo_sangre,String paciente_email) {
+    public ControladorPaciente(String paciente_tipo_dni, String paciente_dni, String paciente_apellido_paterno, String paciente_primer_nombre, String paciente_fnacimiento, String paciente_direccion, String paciente_telefono, String paciente_genero, String paciente_grupo, String paciente_ayudasocial, String paciente_apellido_materno, String paciente_segundo_nombre, String paciente_provincia, String paciente_canton, String paciente_parroquia, String paciente_nacionalidad, String paciente_estado_civil, String paciente_convencional, String paciente_tipo_sangre,String paciente_email, String paciente_etnia, String paciente_nivel_estudio, String paciente_anios_nivel) {
         this.paciente_tipo_dni = paciente_tipo_dni;
         this.paciente_dni = paciente_dni;
         this.paciente_apellido_paterno = paciente_apellido_paterno;
@@ -43,6 +44,10 @@ public class ControladorPaciente {
         this.paciente_convencional = paciente_convencional;
         this.paciente_tipo_sangre = paciente_tipo_sangre;
         this.paciente_email = paciente_email;
+        
+        this.paciente_etnia = paciente_etnia;
+        this.paciente_nivel_estudio = paciente_nivel_estudio;
+        this.paciente_anios_nivel = paciente_anios_nivel;
     }
 
     public String getPaciente_email() {
@@ -220,5 +225,31 @@ public class ControladorPaciente {
     public void setPaciente_tipo_sangre(String paciente_tipo_sangre) {
         this.paciente_tipo_sangre = paciente_tipo_sangre;
     }
+
+    public String getPaciente_etnia() {
+        return paciente_etnia;
+    }
+
+    public void setPaciente_etnia(String paciente_etnia) {
+        this.paciente_etnia = paciente_etnia;
+    }
+
+    public String getPaciente_nivel_estudio() {
+        return paciente_nivel_estudio;
+    }
+
+    public void setPaciente_nivel_estudio(String paciente_nivel_estudio) {
+        this.paciente_nivel_estudio = paciente_nivel_estudio;
+    }
+
+    public String getPaciente_anios_nivel() {
+        return paciente_anios_nivel;
+    }
+
+    public void setPaciente_anios_nivel(String paciente_anios_nivel) {
+        this.paciente_anios_nivel = paciente_anios_nivel;
+    }
+    
+    
 
 }

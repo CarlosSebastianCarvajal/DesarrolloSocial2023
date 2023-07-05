@@ -29,7 +29,9 @@ public class Buscador {
                     + " paciente_genero, paciente_ayudasocial,paciente_nacionalidad, "
                     + "	   paciente_estado_civil,\n"
                     + "	   paciente_fnacimiento,\n"
-                    + "paciente_correoelectronico from paciente "
+                    + "paciente_correoelectronico,"
+                    + "paciente_etnia, paciente_nivel_estudio, paciente_anios_nivel,"
+                    + "paciente_canton from paciente "
                     + "where paciente_dni = '" + cedula + "'";
             pst = cn.getConecction().prepareStatement(sql_command);
             rs = pst.executeQuery();
@@ -50,8 +52,12 @@ public class Buscador {
                 newbuscar.setPaciente_estadocivil(String.valueOf(rs.getString("paciente_estado_civil")));
                 newbuscar.setPaciente_fechanacimiento(String.valueOf(rs.getString("paciente_fnacimiento")));
                 newbuscar.setPaciente_correoelectronico(String.valueOf(rs.getString("paciente_correoelectronico")));
-
+                newbuscar.setPaciente_canton(String.valueOf(rs.getString("paciente_canton")));
+                newbuscar.setPaciente_etnia(String.valueOf(rs.getString("paciente_etnia")));
+                newbuscar.setPaciente_nivel_estudio(String.valueOf(rs.getString("paciente_nivel_estudio")));
+                newbuscar.setPaciente_anios_nivel(String.valueOf(rs.getString("paciente_anios_nivel")));
             }
+            int a = 1;
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         } finally {
@@ -91,7 +97,12 @@ public class Buscador {
                     + "	   paciente_nacionalidad,\n"
                     + "	   paciente_estado_civil,\n"
                     + "	   paciente_fnacimiento,\n"
-                    + "	   paciente_correoelectronico from paciente) as T1\n"
+                    + "	   paciente_correoelectronico,"
+                    + "    paciente_etnia,"
+                    + "    paciente_nivel_estudio,"
+                    + "    paciente_anios_nivel,"
+                    + "    paciente_canton"
+                    + "    from paciente) as T1\n"
                     + "	   where apellido = '" + apellido + "' AND nombre = '" + nombre + "'";
             pst = cn.getConecction().prepareStatement(sql_command);
             rs = pst.executeQuery();
@@ -111,7 +122,10 @@ public class Buscador {
                 newbuscar.setPaciente_estadocivil(String.valueOf(rs.getString("paciente_estado_civil")));
                 newbuscar.setPaciente_fechanacimiento(String.valueOf(rs.getString("paciente_fnacimiento")));
                 newbuscar.setPaciente_correoelectronico(String.valueOf(rs.getString("paciente_correoelectronico")));
-
+                newbuscar.setPaciente_canton(String.valueOf(rs.getString("paciente_canton")));
+                newbuscar.setPaciente_etnia(String.valueOf(rs.getString("paciente_etnia")));
+                newbuscar.setPaciente_nivel_estudio(String.valueOf(rs.getString("paciente_nivel_estudio")));
+                newbuscar.setPaciente_anios_nivel(String.valueOf(rs.getString("paciente_anios_nivel")));
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());

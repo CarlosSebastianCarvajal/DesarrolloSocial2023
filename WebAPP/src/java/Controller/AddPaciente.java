@@ -64,6 +64,10 @@ public class AddPaciente extends HttpServlet {
             String tipoSangre = request.getParameter("tipoSangre");
             String genero = request.getParameter("genero");
             String email = request.getParameter("email");
+            
+            String paciente_etnia = request.getParameter("paciente_etnia");
+            String paciente_nivel_estudio = request.getParameter("paciente_nivel_estudio");
+            String paciente_anios_nivel = request.getParameter("paciente_anios_nivel");
 
             if (!TipoIden.equalsIgnoreCase("") && !Identificacion.equalsIgnoreCase("") && !PrimerNombre.equalsIgnoreCase("") && !PrimerApellido.equalsIgnoreCase("") && !SegundoApellido.equalsIgnoreCase("")
                     && !Fechadenacimiento.equalsIgnoreCase("") && !convencional.equalsIgnoreCase("") && !Celular.equalsIgnoreCase("")
@@ -72,7 +76,7 @@ public class AddPaciente extends HttpServlet {
                     && !nacionalidad.equalsIgnoreCase("") && !discapacidad.equalsIgnoreCase("") && !tipoSangre.equalsIgnoreCase("") && !email.equalsIgnoreCase("")
                     && !genero.equalsIgnoreCase("")) {
                 ControladorPaciente busuario = new ControladorPaciente(TipoIden, Identificacion, PrimerApellido, PrimerNombre, Fechadenacimiento, Direccion, Celular, genero, discapacidad,
-                        Ayuda1, SegundoApellido, SegundoNombre, Provincia, canton, parroquia, nacionalidad, estadoCivil, convencional, tipoSangre,email);
+                        Ayuda1, SegundoApellido, SegundoNombre, Provincia, canton, parroquia, nacionalidad, estadoCivil, convencional, tipoSangre,email, paciente_etnia, paciente_nivel_estudio, paciente_anios_nivel);
                 boolean sw = InsertAddPaciente.agregarUsuario(busuario);
                 if (sw) {
 //                    JOptionPane.showMessageDialog(null, "PACIENTE AGREGADA/O CORECTAMENTE");

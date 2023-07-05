@@ -85,7 +85,7 @@
                         </div>
                     </section>
                     
-                    <!-- HISTORIA CLINICA PACIENTES EMBARAZADAS 
+                    <!--HISTORIA CLINICA PACIENTES EMBARAZADAS -->
                     <section class="animadoagregarinformacion">
                         <div class="content">
                             <header>
@@ -95,25 +95,25 @@
                                 <h3 style="color:#007653; font-weight: bold">HISTORIA CLÍNICA PACIENTES EMBARAZADAS</h3>
 
                             </header>
-                            <p>Registre o actualice la Historia Clínica Gineco-Obstetrico de las pacientes que se encuentran embarazadas</p>
-                            <input type="button" onclick="javascript:abrirHistoriaEmba();" value="Registrar" class="button primary" style=" background: #007653 !important;"/>
-                            <input type="button" onclick="javascript:actuaHistoriaEmba();" value="Actualizar" class="button primary" style=" background: #007653 !important;"/>
+                            <p>Registre Historia Clínica Gineco-Obstetrico y Perinatal de pacientes embarazadas</p>
+                            <input type="button" onclick="javascript:abrirHistoriaEmba();" value="Registrar Nueva" class="button primary" style=" background: #007653 !important;"/>
+                            
                         </div>
-                    </section>-->
+                    </section>
                     
-                    <!-- SEGUIMIENTO PACIENTES EMBARAZADAS
+                    <!-- SEGUIMIENTO PACIENTES EMBARAZADAS -->
                     <section class="animadoagregarinformacion">
                         <div class="content">
                             <header>
                                 <a href="" >
                                     <img alt="" src="img/gine_seguimiento_emba_96.png" width="96" height="96">
                                     <span class="label"></span></a>
-                                <h3 style="color:#007653; font-weight: bold" class="textgrueso">SEGUIMIENTO PACIENTES EMBARAZADAS</h3>
+                                <h3 style="color:#007653; font-weight: bold" class="textgrueso">SEGUIMIENTO A PACIENTES EMBARAZADAS</h3>
                             </header>
-                            <p>Ingrese la información correspondiente al seguimiento realizado a la paciente embarazada</p>
+                            <p>Ingrese la información del seguimiento realizado a las pacientes embarazadas</p>
                             <input type="button" onclick="javascript:abrirSeguimientoEmba();" value="Ingresar" class="button primary" style=" background: #007653 !important;"/>
                         </div>
-                    </section> -->
+                    </section> 
                     
                     <!-- SOLICITUD HISTOPATOLOGICA -->
                     <section class="animadoagregarinformacion">
@@ -172,10 +172,10 @@
                 window.location.href = "./SeguimientoGinecologia.jsp?user="+document.getElementById("usuario").innerHTML;
             }
             function abrirHistoriaEmba(){
-              //window.location.href = "./Terapiafisica.jsp?user="+document.getElementById("usuario").innerHTML;
+              window.location.href = "./HistoriaClinica_Ginecologia_Emb.jsp?user="+document.getElementById("usuario").innerHTML;
             }
-            function actuaHistoriaEmba(){
-              //window.location.href = "./Terapiafisica.jsp?user="+document.getElementById("usuario").innerHTML;
+            function abrirSeguimientoEmba(){
+              window.location.href = "./Seguimiento_Ginecologia_Emb.jsp?user="+document.getElementById("usuario").innerHTML;
             }
             function abrirSH(){
               window.location.href = "./Histopatologico.jsp?user="+document.getElementById("usuario").innerHTML;
