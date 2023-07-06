@@ -128,6 +128,37 @@
                             <input type="button" onclick="javascript:abrirSH();" value="Acceder" class="button primary" style=" background: #007653 !important;"/>
                         </div>
                     </section>
+                    
+                     <!-- EXAMENES -->
+                    <section class="animadoagregarinformacion">
+                        <div class="content">
+                            <header>
+                                <a href="">
+                                    <img alt="" src="svg/resultados-de-los-examenes.svg" width="96" height="96">
+                                    <span class="label"></span></a>
+                                <h3 style="color:#007653; font-weight: bold">EXAMENES</h3>
+
+                            </header>
+                            <p>Subir o actualizar examenes del paciente</p>
+                            <input type="button" onclick="javascript:SubirExamen();" value="Subir" class="button primary" style=" background: #007653 !important;"/>
+                            <input type="button" onclick="javascript:ActualizarExamen();" value="Actualizar" class="button primary" style=" background: #007653 !important;"/>
+                        </div>
+                    </section>
+                    
+                      <!-- HISTORIAL -->
+                    <section class="animadoagregarinformacion">
+                        <div class="content">
+                            <header>
+                                <a href="">
+                                    <img alt="" src="img/icons8_accounting_96px.png" width="96" height="96">
+                                    <span class="label"></span></a>
+                                <h3 style="color:#007653; font-weight: bold">HISTORIAL</h3>
+
+                            </header>
+                            <p>Mostrar la información de las actividades de los pacientes</p>
+                            <input type="button" onclick="javascript:historial();" value="Ver Historial" class="button primary" style=" background: #007653 !important;"/>
+                        </div>
+                    </section> 
 
                     <!-- REPORTES -->
                     <section class="animadoagregarinformacion">
@@ -180,7 +211,15 @@
             function abrirSH(){
               window.location.href = "./Histopatologico.jsp?user="+document.getElementById("usuario").innerHTML;
             }
-            
+            function SubirExamen(){
+              window.location.href = "./ListarPacientesG.jsp";
+            }
+            function ActualizarExamen(){
+              window.location.href = "./ListarPacientesGeneralG.jsp";
+            }
+            function historial(){
+              window.location.href = "./HistorialPacienteG.jsp";
+            }
             
         </script>
     </body>

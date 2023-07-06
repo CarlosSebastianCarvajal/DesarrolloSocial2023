@@ -1,3 +1,9 @@
+<%-- 
+    Document   : HistorialPacienteG
+    Created on : 04-jul-2023, 22:39:10
+    Author     : Miguel
+--%>
+
 <%@page import="BD.conexion"%>
 <%@page import="java.sql.*"%>
 <!doctype html>
@@ -43,29 +49,17 @@
                             Statement smt;
                             ResultSet rs;
                             smt = con.getConecction().createStatement();
-                            rs = smt.executeQuery("select pa.paciente_dni as cedula ,pa.paciente_primer_nombre as primerNombre,pa.paciente_segundo_nombre as segundoNombre,pa.paciente_apellido_paterno as apeliidoPaterno,pa.paciente_apellido_materno as apellidoMaterno,pa.paciente_direccion as direccion,pa.paciente_provincia as provincia, pa.paciente_canton as canton, pa.paciente_parroquia as parroquia,pa.paciente_estado_civil as estadoCivil,me.antecedentespersonales as AntePerosnales, me.antecedentesfamiliares as AntFamiliares,me.antecedentesquirurgicos as AntQuirurgicos,me.fechaconsulta as Fechaconsulta, me.motivoconsulta as motivoConsulta,me.diagnositico as diagnostico,me.cargararchivo as archivo  from medicinageneral me inner join paciente pa on me.paciente_dni = pa.paciente_dni where me.galeno_user ='" + session.getAttribute("galeno_user11") + "' ");
+                            rs = smt.executeQuery("select g.fecha, p.paciente_dni as cedula, (p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre || ' ' || p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as paciente_nombres, g.notas, g.archivo, case when g.archivo is null then ' ' else 'Download' end as descarga from ginecologia_seguimiento as g, paciente p, ginecologia_historia_clinica as gh, galeno as ga where gh.ghc_id=g.ghc_id and gh.paciente_id=p.paciente_id and gh.galeno_id=ga.galeno_id and ga.galeno_user='" + session.getAttribute("galeno_user11") + "' order by fecha");
                             if (rs.next()) {
-                                rs = smt.executeQuery("select pa.paciente_dni as cedula ,pa.paciente_primer_nombre as primerNombre,pa.paciente_segundo_nombre as segundoNombre,pa.paciente_apellido_paterno as apeliidoPaterno,pa.paciente_apellido_materno as apellidoMaterno,pa.paciente_direccion as direccion,pa.paciente_provincia as provincia, pa.paciente_canton as canton, pa.paciente_parroquia as parroquia,pa.paciente_estado_civil as estadoCivil,me.antecedentespersonales as AntePerosnales, me.antecedentesfamiliares as AntFamiliares,me.antecedentesquirurgicos as AntQuirurgicos,me.fechaconsulta as Fechaconsulta, me.motivoconsulta as motivoConsulta,me.diagnositico as diagnostico,me.cargararchivo as archivo  from medicinageneral me inner join paciente pa on me.paciente_dni = pa.paciente_dni where me.galeno_user ='" + session.getAttribute("galeno_user11") + "'");
+                                rs = smt.executeQuery("select g.fecha, p.paciente_dni as cedula, (p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre || ' ' || p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as paciente_nombres, g.notas, g.archivo, case when g.archivo is null then ' ' else 'Download' end as descarga from ginecologia_seguimiento as g, paciente p, ginecologia_historia_clinica as gh, galeno as ga where gh.ghc_id=g.ghc_id and gh.paciente_id=p.paciente_id and gh.galeno_id=ga.galeno_id and ga.galeno_user='" + session.getAttribute("galeno_user11") + "' order by fecha");
                         %>
                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+                                    <th>Fecha Consulta</th>
                                     <th>Cedula</th>
-                                    <th>Fechaconsulta</th>
-                                    <th>motivoConsulta</th>
-                                    <th>diagnostico</th>
-                                    <th>primerNombre</th>
-                                    <th>segundoNombre</th>
-                                    <th>apeliidoPaterno</th>
-                                    <th>apellidoMaterno</th>
-                                    <th>direccion</th>
-                                    <th>provincia</th>
-                                    <th>canton</th>
-                                    <th>parroquia</th>
-                                    <th>estadoCivil</th>
-                                    <th>AntePerosnales</th>
-                                    <th>AntFamiliares</th>
-                                    <th>AntQuirurgicos</th>
+                                    <th>Paciente</th>
+                                    <th>Motivo Consulta</th>
                                     <th>Archivo</th>
                                 </tr>
                             </thead>
@@ -73,23 +67,11 @@
                                 <%while (rs.next()) {
                                 %>
                                 <tr>
+                                    <td><%= rs.getString("fecha")%></td>
                                     <td><%= rs.getString("cedula")%></td>
-                                    <td><%= rs.getString("Fechaconsulta")%></td>
-                                    <td><%= rs.getString("motivoConsulta")%></td>
-                                    <td><%= rs.getString("diagnostico")%></td>
-                                    <td><%= rs.getString("primerNombre")%></td>
-                                    <td><%= rs.getString("segundoNombre")%></td>
-                                    <td><%= rs.getString("apeliidoPaterno")%></td>
-                                    <td><%= rs.getString("apellidoMaterno")%></td>
-                                    <td><%= rs.getString("direccion")%></td>
-                                    <td><%= rs.getString("provincia")%></td>
-                                    <td><%= rs.getString("canton")%></td>
-                                    <td><%= rs.getString("parroquia")%></td>
-                                    <td><%= rs.getString("estadoCivil")%></td>
-                                    <td><%= rs.getString("AntePerosnales")%></td>
-                                    <td><%= rs.getString("AntFamiliares")%></td>
-                                    <td><%= rs.getString("AntQuirurgicos")%></td>
-                                    <td><a href="DownloadServlet?fileName=<%=rs.getString("archivo")%>">Download</a></td>
+                                    <td><%= rs.getString("paciente_nombres")%></td>
+                                    <td><%= rs.getString("notas")%></td>
+                                    <td><a href="DownloadServlet?fileName=<%=rs.getString("archivo")%>"><%=rs.getString("descarga")%></a></td>
                                 </tr>
                                 <%}%>
                             </tbody>        

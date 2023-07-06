@@ -70,7 +70,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <%                    while (rs.next()) {
+                                <%while (rs.next()) {
                                 %>
                                 <tr>
                                     <td><%= rs.getString("cedula")%></td>
