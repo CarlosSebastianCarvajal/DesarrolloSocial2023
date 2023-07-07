@@ -81,10 +81,6 @@ where s.galeno_id=g.galeno_id and s.paciente_id=p.paciente_id and p.paciente_dni
 				</textElement>
 				<text><![CDATA[ÁREA DE GINECOLOGIA]]></text>
 			</staticText>
-			<image>
-				<reportElement x="10" y="5" width="81" height="46" uuid="e003f2cf-824a-4f38-a679-7eb93242be9e"/>
-				<imageExpression><![CDATA["logo_quevedo.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="111" y="58" width="377" height="18" uuid="ee8824b3-2f66-42ad-a056-8793cc4ea835"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -97,15 +93,19 @@ where s.galeno_id=g.galeno_id and s.paciente_id=p.paciente_id and p.paciente_dni
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[GOBIERNO AUTÓNOMO DESCENTRALIZADO DE QUEVEDO]]></text>
+				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="112" y="25" width="376" height="16" uuid="eb6b823c-4e2f-488a-9de5-b83fa4c8daec"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL]]></text>
+				<text><![CDATA[CIUDADANO DE QUEVEDO]]></text>
 			</staticText>
+			<image>
+				<reportElement x="22" y="5" width="71" height="69" uuid="e0ae17d3-0dc8-4507-ac7e-f9be7cbd587b"/>
+				<imageExpression><![CDATA["logo_actual.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b0145cd8-e93c-4341-9727-70c36031b480">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="172"/>
-	<property name="ireport.y" value="892"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="cedula" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -79,14 +79,14 @@ from
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[GOBIERNO AUTÓNOMO DESCENTRALIZADO DE QUEVEDO]]></text>
+				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="104" y="20" width="406" height="16" uuid="20731590-273b-43b4-b758-057ea72d4837"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL]]></text>
+				<text><![CDATA[CIUDADANO DE QUEVEDO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="104" y="36" width="406" height="16" uuid="580632c2-9529-4442-a644-f6c4ef97eb48"/>
@@ -95,10 +95,6 @@ from
 				</textElement>
 				<text><![CDATA[ÁREA DE GINECOLOGIA]]></text>
 			</staticText>
-			<image>
-				<reportElement x="10" y="5" width="81" height="46" uuid="60a190dd-568d-41b7-ad59-f1b8c9d9ee94"/>
-				<imageExpression><![CDATA["logo_quevedo.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="104" y="52" width="406" height="16" uuid="12eb320a-ab96-438d-af1f-63cd5f2d5b88"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -106,6 +102,10 @@ from
 				</textElement>
 				<text><![CDATA[HISTORIA CLINICA GINECO-OBSTETRICO]]></text>
 			</staticText>
+			<image>
+				<reportElement x="18" y="1" width="71" height="69" uuid="012badec-527d-4c32-8daa-8d9345d759be"/>
+				<imageExpression><![CDATA["logo_actual.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
