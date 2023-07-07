@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="794" pageHeight="1122" columnWidth="754" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="78c27ba5-6044-4af1-b58b-dc503ad073fd">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="p_cedula" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -187,7 +187,7 @@ from
 			</textField>
 			<image>
 				<reportElement x="3" y="2" width="126" height="124" uuid="00813757-5253-4031-b0cf-c05da94ffdec"/>
-				<imageExpression><![CDATA["C:\\Users\\Sebastian Carvajal\\Documents\\GitHub\\DesarrolloSocial2023\\WebAPP\\web\\Reportes\\LogoDS1.png"]]></imageExpression>
+				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

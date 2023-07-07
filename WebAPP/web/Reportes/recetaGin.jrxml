@@ -109,7 +109,7 @@ where g.galeno_user = $P{p_usuario}]]>
 				<reportElement x="8" y="126" width="738" height="1" uuid="fa963f29-ab9f-406f-8d92-b04e114a9429"/>
 			</line>
 			<staticText>
-				<reportElement x="250" y="84" width="377" height="27" uuid="90a5d871-9e9a-4958-8ae1-65ea25ff09ff"/>
+				<reportElement x="251" y="84" width="377" height="27" uuid="90a5d871-9e9a-4958-8ae1-65ea25ff09ff"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -206,7 +206,7 @@ where g.galeno_user = $P{p_usuario}]]>
 			</textField>
 			<image>
 				<reportElement x="3" y="2" width="126" height="124" uuid="00813757-5253-4031-b0cf-c05da94ffdec"/>
-				<imageExpression><![CDATA["C:\\Users\\Sebastian Carvajal\\Documents\\GitHub\\DesarrolloSocial2023\\WebAPP\\web\\Reportes\\LogoDS1.png"]]></imageExpression>
+				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

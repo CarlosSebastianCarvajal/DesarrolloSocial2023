@@ -103,8 +103,8 @@ from
 				<text><![CDATA[HISTORIA CLINICA GINECO-OBSTETRICO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="18" y="1" width="71" height="69" uuid="012badec-527d-4c32-8daa-8d9345d759be"/>
-				<imageExpression><![CDATA["logo_actual.jpg"]]></imageExpression>
+				<reportElement x="10" y="2" width="109" height="66" uuid="3266911e-7a48-4e59-a5bf-3022ab14bfdd"/>
+				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
