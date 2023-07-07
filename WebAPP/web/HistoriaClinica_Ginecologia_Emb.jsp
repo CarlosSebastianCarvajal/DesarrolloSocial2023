@@ -1554,7 +1554,7 @@
                                 <th>Proteinuria</th>
                             </thead>
                             <tbody align="center">
-                            <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-edad-ges" class="inp-edad"  maxlength="2" placeholder="Edad Gestacional" name="ca_edad_ges" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
+                            <td><input style="margin-top: -8px; border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda; width: 70%; height: 40px; display: flex; align-items: center; text-align: center;" type="number" id="txt-ca-edad-ges" name="ca_edad_ges" placeholder="Semana" onkeypress="return validaNumericos(event)" required="" oninput="pasarSemGest(this);"/></td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-peso" class="inp-edad"  maxlength="6" placeholder="Peso" name="ca_peso" value="" onkeypress='return validaNumericosDec(event)' readonly="true" required=""/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-pa" class="inp-edad"  maxlength="3" placeholder="PA" name="ca_pa" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-altura-uterina" class="inp-edad"  maxlength="2" placeholder="altura"  name="ca_altura_uterina" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
@@ -1598,7 +1598,7 @@
                                 <th>Rango de IMC</th>
                             </thead>
                             <tbody align="center">
-                            <td style=""><input style="margin-top: -8px; border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda; width: 50%; height: 40px; display: flex; align-items: center; text-align: center;" type="number" id="num-imc-semana" name="imc_semana" placeholder="Semana" onkeypress="return validaNumericos(event)" required=""/></td>
+                            <td style=""><input style="margin-top: -8px; border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda; width: 50%; height: 40px; display: flex; align-items: center; text-align: center;" type="number" id="num-imc-semana" name="imc_semana" placeholder="Semana" onkeypress="return validaNumericos(event)" required="" readonly="true"/></td>
                             <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-imc-peso" class="inp-edad"  maxlength="2" placeholder="Peso" name="imc_peso" onkeypress='return validaNumericosDec(event)' readonly="true"/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-imc-talla" class="inp-edad"  maxlength="10" placeholder="Talla" name="imc_talla" value="" required="" onkeypress='return validaNumericos(event)' readonly="true"/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-imc-imc" class="inp-edad"  placeholder="IMC" name="imc_valor_inicial" readonly="true"/></div> </td>
@@ -1669,6 +1669,10 @@
                document.getElementById("txt-ca-mov-fetales").readOnly = true;
                document.getElementById("txt-ca-proteinuria").readOnly = true;
            }
+        }
+        
+        function pasarSemGest(e){
+            document.getElementById("num-imc-semana").value = document.getElementById("txt-ca-edad-ges").value;
         }
         
         function pasarPresion(e){

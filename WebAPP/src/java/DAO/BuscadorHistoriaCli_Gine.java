@@ -34,7 +34,7 @@ public class BuscadorHistoriaCli_Gine {
         pst = null;
         rs = null;
         try {
-            sql_command = "SELECT p.paciente_dni, CONCAT(p.paciente_primer_nombre, ' ',p.paciente_segundo_nombre) as nombres,\n" +
+            sql_command = "SELECT p.paciente_id, p.paciente_dni, CONCAT(p.paciente_primer_nombre, ' ',p.paciente_segundo_nombre) as nombres,\n" +
             "CONCAT(p.paciente_apellido_paterno, ' ',p.paciente_apellido_materno)as apellidos, p.paciente_estado_civil,\n" +
             "p.paciente_fnacimiento, p.paciente_edad, p.paciente_telefono, p.paciente_direccion,\n" +
             "p.paciente_canton, p.paciente_etnia, p.paciente_nivel_estudio, p.paciente_anios_nivel, \n"+
@@ -48,7 +48,7 @@ public class BuscadorHistoriaCli_Gine {
             pst = cn.getConecction().prepareStatement(sql_command);
             rs = pst.executeQuery();
             while (rs.next()) {
-
+                newbuscar.setPaciente_id(String.valueOf(rs.getString("paciente_id")));
                 newbuscar.setPaciente_dni(String.valueOf(rs.getString("paciente_dni")));
                 newbuscar.setNombres(String.valueOf(rs.getString("nombres")));
                 newbuscar.setApellidos(String.valueOf(rs.getString("apellidos")));

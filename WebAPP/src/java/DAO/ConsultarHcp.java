@@ -29,6 +29,7 @@ public class ConsultarHcp {
         HcPerinatal hcPerinatal = new HcPerinatal();
         pst = null;
         rs = null;
+        
         try {
             sql_command = "select * from ginecologia_historia_clinica_per where ghc_id = " + ghc_id;
             pst = cn.getConecction().prepareStatement(sql_command);

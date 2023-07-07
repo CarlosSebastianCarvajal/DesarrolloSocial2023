@@ -17,7 +17,7 @@
         <title>Historia Clínica Embarazadas</title>
     </head>
     <body>
-        <header id="header" style=" background: #007653 !important; margin-top:-40px">
+        <header id="header" style=" background: #007653 !important;">
             
                 <a class="logo" href="Principal.jsp" id="ulUserData"> 
             </a>
@@ -27,9 +27,9 @@
         <div class="div-head-titl" style="margin-top:-18px"><h2></h2></div>
 
 
-        <form class="form1" action="AddGineHistoriaClinicaEmb" method="GET" style="margin-top:2850px">
+        <form class="form1" action="AddGineHistoriaEvolucionEmb" method="GET">
             <section class="sec-main">
-                <div class="div-cont-main2">
+                <div id="divv" class="div-cont-main" style="margin-top: 9900px">
                         <div class="div-cont-ced">
                             <input type="button" id="btn-actionb" class="inp-search" value="Buscar"/>
                             <input type="text" id="txt-cede" class="inp-ced" onkeypress='return validaNumericos(event)' placeholder="Cédula" name="Identificacion" maxlength="15"/>
@@ -63,8 +63,8 @@
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-nombres" class="inp-lname" placeholder="Nombres" name="hg_nombres"required=""  onkeypress="return soloLetras(event)" readonly="readonly"/></div></td>
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-apellidos" class="inp-name" placeholder="Apellidos" name="hg_apellidos"required=""  onkeypress="return soloLetras(event)" readonly="readonly"/></div></td>
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-estadoc" class="inp-lname" placeholder="Estado Civil" name="hg_estado_civil"required=""  onkeypress="return soloLetras(event)" readonly="readonly"/></div></td>
-                                <input hidden type="text" id="txt-id" class="inp-lname" placeholder="txt-id" name="txtid"/>
-                                <input hidden type="text" id="ghc_id" class="inp-lname" placeholder="txt-id" name="ghc_id"/>
+                                <input  type="text" id="txt-id" class="inp-lname" placeholder="txt-id" name="txtid"/>
+                                <input  type="text" id="ghc_id" class="inp-lname" placeholder="txt-id" name="ghc_id"/>
                             </tr>
                         </tbody>
                         <thead >
@@ -86,7 +86,8 @@
                         
                         <thead>
                             <tr>
-                                <th style='background: #007653; text-align: left' colspan="4">2.- SIGNOS VITALES</th>
+                                <th style='background: #007653; text-align: left' colspan="1">2.- SIGNOS VITALES</th>
+                                <th style='background: #007653; text-align: left' colspan="3">Datos correspondientes a la primer consulta</th>
                             </tr>
                        </thead>
                         <thead >
@@ -302,7 +303,7 @@
                                 <td><input style= 'text-align: center; width: 75%;' type="text" id="txt-apellidos1" class="inp-name" placeholder="Apellidos" name="hg_apellidos1"required=""  onkeypress="return soloLetras(event)" readonly="readonly"/></td>
                                 <td><input style= 'text-align: center; width: 75%;' type="text" id="txt-domicilio1" class="inp-edad" placeholder="Domicilio" name=".." value=""  readonly="readonly" /></td>
                                 <td><input style= 'text-align: center; width: 75%;' type="text" id="txt-localidad1" class="inp-edad" placeholder="Localidad" name=".." value="" readonly="readonly" /></td>
-                                <input hidden type="text" id="ghcp_id" class="inp-lname" placeholder="ghcp_id" name="txtid"/>
+                                <input  type="text" id="ghcp_id" class="inp-lname" placeholder="ghcp_id" name="ghcp_id"/>
                             </tr>
                         </tbody>
                          <thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead>
@@ -1531,11 +1532,41 @@
                             </tbody>
                        </table>
                         
+                        
+                        <table style='width: 95%; margin-left: 10px; '>
+                            <thead >
+                                <tr>
+                                    <th style='background: #afadac; text-align: left; width: 33%' colspan="1" >CONSULTAS ANTENATALES</th>
+                                    <th style='background: #afadac; text-align: left; width: 67%' colspan="16" >Anteriores consultas</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                        <table style='width: 95%; margin-left: 10px; '>
+                            <thead >
+                                <th style='background: #d5ddda; width: 10%' >fecha</th>
+                                <th style='background: #d5ddda; width: 7%' >edad gest.</th>
+                                <th style='background: #d5ddda; width: 7%' >peso</th>
+                                <th style='background: #d5ddda; width: 7%' >PA</th>
+                                <th style='background: #d5ddda; width: 5%' >altura uterina</th>
+                                <th style='background: #d5ddda; width: 5%' >presentación</th>
+                                <th style='background: #d5ddda; width: 5%' >FCF(lpm)</th>
+                                <th style='background: #d5ddda; width: 5%' >movim. fetales</th>
+                                <th style='background: #d5ddda; width: 5%' >proteinuria</th>
+                                <th style='background: #d5ddda; width: 29%' >Signos de alarma</th>
+                                <th style='background: #d5ddda; width: 5%' >Iniciales Técnico</th>
+                                <th style='background: #d5ddda; width: 10%' >Proxima Cita</th>
+                            </thead>
+                            <tbody id="body_antenatales" align="center">
+                                
+                            </tbody>
+                        </table>
+                        
                         <table style='width: 95%; margin-left: 10px; '>
                             <thead>
                                 <tr>
                                     <th style='background: #afadac; text-align: left; width: 33%' colspan="1" >CONSULTAS ANTENATALES</th>
-                                    <th style='background: #afadac; text-align: left; width: 67%' colspan="16" ></th>
+                                    <th style='background: #afadac; text-align: left; width: 67%' colspan="16" >Registro de nueva consulta antenatal..</th>
                                 </tr>
                             </thead>
                             </thead>
@@ -1556,9 +1587,9 @@
                                 <th>Proteinuria</th>
                             </thead>
                             <tbody align="center">
-                            <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-edad-ges" class="inp-edad"  maxlength="2" placeholder="Edad Gestacional" name="ca_edad_ges" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
+                                <td><input style="margin-top: -8px; border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda; width: 70%; height: 40px; display: flex; align-items: center; text-align: center;" type="number" id="txt-ca-edad-ges" name="ca_edad_ges" placeholder="Semana" onkeypress="return validaNumericos(event)" required="" oninput="pasarSemGest(this);"/></td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-peso" class="inp-edad"  maxlength="6" placeholder="Peso" name="ca_peso" value="" onkeypress='return validaNumericosDec(event)' readonly="true" required=""/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-pa" class="inp-edad"  maxlength="3" placeholder="PA" name="ca_pa" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-pa" class="inp-edad"  maxlength="3" placeholder="PA" name="ca_pa" value="" onkeypress='return validaNumericos(event)' readonly="true" required=""/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-altura-uterina" class="inp-edad"  maxlength="2" placeholder="altura"  name="ca_altura_uterina" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-presentacion" class="inp-edad"  maxlength="50" placeholder="presentacion" name="ca_presentacion" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-FCP" class="inp-edad"  maxlength="50" placeholder="FCF" name="ca_FCP" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
@@ -1584,10 +1615,30 @@
                        <hr /> <h1 style="text-align:  center;">VALORACIÓN DEL ÍNDICE DE MASA CORPORAL</h1> <hr />
                        
                        <table style='width: 95%; margin-left: 10px; '>
+                            <thead >
+                                <tr>
+                                    <th style='background: #afadac; text-align: left; width: 33%' colspan="1" >VALORACIÓN DEL ÍNDICE DE MASA CORPORAL</th>
+                                    <th style='background: #afadac; text-align: left; width: 67%' colspan="16" >Historial</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                        <table style='width: 95%; margin-left: 10px; '>
+                            <thead >
+                                <th style='background: #d5ddda; width: 33.33%' >Semana Gestación</th>
+                                <th style='background: #d5ddda; width: 33.33%' >Índice de masa corporal</th>
+                                <th style='background: #d5ddda; width: 33.33%' >Ganancia</th>
+                            </thead>
+                            <tbody id="body_imc" align="center">
+                                
+                            </tbody>
+                        </table>
+                       
+                       <table style='width: 95%; margin-left: 10px; '>
                             <thead>
                                 <tr>
                                     <th style='background: #afadac; text-align: left; width: 33%' colspan="1" >Valoración del índice de masa corporal</th>
-                                    <th style='background: #afadac; text-align: left; width: 67%' colspan="16" >Primera consulta</th>
+                                    <th style='background: #afadac; text-align: left; width: 67%' colspan="16" >Consulta actual</th>
                                 </tr>
                             </thead>
                         </table>
@@ -1597,17 +1648,155 @@
                                 <th>Peso</th>
                                 <th>Talla</th>
                                 <th>IMC</th>
-                                <th>Rango de IMC</th>
+                                <th>Ganancia</th>
                             </thead>
                             <tbody align="center">
-                            <td style=""><input style="margin-top: -8px; border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda; width: 50%; height: 40px; display: flex; align-items: center; text-align: center;" type="number" id="num-imc-semana" name="imc_semana" placeholder="Semana" onkeypress="return validaNumericos(event)" required=""/></td>
+                            <td><input style="margin-top: -8px; border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda; width: 50%; height: 40px; display: flex; align-items: center; text-align: center;" type="number" id="num-imc-semana" name="imc_semana" placeholder="Semana" onkeypress="return validaNumericos(event)" required="" readonly="true"/></td>
                             <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-imc-peso" class="inp-edad"  maxlength="2" placeholder="Peso" name="imc_peso" onkeypress='return validaNumericosDec(event)' readonly="true"/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-imc-talla" class="inp-edad"  maxlength="10" placeholder="Talla" name="imc_talla" value="" required="" onkeypress='return validaNumericos(event)' readonly="true"/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-imc-imc" class="inp-edad"  placeholder="IMC" name="imc_valor_inicial" readonly="true"/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-imc-rango" class="inp-edad"  placeholder="Rango IMC" name="imc_rango" value="Desconocido" readonly="true"/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-imc-rango" class="inp-edad"  placeholder="Rango IMC" name="imc_rango" value="0" readonly="true"/></div> </td>
                             </tbody>
                        </table>
                        <hr/>
+                        <h1 style="text-align:  center;">HISTORIA DE EVOLUCIÓN</h1>
+                        <hr />
+                        <table style='width: 95%; margin-left: 10px; '>
+                            <thead>
+                                <tr>
+                                    <th style='background: #afadac; text-align: left; width: 33%' colspan="1" >SIGNOS VITALES</th>
+                                    <th style='background: #afadac; text-align: left; width: 67%' colspan="1" >Consulta actual</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table style='width: 100%; text-align: center;  margin-top: 30px'>
+                            <thead >
+                                <tr>                                
+                                    <th>Presión Arterial Sistólica</th>
+                                    <th>Presión Arterial Diastólica</th>
+                                    <th>Temperatura</th>
+                                    <th>Frecuencia Cardíaca</th>
+
+                                </tr>
+                            </thead>
+                            <tbody align="center">
+                                <tr> 
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-pa-sistolica-seg" class="inp-name" placeholder="P/A Sistólica" name="presion_arterial_s_seg" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);" oninput="pasarPresion1(this)"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="P/A Daistólica" name="presion_arterial_d_seg" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Temperatura (Ejem: 36.8)" name="temperatura_seg" required=""  onkeypress="return validaNumericosDec(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Frecuencia Cardíaca" name="frecuencia_cardiaca_seg" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+
+                                </tr>
+                            </tbody>
+                            <thead >
+                                <tr>            
+                                    <th>Saturación</th>
+                                    <th>Peso</th>
+                                    <th>Talla</th>
+                                    <th>IMC</th>
+                                </tr>
+                            </thead>
+                            <tbody align="center">
+                                <tr> 
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Saturación de oxígeno" name="saturacion_seg" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-peso-seg" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="peso_seg" required=""  onkeypress="return validaNumericosDec(event)" oninput="calcularIMC1(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla-seg" class="inp-name" placeholder="Talla en Cemtímetros" name="estatura_seg" required=""  onkeypress="return validaNumericos(event)" oninput="calcularIMC1(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-imc-seg" class="inp-name" placeholder="IMC" name="imc_seg" readonly="readonly_seg"  /></div></td>
+                                </tr>
+                            </tbody>
+
+
+                        </table>
+                        
+                        <table style='width: 95%; margin-left: 10px; '>
+                            <thead>
+                                <tr>
+                                    <th style='background: #afadac; text-align: left; width: 33%' colspan="1" >NOTAS DE EVOLUCIÓN</th>
+                                    <th style='background: #afadac; text-align: left; width: 67%' colspan="1" >Consulta actual</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                        <table style='width: 100%; text-align: center; margin-top: 30px;'>
+                            <thead>
+                                <tr>
+                                    <th>NOTAS DE EVOLUCIÓN</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><div ><textarea type="text" id="txt-ne" class="inp-lname" required=""placeholder="Notas de evolución" name="notas" style='height: 85px;' required/></textarea> </div></td> 
+                                </tr>
+                            </tbody>
+                        </table > 
+                        <br>
+
+                        <table style='width: 95%; margin-left: 10px; '>
+                            <thead>
+                                <tr>
+                                    <th style='background: #afadac; text-align: left; width: 33%' colspan="1" >PRESCRIPCIONES</th>
+                                    <th style='background: #afadac; text-align: left; width: 67%' colspan="1" >Consulta actual</th>
+                                </tr>
+                            </thead>
+                        </table>
+
+                        <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px; margin-bottom: 30px'> 
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-4 col-xs well">
+                                            <a href="#info2" class="inf"><h3>PRESCRIPCIONES</h3></a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="info2" class="oculto">
+                                            <section>
+                                                <div>
+                                                    <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
+                                                        <thead >
+                                                            <tr>                          
+                                                                <th>Medicamento</th>
+                                                                <th>Indicación Médica</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <input  type="text" id="txt-tabla-datos-medicamentos" name="txt-tabla-datos-medicamentos" class="inp-lname"/>
+                                                                <td><div class="div-cont-lname"><input type="text" onkeyup="mayus(this);" id="txt-medicamento" class="inp-lname" placeholder="Medicamento" name="medicamento"/></div></td>
+                                                                <td><div class="div-cont-name"><input type="text"onkeyup="mayus(this);" id="txt-med-indicacion" class="inp-name" placeholder="Indicación Médica" name="indicaciones"/></div></td>
+                                                                <td><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action-receta" class="btn-accept" value="+"> 
+                                                            </tr>
+                                                        </tbody>                        
+                                                    </table> 
+
+                                                    <div style="width: 80%; height: auto; margin-left: auto; margin-right: auto" >
+                                                        <div >
+                                                            <table id="tablaReceta" style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
+                                                                <thead>
+                                                                    <tr> 
+
+                                                                        <td>Nª</td>
+                                                                        <td>Medicamentos</td>
+                                                                        <td>Indicaciones Médicas</td>
+                                                                        <td>Acciones</td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <hr/>
                        <table style='width: 95%; margin-left: 10px; '>
                             <tbody align="center">
                                 <td colspan="2"><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action" class="btn-accept" value="Cancelar" onclick="javascript:cancel();"/> </div></td>
@@ -1625,6 +1814,7 @@
     <footer></footer>
     <script src="js/JQuery.js" type="text/javascript"></script>
     <script src="js/Gine-Seguimiento-Emb-Funciones.js" type="text/javascript"></script>
+    <script src="js/TF-AddReceta.js" type="text/javascript"></script>
     <script type="text/javascript">
         function cancel(){
             window.location.href = "./MenuGinecologia.jsp";
@@ -1673,6 +1863,58 @@
            }
         }
         
+        function pasarSemGest(e){
+            document.getElementById("num-imc-semana").value = document.getElementById("txt-ca-edad-ges").value;
+        }
+        
+        
+        function pasarPresion1(e){
+            document.getElementById("txt-ca-pa").value = document.getElementById("txt-pa-sistolica-seg").value;
+        }
+        
+        function calcularIMC1(e) {
+            //e.value = e.value.toUpperCase();
+            var imc = 0;
+            var peso = Number(document.getElementById("txt-peso-seg").value);
+            var talla = Number(document.getElementById("txt-talla-seg").value);
+            document.getElementById("txt-ca-peso").value = peso;
+            
+            if(peso > 0 && talla > 0){
+                imc = peso / Math.pow((talla * 0.01), 2);
+                imc = Number(imc.toFixed(3));
+                calcularGanancia(imc);
+                document.getElementById("txt-imc-seg").value = imc;
+                pasarPesoTallaValoracion1(peso, talla, imc)
+            }else{
+                document.getElementById("txt-imc-seg").value = '';
+                limpiarPesoTallaValoracion1();
+            }
+        }
+        
+        function calcularGanancia(imc){
+            var ganancia = 0;
+            var imc_inicial = document.getElementById("txt-imc").value;
+            ganancia = imc - imc_inicial;
+            ganancia = Number(ganancia.toFixed(3));
+            document.getElementById("txt-imc-rango").value = ganancia;
+        }
+        
+        function pasarPesoTallaValoracion1(peso, talla, imc){
+            document.getElementById("txt-imc-imc").value = imc;
+            document.getElementById("txt-imc-peso").value = peso;
+            document.getElementById("txt-imc-talla").value = talla;
+        }
+        
+        function limpiarPesoTallaValoracion1(){
+            document.getElementById("txt-imc-imc").value = '';
+            document.getElementById("txt-imc-peso").value = '';
+            document.getElementById("txt-imc-talla").value = '';
+            document.getElementById("txt-imc-rango").value = '0';
+        }
+        
+        
+        
+        // FUNCIONES DE RESERVA POR SI SE REQUIERA EL MODIFICAR
         function pasarPresion(e){
             document.getElementById("txt-ca-pa").value = document.getElementById("txt-pa-sistolica").value;
         }

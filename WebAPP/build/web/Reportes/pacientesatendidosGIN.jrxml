@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="794" pageHeight="1122" columnWidth="754" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="65804259-265d-4aea-9575-9b9208fbb8cb">
-	<property name="ireport.zoom" value="1.156629868288595"/>
+	<property name="ireport.zoom" value="1.2722928551174546"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="p_usuario" class="java.lang.String">
@@ -25,11 +25,11 @@
 			 p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as nombre_paciente,
 			p.paciente_ayudasocial as Ayuda_Social,
 			s.notas,
-			s.galeno_id
+			c.galeno_id
 		from paciente as p right join ginecologia_historia_clinica as c on p.paciente_id = c.paciente_id
 			inner join ginecologia_seguimiento as s on c.ghc_id = s.ghc_id
-		where c.fecha >= $P{p_finicio}
- 		AND c.fecha <= $P{p_ffin}
+		where s.fecha >= $P{p_finicio}
+ 		AND s.fecha <= $P{p_ffin}
 	) as DA inner join galeno as g on DA.galeno_id = g.galeno_id
 	where g.galeno_user = $P{p_usuario}]]>
 	</queryString>
@@ -48,34 +48,27 @@
 	</background>
 	<title>
 		<band height="133" splitType="Prevent">
-			<staticText>
-				<reportElement x="107" y="8" width="645" height="46" uuid="7b9213b4-d1f1-4996-961d-200f07f195f9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="20" isBold="true"/>
-				</textElement>
-				<text><![CDATA[GOBIERNO AUTÓNOMO DESCENTRALIZADO DE QUEVEDO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="239" y="94" width="377" height="27" uuid="b7918f8a-e44d-42e7-bbf5-497675b4cc10"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="15" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DEPARTAMENTO DE GINECOLOGÍA]]></text>
-			</staticText>
-			<image>
-				<reportElement x="7" y="8" width="211" height="102" uuid="f56ffd0f-5719-4531-8027-8175d2183121"/>
-				<imageExpression><![CDATA["logo_quevedo.jpg"]]></imageExpression>
-			</image>
-			<staticText>
-				<reportElement x="168" y="54" width="525" height="40" uuid="f0f629dd-d32d-4e37-8a33-dc2e6ed6a637"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL]]></text>
-			</staticText>
 			<line>
 				<reportElement x="3" y="128" width="749" height="1" uuid="245a4aed-b748-49a7-b38a-0283272624b2"/>
 			</line>
+			<image>
+				<reportElement x="5" y="4" width="126" height="124" uuid="8dd0a5f6-774b-40b0-9f26-ddf4a1be5c51"/>
+				<imageExpression><![CDATA["C:\\Users\\Sebastian Carvajal\\Documents\\GitHub\\DesarrolloSocial2023\\WebAPP\\web\\Reportes\\LogoDS1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="184" y="12" width="525" height="71" uuid="0a015137-e305-4a41-adbe-050e1a64b115"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL CIUDADANO DE QUEVEDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="92" width="377" height="27" uuid="babd24d3-2831-4521-b5f6-bdbd42d2056f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEPARTAMENTO DE GINECOLOGÍA]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>

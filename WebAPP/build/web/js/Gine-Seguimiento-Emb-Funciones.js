@@ -1,3 +1,29 @@
+var divv = document.getElementById('divv');
+var porc_div = 9900;
+
+$(document).ready(function () {
+    
+    $(".oculto").hide();              
+    $(".inf").click(function(){
+          var nodo = $(this).attr("href");  
+          
+          if ($(nodo).is(":visible")){
+               $(nodo).hide();
+               porc_div = 9900;
+               divv.style.marginTop= porc_div + "px";
+               return false;
+          }else{
+            $(".oculto").hide("slow");                             
+            $(nodo).fadeToggle("fast");
+            porc_div = 10100;
+            divv.style.marginTop= porc_div + "px";
+            return false;
+          }
+    });
+});
+
+
+
 $(function () {
     $('#btn-actionb').click(function (e) {
         buscadoract();
@@ -17,6 +43,7 @@ $(function () {
             success: function (data)
             {
                 console.log(data);
+                $("#txt-id").val(data.paciente_id);
                 $("#txt-cedula").val(data.paciente_dni);
                 $("#txt-nombres").val(data.nombres);
                 $("#txt-apellidos").val(data.apellidos);
@@ -236,6 +263,80 @@ $(function () {
                 if(data.imc_valor_inicial!== "null")document.querySelector('#imc_valor_inicial > [value="'+data.imc_valor_inicial+'"]').checked = true;
                 if(data.imc_rango!== "null")document.querySelector('#imc_rango > [value="'+data.imc_rango+'"]').checked = true;
                 */
+               
+                renderConsultasAntenatales(data.ghcp_id);
+                renderIMC(data.ghcp_id);
+            }
+        });
+    };
+    
+    const renderConsultasAntenatales= (ghcp_id) => {
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "BuscadorHcp_Antenatales",
+            data: {ghcp_id: ghcp_id},
+            dataType: 'json',
+            error: function (request, status, error)
+            {
+                alert(request, status, error);
+            },
+            success: function (data)
+            {
+                //13148117
+                console.log(data);
+                $("#body_antenatales").html("");
+                var output = ``;
+                for(var i = 0; i < data.length; i++) {
+                    output += `
+                        <tr>
+                            <td style="border: solid #d5ddda;">${data[i].ca_fecha}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_edad_ges}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_peso}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_pa}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_altura_uterina}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_presentacion}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_FCP}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_proteinuria}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_proteinuria}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_signos_notas}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_iniciales_tecnico}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_prox_cita}</th>
+                        </tr>
+                        `;
+                }
+                $("#body_antenatales").append(output);
+            }
+        });
+    };
+    
+    const renderIMC= (ghcp_id) => {
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "BuscadorHcp_IMC",
+            data: {ghcp_id: ghcp_id},
+            dataType: 'json',
+            error: function (request, status, error)
+            {
+                alert(request, status, error);
+            },
+            success: function (data)
+            {
+                //13148117
+                console.log(data);
+                $("#body_imc").html("");
+                var output = ``;
+                for(var i = 0; i < data.length; i++) {
+                    output += `
+                        <tr>
+                            <td style="border: solid #d5ddda;">${data[i].imc_semana}</th>
+                            <td style="border: solid #d5ddda;">${data[i].imc_imc}</th>
+                            <td style="border: solid #d5ddda;">${data[i].imc_ganancia}</th>
+                        </tr>
+                        `;
+                }
+                $("#body_imc").append(output);
             }
         });
     };

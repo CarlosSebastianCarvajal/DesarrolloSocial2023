@@ -10,7 +10,7 @@ package Model;
  * @author Miguel
  */
 public class BuscadorHistoria_Gine {
-    private String  paciente_dni, ghc_id, nombres, apellidos, paciente_estado_civil,
+    private String  paciente_id, paciente_dni, ghc_id, nombres, apellidos, paciente_estado_civil,
                     paciente_fnacimiento, paciente_edad, paciente_telefono, paciente_direccion,
                     paciente_canton, paciente_etnia, paciente_nivel_estudio, paciente_anios_nivel,
                     ap_personales, ap_familiares, ap_quirurgicos, ap_alergicos, 
@@ -27,7 +27,9 @@ public BuscadorHistoria_Gine(){
     
 }
 
-public BuscadorHistoria_Gine(String paciente_dni, String nombres, String apellidos, String paciente_estado_civil,
+
+
+public BuscadorHistoria_Gine(String paciente_id, String paciente_dni, String nombres, String apellidos, String paciente_estado_civil,
                     String paciente_fnacimiento, String paciente_edad, String paciente_telefono, String paciente_direccion,
                     String ap_personales, String ap_familiares, String ap_quirurgicos, String ap_alergicos, 
                     String ap_habitos, String ago_menarquia, String ago_irs, String ago_parejas, String ago_ultimo_pap, String ago_metodos_anti, String ago_fum, String ago_fpp, 
@@ -35,6 +37,7 @@ public BuscadorHistoria_Gine(String paciente_dni, String nombres, String apellid
                     String motivo_consulta, String enfermedad_acual, String diagnostico, String tratamiento,
                     String pa_sistolica, String pa_diastolica, String temperatura, String frecuencia_cardiaca, String saturacion, String peso, String estatura, String imc, String ghcp_id,
                     String paciente_canton, String paciente_etnia, String paciente_nivel_estudio, String paciente_anios_nivel){
+                    this.paciente_id=paciente_id;
                     this.paciente_dni=paciente_dni;
                     this.nombres=nombres;
                     this.apellidos=apellidos;
@@ -80,6 +83,14 @@ public BuscadorHistoria_Gine(String paciente_dni, String nombres, String apellid
                     this.paciente_nivel_estudio = paciente_nivel_estudio;
                     this.paciente_anios_nivel = paciente_anios_nivel;
 }
+
+    public String getPaciente_id() {
+        return paciente_id;
+    }
+
+    public void setPaciente_id(String paciente_id) {
+        this.paciente_id = paciente_id;
+    }
 
     public String getPaciente_canton() {
         return paciente_canton;

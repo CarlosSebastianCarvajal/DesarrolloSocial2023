@@ -221,7 +221,23 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
             
                 //Para los valores de valoracion IMC
                 imc_semana,
-                imc_imc;
+                imc_imc,
+                
+                //Datos de los signos vitales  (Crear Variable)   
+                presion_arterial_s_seg,
+                presion_arterial_d_seg,
+                temperatura_seg,
+                frecuencia_cardiaca_seg,
+                saturacion_seg,
+                peso_seg,
+                estatura_seg,
+                imc_seg,
+            
+                //para las notas de evolucion
+                notas,
+            
+                //para la receta
+                receta;
             
             pacienteid = request.getParameter("txtid");
             // Capturar valores de signos vitales
@@ -389,9 +405,26 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
             ca_iniciales_tecnico = request.getParameter("ca_iniciales_tecnico");
             ca_prox_cita = request.getParameter("ca_prox_cita");
             
-            //Capturar para Valoracion IMC
+            //Capturar para Valoracion IMC Inicial
             imc_semana = request.getParameter("imc_semana");
             imc_imc= request.getParameter("imc_valor_inicial");
+            
+            
+            //capturar valores de signos vitales de la nueva consulta
+            presion_arterial_s_seg = request.getParameter("presion_arterial_s_seg");
+            presion_arterial_d_seg = request.getParameter("presion_arterial_d_seg");
+            temperatura_seg = request.getParameter("temperatura_seg");
+            frecuencia_cardiaca_seg = request.getParameter("frecuencia_cardiaca_seg");
+            saturacion_seg = request.getParameter("saturacion_seg");
+            peso_seg = request.getParameter("peso_seg");
+            estatura_seg = request.getParameter("estatura_seg");
+            imc_seg = request.getParameter("imc_seg");
+            
+            //Capturar la notas de evolucion
+            notas = request.getParameter("notas");
+            
+            //Capturar datos de la receta
+            receta = request.getParameter("txt-tabla-datos-medicamentos");
             
             //Capturar usuario de la sesion
             String galenoUser = (String) session.getAttribute("galeno_user11");
@@ -485,11 +518,11 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                 */
                 
                 
-                // GUARDAR DATOS DE LA HISTORIA CLINICA PERINATAL
+                // MODIFICAR DATOS DE LA HISTORIA CLINICA PERINATAL
                 //ghcp_id
-                String sqlHCP = "INSERT INTO public.ginecologia_historia_clinica_per(\n" +
-                                "	ghc_id, per_alfa_beta, per_vive_sola, af_tbc, af_diabetes, af_hipertension, af_preeclampsia, af_eclampsia, af_ocmg, af_ocmg_desc, ap_tbc, ap_diabetes, ap_hipertension, ap_preeclampsia, ap_eclampsia, ap_ocmg, ap_ocmg_desc, ap_cirugia_gu, ap_infertilidad, ap_cardiopat, ap_nefropatia, ap_violencia, ao_up_nc, ao_up_normal, ao_ant_gem, ao_gestas_previas, ao_emb_ectopico, ao_abortos, ao_abortos_cons, ao_partos, ao_partos_vag, ao_partos_ces, ao_nac_vivos, ao_nac_muertos, ao_viven, ao_nac_muer_ant, ao_nac_muer_des, ao_fin_emb_ant, ao_emb_planeado, ao_fma, ga_peso, ga_talla, ga_fum, ga_fpp, ga_egconf_fum, ga_egconf_eco, ga_fuma_act_uno, ga_fuma_pas_uno, ga_drogas_uno, ga_alcohol_uno, ga_violencia_uno, ga_fuma_act_dos, ga_fuma_pas_dos, ga_drogas_dos, ga_alcohol_dos, ga_violencia_dos, ga_fuma_act_tres, ga_fuma_pas_tres, ga_drogas_tres, ga_alcohol_tres, ga_violencia_tres, ga_antitet, ga_antitet_dosis_uno, ga_antitet_dosis_dos, ga_antirubeola, ga_exnormal_odont, ga_exnormal_mamas, ga_cervix_insp, ga_cervix_pap, ga_cervix_colp, ga_san_grupo, ga_san_rh, ga_san_inmuniz, ga_san_globulina, ga_toxo_menor, ga_toxo_mayor, ga_toxo_prim_cons, ga_chagas, ga_pal_mal, ga_bac_menor, ga_bac_mayor, ga_glu_menor20, ga_glu_menor20_105, ga_glu_mayor30, ga_glu_mayor30_105, ga_vih_sol_menor20, ga_vih_rea_menor20, ga_vih_sol_mayor20, ga_vih_rea_mayor20, ga_hb_menor_20, ga_hb_menor_bajo, ga_fe, ga_folatos, ga_hb_mayor_20, ga_hb_mayor_bajo, ga_estreptococo, ga_prepa_parto, ga_consej_lactancia, ga_sif_prue_notre_res_men, ga_sif_prue_notre_sem_men, ga_sif_prue_notre_res_may, ga_sif_prue_notre_sem_may, ga_sif_prue_tre_res_men, ga_sif_prue_tre_sem_men, ga_sif_prue_tre_res_may, ga_sif_prue_tre_sem_may, ga_sif_trat_menor, ga_sif_trat_menor_sem, ga_sif_trat_mayor, ga_sif_trat_mayor_sem, ga_sif_trat_par_menor, ga_sif_trat_par_mayor, imc_valor_inicial, imc_rango)\n" +
-                                "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                String sqlHCP = "UPDATE public.ginecologia_historia_clinica_per\n" +
+                "	SET ghc_id=?, per_alfa_beta=?, per_vive_sola=?, af_tbc=?, af_diabetes=?, af_hipertension=?, af_preeclampsia=?, af_eclampsia=?, af_ocmg=?, af_ocmg_desc=?, ap_tbc=?, ap_diabetes=?, ap_hipertension=?, ap_preeclampsia=?, ap_eclampsia=?, ap_ocmg=?, ap_ocmg_desc=?, ap_cirugia_gu=?, ap_infertilidad=?, ap_cardiopat=?, ap_nefropatia=?, ap_violencia=?, ao_up_nc=?, ao_up_normal=?, ao_ant_gem=?, ao_gestas_previas=?, ao_emb_ectopico=?, ao_abortos=?, ao_abortos_cons=?, ao_partos=?, ao_partos_vag=?, ao_partos_ces=?, ao_nac_vivos=?, ao_nac_muertos=?, ao_viven=?, ao_nac_muer_ant=?, ao_nac_muer_des=?, ao_fin_emb_ant=?, ao_emb_planeado=?, ao_fma=?, ga_peso=?, ga_talla=?, ga_fum=?, ga_fpp=?, ga_egconf_fum=?, ga_egconf_eco=?, ga_fuma_act_uno=?, ga_fuma_pas_uno=?, ga_drogas_uno=?, ga_alcohol_uno=?, ga_violencia_uno=?, ga_fuma_act_dos=?, ga_fuma_pas_dos=?, ga_drogas_dos=?, ga_alcohol_dos=?, ga_violencia_dos=?, ga_fuma_act_tres=?, ga_fuma_pas_tres=?, ga_drogas_tres=?, ga_alcohol_tres=?, ga_violencia_tres=?, ga_antitet=?, ga_antitet_dosis_uno=?, ga_antitet_dosis_dos=?, ga_antirubeola=?, ga_exnormal_odont=?, ga_exnormal_mamas=?, ga_cervix_insp=?, ga_cervix_pap=?, ga_cervix_colp=?, ga_san_grupo=?, ga_san_rh=?, ga_san_inmuniz=?, ga_san_globulina=?, ga_toxo_menor=?, ga_toxo_mayor=?, ga_toxo_prim_cons=?, ga_chagas=?, ga_pal_mal=?, ga_bac_menor=?, ga_bac_mayor=?, ga_glu_menor20=?, ga_glu_menor20_105=?, ga_glu_mayor30=?, ga_glu_mayor30_105=?, ga_vih_sol_menor20=?, ga_vih_rea_menor20=?, ga_vih_sol_mayor20=?, ga_vih_rea_mayor20=?, ga_hb_menor_20=?, ga_hb_menor_bajo=?, ga_fe=?, ga_folatos=?, ga_hb_mayor_20=?, ga_hb_mayor_bajo=?, ga_estreptococo=?, ga_prepa_parto=?, ga_consej_lactancia=?, ga_sif_prue_notre_res_men=?, ga_sif_prue_notre_sem_men=?, ga_sif_prue_notre_res_may=?, ga_sif_prue_notre_sem_may=?, ga_sif_prue_tre_res_men=?, ga_sif_prue_tre_sem_men=?, ga_sif_prue_tre_res_may=?, ga_sif_prue_tre_sem_may=?, ga_sif_trat_menor=?, ga_sif_trat_menor_sem=?, ga_sif_trat_mayor=?, ga_sif_trat_mayor_sem=?, ga_sif_trat_par_menor=?, ga_sif_trat_par_mayor=?\n" +
+                "	WHERE ghcp_id="+ghcp_id+";";
                 ps = c.getConecction().prepareStatement(sqlHCP);
                 ps.setInt(1, Integer.parseInt(ghc_id));
                 if(per_alfa_beta != null && per_alfa_beta .length() > 0){ps.setString(2,per_alfa_beta);}else{ ps.setNull(2, Types.VARCHAR); }
@@ -603,15 +636,11 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                 if(ga_sif_trat_mayor_sem!= null && ga_sif_trat_mayor_sem.length() > 0){ps.setInt(110,Integer.parseInt(ga_sif_trat_mayor_sem));}else{ ps.setNull(110, Types.INTEGER); }
                 if(ga_sif_trat_par_menor!= null && ga_sif_trat_par_menor.length() > 0){ps.setString(111,ga_sif_trat_par_menor);}else{ ps.setNull(111, Types.VARCHAR); }
                 if(ga_sif_trat_par_mayor!= null && ga_sif_trat_par_mayor.length() > 0){ps.setString(112,ga_sif_trat_par_mayor);}else{ ps.setNull(112, Types.VARCHAR); }
-                if(imc_valor_inicial!= null && imc_valor_inicial.length() > 0){ps.setFloat(113,Float.parseFloat(imc_valor_inicial));}else{ ps.setNull(113, Types.DECIMAL); }
-                if(imc_rango!= null && imc_rango.length() > 0){ps.setString(114,imc_rango);}else{ ps.setNull(114, Types.VARCHAR); }
                 int resHcp = 0;
                 resHcp = ps.executeUpdate();
                  
                 if(resHcp!= 0){
-                    response.sendRedirect("MenuGinecologia.jsp");
-                    
-                    /*
+                    //Ingresamos el nuevo registro de consultas antenatales
                     String sqlCA = "INSERT INTO public.consultas_antenatales(\n" +
                                     "	ghcp_id, ca_fecha, ca_edad_ges, ca_peso, ca_pa, ca_altura_uterina, ca_presentacion, ca_fcp, ca_mov_fetales, ca_proteinuria, ca_signos_notas, ca_iniciales_tecnico, ca_prox_cita)\n" +
                                     "	VALUES (?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -630,21 +659,124 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                     ps.setDate(12, Date.valueOf(ca_prox_cita));
                     int resCA = 0;
                     resCA = ps.executeUpdate();
-
-                    if(Integer.parseInt(imc_semana) <= 26){
-
+                    
+                    
+                    
+                    //Ingresamos registro de valoracion //verificamos si se esta haciendo el registro de aquello
+                    if(true){
                         String sqlImc = "INSERT INTO public.imc_seguimiento(\n" +
                                         "   ghcp_id, imc_semana, imc_imc, imc_ganancia)\n" +
-                                        "	VALUES (?, ?, ?, 0);";
+                                        "	VALUES (?, ?, ?, ?);";
                         ps = c.getConecction().prepareStatement(sqlImc);
-                       ps.setInt(1, Integer.parseInt(ghcp_id));
+                        ps.setInt(1, Integer.parseInt(ghcp_id));
                         ps.setInt(2, Integer.parseInt(imc_semana));
                         ps.setFloat(3, Float.parseFloat(imc_imc));
+                        ps.setFloat(4, Float.parseFloat(imc_rango));
                         int resIMC = 0;
                         resIMC = ps.executeUpdate();
                     }
+                    
+                    
+                    //Ingresamos los signos vitales
+                    String sqlSignos = "INSERT INTO public.signos_vitales(\n" +
+                                    "	paciente_id, galeno_id, pa_sistolica, pa_diastolica, temperatura, frecuencia_cardiaca, saturacion, peso, estatura, imc, fecha, hora)\n" +
+                                    "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
+
+                    ps = c.getConecction().prepareStatement(sqlSignos, Statement.RETURN_GENERATED_KEYS);
+                    ps.setInt(1, Integer.parseInt(pacienteid));
+                    ps.setInt(2, Integer.parseInt(galenoid));
+                    ps.setInt(3, Integer.parseInt(presion_arterial_s_seg));
+                    ps.setInt(4, Integer.parseInt(presion_arterial_d_seg));
+                    ps.setFloat(5, Float.parseFloat(temperatura_seg));
+                    ps.setInt(6, Integer.parseInt(frecuencia_cardiaca_seg));
+                    ps.setInt(7, Integer.parseInt(saturacion_seg));
+                    ps.setFloat(8, Float.parseFloat(peso_seg));
+                    ps.setInt(9, Integer.parseInt(estatura_seg));
+                    ps.setFloat(10, Float.parseFloat(imc_seg));
+                    int resSignos = 0;
+                    resSignos = ps.executeUpdate();
+                    
+                    if(resSignos != 0){
+                        int id_signos = 0;
+                        ResultSet resultSet = ps.getGeneratedKeys();
+                        if (resultSet.next()) {
+                            id_signos = resultSet.getInt(1);
+
+                            //Verificar datos de receta medica y guardar
+                            if(receta.length() > 2){
+                                int idR = -1;
+                                String Sqlreceta = "INSERT INTO recetamedica(galeno_id, paciente_id, fecha)\n" +
+                                            "	VALUES (?, ?, now())";
+                                ps = c.getConecction().prepareStatement(Sqlreceta, Statement.RETURN_GENERATED_KEYS);
+                                ps.setInt(1, Integer.parseInt(galenoid));
+                                ps.setInt(2, Integer.parseInt(pacienteid));
+                                int resRec = 0;
+                                resRec = ps.executeUpdate();
+                                if (resRec != 0) {
+                                    ResultSet resultSetRec = ps.getGeneratedKeys();
+                                    if (resultSetRec.next()) {
+                                        idR = resultSetRec.getInt(1);
+
+                                        String jsonR  = prepararjson(receta);
+                                        JSONArray array = new JSONArray(jsonR);
+                                        for(int i = 0; i < array.length(); i++){
+                                            JSONObject object = array.getJSONObject(i);
+                                            String medicamento = object.getString("medicamento");
+                                            String indicacion_ = object.getString("indicacion");
+
+                                            //Guardado de Receta medica
+                                            String sqlDetReceta = "INSERT INTO detalle_recetamedica(id_recetamedica, medicamento, indicaciones)\n" +
+                                                            "	VALUES (?, ?, ?)";
+                                            ps = c.getConecction().prepareStatement(sqlDetReceta);
+                                            ps.setInt(1, idR);
+                                            ps.setString(2, medicamento);
+                                            ps.setString(3, indicacion_);
+                                            int resRe = 0;
+
+                                            resRe = ps.executeUpdate();
+                                        }
+                                    }
+                                }
+                                // Guardar Notas de evolucion con receta
+                                int aaaa = idR;
+                                String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
+                                                "	ghc_id, signos_id, id_recetamedica, notas, fecha, hora)\n" +
+                                                "	VALUES (?, ?, ?, ?, now(), now());";
+                                ps = c.getConecction().prepareStatement(sqlNotas);
+                                ps.setInt(1, Integer.parseInt(ghc_id));
+                                ps.setInt(2, id_signos);
+                                ps.setInt(3, idR);
+                                ps.setString(4, notas);
+
+                                int resSe = 0;
+                                resSe = ps.executeUpdate();
+                                if(resSe!= 0){
+                                    response.sendRedirect("MenuGinecologia.jsp");
+                                }
+                            }else{
+                                // Guardar Notas de evolucion sin receta
+                                String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
+                                                    "	ghc_id, signos_id, notas, fecha, hora)\n" +
+                                                    "	VALUES (?, ?, ?, now(), now());";
+                                    ps = c.getConecction().prepareStatement(sqlNotas);
+                                    ps.setInt(1, Integer.parseInt(ghc_id));
+                                    ps.setInt(2, id_signos);
+                                    ps.setString(3, notas);
+
+                                int resSe = 0;
+                                resSe = ps.executeUpdate();
+                                if(resSe!= 0){
+                                    response.sendRedirect("MenuGinecologia.jsp");
+                                }
+                            }
+                        }
+                    }
+                    /*
+                    
                     response.sendRedirect("MenuGinecologia.jsp");
                     */
+                    
+                    
                 }
 
 
@@ -667,6 +799,13 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
             out.println("Exception: " + e);
             System.out.println("Exception2: " + e);
         }
+    }
+    protected String prepararjson(String s){
+        s = s.replaceAll("<", "[");
+        s = s.replaceAll(">", "]");
+        s = s.replaceAll("\\(", "{");
+        s = s.replaceAll("\\)", "}");
+        return s;
     }
 
 }
