@@ -53,7 +53,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><div class="div-cont-name"><input class="inp-lname" type="text" name="cedula" id="Cedula" value="<%= rs.getInt("galeno_dni")%>" disabled="true"></div> </td>
+                                <td><div class="div-cont-name"><input class="inp-lname" type="text" name="cedula" id="Cedula" value="<%= rs.getString("galeno_dni")%>" disabled="true"></div> </td>
                                 <td><div class="div-cont-name"><input class="inp-lname" type="text" name="PrimerNombre" id="PrimerNombre"value="<%= rs.getString("galeno_primer_nombre")%>" required="" onkeypress="return soloLetras(event)"onkeyup="mayus(this);"></div></td>
                                 <td><div class="div-cont-name"> <input class="inp-lname" type="text" name="SegundoNombre" id="SegundoNombre"value="<%= rs.getString("galeno_segundo_nombre")%>"required="" onkeypress="return soloLetras(event)" onkeyup="mayus(this);"></div></td> 
                             </tr> 

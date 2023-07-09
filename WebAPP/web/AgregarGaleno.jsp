@@ -11,6 +11,9 @@
         <link href="css/Galeno.css" rel="stylesheet" type="text/css"/> 
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>WebApp - Ingresos</title>
+        <script language=«JavaScript»>
+        
+        </script>
     </head>
     <body onload="cargarProvincias()">
         <header id="header" style=" background: #007653 !important;"  >
@@ -22,7 +25,7 @@
         <!--javascript:sendmail()-->
         <!--/WebAPP/AddGaleno-->
 
-        <form class="form1" action="AddGaleno"  method="GET" enctype="multipart/form-data">
+        <form name="frm_guardar" class="form1" action="AddGaleno"  method="GET" enctype="multipart/form-data">
             <section class="sec-main" >
                 <div class="div-cont-main">
                     <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
@@ -35,7 +38,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><div class="div-cont-sel-dep-to-transf" ><select class="sel-dep-to-transf" name="TipoIden">
+                                <td><div class="div-cont-sel-dep-to-transf" ><select class="sel-dep-to-transf" name="TipoIden" required="">
                                             <option>Tipo de identificacion</option>
                                             <option>Cedula</option><option>Pasaporte</option></select></div></td>
                                 <td><div style='margin-top: -40px !important;'class="div-cont-ced"><input type="text" id="txt-ced" minlength="10" maxlength="10" class="inp-ced" placeholder="Numero de identificacion" name="Identificacion" required="" onkeypress='return validaNumericos(event)'/></div></td>
@@ -106,20 +109,25 @@
                             <tr> 
                                 <td><div class="div-cont-lname"><input type="text" id="user" class="inp-lname" placeholder="Ingrese el usuario"required="" name="user"/> </div></td> 
                                 <td><div class="div-cont-lname"><input type="password" id="pass" class="inp-lname" placeholder="Ingrese una Contraseña"required="" name="pass"/> </div></td> 
-                                <td><div class="div-cont-sel-dep-to-transf"><select class="sel-dep-to-transf"required=""  name="departamento">
+                                <td><div class="div-cont-sel-dep-to-transf"><select class="sel-dep-to-transf" required=""  name="departamento">
                                             <option>Seleccione un departamento</option>
-                                            <option>Medicina General</option>
-                                            <option>Psicología</option>
-                                            <option>Terapia Física</option>
-                                            <option>Ginecología</option>
+                                            <option value="1">Medicina General</option>
+                                            <option value="2">Psicología</option>
+                                            <option value="3">Terapia Física</option>
+                                            <option value="4">Ginecología</option>
                                         </select></div></td> 
                             </tr>
                         </tbody>
                         <thead>
-                        <td>
-                            <input type="submit" class="btn-accept"  value="Guardar"/> 
-                        </td>
+                            <tr>
+                            </tr>
                         </thead>
+                        <tbody>
+                                        
+                            <td><input type="button" class="btn-accept"  value="Cancelar" onclick="cancelar();"/></td>
+                            <td></td>            
+                            <td><input type="submit" class="btn-accept"  value="Guardar" /></td>
+                        </tbody>
                     </table> 
                 </div>
             </section>
@@ -131,6 +139,9 @@
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
         <script>
+                function cancelar(){
+                    window.location.href = "./index.jsp";
+                }
                                     function cargarProvincias() {
                                         var array = ["Azuay", "Bolívar", "Cañar", "Carchi", "Chimborazo", "Cotopaxi", "El Oro", "Esmeraldas", "Galápagos", "Guayas", "Imbabura", "Loja", "Los Ríos",
                                             "Manabí", "Morona Santiago", "Napo", "Orellana", "Pastaza", "Pichincha", "Santa Elena", "Santo Domingo", "Sucumbíos", "Tungurahua", "Zamora Chinchipe"];

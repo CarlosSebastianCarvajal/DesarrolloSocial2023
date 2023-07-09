@@ -67,20 +67,10 @@ public class AddGaleno extends HttpServlet {
                 String pass = request.getParameter("pass");
                 String TipoDepartamento = request.getParameter("departamento");
 
+                int a = 0;
                 //String original = "Psicología";
-                String cadenaNormalize = Normalizer.normalize(TipoDepartamento, Normalizer.Form.NFD);   
-                String cadenaSinAcentos = cadenaNormalize.replaceAll("[^\\p{ASCII}]", "");
                 
                 
-                if ("Medicina General".equals(cadenaSinAcentos)) {
-                    TipoDepartamento = "1";
-                }else if("Psicologia".equals(cadenaSinAcentos)){
-                    TipoDepartamento = "2";
-                }else if("Terapia Fisica".equals(cadenaSinAcentos)){
-                    TipoDepartamento = "3";
-                }else {
-                    TipoDepartamento = "0";
-                }
 
                 String estado = "0";
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -131,8 +121,6 @@ public class AddGaleno extends HttpServlet {
                     out.println("Exception: " + e);
                     System.out.println("Exception1: " + e);
                     
-                    out.println("la cadena: " + cadenaSinAcentos);
-                    System.out.println("la cadena: " + cadenaSinAcentos);
                 } finally {
                     try {
                         if (ps != null) {
