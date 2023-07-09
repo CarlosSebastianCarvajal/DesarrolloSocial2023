@@ -24,36 +24,29 @@ and p.paciente_dni=$P{cedulaPaciente}]]>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="69" y="0" width="473" height="20" uuid="df8bb0b2-e551-45cb-9445-d2971c043365"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" isBold="true"/>
-				</textElement>
-				<text><![CDATA[GOBIERNO AUTÓNOMO DESCENTRALIZADO DE QUEVEDO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="105" y="20" width="406" height="16" uuid="b208cee6-e1b3-4c03-a7f4-42eb264bc732"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="105" y="35" width="406" height="18" uuid="f97dade9-cfd3-4036-a3eb-f69e28498993"/>
+				<reportElement x="105" y="40" width="406" height="18" uuid="f97dade9-cfd3-4036-a3eb-f69e28498993"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ÁREA DE PSICOLOGÍA]]></text>
 			</staticText>
 			<image>
-				<reportElement x="11" y="0" width="81" height="46" uuid="eeddbb58-f0c4-4221-b8a9-1f4bcab55dc1"/>
-				<imageExpression><![CDATA["logo_quevedo.jpg"]]></imageExpression>
+				<reportElement x="28" y="4" width="94" height="58" uuid="eeddbb58-f0c4-4221-b8a9-1f4bcab55dc1"/>
+				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="105" y="53" width="406" height="18" uuid="1c6c7abc-c085-4725-8c07-ccb370d7417f"/>
+				<reportElement x="105" y="59" width="406" height="18" uuid="1c6c7abc-c085-4725-8c07-ccb370d7417f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SEGUIMIENTO DEL CASO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="0" width="394" height="38" uuid="3c492733-8ece-4da0-ba65-b3e1d2acc439"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL CIUDADANO DE QUEVEDO]]></text>
 			</staticText>
 		</band>
 	</title>

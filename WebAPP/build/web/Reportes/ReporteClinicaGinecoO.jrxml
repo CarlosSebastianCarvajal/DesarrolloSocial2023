@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b0145cd8-e93c-4341-9727-70c36031b480">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="1.8150000000000004"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="cedula" class="java.lang.String">
@@ -75,58 +75,54 @@ from
 	<title>
 		<band height="71" splitType="Stretch">
 			<staticText>
-				<reportElement x="68" y="2" width="473" height="18" uuid="21a7ac10-ce8a-4f0a-b7b0-5135ff5ed4c3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="104" y="20" width="406" height="16" uuid="20731590-273b-43b4-b758-057ea72d4837"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[CIUDADANO DE QUEVEDO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="104" y="36" width="406" height="16" uuid="580632c2-9529-4442-a644-f6c4ef97eb48"/>
+				<reportElement x="104" y="38" width="406" height="16" uuid="580632c2-9529-4442-a644-f6c4ef97eb48"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ÁREA DE GINECOLOGIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="104" y="52" width="406" height="16" uuid="12eb320a-ab96-438d-af1f-63cd5f2d5b88"/>
+				<reportElement x="104" y="54" width="406" height="16" uuid="12eb320a-ab96-438d-af1f-63cd5f2d5b88"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HISTORIA CLINICA GINECO-OBSTETRICO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="10" y="2" width="109" height="66" uuid="3266911e-7a48-4e59-a5bf-3022ab14bfdd"/>
+				<reportElement x="23" y="2" width="109" height="66" uuid="3266911e-7a48-4e59-a5bf-3022ab14bfdd"/>
 				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="103" y="3" width="406" height="35" uuid="888d1221-189b-4d79-996f-5b8d7bf33bb3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESARROLLO SOCIAL CIUDADANO DE QUEVEDO]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="731">
 			<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
 			<staticText>
-				<reportElement x="10" y="3" width="106" height="16" uuid="2ca521d3-0e7b-4d57-a1cd-d004e66811fd"/>
+				<reportElement x="10" y="4" width="106" height="16" uuid="2ca521d3-0e7b-4d57-a1cd-d004e66811fd"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[FECHA DE CONSULTA:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="116" y="3" width="114" height="16" uuid="bac007e5-a657-4ec9-a754-d85240427b44"/>
+				<reportElement x="116" y="4" width="114" height="16" uuid="bac007e5-a657-4ec9-a754-d85240427b44"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="114" y="18" width="114" height="1" uuid="62bdde4d-8ee9-4279-8576-4fa1354c7775"/>
+				<reportElement x="114" y="19" width="114" height="1" uuid="62bdde4d-8ee9-4279-8576-4fa1354c7775"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="24" width="100" height="16" uuid="1c6d55bc-ca58-4502-b628-840b3c768f8f"/>
@@ -137,6 +133,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="10" y="39" width="70" height="1" uuid="44648cf1-238d-48bd-80b1-df694aa2852a"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Solid"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="43" width="58" height="16" uuid="2e4b1093-9864-4299-9534-153ac28aa0f0"/>
@@ -154,6 +153,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="68" y="58" width="286" height="1" uuid="33292cad-dbf3-47fb-b322-f98dee7ef6ce"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="360" y="43" width="26" height="16" uuid="4db59122-9741-47c7-9b46-80c76c763b85"/>
@@ -171,6 +173,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="386" y="58" width="169" height="1" uuid="aa34cec1-6fd3-48b6-899f-df3034d51eff"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="62" width="44" height="16" uuid="a9ca3b29-0abc-42d0-bf68-fc6bc563ca1c"/>
@@ -188,6 +193,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="54" y="77" width="150" height="1" uuid="ece61a52-c5f9-4b2d-9228-f514e4c89c33"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="214" y="62" width="68" height="16" uuid="7842f1e4-a9d1-4af8-a967-7c101a127f8d"/>
@@ -205,6 +213,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="282" y="77" width="273" height="1" uuid="7f10ec39-9d6c-47a0-a439-a787407fbe34"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="80" width="118" height="16" uuid="c868d309-4eac-4e20-9dfd-2ab6f1be5d34"/>
@@ -222,6 +233,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="128" y="95" width="180" height="1" uuid="7cf5f825-2858-4330-9963-a17a906c1579"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="318" y="80" width="58" height="16" uuid="9c2b3d3b-4852-4b99-a98e-892b6375e147"/>
@@ -239,6 +253,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="376" y="95" width="179" height="1" uuid="86f299d9-cb2f-40c9-8b9b-94e2c0f627df"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="98" width="58" height="16" uuid="f63ae4bd-f328-4c92-b529-1b4b93366271"/>
@@ -256,6 +273,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="68" y="113" width="487" height="1" uuid="0b5be1c4-e1b9-465a-9603-67f8670ccff8"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="120" width="118" height="16" uuid="d17a836f-2001-4ceb-95ad-d8084ead7aaf"/>
@@ -266,6 +286,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="10" y="135" width="92" height="1" uuid="e2b6e7ff-b547-4c72-8572-de2bdb1e50d4"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Solid"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="141" width="30" height="16" uuid="66ca8f9c-3d6b-4bd7-b20c-de015d3ffec1"/>
@@ -283,6 +306,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="37" y="156" width="50" height="1" uuid="79481783-c10d-4345-ac46-b3a2256b087c"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="120" y="141" width="72" height="16" uuid="ec5d4837-838c-4c1a-8e6c-a6cfcbe27780"/>
@@ -293,6 +319,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="190" y="155" width="50" height="1" uuid="ec23307b-aa57-4ebe-8492-9a1dcbc4c134"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<textField>
 				<reportElement x="192" y="141" width="50" height="16" uuid="c9639e44-3332-40a2-8d76-fc3c4565b5d9"/>
@@ -317,6 +346,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="318" y="157" width="50" height="1" uuid="827e61ae-6cb2-41dc-afe2-b775670b08a2"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="409" y="142" width="67" height="16" uuid="fa7eec13-9e29-4eff-9052-0547ca13cd93"/>
@@ -327,6 +359,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="474" y="157" width="50" height="1" uuid="c756e177-b05b-4641-8129-c5b6e8b6c409"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<textField>
 				<reportElement x="476" y="142" width="50" height="16" uuid="522d07e1-7680-4df6-aa54-41bd3a881584"/>
@@ -351,6 +386,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="50" y="173" width="50" height="1" uuid="fc6fc127-e82a-4ee9-a9fc-d205cc747fbd"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="135" y="158" width="47" height="16" uuid="02c60d08-e8af-4294-906d-f437fdcdb122"/>
@@ -361,6 +399,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="180" y="173" width="50" height="1" uuid="bff4bc67-2678-4da6-8571-9ebf7d2221a0"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<textField>
 				<reportElement x="182" y="158" width="50" height="16" uuid="ad0e925e-429d-4fee-b4af-5edb7ab48c4a"/>
@@ -385,6 +426,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="310" y="174" width="50" height="1" uuid="7522e3ec-56ec-4e11-ab5f-bcc0f20d1b43"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="181" width="204" height="16" uuid="20a2c25c-91cd-4e63-a01b-7c7d3e5d1c80"/>
@@ -395,6 +439,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="10" y="196" width="146" height="1" uuid="d5da6b7e-4421-4e4c-af13-3c45df34bed6"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Solid"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="201" width="70" height="16" uuid="1723de14-6343-41a2-baf8-f5eecc937df9"/>
@@ -412,6 +459,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="72" y="234" width="483" height="1" uuid="76cc43f8-8f85-48a6-9dab-f1fc5747f067"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="237" width="70" height="16" uuid="02f7be53-bf61-40a2-a6db-9decf68826f9"/>
@@ -429,6 +479,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="80" y="252" width="475" height="1" uuid="765eab19-1ca9-4070-9694-383120efb7aa"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="255" width="62" height="16" uuid="1ad44416-8c40-480b-aecf-76d47b38b220"/>
@@ -446,6 +499,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="72" y="271" width="483" height="1" uuid="d6d64d0e-a52d-49df-9a4e-d1a28ee5789e"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="273" width="85" height="16" uuid="1620d0cf-71d4-4bae-bfca-213f04f9e582"/>
@@ -463,6 +519,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="95" y="288" width="460" height="1" uuid="cffd85b2-e987-4cf0-89dd-cd7c0a70c145"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<textField>
 				<reportElement x="80" y="201" width="475" height="16" uuid="ab40609c-176b-48b8-ba1c-1823f1063a96"/>
@@ -473,6 +532,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="80" y="216" width="475" height="1" uuid="08ce5d5b-e474-4493-8cc4-c9a6a4b846a4"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="219" width="60" height="16" uuid="17e04d28-1bd1-4f0b-a112-d17d0d32d2fe"/>
@@ -507,6 +569,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="66" y="334" width="146" height="1" uuid="ebe0bbe9-8f4d-49f0-ab22-59f5ea208f47"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="223" y="319" width="151" height="16" uuid="17670e96-0f03-4482-8be6-ea517157dd6c"/>
@@ -524,6 +589,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="374" y="334" width="179" height="1" uuid="c2b9e348-d4fb-4cda-b0e9-0dcfdc23ad85"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="336" width="90" height="16" uuid="ecb46eed-aac0-4552-a86a-bc011b05ee31"/>
@@ -541,6 +609,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="99" y="351" width="112" height="1" uuid="5d2938a6-25c4-4bf3-ba56-1a05b95d66af"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="227" y="336" width="68" height="16" uuid="f381d96e-e913-4419-a02c-84c93ec3bce3"/>
@@ -558,6 +629,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="293" y="351" width="260" height="1" uuid="27a12ba3-2f77-4d90-97df-0e340f78608a"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="354" width="129" height="16" uuid="57cbd279-f614-472c-b540-cb4654afdf51"/>
@@ -575,6 +649,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="137" y="369" width="415" height="1" uuid="b9220ae0-78a8-44d5-9bfb-053fe6511cd1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="372" width="30" height="16" uuid="34f399b5-8bba-458e-8116-89627384af0b"/>
@@ -592,6 +669,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="54" y="387" width="128" height="1" uuid="d3a6a715-e7f2-4cb0-9bd8-d360865c188f"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="190" y="372" width="30" height="16" uuid="d218b60c-e77c-442e-b767-07fcf783fbb5"/>
@@ -602,6 +682,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="221" y="387" width="133" height="2" uuid="2aa32460-33f1-4bf8-9bff-23e57b397217"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<textField>
 				<reportElement x="221" y="372" width="133" height="16" uuid="265b5955-2453-440d-8260-5d10867edad6"/>
@@ -626,6 +709,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="427" y="388" width="128" height="1" uuid="01b8b625-8efb-4a63-a57f-8c4bbdddebf2"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="390" width="42" height="16" uuid="fc35fbff-34bb-4f6d-97f6-1dc2315d9eb1"/>
@@ -643,6 +729,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="50" y="405" width="50" height="1" uuid="682ab47b-e55f-4dc6-b273-c66b5f20e32e"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="120" y="390" width="36" height="16" uuid="68210d41-3e6c-47e0-a118-3ac526fa84ff"/>
@@ -653,6 +742,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="154" y="405" width="50" height="1" uuid="373fc7a8-5db5-4993-a88c-6e864ca789bc"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<textField>
 				<reportElement x="156" y="390" width="50" height="16" uuid="df75d7ab-d013-4f6b-8ed3-f49f1d8fb323"/>
@@ -677,6 +769,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="272" y="406" width="50" height="1" uuid="4c1d5990-2041-47b5-8371-0e8a505330a5"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="341" y="391" width="50" height="16" uuid="aeadfeb4-ad4f-4230-965f-5818dc9cf060"/>
@@ -687,6 +782,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="390" y="405" width="50" height="1" uuid="8b12d526-9841-4d57-a9ce-ab28167150b6"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<textField>
 				<reportElement x="392" y="391" width="50" height="16" uuid="50c183ca-5731-46f8-a175-11cef0b3b89a"/>
@@ -704,6 +802,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="486" y="405" width="67" height="1" uuid="c827ab76-586d-4a5e-9a4c-14409ae099d2"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<textField>
 				<reportElement x="489" y="391" width="66" height="16" uuid="35af190d-6805-4b3c-98c9-acd9bdd0d65e"/>
@@ -728,6 +829,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="100" y="424" width="453" height="1" uuid="e9d40c23-7ef6-4ad2-98c8-e0f0400fe195"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="10" y="433" width="270" height="16" uuid="33aebcd0-e5ec-4d89-a6d2-9353ec35f799"/>
@@ -738,6 +842,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="10" y="448" width="129" height="1" uuid="0f31429c-ee76-4d25-9243-8bac3e1aa252"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
 			</line>
 			<rectangle>
 				<reportElement x="9" y="454" width="272" height="90" uuid="337f55af-4ae7-45e1-b881-3be25efd5574"/>
@@ -751,6 +858,9 @@ from
 			</textField>
 			<line>
 				<reportElement x="285" y="449" width="119" height="1" uuid="a5e20c03-0ba4-4ee6-b36c-db924ef989d7"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="285" y="433" width="270" height="16" uuid="ad70a837-7bcd-4cfb-88d1-bafb103ed616"/>
@@ -815,6 +925,9 @@ from
 			</staticText>
 			<line>
 				<reportElement x="10" y="564" width="129" height="1" uuid="cfe9a5bb-7efe-4065-ade3-c1b86982e6a9"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
 			</line>
 			<staticText>
 				<reportElement x="285" y="548" width="270" height="16" uuid="f6e24491-b287-4491-b5df-36af39ce0908"/>
@@ -825,6 +938,12 @@ from
 			</staticText>
 			<line>
 				<reportElement x="285" y="563" width="129" height="1" uuid="0d25fa4b-a460-4c39-b5c5-5ef4bca1bee9"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="5" y="1" width="544" height="1" uuid="ee9aa82d-b8ff-4399-86d4-f5e44ea7272a"/>
 			</line>
 		</band>
 	</pageHeader>

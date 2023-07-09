@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="794" pageHeight="1122" columnWidth="754" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="65804259-265d-4aea-9575-9b9208fbb8cb">
-	<property name="ireport.zoom" value="1.156629868288595"/>
+	<property name="ireport.zoom" value="1.399522140629201"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="p_usuario" class="java.lang.String">
@@ -18,7 +18,7 @@
 	(g.galeno_primer_nombre || ' ' || g.galeno_segundo_nombre || ' ' ||
 	 g.galeno_apellido_paterno || ' ' || g.galeno_apellido_materno) as galeno_nombre,
 	g.galeno_telefono, g.galeno_correoelectronico
-	from (select  (extract(day from c.cita_fecha) || '/' || extract(month from c.cita_fecha) || '/' || extract(year from c.cita_fecha)) as fecha,
+	from (select  to_char(c.cita_fecha, 'DD-MM-YYYY') as fecha,
 			c.paciente_id as NumeroUsuario,
 			(p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre || ' ' ||
 			 p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as nombre_paciente,
@@ -52,33 +52,26 @@
 	<title>
 		<band height="133" splitType="Prevent">
 			<staticText>
-				<reportElement x="107" y="8" width="645" height="46" uuid="7b9213b4-d1f1-4996-961d-200f07f195f9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="20" isBold="true"/>
-				</textElement>
-				<text><![CDATA[GOBIERNO AUTÓNOMO DESCENTRALIZADO DE QUEVEDO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="239" y="94" width="377" height="27" uuid="b7918f8a-e44d-42e7-bbf5-497675b4cc10"/>
+				<reportElement x="189" y="92" width="377" height="27" uuid="b7918f8a-e44d-42e7-bbf5-497675b4cc10"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="15" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DEPARTAMENTO DE TERAPIA FÍSICA]]></text>
 			</staticText>
 			<image>
-				<reportElement x="7" y="8" width="211" height="102" uuid="f56ffd0f-5719-4531-8027-8175d2183121"/>
-				<imageExpression><![CDATA["logo_quevedo.jpg"]]></imageExpression>
+				<reportElement x="36" y="10" width="211" height="102" uuid="f56ffd0f-5719-4531-8027-8175d2183121"/>
+				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
 			</image>
-			<staticText>
-				<reportElement x="168" y="54" width="525" height="40" uuid="f0f629dd-d32d-4e37-8a33-dc2e6ed6a637"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN DE DESAROLLO SOCIAL]]></text>
-			</staticText>
 			<line>
 				<reportElement x="3" y="128" width="749" height="1" uuid="245a4aed-b748-49a7-b38a-0283272624b2"/>
 			</line>
+			<staticText>
+				<reportElement x="184" y="1" width="525" height="71" uuid="4713aacf-bdc8-4057-bff0-6728b5443ffe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL CIUDADANO DE QUEVEDO]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -88,7 +81,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[DATOS GENERALES DEL MEDICO:]]></text>
+				<text><![CDATA[DATOS GENERALES DEL(LA) PROFESIONAL:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="15" y="35" width="73" height="20" uuid="5cac522a-3579-411a-a58f-17fb3a50965c"/>
@@ -142,7 +135,7 @@
 	<columnHeader>
 		<band height="45" splitType="Stretch">
 			<staticText>
-				<reportElement x="185" y="0" width="383" height="20" uuid="d23e3d36-5ea5-4bea-9f60-a76d1c2f768f"/>
+				<reportElement x="186" y="0" width="383" height="20" uuid="d23e3d36-5ea5-4bea-9f60-a76d1c2f768f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true" isItalic="false"/>
 				</textElement>
@@ -268,6 +261,9 @@
 			<line>
 				<reportElement x="136" y="0" width="1" height="23" uuid="434331a1-247b-4b90-83af-3145b1afbecd"/>
 			</line>
+			<line>
+				<reportElement x="3" y="22" width="748" height="1" uuid="a34fc09a-ad50-4c85-b1e0-01cd0e4b8b19"/>
+			</line>
 		</band>
 	</detail>
 	<pageFooter>
@@ -313,9 +309,6 @@
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{galeno_dni}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="3" y="0" width="748" height="1" uuid="a34fc09a-ad50-4c85-b1e0-01cd0e4b8b19"/>
-			</line>
 		</band>
 	</summary>
 </jasperReport>

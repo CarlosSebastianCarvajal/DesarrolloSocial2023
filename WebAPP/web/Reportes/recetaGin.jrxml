@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="794" pageHeight="1122" columnWidth="754" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="78c27ba5-6044-4af1-b58b-dc503ad073fd">
-	<property name="ireport.zoom" value="1.2396694214876032"/>
+	<property name="ireport.zoom" value="1.5000000000000007"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="p_usuario" class="java.lang.String">
@@ -72,7 +72,7 @@ where g.galeno_user = $P{p_usuario}]]>
 				<text><![CDATA[Teléfono:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="376" y="131" width="1" height="115" uuid="d49224a4-6288-44f6-81f5-bd24eecb54dc"/>
+				<reportElement x="377" y="132" width="1" height="115" uuid="d49224a4-6288-44f6-81f5-bd24eecb54dc"/>
 			</line>
 			<staticText>
 				<reportElement x="16" y="165" width="64" height="20" uuid="d9754267-b98b-4740-b622-d021312de653"/>
@@ -109,7 +109,7 @@ where g.galeno_user = $P{p_usuario}]]>
 				<reportElement x="8" y="126" width="738" height="1" uuid="fa963f29-ab9f-406f-8d92-b04e114a9429"/>
 			</line>
 			<staticText>
-				<reportElement x="251" y="84" width="377" height="27" uuid="90a5d871-9e9a-4958-8ae1-65ea25ff09ff"/>
+				<reportElement x="190" y="91" width="377" height="27" uuid="90a5d871-9e9a-4958-8ae1-65ea25ff09ff"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -144,7 +144,7 @@ where g.galeno_user = $P{p_usuario}]]>
 				<text><![CDATA[Email:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="177" y="4" width="525" height="71" uuid="82a5977b-34eb-49e3-a65f-e15ab63e5491"/>
+				<reportElement x="177" y="2" width="525" height="71" uuid="82a5977b-34eb-49e3-a65f-e15ab63e5491"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="20" isBold="true"/>
 				</textElement>
@@ -205,7 +205,7 @@ where g.galeno_user = $P{p_usuario}]]>
 				<textFieldExpression><![CDATA[$F{paciente_nombre}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="3" y="2" width="126" height="124" uuid="00813757-5253-4031-b0cf-c05da94ffdec"/>
+				<reportElement x="42" y="10" width="117" height="107" uuid="00813757-5253-4031-b0cf-c05da94ffdec"/>
 				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
 			</image>
 		</band>
@@ -223,40 +223,58 @@ where g.galeno_user = $P{p_usuario}]]>
 				<text><![CDATA[RECETA MÉDICA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="42" y="39" width="300" height="20" forecolor="#000000" backcolor="#000000" uuid="b0f4754f-531a-46e2-9bbb-ee88db43c458"/>
+				<reportElement mode="Transparent" x="42" y="39" width="334" height="20" forecolor="#000000" backcolor="#000000" uuid="b0f4754f-531a-46e2-9bbb-ee88db43c458"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[MEDICAMENTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="406" y="39" width="317" height="20" uuid="f4154fbe-8d8c-4c0a-aa66-f8617957d873"/>
+				<reportElement x="379" y="39" width="344" height="20" uuid="f4154fbe-8d8c-4c0a-aa66-f8617957d873"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[INDICACIÓN]]></text>
 			</staticText>
 			<line>
-				<reportElement x="41" y="39" width="1" height="19" uuid="824ef0fc-987c-4517-bcd9-8d093ee3966b"/>
+				<reportElement x="43" y="38" width="683" height="1" uuid="fdad8864-b8e3-4855-aeea-930d7e5b78dd"/>
 			</line>
 			<line>
-				<reportElement x="723" y="39" width="1" height="19" uuid="2e98d2ce-9675-45c5-a55a-4dc9c31afd1e"/>
+				<reportElement x="44" y="59" width="682" height="1" uuid="5ee1f36a-ace5-42f8-941e-eadd58d2c7ab"/>
 			</line>
 			<line>
-				<reportElement x="376" y="41" width="1" height="19" uuid="a3ea9b8e-f945-4e59-843e-bb09d9ee34cd"/>
+				<reportElement x="378" y="39" width="1" height="21" uuid="372da02c-a946-44ca-9c30-3972fc886b55"/>
+			</line>
+			<line>
+				<reportElement x="725" y="39" width="1" height="20" uuid="43f51683-fa0e-41e2-bb01-f3877a321337"/>
+			</line>
+			<line>
+				<reportElement x="43" y="39" width="1" height="21" uuid="9ac1ab05-6ffc-4da3-adb3-266b7b4d1411"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="25" splitType="Stretch">
+		<band height="52" splitType="Stretch">
 			<textField>
-				<reportElement x="59" y="0" width="253" height="20" uuid="9f65ce32-fb77-4a35-8756-b1bfef5c666a"/>
+				<reportElement x="58" y="0" width="306" height="51" uuid="9f65ce32-fb77-4a35-8756-b1bfef5c666a"/>
 				<textFieldExpression><![CDATA[$F{medicamento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="434" y="0" width="268" height="20" uuid="76f4135a-ac28-48eb-b5f0-c04afad32eb1"/>
+				<reportElement x="387" y="0" width="332" height="51" uuid="76f4135a-ac28-48eb-b5f0-c04afad32eb1"/>
 				<textFieldExpression><![CDATA[$F{indicaciones}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="378" y="0" width="1" height="52" uuid="b2b47468-cd0b-4d9c-9c4d-6708be92fc16"/>
+			</line>
+			<line>
+				<reportElement x="44" y="51" width="682" height="1" uuid="94699cd3-0438-45d4-89e8-82bb2e1f3c3a"/>
+			</line>
+			<line>
+				<reportElement x="43" y="0" width="1" height="52" uuid="bfccb76d-8bc0-4d53-a176-ed5b61f32c36"/>
+			</line>
+			<line>
+				<reportElement x="725" y="0" width="1" height="51" uuid="56159cfa-5192-4e77-829a-92d95f3b5055"/>
+			</line>
 		</band>
 	</detail>
 	<pageFooter>

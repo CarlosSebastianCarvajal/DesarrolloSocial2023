@@ -22,20 +22,6 @@ order by s.fecha desc]]>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="62" y="5" width="492" height="20" uuid="7136f791-1373-4df9-81ea-aa0324c117d8"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" isBold="true"/>
-				</textElement>
-				<text><![CDATA[GOBIERNO AUTÓNOMO DESCENTRALIZADO DE QUEVEDO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="87" y="25" width="447" height="16" uuid="d3335002-3563-439f-8a87-b4e6ea5bce24"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="87" y="40" width="447" height="18" uuid="e2e9e411-78c3-4e38-8b50-39a08f40ae09"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
@@ -43,8 +29,8 @@ order by s.fecha desc]]>
 				<text><![CDATA[ÁREA DE PSICOLOGÍA]]></text>
 			</staticText>
 			<image>
-				<reportElement x="6" y="5" width="81" height="53" uuid="48642e28-91e4-4634-8ba2-b5e1de3ac0e4"/>
-				<imageExpression><![CDATA["logo_quevedo.jpg"]]></imageExpression>
+				<reportElement x="6" y="5" width="102" height="71" uuid="48642e28-91e4-4634-8ba2-b5e1de3ac0e4"/>
+				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="87" y="58" width="447" height="18" uuid="15d24a84-24d7-48b1-b697-88c03187bcb0"/>
@@ -52,6 +38,13 @@ order by s.fecha desc]]>
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HISTORIAL DE ATENCIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="1" width="406" height="35" uuid="ccafff20-385d-423f-acb4-905564969275"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESARROLLO SOCIAL CIUDADANO DE QUEVEDO]]></text>
 			</staticText>
 		</band>
 	</title>

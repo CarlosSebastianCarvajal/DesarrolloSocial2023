@@ -51,20 +51,6 @@ where p.paciente_dni = $P{CEDULApaciente} and g.galeno_dni = $P{CEDULAgalenos} a
 				<textFieldExpression><![CDATA[$P{FECHA}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="121" y="9" width="709" height="46" uuid="b91a2ffd-4b70-4268-9bb6-fc1ea7a8b0d5"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="24" isBold="true"/>
-				</textElement>
-				<text><![CDATA[GOBIERNO AUTÓNOMO DESCENTRALIZADO DE QUEVEDO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="197" y="55" width="525" height="40" uuid="edac8629-01be-46f5-94ca-957c90b8a5ec"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="22" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN DE DESAROLLO SOCIAL]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="284" y="96" width="377" height="27" uuid="e8ae5d88-7f62-4a09-b89d-d69b7591757d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
@@ -73,8 +59,15 @@ where p.paciente_dni = $P{CEDULApaciente} and g.galeno_dni = $P{CEDULAgalenos} a
 			</staticText>
 			<image>
 				<reportElement x="22" y="9" width="211" height="102" uuid="de529f85-9ef0-46fa-8cdf-ee732359f46e"/>
-				<imageExpression><![CDATA["logo_quevedo.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="203" y="24" width="548" height="62" uuid="d79d726a-5587-406f-be0f-f566fd4ce6e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESARROLLO SOCIAL CIUDADANO DE QUEVEDO]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
