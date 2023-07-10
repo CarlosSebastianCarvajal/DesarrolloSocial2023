@@ -4,7 +4,8 @@
 	<property name="ireport.x" value="577"/>
 	<property name="ireport.y" value="595"/>
 	<queryString>
-		<![CDATA[select paciente_primer_nombre, paciente_apellido_paterno, paciente_direccion, paciente_canton, paciente_telefono from paciente where paciente_dni='1201201206']]>
+		<![CDATA[select paciente_primer_nombre, paciente_apellido_paterno, paciente_direccion, paciente_canton, paciente_telefono from paciente where paciente_dni='1206972433'
+]]>
 	</queryString>
 	<field name="paciente_primer_nombre" class="java.lang.String"/>
 	<field name="paciente_apellido_paterno" class="java.lang.String"/>

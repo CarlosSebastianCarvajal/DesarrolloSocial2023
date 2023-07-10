@@ -97,7 +97,7 @@ where s.galeno_id=g.galeno_id and s.paciente_id=p.paciente_id and p.paciente_dni
 			</staticText>
 			<image>
 				<reportElement x="42" y="5" width="105" height="68" uuid="cbc34b89-7c38-4d4f-a1c8-830510ebbd20"/>
-				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\Sebastian Carvajal\\Documents\\GitHub\\DesarrolloSocial2023\\WebAPP\\web\\Reportes\\LogoDS1.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
