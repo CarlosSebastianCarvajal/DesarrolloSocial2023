@@ -161,15 +161,16 @@
                     <table align="left" style='width: 98%; margin-left: 10px; margin-top: 30px'>
                         <thead>
                             <tr>
-                                <th style='background: #004653; text-align: left' colspan="4">ANTICONCEPCION</th>
+                                <th style='background: #004653; text-align: left' colspan="5">ANTICONCEPCION</th>
                             </tr>
                         </thead>
                         <thead>
                             <tr>
-                                <th style="width: 400px;">Oral o Inyectable</th>
+                                <th style="width: 300px;">Oral o Inyectable</th>
                                 <th>DIU</th>
                                 <th>Ligadura</th>
                                 <th>Otro</th>
+                                <th>Terapia Hormonal</th>
                             </tr>
                         </thead>
                         <tbody align="center">
@@ -178,6 +179,7 @@
                                 <td><div class="div-cont-lname"><input style= 'text-align: center' type="checkbox" id="txt-lname" class="inp-lname" name="DIU" onkeypress="return soloLetras(event)"/></div></td>
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="checkbox" id="txt-name" class="inp-name" name="Ligadura" onkeypress="return soloLetras(event)"/></div></td>
                                 <td><div class="div-cont-lname"><input style= 'text-align: center' type="checkbox" id="txt-lname" class="inp-lname" name="OtroO" onkeypress="return soloLetras(event)"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="checkbox" id="txt-name" class="inp-name" name="TerapiaHormonal" /></div></td>
                             </tr>
                         </tbody>
                     </table>
@@ -189,7 +191,6 @@
                         </thead>
                         <thead>
                             <tr>
-                                <th>Terapia Hormonal</th>
                                 <th>Menarquia</th>
                                 <th>Menopausia</th>
                                 <th>Inicio de Relaciones Sexuales</th>
@@ -197,8 +198,7 @@
                         </thead>
                         <tbody align="center">
                             <tr>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" minlength="1" maxlength="3" placeholder="Terapia Hormonal" name="TerapiaHormonal" required="" /></div></td>
-                                 <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" minlength="1" maxlength="3" placeholder="Menarquia" name="Menarquia"required=""  onkeypress="return validaNumericos(event)"/></div></td>
+                                <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" minlength="1" maxlength="3" placeholder="Menarquia" name="Menarquia"required=""  onkeypress="return validaNumericos(event)"/></div></td>
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" minlength="1" maxlength="3" placeholder="Menopausia" name="Menopausia"required=""  onkeypress="return validaNumericos(event)"/></div></td>
                                 <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" minlength="1" maxlength="3" placeholder="Inicio de Relaciones Sexuales" name="InicioRelaciones"required=""  onkeypress="return validaNumericos(event)"/></div></td>
                             </tr>
