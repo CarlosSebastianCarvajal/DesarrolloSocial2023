@@ -51,6 +51,7 @@ public class AddGineHistoriaClinica extends HttpServlet {
             out = response.getWriter();
             session = request.getSession(true);
             //Preparar los parametros
+            String checkcito_examen = request.getParameter("checkcito_examen");
             String galenoid = "";
             String pacienteid,
                 //Datos de los signos vitales  (Crear Variable)   
@@ -225,14 +226,14 @@ public class AddGineHistoriaClinica extends HttpServlet {
                                 id_ghc = resultSet.getInt(1);
                                 // Guardar Notas de evolucion sin receta
                                 String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
-                                                "	ghc_id, signos_id, notas, fecha, hora)\n" +
-                                                "	VALUES (?, ?, ?, now(), now());";
-                                String notas = "Motivo de consulta: " + motivo_consulta + ",  Enfermedad: " + enfermedad_acual + ",  Diagnostico: " + diagnostico;
+                                                "	ghc_id, signos_id, notas, fecha, hora, examen)\n" +
+                                                "	VALUES (?, ?, ?, now(), now(), ?);";
+                                String notas = "Motivo de consulta: " + motivo_consulta;
                                 ps = c.getConecction().prepareStatement(sqlNotas);
                                 ps.setInt(1, id_ghc);
                                 ps.setInt(2, id_signos);
                                 ps.setString(3, notas);
-
+                                if(checkcito_examen.equals("on")) { ps.setBoolean(4, true); }else { ps.setBoolean(4, false);}
                                 int resSeg = 0;
                                 resSeg = ps.executeUpdate();
                                 if(resSeg!= 0){

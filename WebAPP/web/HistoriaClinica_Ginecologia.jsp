@@ -116,8 +116,8 @@
                         <tbody align="center">
                             <tr> 
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Saturación de oxígeno" name="saturacion" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-peso" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="peso" required=""  onkeypress="return validaNumericosDec(event)" onchange="clacularIMC(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla" class="inp-name" placeholder="Talla en Cemtímetros" name="estatura" required=""  onkeypress="return validaNumericos(event)" onchange="clacularIMC(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-peso" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="peso" required=""  onkeypress="return validaNumericosDec(event)" oninput="clacularIMC(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla" class="inp-name" placeholder="Talla en Cemtímetros" name="estatura" required=""  onkeypress="return validaNumericos(event)" oninput="clacularIMC(this);"/></div></td>
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-imc" class="inp-name" placeholder="IMC" name="imc" readonly="readonly"  /></div></td>
                             </tr>
                         </tbody>
@@ -272,13 +272,29 @@
                                 <td colspan="4" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname"  placeholder="Tratamiento" name="tratamiento" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
                             </tr>
                         </tbody>
+                        </table>
+                        
+                        <hr>
+                        <table style='width: 95%; margin-left: 10px; '>
+                           <thead>
+                               <th></th>
+                               <th></th>
+                           </thead>
+                           <tbody align="center" >
+                           <td style="width: 50%; text-align: right;" >¿Enviará a realizarse examanes a la paciente?&nbsp &nbsp</td>
+                            <td style="width: 50%; text-align: left;" aling="left"><input style= 'text-align: center; margin-top: 5px; align-content: left;' type="checkbox" id="checkcito-examen"  name="checkcito_examen" /></td>
+                            </tbody>
+                       </table>
+                        <hr>
+                    <table style='width: 95%; margin-left: 10px; '>
                         <tbody align="center">
                             <tr>
-                                <td colspan="2"><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="submit" id="btn-action" class="btn-accept" value="Guardar"/> </div></td>
-                                <td colspan="2"><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action" class="btn-accept" value="Cancelar" onclick="javascript:cancel();"/> </div></td>
+                                <td ><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action" class="btn-accept" value="Cancelar" onclick="javascript:cancel();"/> </div></td>
+                                <td ><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="submit" id="btn-action" class="btn-accept" value="Guardar"/> </div></td>
                             </tr>
                         </tbody>
-                    </table> 
+                    </table>
+                     
                 </div>
             </section>
         </form>

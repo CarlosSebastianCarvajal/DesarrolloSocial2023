@@ -51,7 +51,7 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
         try {
             out = response.getWriter();
             session = request.getSession(true);
-            
+            String checkcito_examen = request.getParameter("checkcito_examen");
             String galenoid = "";
             String pacienteid,
                 //Datos de los signos vitales  (Crear Variable)   
@@ -740,14 +740,14 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                                 // Guardar Notas de evolucion con receta
                                 int aaaa = idR;
                                 String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
-                                                "	ghc_id, signos_id, id_recetamedica, notas, fecha, hora)\n" +
-                                                "	VALUES (?, ?, ?, ?, now(), now());";
+                                                "	ghc_id, signos_id, id_recetamedica, notas, fecha, hora, examen)\n" +
+                                                "	VALUES (?, ?, ?, ?, now(), now(), ?);";
                                 ps = c.getConecction().prepareStatement(sqlNotas);
                                 ps.setInt(1, Integer.parseInt(ghc_id));
                                 ps.setInt(2, id_signos);
                                 ps.setInt(3, idR);
                                 ps.setString(4, notas);
-
+                                if(checkcito_examen.equals("on")) { ps.setBoolean(5, true); }else { ps.setBoolean(5, false);}
                                 int resSe = 0;
                                 resSe = ps.executeUpdate();
                                 if(resSe!= 0){
@@ -756,13 +756,13 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                             }else{
                                 // Guardar Notas de evolucion sin receta
                                 String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
-                                                    "	ghc_id, signos_id, notas, fecha, hora)\n" +
-                                                    "	VALUES (?, ?, ?, now(), now());";
+                                                    "	ghc_id, signos_id, notas, fecha, hora, examen)\n" +
+                                                    "	VALUES (?, ?, ?, now(), now(), ?);";
                                     ps = c.getConecction().prepareStatement(sqlNotas);
                                     ps.setInt(1, Integer.parseInt(ghc_id));
                                     ps.setInt(2, id_signos);
                                     ps.setString(3, notas);
-
+                                    if(checkcito_examen.equals("on")) { ps.setBoolean(4, true); }else { ps.setBoolean(4, false);}
                                 int resSe = 0;
                                 resSe = ps.executeUpdate();
                                 if(resSe!= 0){

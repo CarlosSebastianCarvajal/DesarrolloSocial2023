@@ -106,8 +106,8 @@
                     <tbody align="center">
                         <tr> 
                             <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Saturación de oxígeno" name="saturacion" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
-                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-peso" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="peso" required=""  onkeypress="return validaNumericosDec(event)" onchange="clacularIMC(this);"/></div></td>
-                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla" class="inp-name" placeholder="Talla en Cemtímetros" name="estatura" required=""  onkeypress="return validaNumericos(event)" onchange="clacularIMC(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-peso" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="peso" required=""  onkeypress="return validaNumericosDec(event)" oninput="clacularIMC(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla" class="inp-name" placeholder="Talla en Cemtímetros" name="estatura" required=""  onkeypress="return validaNumericos(event)" oninput="clacularIMC(this);"/></div></td>
                             <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-imc" class="inp-name" placeholder="IMC" name="imc" readonly="readonly"  /></div></td>
                         </tr>
                     </tbody>
@@ -191,7 +191,15 @@
                 <hr />
                <br /> 
                <br /> 
-                <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'> 
+                <table style='width: 95%; margin-left: 10px; '>
+                   <tbody align="center" >
+                       <td style="width: 50%; text-align: right;" >¿Enviará a realizarse examanes a la paciente?&nbsp &nbsp</td>
+                       <td style="width: 50%; text-align: left;" aling="left"><input style= 'text-align: center; margin-top: 5px; align-content: left;' type="checkbox" id="checkcito-examen"  name="checkcito_examen" /></td>
+                    </tbody>
+                 </table>
+               <br /> 
+               <hr /> 
+               <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'> 
                     <tbody>              
                         <tr>
                             <td>

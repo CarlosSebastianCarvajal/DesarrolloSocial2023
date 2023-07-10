@@ -1607,6 +1607,17 @@
                        </table>
                        <hr/>
                        <table style='width: 95%; margin-left: 10px; '>
+                           <thead>
+                               <th></th>
+                               <th></th>
+                           </thead>
+                           <tbody align="center" >
+                           <td style="width: 50%; text-align: right;" >¿Enviará a realizarse examanes a la paciente?&nbsp &nbsp</td>
+                            <td style="width: 50%; text-align: left;" aling="left"><input style= 'text-align: center; margin-top: 5px; align-content: left;' type="checkbox" id="checkcito-examen"  name="checkcito_examen" /></td>
+                            </tbody>
+                       </table>
+                       <hr/>
+                       <table style='width: 95%; margin-left: 10px; '>
                             <tbody align="center">
                                 <td colspan="2"><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action" class="btn-accept" value="Cancelar" onclick="javascript:cancel();"/> </div></td>
                                 <td colspan="2"><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="submit" id="btn-action" class="btn-accept" value="Guardar"/> </div></td>
