@@ -48,6 +48,7 @@
                             <td> <div class="div-cont-ced" style='margin-top: -40px !important;'><input type="text" id="txt-cedi" class="inp-ced" placeholder="Numero de identificacion" name="cedula" onkeypress='return validaNumericos(event)' readonly="true"/></div> </td>
                             <td> <div class="div-cont-name"  ><input type="text" id="txt-namen" class="inp-name" placeholder="Nombres" name="Nombres" onkeypress="return soloLetras(event)"disabled="true" onkeyup="mayus(this);"/></div> </td>
                             <td> <div class="div-cont-lname"  ><input type="text" id="txt-lnamea" class="inp-lname" placeholder="Apellidos" name="Apellidos" onkeypress="return soloLetras(event)"disabled="true" onkeyup="mayus(this);"/></div> </td>
+                            <input hidden type="text" id="txt-id" class="inp-lname" placeholder="txt-id" name="txtid"/>
                         </tr>
                     </tbody>
                     <thead>
@@ -95,41 +96,57 @@
                         </tr>
                     </tbody>
                 </table>
-                <hr />
-
-                <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
-                    <thead>
+                <table style='width: 95%; margin-left: 10px; '>
+                    <thead >
                         <tr>
-                            <th>Estatura</th>
+                            <th style='background: #afadac; text-align: left; width: 33%' colspan="1" >SIGNOS VITALES</th>
+                            <th style='background: #afadac; text-align: left; width: 67%' colspan="16" >Primera Consulta</th>
+                        </tr>
+                    </thead>
+                </table>
+                <table style='width: 100%; text-align: center;  margin-top: 30px'>
+                    <thead >
+                        <tr>                                
+                            <th>Presión Arterial Sistólica</th>
+                            <th>Presión Arterial Diastólica</th>
+                            <th>Temperatura</th>
+                            <th>Frecuencia Cardíaca</th>
+
+                        </tr>
+                    </thead>
+                    <tbody align="center">
+                        <tr> 
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="P/A Sistólica" name="presion_arterial_s" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="P/A Daistólica" name="presion_arterial_d" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Temperatura (Ejem: 36.8)" name="temperatura" required=""  onkeypress="return validaNumericosDec(event)" onkeyup="mayus(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Frecuencia Cardíaca" name="frecuencia_cardiaca" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+
+                        </tr>
+                    </tbody>
+                    <thead >
+                        <tr>            
+                            <th>Saturación</th>
                             <th>Peso</th>
-                            <th>Tipo de sangre</th>
+                            <th>Talla</th>
+                            <th>IMC</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="div-cont-ced" style='margin-top: -40px !important;'><input type="text" id="txt-estatura" class="inp-ced" placeholder="Estatura"onkeyup="mayus(this);" name="Estatura"/></div></td>
-                            <td><div class="div-cont-name" ><input type="text" id="txt-peso" class="inp-name" placeholder="Peso" name="peso"/></div></td>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-tiposangree" class="inp-lname" placeholder="Tipo de Sangre" name="sangre" onkeyup="mayus(this);"/></div></td>
+                    <tbody align="center">
+                        <tr> 
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Saturación de oxígeno" name="saturacion" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-peso" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="peso" required=""  onkeypress="return validaNumericosDec(event)" oninput="clacularIMC(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla" class="inp-name" placeholder="Talla en Cemtímetros" name="estatura" required=""  onkeypress="return validaNumericos(event)" oninput="clacularIMC(this);"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-imc" class="inp-name" placeholder="IMC" name="imc" readonly="readonly"  /></div></td>
                         </tr>
-                    <thead>
-                        <tr>
-                            <th>P/C</th>
-                            <th>P/T</th>
-                            <th>P/A</th> 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-pc" class="inp-lname" placeholder="P/C" name="pc" onkeyup="mayus(this);"/></div></td>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-pt" class="inp-lname" placeholder="P/T" name="pt" onkeyup="mayus(this);"/></div></td>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-pa" class="inp-lname" placeholder="P/A" name="pa" onkeyup="mayus(this);"/></div></td>
-                        </tr>
-
                     </tbody>
                 </table>
-
-
-                <hr />
+                <table style='width: 95%; margin-left: 10px; '>
+                    <thead >
+                        <tr>
+                            <th style='background: #afadac; text-align: left; width: 100%' colspan="1" >ANTECEDENTES</th>
+                        </tr>
+                    </thead>
+                </table>
                 <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
                     <thead>
                         <tr>
@@ -138,7 +155,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-aalergic" class="inp-lname" placeholder="Antecedentes alérgicos" name="AAl" onkeyup="mayus(this);"style='height: 85px;'/></textarea> </td>
+                            <td><div class="div-cont-lname"><textarea type="text" id="txt-aalergic" class="inp-lname" placeholder="Antecedentes alérgicos" name="antecedentesalergicos" onkeyup="mayus(this);"style='height: 85px;'/></textarea> </td>
                         </tr>
                     <thead>
                         <tr>
@@ -147,7 +164,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-apersonales" class="inp-lname" placeholder="Antecedentes personales" onkeyup="mayus(this);"name="AP"style='height: 85px;'/></textarea></td>
+                            <td><div class="div-cont-lname"><textarea type="text" id="txt-apersonales" class="inp-lname" placeholder="Antecedentes personales" onkeyup="mayus(this);"name="antecedentespersonales"style='height: 85px;'/></textarea></td>
                         </tr> 
                     <thead>
                         <tr>
@@ -156,7 +173,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-afamiliares" class="inp-lname" placeholder="Antecedentes familiares" onkeyup="mayus(this);" name="AF"style='height: 85px;'/></textarea></td>
+                            <td><div class="div-cont-lname"><textarea type="text" id="txt-afamiliares" class="inp-lname" placeholder="Antecedentes familiares" onkeyup="mayus(this);" name="antecedentesfamiliares"style='height: 85px;'/></textarea></td>
                         </tr>
                     <thead>
                         <tr>
@@ -165,58 +182,54 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-aquirurgicos" class="inp-lname" placeholder="Antecedentes quirurgicos" onkeyup="mayus(this);"name="Aq"style='height: 85px;'/></textarea></td>
+                            <td><div class="div-cont-lname"><textarea type="text" id="txt-aquirurgicos" class="inp-lname" placeholder="Antecedentes quirurgicos" onkeyup="mayus(this);"name="antecedentesquirurgicos"style='height: 85px;'/></textarea></td>
                         </tr> 
                     </tbody>
                 </table>  
-                <hr />
-
-
+                <table style='width: 95%; margin-left: 10px; '>
+                    <thead >
+                        <tr>
+                            <th style='background: #afadac; text-align: left; width: 100%' colspan="1" >DATOS PRIMERA CONSULTA</th>
+                        </tr>
+                    </thead>
+                </table>
                 <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
                     <thead>
                         <tr>
-                            <th>Fecha</th> 
                             <th>Motivo de consulta</th> 
+                            <td>Enfermedad o problema actual</td> 
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="div-cont-lname"><input type="date" id="txt-motivocon" class="inp-lname" placeholder="Fecha" name="Fecha"/></div></td> 
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-motivocon" class="inp-lname" required=""placeholder="Motivo de consulta" name="mc" onkeyup="mayus(this);"style='height: 85px;'/></textarea> </td> 
+                            <td><div class="div-cont-lname"><textarea type="text" id="txt-motivocon" class="inp-lname" required=""placeholder="Motivo de consulta" name="motivoconsulta" onkeyup="mayus(this);"style='height: 85px;'/></textarea> </td> 
+                            <td><div class="div-cont-lname"><textarea type="text" id="txt-enfermedad" class="inp-lname" required="" placeholder="Enfermedad o problema actual" name="enfermedad" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td> 
                         </tr>
+                    </tbody>
                     <thead>
                         <tr>
-                            <td>Enfermedad o problema actual</td> 
                             <td>Diagnostico</td> 
                         </tr>
                     </thead>
-                    <tr>
-                        <td><div class="div-cont-lname"><textarea type="text" id="txt-enfermedad" class="inp-lname" required="" placeholder="Enfermedad o problema actual" name="Ep" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td> 
-                        <td><div class="div-cont-lname"><textarea type="text" id="txt-diagnostico" class="inp-lname"required="" placeholder="Diagnostico" name="diagnostico" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td>
-                    </tr>
-                    </tbody>
                     <tbody>
                         <tr>
-                            <th><div class="div-cont-sel-dep-to-transf"><select class="sel-dep-to-transf" name="tipo">
-                                        <option>Diagnostico</option>
-                                        <option>Preventivo</option>
-                                        <option>Definitivo</option>
-                                    </select></div> </th> 
+                            <td><div class="div-cont-lname"><textarea type="text" id="txt-diagnostico" class="inp-lname"required="" placeholder="Diagnostico" name="diagnostico" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td>
+                            <td><div class="div-cont-sel-dep-to-transf"><select class="sel-dep-to-transf" name="tipo">
+                                    <option>Diagnostico</option>
+                                    <option>Preventivo</option>
+                                    <option>Definitivo</option>
+                                </select></div> </td>
                         </tr>
-
-                        
-                        <!--
-                        <tr>
-                            <td>  <input type="submit" id="btn-actiong" class="btn-accept" value="Guardar"/></td>
-                                <%--  <td><input type="button" id="btn-actionc" class="btn-accept" value="Cancelar"/></td>            --%>                
-                            <td>
-                                <a><input type="button" id="btn-actionr" class="btn-accept" value="Receta" /></a>
-                            </td>
-                        </tr>  --> 
                     </tbody>
                 </table>   
                            
-                            <hr />
+                <table style='width: 95%; margin-left: 10px; '>
+                    <thead >
+                        <tr>
+                            <th style='background: #afadac; text-align: left; width: 100%' colspan="1" >RECETA MÉDICA</th>
+                        </tr>
+                    </thead>
+                </table>
                             
                 <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px; margin-bottom: 30px'> 
                     <tbody>
@@ -242,7 +255,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <input hidden type="text" id="txt-tabla-datos-medicamentos" name="txt-tabla-datos-medicamentos" class="inp-lname"/>
+                                                        <input  type="text" id="txt-tabla-datos-medicamentos" name="txt-tabla-datos-medicamentos" class="inp-lname"/>
                                                         <td><div class="div-cont-lname"><input type="text" onkeyup="mayus(this);" id="txt-medicamento" class="inp-lname" placeholder="Medicamento" name="medicamento"/></div></td>
                                                         <td><div class="div-cont-name"><input type="text"onkeyup="mayus(this);" id="txt-med-indicacion" class="inp-name" placeholder="Indicación Médica" name="indicaciones"/></div></td>
                                                         <td><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action-receta" class="btn-accept" value="+"> 
@@ -275,8 +288,15 @@
                     </tbody>
                 </table>
                 <hr />
-               <br /> 
-               <br /> 
+                <br>
+                <table style='width: 95%; margin-left: 10px; '>
+                   <tbody align="center" >
+                       <td style="width: 50%; text-align: right;" >¿Enviará a realizarse examanes al paciente?&nbsp &nbsp</td>
+                       <td style="width: 50%; text-align: left;" aling="left"><input style= 'text-align: center; margin-top: 5px; align-content: left;' type="checkbox" id="checkcito-examen"  name="checkcito_examen" /></td>
+                    </tbody>
+                 </table>
+                <br>
+                <hr />
                 <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'> 
                     <tbody>              
                         <tr>
@@ -301,6 +321,27 @@
 <script src="js/Buscadorpaciente.js" type="text/javascript"></script> 
 <script src="js/MG-AddReceta.js" type="text/javascript"></script>
 <script type="text/javascript">
+    
+    function validaNumericosDec(event) {
+                if (event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46) {
+                    return true;
+                }
+                return false;
+        }   
+        
+        function clacularIMC(e) {
+            //e.value = e.value.toUpperCase();
+            var imc = 0;
+            var peso = Number(document.getElementById("txt-peso").value);
+            var talla = Number(document.getElementById("txt-talla").value); 
+            if(peso > 0 && talla > 0){
+                imc = peso / Math.pow((talla * 0.01), 2);
+                imc = Number(imc.toFixed(3));
+                document.getElementById("txt-imc").value = imc;
+            }else{
+                document.getElementById("txt-imc").value = '';
+            }
+        }
                             function validaNumericos(event) {
                                 if (event.charCode >= 48 && event.charCode <= 57) {
                                     return true;

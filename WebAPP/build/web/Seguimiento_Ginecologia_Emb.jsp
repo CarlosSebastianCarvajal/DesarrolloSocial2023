@@ -1591,11 +1591,11 @@
                                 <td><input style="margin-top: -8px; border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda; width: 70%; height: 40px; display: flex; align-items: center; text-align: center;" type="number" id="txt-ca-edad-ges" name="ca_edad_ges" placeholder="Semana" onkeypress="return validaNumericos(event)" required="" oninput="pasarSemGest(this);"/></td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-peso" class="inp-edad"  maxlength="6" placeholder="Peso" name="ca_peso" value="" onkeypress='return validaNumericosDec(event)' readonly="true" required=""/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-pa" class="inp-edad"  maxlength="3" placeholder="PA" name="ca_pa" value="" onkeypress='return validaNumericos(event)' readonly="true" required=""/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-altura-uterina" class="inp-edad"  maxlength="2" placeholder="altura"  name="ca_altura_uterina" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-presentacion" class="inp-edad"  maxlength="50" placeholder="presentacion" name="ca_presentacion" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-FCP" class="inp-edad"  maxlength="50" placeholder="FCF" name="ca_FCP" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-mov-fetales" class="inp-edad"  maxlength="50" placeholder="movin. fetal" name="ca_mov_fetales" value=""  onkeypress='return validaNumericos(event)' required=""/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-proteinuria" class="inp-edad"  maxlength="50" placeholder="proteinuria" name="ca_proteinuria" value=""  onkeypress='return validaNumericos(event)' required=""/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-altura-uterina" class="inp-edad"  maxlength="2" placeholder="altura"  name="ca_altura_uterina" value="" required=""/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-presentacion" class="inp-edad"  maxlength="50" placeholder="presentacion" name="ca_presentacion" value=""  required=""/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-FCP" class="inp-edad"  maxlength="50" placeholder="FCF" name="ca_FCP" value=""  required=""/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-mov-fetales" class="inp-edad"  maxlength="50" placeholder="movin. fetal" name="ca_mov_fetales" value=""  required=""/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-proteinuria" class="inp-edad"  maxlength="50" placeholder="proteinuria" name="ca_proteinuria" value=""  required=""/></div> </td>
                             </tbody>
                        </table>
                         
@@ -1633,8 +1633,10 @@
                             <tbody id="body_imc" align="center">
                                 
                             </tbody>
+                            
                         </table>
-                       
+                       <label style='margin-left: 10px; ' id="ant-consulta-res"></label>
+                       <input hidden type="text" id="ant-consulta-1" class="inp-lname" placeholder="txt-id" name="ant_consulta_1"/>
                        <table style='width: 95%; margin-left: 10px; '>
                             <thead>
                                 <tr>

@@ -5,7 +5,9 @@ import static java.awt.SystemColor.window;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.swing.JOptionPane;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -38,72 +42,220 @@ public class AddMedicinaGeneral extends HttpServlet {
         try {
             out = response.getWriter();
             session = request.getSession(false);
-//            String folderName = "resources";
-//            String uploadPath = request.getServletContext().getRealPath("") + File.separator + folderName;//for netbeans use this code
-//            //String uploadPath = request.getServletContext().getRealPath("") + folderName;//for eclipse use this code
-//            File dir = new File(uploadPath);
-//            if (!dir.exists()) {
-//                dir.mkdirs();
-//            }
-            String dni, Pnom, Snom, telefono, direccion, provincia, canton, parroquia, email, ap, af, aq, fecha, mc, ep, diag, tipo;
-            dni = request.getParameter("cedula");
-            Pnom = request.getParameter("Estatura");
-            Snom = request.getParameter("peso");
-            telefono = request.getParameter("sangre");
-            direccion = request.getParameter("pc");
-            provincia = request.getParameter("pt");
-            canton = request.getParameter("pa");
-            parroquia = request.getParameter("AAl");
-            ap = request.getParameter("AP");
-            af = request.getParameter("AF");
-            aq = request.getParameter("Aq");
-            fecha = request.getParameter("Fecha");
-            mc = request.getParameter("mc");
-            ep = request.getParameter("Ep");
-            diag = request.getParameter("diagnostico");
+            
+            String checkcito_examen = request.getParameter("checkcito_examen");
+            if(checkcito_examen == null){ checkcito_examen = "off"; }
+            
+            String pacienteid = "",
+                   galenoid = "",
+                //Datos de los signos vitales  (Crear Variable)   
+                presion_arterial_s,
+                presion_arterial_d,
+                temperatura,
+                frecuencia_cardiaca,
+                saturacion,
+                peso,
+                estatura,
+                imc,
+                
+                // DATOS DE MEDICINA GENERAL
+                // antecedentes
+                antecedentesalergicos,  
+                antecedentespersonales,
+                antecedentesfamiliares,
+                antecedentesquirurgicos,
+                
+                // consulta
+                motivoconsulta,
+                enfermedad, 
+                diagnositico,
+                tipo,
+                receta;
+            
+            
+            //id paciente
+            pacienteid = request.getParameter("txtid");
+            
+            presion_arterial_s = request.getParameter("presion_arterial_s");
+            presion_arterial_d = request.getParameter("presion_arterial_d");
+            temperatura = request.getParameter("temperatura");
+            frecuencia_cardiaca = request.getParameter("frecuencia_cardiaca");
+            saturacion = request.getParameter("saturacion");
+            peso = request.getParameter("peso");
+            estatura = request.getParameter("estatura");
+            imc = request.getParameter("imc");
+            
+            //antecedentes
+            antecedentesalergicos = request.getParameter("antecedentesalergicos");
+            antecedentespersonales = request.getParameter("antecedentespersonales");
+            antecedentesfamiliares = request.getParameter("antecedentesfamiliares");
+            antecedentesquirurgicos = request.getParameter("antecedentesquirurgicos");
+            
+            //consulta
+            motivoconsulta = request.getParameter("motivoconsulta");
+            enfermedad = request.getParameter("enfermedad");
+            diagnositico = request.getParameter("diagnostico");
             tipo = request.getParameter("tipo");
+            
+            // receta
+            receta = request.getParameter("txt-tabla-datos-medicamentos");
+            
             String galenoUser = (String) session.getAttribute("galeno_user11");
-            Part filePart = request.getPart("CargarArchivo");
-//            Part filePart = request.getPart("file");//Textbox value of name file.
-//            String firstName = request.getParameter("firstname");//Textbox value of name firstname.
-//            String lastName = request.getParameter("lastname");//Textbox value of name lastname.
-//            String fileName = filePart.getSubmittedFileName();
-//            String patch = folderName + File.separator + fileName;
-//            Timestamp added_date = new Timestamp(System.currentTimeMillis());
-//            InputStream is = filePart.getInputStream();
-//            Files.copy(is, Paths.get(uploadPath + File.separator + fileName), StandardCopyOption.REPLACE_EXISTING);
+            
+            
+            
             try {
                 System.out.println("connection done");
-                String sql = "insert into medicinageneral(paciente_dni, estatura, peso, tipossangre, \n"
-                        + "            pc, pt, pa, antecedentesalergicos, antecedentespersonales, antecedentesfamiliares, \n"
-                        + "            antecedentesquirurgicos, fechaconsulta, motivoconsulta, enfermedad, \n"
-                        + "            diagnositico, tipo,galeno_user) values(?, ?, ?, ?, \n"
-                        + "            ?, ?, ?, ?, ?, ?, \n"
-                        + "            ?, ?, ?, ?, \n"
-                        + "            ?, ?, ?)";
+                // Consultamos el id del galeno
+                String sqlidUser = "select *  from galeno where galeno_user = '"+galenoUser+"'";
+                ps = c.getConecction().prepareStatement(sqlidUser);
+                ResultSet resultId = ps.executeQuery();
+                while (resultId.next()) {
+                    galenoid = String.valueOf(resultId.getString("galeno_id"));
+                }
+                
+                //Guardar las signos vitales
+                String sqlSignos = "INSERT INTO public.signos_vitales(\n" +
+                                "	paciente_id, galeno_id, pa_sistolica, pa_diastolica, temperatura, frecuencia_cardiaca, saturacion, peso, estatura, imc, fecha, hora)\n" +
+                                "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
+
+                ps = c.getConecction().prepareStatement(sqlSignos, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, Integer.parseInt(pacienteid));
+                ps.setInt(2, Integer.parseInt(galenoid));
+                ps.setInt(3, Integer.parseInt(presion_arterial_s));
+                ps.setInt(4, Integer.parseInt(presion_arterial_d));
+                ps.setFloat(5, Float.parseFloat(temperatura));
+                ps.setInt(6, Integer.parseInt(frecuencia_cardiaca));
+                ps.setInt(7, Integer.parseInt(saturacion));
+                ps.setFloat(8, Float.parseFloat(peso));
+                ps.setInt(9, Integer.parseInt(estatura));
+                ps.setFloat(10, Float.parseFloat(imc));
+                int resSignos = 0;
+                resSignos = ps.executeUpdate();
+                
+                if (resSignos != 0) {
+                    int id_signos = 0;
+                    ResultSet resultSet = ps.getGeneratedKeys();
+                    if (resultSet.next()) {
+                        id_signos = resultSet.getInt(1);
+                        
+                        id_signos = resultSet.getInt(1);                        
+                        // Guardar la Histoia clínica Gineco-Obstetrico
+                        String sqlHistorial = "INSERT INTO public.medicinageneral(\n" +
+                                            "	paciente_id, galeno_id, signos_id, antecedentesalergicos, antecedentespersonales, antecedentesfamiliares, antecedentesquirurgicos, fechaconsulta, "
+                                            + "motivoconsulta, enfermedad, diagnositico, tipo)\n" +
+                                            "	VALUES (?, ?, ?, ?, ?, ?, ?, (CURRENT_DATE)::varchar, ?, ?, ?, ?);";
+                        ps = c.getConecction().prepareStatement(sqlHistorial, Statement.RETURN_GENERATED_KEYS);
+                        ps.setInt(1, Integer.parseInt(pacienteid));
+                        ps.setInt(2, Integer.parseInt(galenoid));
+                        ps.setInt(3, id_signos);
+                        
+                        ps.setString(4, antecedentesalergicos);
+                        ps.setString(5, antecedentespersonales);
+                        ps.setString(6, antecedentesfamiliares);
+                        ps.setString(7, antecedentesquirurgicos);
+                        
+                        ps.setString(8, motivoconsulta);
+                        ps.setString(9, enfermedad);
+                        ps.setString(10, diagnositico);
+                        ps.setString(11, tipo);
+                        
+                        int resSe = 0;
+                        resSe = ps.executeUpdate();
+                      
+                        if(resSe!= 0){
+                            int id_mg = 0;
+                            resultSet = ps.getGeneratedKeys();
+                            if (resultSet.next()) {
+                                id_mg = resultSet.getInt(1);
+                                
+                                
+                                //Verificar datos de receta medica y guardar
+                                if(receta.length() > 2){
+                                    int idR = -1;
+                                    String Sqlreceta = "INSERT INTO recetamedica(galeno_id, paciente_id, fecha)\n" +
+                                                "	VALUES (?, ?, now())";
+                                    ps = c.getConecction().prepareStatement(Sqlreceta, Statement.RETURN_GENERATED_KEYS);
+                                    ps.setInt(1, Integer.parseInt(galenoid));
+                                    ps.setInt(2, Integer.parseInt(pacienteid));
+                                    int resRec = 0;
+                                    resRec = ps.executeUpdate();
+                                    if (resRec != 0) {
+                                        ResultSet resultSetRec = ps.getGeneratedKeys();
+                                        if (resultSetRec.next()) {
+                                            idR = resultSetRec.getInt(1);
+
+                                            String jsonR  = prepararjson(receta);
+                                            JSONArray array = new JSONArray(jsonR);
+                                            for(int i = 0; i < array.length(); i++){
+                                                JSONObject object = array.getJSONObject(i);
+                                                String medicamento = object.getString("medicamento");
+                                                String indicacion_ = object.getString("indicacion");
+
+                                                //Guardado de Receta medica
+                                                String sqlDetReceta = "INSERT INTO detalle_recetamedica(id_recetamedica, medicamento, indicaciones)\n" +
+                                                                "	VALUES (?, ?, ?)";
+                                                ps = c.getConecction().prepareStatement(sqlDetReceta);
+                                                ps.setInt(1, idR);
+                                                ps.setString(2, medicamento);
+                                                ps.setString(3, indicacion_);
+                                                int resRe = 0;
+                                                resRe = ps.executeUpdate();
+                                            }
+                                        }
+                                    }
+                                    // Guardar Notas de evolucion con receta
+                                    int aaaa = idR;
+                                    String sqlNotas = "INSERT INTO public.mg_seguimiento(\n" +
+                                                    "		idmedicinageneral, signos_id, id_recetamedica, notas, fecha, hora, examen)\n" +
+                                                    "	VALUES (?, ?, ?, ?, CURRENT_DATE, CURRENT_TIME, ?);";
+                                    ps = c.getConecction().prepareStatement(sqlNotas);
+                                    ps.setInt(1, id_mg);
+                                    ps.setInt(2, id_signos);
+                                    ps.setInt(3, idR);
+                                    ps.setString(4, motivoconsulta);
+                                    if(checkcito_examen.equals("on")) { ps.setBoolean(5, true); }else { ps.setBoolean(5, false);}
+                                    int resSeg = 0;
+                                    resSeg = ps.executeUpdate();
+                                    if(resSeg!= 0){
+                                        response.sendRedirect("MenuMedicinaGeneral.jsp");
+                                    }
+                                }else{
+                                    // Guardar Notas de evolucion sin receta
+                                    String sqlNotas = "INSERT INTO public.mg_seguimiento(\n" +
+                                                        "	idmedicinageneral, signos_id, notas, fecha, hora, examen)\n" +
+                                                        "	VALUES (?, ?, ?, now(), now(), ?);";
+                                        ps = c.getConecction().prepareStatement(sqlNotas);
+                                        ps.setInt(1, id_mg);
+                                        ps.setInt(2, id_signos);
+                                        ps.setString(3, motivoconsulta);
+                                        if(checkcito_examen.equals("on")) { ps.setBoolean(4, true); }else { ps.setBoolean(4, false);}
+
+
+                                    int resSeg = 0;
+                                    resSeg = ps.executeUpdate();
+                                    if(resSeg!= 0){
+                                        response.sendRedirect("MenuMedicinaGeneral.jsp");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                
+                
+                // Aqui guardamos
+                String sql = "";
                 ps = c.getConecction().prepareStatement(sql);
-                ps.setString(1, dni);
-                ps.setString(2, Pnom);
-                ps.setString(3, Snom);
-                ps.setString(4, telefono);
-                ps.setString(5, direccion);
-                ps.setString(6, provincia);
-                ps.setString(7, canton);
-                ps.setString(8, parroquia);
-                ps.setString(9, ap);
-                ps.setString(10, af);
-                ps.setString(11, aq);
-                ps.setString(12, fecha);
-                ps.setString(13, mc);
-                ps.setString(14, ep);
-                ps.setString(15, diag);
-                ps.setString(16, tipo);
-                ps.setString(17, galenoUser);
+                ps.setString(1, pacienteid);
+                
                 ps.executeUpdate();
-//                JOptionPane.showMessageDialog(null, "CONSULTA AGREGADA CORECTAMENTE");
-//                request.getRequestDispatcher("/Medicinageneral.jsp").forward(request, response);
-                response.sendRedirect("MenuMedicinaGeneral.jsp");
-//                response.sendRedirect("RecetaMedica.jsp");
+                
+                
+                
+                
+                //response.sendRedirect("MenuMedicinaGeneral.jsp");
             } catch (SQLException e) {
                 out.println("Exception: " + e);
                 System.out.println("Exception1: " + e);
@@ -117,10 +269,18 @@ public class AddMedicinaGeneral extends HttpServlet {
                 }
             }
 
-        } catch (IOException | ServletException e) {
+        } catch (IOException e) {
             out.println("Exception: " + e);
             System.out.println("Exception2: " + e);
         }
+    }
+    
+    protected String prepararjson(String s){
+        s = s.replaceAll("<", "[");
+        s = s.replaceAll(">", "]");
+        s = s.replaceAll("\\(", "{");
+        s = s.replaceAll("\\)", "}");
+        return s;
     }
 
 }

@@ -207,7 +207,7 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                 imc_valor_inicial,
                 imc_rango,
                     
-                //PARA CONSUKTA ANTENATAL
+                //PARA CONSULTA ANTENATAL
                 ca_edad_ges,
                 ca_peso,
                 ca_pa,
@@ -239,7 +239,12 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                 notas,
             
                 //para la receta
-                receta;
+                receta,
+            
+                //para la sem de la primer consulta
+                ant_consulta_1;
+            
+            ant_consulta_1 = request.getParameter("ant_consulta_1");
             
             pacienteid = request.getParameter("txtid");
             // Capturar valores de signos vitales
@@ -665,7 +670,7 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                     
                     
                     //Ingresamos registro de valoracion //verificamos si se esta haciendo el registro de aquello
-                    if(true){
+                    if(Integer.parseInt(ant_consulta_1) <= 26){
                         String sqlImc = "INSERT INTO public.imc_seguimiento(\n" +
                                         "   ghcp_id, imc_semana, imc_imc, imc_ganancia)\n" +
                                         "	VALUES (?, ?, ?, ?);";

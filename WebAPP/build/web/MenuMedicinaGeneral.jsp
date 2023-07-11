@@ -58,14 +58,28 @@
                                 <a href="">
                                     <img alt="" src="img/icons8_workstation_96px.png" width="96" height="96">
                                     <span class="label"></span></a>
-                                <h3 style="color:#007653; font-weight: bold">CONSULTA MÉDICA</h3>
+                                <h3 style="color:#007653; font-weight: bold">CONSULTA MÉDICA (PRIMERA CONSULTA)</h3>
 
                             </header>
-                            <p>Agregar información de consulta médica y receta</p>
+                            <p>Agregar información de la primer consulta del paciente y receta médica</p>
                             <input type="button" onclick="javascript:agregarConsulta();" value="Ingresar" class="button primary" style=" background: #007653 !important;"/>
                         </div>
                     </section>
                     
+                    <!-- SEGUNDO.5 MODULO -->
+                    <section class="animadoagregarinformacion">
+                        <div class="content">
+                            <header>
+                                <a href="">
+                                    <img alt="" src="img/mg-seguimiento.png" width="96" height="96">
+                                    <span class="label"></span></a>
+                                <h3 style="color:#007653; font-weight: bold">CONSULTA MÉDICA (SEGUIMIENTO)</h3>
+
+                            </header>
+                            <p>Agregar información de consulta de seguimiento del paciente y receta médica</p>
+                            <input type="button" onclick="javascript:agregarSeguimiento();" value="Ingresar" class="button primary" style=" background: #007653 !important;"/>
+                        </div>
+                    </section>
                     
                     <!-- TERCER MODULO -->
                     <section class="animadoagregarinformacion">
@@ -131,6 +145,10 @@
             
             function agregarConsulta(){
               window.location.href = "./Medicinageneral.jsp?user="+document.getElementById("usuario").innerHTML;
+            }
+            
+            function agregarSeguimiento(){
+              window.location.href = "./SeguimientoMedicinaG.jsp?user="+document.getElementById("usuario").innerHTML;
             }
             
             function SubirExamen(){
