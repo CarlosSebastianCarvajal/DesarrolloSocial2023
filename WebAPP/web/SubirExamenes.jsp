@@ -23,28 +23,15 @@
             PreparedStatement ps;
             ResultSet rs;
             int id = Integer.parseInt(request.getParameter("codigo"));
-            ps = c.getConecction().prepareStatement("select idmedicinageneral as codigo, paciente_dni as cedula, fechaconsulta as fecha, motivoconsulta as motivo from medicinageneral where cargararchivo is null and idmedicinageneral =" + id);
+            ps = c.getConecction().prepareStatement("select mgs.mg_seguimiento_id as codigo, p.paciente_dni as cedula_paciente, (p.paciente_primer_nombre || ' ' || p.paciente_apellido_paterno) as paciente, mgs.fecha as fecha, mgs.notas as detalle from mg_seguimiento as mgs inner join medicinageneral as mg on mgs.idmedicinageneral = mg.idmedicinageneral inner join paciente as p on mg.paciente_id = p.paciente_id where mgs.mg_seguimiento_id=" + id);
             rs = ps.executeQuery();
             while (rs.next()) {
         %>
                        
             <form id="form1" action="subirExamenes" method="POST" enctype="multipart/form-data" >
-                <%-- <input type="text"  readonly="" name="codigo" class="form-control" style="visibility:hidden;" value="<%= rs.getInt("codigo")%>"/>
-                CEDULA DEL PACIENTE
-                <input type="text" name="txtNom" class="form-control" value="<%= rs.getString("cedula")%>"/><br>
-                FECHA DE LA CONSULTA
-                <input type="text" name="txtDNI" class="form-control" value="<%= rs.getString("fecha")%>"/>
-                <br>
-                MOTIVO DE LA CONSULTA
-                <input type="text" name="txtDNI" class="form-control" value="<%= rs.getString("motivo")%>"/>
-                <br>
-                CARGAR EXAMENES
-                <input type="file" name="cargarArchivos"/>
-                <br>
-                <input type="submit" value="Guardar" class="btn btn-primary btn-lg"/>--%>
                 <section class="sec-main">
                 <div class="div-cont-main">
-                    <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
+                    <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: -35px'>
                         <thead>
                             <tr>
                                 <input type="text"  readonly="" name="codigo" class="form-control" style="visibility:hidden;" value="<%= rs.getInt("codigo")%>"/>
@@ -54,7 +41,17 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td> <div class="div-cont-ced" style='margin-top: 10px !important;'><input value="<%= rs.getString("cedula")%>" type="text" id="txt-cedi" readonly="" class="inp-ced" name="txtNom" /></div> </td>
+                                <td> <div class="div-cont-ced" style='margin-top: 10px !important;'><input value="<%= rs.getString("cedula_paciente")%>" type="text" id="txt-cedi" readonly="" class="inp-ced" name="txtNom" /></div> </td>
+                            </tr>
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <th>Nombre del Paciente</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <div class="div-cont-ced" style='margin-top: 10px !important;'><input value="<%= rs.getString("paciente")%>" type="text" id="txt-cedi" readonly="" class="inp-ced" name="txtNom" /></div> </td>
                             </tr>
                         </tbody>
                         <thead>
@@ -74,7 +71,7 @@
                         </thead>
                         <tbody>
                             <tr>  
-                                <td> <div class="div-cont-ced" style='margin-top: 10px !important;'><input value="<%= rs.getString("motivo")%>" type="text" id="txt-cedi" readonly="" class="inp-ced" name="txtDNI" /></div> </td>
+                                <td> <div class="div-cont-ced" style='margin-top: 10px !important;'><input value="<%= rs.getString("detalle")%>" type="text" id="txt-cedi" readonly="" class="inp-ced" name="txtDNI" /></div> </td>
                             </tr>
                         </tbody>
                         <thead>

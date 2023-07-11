@@ -19,8 +19,7 @@
             Statement smt;
             ResultSet rs;
             smt = c.getConecction().createStatement();
-            rs = smt.executeQuery("select idmedicinageneral as codigo, paciente_dni as cedula, fechaconsulta as fecha, motivoconsulta as motivo from medicinageneral where cargararchivo is null and galeno_user = '" + session.getAttribute("galeno_user11") + "'");
-            //Creamo la Tabla:     
+            rs = smt.executeQuery("select mgs.mg_seguimiento_id as codigo, p.paciente_dni as cedula_paciente, (p.paciente_primer_nombre || ' ' || p.paciente_apellido_paterno) as paciente, mgs.fecha as fecha, mgs.notas as detalle from mg_seguimiento as mgs inner join medicinageneral as mg on mgs.idmedicinageneral = mg.idmedicinageneral inner join paciente as p on mg.paciente_id = p.paciente_id inner join galeno as g on mg.galeno_id = g.galeno_id where examen = true and galeno_user = '" + session.getAttribute("galeno_user11") + "'");            //Creamo la Tabla:     
         %>
        
         <header id="header" style=" background: #007653 !important;">
@@ -42,6 +41,7 @@
                     <tr>
                         <th class="text-center">CODIGO</th>
                         <th>CEDULA DEL PACIENTE</th>
+                        <th>NOMBRE DEL PACIENTE</th>
                         <th class="text-center">FECHA DE CONSULTA</th>
                         <th class="text-center">MOTIVO DE CONSULTA</th>
                         <th class="text-center">ACCION</th>
@@ -53,9 +53,10 @@
                     %>
                     <tr>
                         <td class="text-center"><%= rs.getInt("codigo")%></td>
-                        <td><%= rs.getString("cedula")%></td>
+                        <td><%= rs.getString("cedula_paciente")%></td>
+                        <td><%= rs.getString("paciente")%></td>
                         <td class="text-center"><%= rs.getString("fecha")%></td>
-                        <td class="text-center"><%= rs.getString("motivo")%></td>
+                        <td class="text-center"><%= rs.getString("detalle")%></td>
                         <td class="text-center">
                             <a href="SubirExamenes.jsp?codigo=<%= rs.getInt("codigo")%>" class="btn btn-primary">Seleccionar Paciente</a>
                         </td>

@@ -68,6 +68,7 @@ $(function () {
             success: function (data)
             {
                 console.log(data);
+                $("#txt-id").val(data.pacienteid);
                 $("#txt-cedi").val(data.paciente_dni);
                 $("#txt-namen").val(data.paciente_primer_segundo_nombre);
                 $("#txt-lnamea").val(data.paciente_primer_segundo_apellido);
@@ -105,6 +106,7 @@ $(function () {
             success: function (data)
             {
                 console.log(data);
+                $("#txt-id").val(data.pacienteid);
                 $("#txt-cedi").val(data.paciente_dni);
                 $("#txt-namen").val(data.paciente_primer_segundo_nombre);
                 $("#txt-lnamea").val(data.paciente_primer_segundo_apellido);

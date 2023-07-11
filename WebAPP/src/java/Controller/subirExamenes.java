@@ -70,9 +70,7 @@ public class subirExamenes extends HttpServlet {
             Files.copy(is, Paths.get(uploadPath + File.separator + fileName), StandardCopyOption.REPLACE_EXISTING);
             try {
                 System.out.println("connection done");
-                String sql = "UPDATE public.medicinageneral\n"
-                        + "   SET cargararchivo=?, patch=?\n"
-                        + " WHERE idmedicinageneral = ?";
+                String sql = "UPDATE public.mg_seguimiento SET examen=false, archivo=?, patch=? WHERE mg_seguimiento_id = ?";
                 ps = c.getConecction().prepareStatement(sql);
                 ps.setString(1, fileName);
                 ps.setString(2, patch);
