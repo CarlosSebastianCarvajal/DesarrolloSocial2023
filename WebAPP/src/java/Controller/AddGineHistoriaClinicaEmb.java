@@ -282,7 +282,7 @@ public class AddGineHistoriaClinicaEmb extends HttpServlet {
             ap_nefropatia= request.getParameter("ap_nefropatia");
             ap_violencia= request.getParameter("ap_violencia");
             ao_up_nc= request.getParameter("ao_up_nc");
-            ao_up_normal= request.getParameter("ao_up_nc"); //este no se tomara en cuenta -- se lo deja para que no genere problemas en el guaradado
+            ao_up_normal= request.getParameter("ao_up_normal");
             ao_ant_gem= request.getParameter("ao_ant_gem");
             ao_gestas_previas= request.getParameter("ao_gestas_previas");
             ao_emb_ectopico= request.getParameter("ao_emb_ectopico");
