@@ -1633,8 +1633,10 @@
                             <tbody id="body_imc" align="center">
                                 
                             </tbody>
+                            
                         </table>
-                       
+                       <label style='margin-left: 10px; ' id="ant-consulta-res"></label>
+                       <input hidden type="text" id="ant-consulta-1" class="inp-lname" placeholder="txt-id" name="ant_consulta_1"/>
                        <table style='width: 95%; margin-left: 10px; '>
                             <thead>
                                 <tr>
