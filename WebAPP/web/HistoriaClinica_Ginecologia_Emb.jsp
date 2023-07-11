@@ -577,7 +577,6 @@
                             </thead>
                             <thead>
                                 <th>Último previo</th>
-                                <th>Último previo</th>
                                 <th>Ant. de Gemelares</th>
                                 <th>GESTAS PREVIAS</th>
                                 <th>emb. ectópico</th>
@@ -587,10 +586,15 @@
                                     <div id="ao_up_nc" style="border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda;width: 80%; height: 40px; display: flex; justify-content: center; align-items: center;">
                                         <span style="margin-top: 2px">N/C: </span>
                                         <input style="margin-top: 2px" type="radio" id="rb-ao-up-nc" name="ao_up_nc" value="Nc" />
-                                        <span style="margin-top: 2px">&nbsp >2500g: </span>
-                                        <input style="margin-top: 2px" type="radio" id="rb-ao-up-nc" name="ao_up_nc" value=">2500g" />
+                                        <span style="margin-top: 2px">&nbsp <2500g: </span>
+                                        <input style="margin-top: 2px" type="radio" id="rb-ao-up-nc" name="ao_up_nc" value="<2500g" />
+                                        <span style="margin-top: 2px"> &nbsp Normal: </span>
+                                        <input style="margin-top: 2px" type="radio" id="rb-ao-up-normal" name="ao_up_nc" value="Normal" />
+                                        <span style="margin-top: 2px">&nbsp <4000g: </span>
+                                        <input style="margin-top: 2px" type="radio" id="rb-ao-up-normal" name="ao_up_nc" value="4000g" />
                                     </div>
                                 </td>
+                                <!--
                                 <td>
                                     <div id="ao_up_normal" style="border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda; width: 80%; height: 40px; display: flex; justify-content: center; align-items: center;">
                                         <span style="margin-top: 2px">Normal: </span>
@@ -598,7 +602,7 @@
                                         <span style="margin-top: 2px">&nbsp 4000g: </span>
                                         <input style="margin-top: 2px" type="radio" id="rb-ao-up-normal" name="ao_up_normal" value="4000g" />
                                     </div>
-                                </td>
+                                </td>-->
                                 <td>
                                     <div id="ao_ant_gem" style="border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda; width: 80%; height: 40px; display: flex; justify-content: center; align-items: center;">
                                         <span style="margin-top: 2px">SI: </span>
