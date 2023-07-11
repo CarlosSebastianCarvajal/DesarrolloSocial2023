@@ -62,7 +62,7 @@
                         </thead>
                         <tbody>
                             <tr style='height: 175px'>
-                                <td colspan="2" ROWSPAN="2" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-analisisDemanda" class="inp-lname" required="" placeholder="Análisis de la demanda" name="AnalisisDemanda" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
+                                <td colspan="2" ROWSPAN="2" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-analisisDemanda" class="inp-lname" placeholder="Análisis de la demanda" name="AnalisisDemanda" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
                             </tr>
                         </tbody>
                         
@@ -74,7 +74,7 @@
                         </thead>
                         <tbody>
                             <tr style='height: 175px'>
-                                <td colspan="2" ROWSPAN="2" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-objetivoSesion" class="inp-lname" required="" placeholder="Objetivos durante la sesión" name="ObjetivosSesion" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
+                                <td colspan="2" ROWSPAN="2" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-objetivoSesion" class="inp-lname" placeholder="Objetivos durante la sesión" name="ObjetivosSesion" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
                             </tr>
                         </tbody>
                         <thead align="left">
@@ -84,7 +84,7 @@
                         </thead>
                         <tbody>
                             <tr style='height: 175px'>
-                                <td colspan="2" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-descripcionET" class="inp-lname" required="" placeholder="Descripción de estrategias y técnicas" name="DescripcionET" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
+                                <td colspan="2" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-descripcionET" class="inp-lname" placeholder="Descripción de estrategias y técnicas" name="DescripcionET" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
                             </tr>
                         </tbody>
                         <thead align="left">
@@ -94,7 +94,7 @@
                         </thead>
                         <tbody>
                             <tr style='height: 175px'>
-                                <td colspan="2" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="Información relevante obtenida" name="informacionRO" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
+                                <td colspan="2" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" placeholder="Información relevante obtenida" name="informacionRO" onkeyup="mayus(this);"style='height: 120px;'/></textarea></td> 
                             </tr>
                         </tbody>
                         <tbody align="center">

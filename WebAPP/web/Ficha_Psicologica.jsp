@@ -63,9 +63,9 @@
                         <tbody align="center">
                             <tr>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="10" maxlength="10" placeholder="Cédula de Identidad" name="CedulaIdentidad" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="10" maxlength="10" placeholder="Número Telefónico" name="NumeroTelefonico" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
-                                <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Escolaridad" name="escolaridad"required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Ocupación" name="ocupacion"required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="10" maxlength="10" placeholder="Número Telefónico" name="NumeroTelefonico" value=""  onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Escolaridad" name="escolaridad"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Ocupación" name="ocupacion"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </tbody>
                         <thead >
@@ -104,10 +104,10 @@
                         </thead>
                         <tbody align="center">
                             <tr> 
-                                    <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Religión" name="religion" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                    <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Orientación Sexual" name="OrientacionSexual" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                    <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Lugar de Residencia" name="LugarResidencia" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                    <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Tipo de discapacidad" name="TipoDiscapacidad" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Religión" name="religion"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Orientación Sexual" name="OrientacionSexual" onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Lugar de Residencia" name="LugarResidencia" onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Tipo de discapacidad" name="TipoDiscapacidad" onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </tbody>
                         <thead >
@@ -117,7 +117,7 @@
                         </thead>
                         <tbody align="center">
                             <tr>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="1" maxlength="2" placeholder="Porcentaje %" name="porcentaje" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>            
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="1" maxlength="2" placeholder="Porcentaje %" name="porcentaje" value="" onkeypress='return validaNumericos(event)'/></div> </td>            
                             </tr>
                         </tbody>
                         <thead>
@@ -135,10 +135,10 @@
                         </thead>
                         <tbody align="center">
                             <tr> 
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Primer Apellido" name="PrimerApellidoC" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Primer Nombre" name="PrimerNombreC"required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Parentezco" name="parentezco"required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="10" maxlength="10" placeholder="Cédula de Identidad" name="CedulaIdentidadC" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Primer Apellido" name="PrimerApellidoC"   onkeypress="return soloLetras(event)" /></div></td>
+                                <td><div class="div-cont-lname"><input style= 'text-align: center' type="text" id="txt-lname" class="inp-lname" placeholder="Primer Nombre" name="PrimerNombreC"  onkeypress="return soloLetras(event)" /></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Parentezco" name="parentezco"  onkeypress="return soloLetras(event)"/></div></td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="10" maxlength="10" placeholder="Cédula de Identidad" name="CedulaIdentidadC" value="" onkeypress='return validaNumericos(event)'/></div> </td>
                             </tr>
                         </tbody>
                         <thead >
@@ -148,7 +148,7 @@
                         </thead>
                         <tbody align="center">
                             <tr> 
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="10" maxlength="10" placeholder="Número Telefónico" name="NumeroTelefonicoC" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-edad" class="inp-edad"  minlength="10" maxlength="10" placeholder="Número Telefónico" name="NumeroTelefonicoC" value="" onkeypress='return validaNumericos(event)'/></div> </td>
                             </tr>
                         </tbody>
                         <thead>
@@ -173,7 +173,7 @@
                         </thead>
                         <tbody align="center">
                             <tr> 
-                                <td colspan="4" align="left"><div class="div-cont-name"><input style= 'text-align: left' type="text" id="txt-name" class="inp-namee" placeholder="Historia Personal" name="HistoriaPersonal" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <td colspan="4" align="left"><div class="div-cont-name"><input style= 'text-align: left' type="text" id="txt-name" class="inp-namee" placeholder="Historia Personal" name="HistoriaPersonal" onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </tbody>
                         <thead >
@@ -183,7 +183,7 @@
                         </thead>
                         <tbody align="center">
                             <tr> 
-                                <td colspan="4" align="left"><div class="div-cont-name"><input style= 'text-align: left' type="text" id="txt-name" class="inp-namee" placeholder="Antecedentes Familiares" name="AntecedentesFamiliares" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <td colspan="4" align="left"><div class="div-cont-name"><input style= 'text-align: left' type="text" id="txt-name" class="inp-namee" placeholder="Antecedentes Familiares" name="AntecedentesFamiliares"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </tbody>
                          <thead>
@@ -196,16 +196,16 @@
                             <tbody>
                                 <tr>                                
                                     <th style='text-align: left'>Hitos de desarrollo:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Mitos de desarrollo" name="MitosDesarrollo" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
-                                    <td  colspan="2"><div class="div-cont-name"><input style= 'text-align: left; width: 150%' type="text" id="txt-name" class="inp-name" placeholder="Actividad de Interés" name="ActividadInteres" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Mitos de desarrollo" name="MitosDesarrollo"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td  colspan="2"><div class="div-cont-name"><input style= 'text-align: left; width: 150%' type="text" id="txt-name" class="inp-name" placeholder="Actividad de Interés" name="ActividadInteres"   onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                 </tr>
                                 <tr>                                
                                     <th style='text-align: left'>Atención psiquiatrica/psicológica:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Atención psiquiatrica/psicológica" name="AtencionPP" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Atención psiquiatrica/psicológica" name="AtencionPP"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                 </tr>
                                  <tr>                                
                                     <th style='text-align: left'>Enfermedad Crónica:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Enfermedad Crónica" name="EnfermedadCronica" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Enfermedad Crónica" name="EnfermedadCronica" onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                 </tr>
                             </tbody>
                         <thead>
@@ -222,37 +222,37 @@
                             <tbody>
                                 <tr>                                
                                     <th style='text-align: left'>Orientación:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Orientación" name="orientacion" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Orientación" name="orientacion"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                     <th style='text-align: left'>Apariencia:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Apariencia" name="apariencia" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Apariencia" name="apariencia"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                 </tr>
                                 <tr>                                
                                     <th style='text-align: left'>Pensamiento:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Pensamiento" name="pensamiento" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Pensamiento" name="pensamiento"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                     <th style='text-align: left'>Comportamientos:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Comportamientos" name="comportamientos" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Comportamientos" name="comportamientos"   onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                 </tr>
                                  <tr>                                
                                     <th style='text-align: left'>Lenguaje:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Lenguaje" name="lenguaje" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Lenguaje" name="lenguaje"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                     <th style='text-align: left'>Otros:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Otros" name="otros" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Otros" name="otros"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                 </tr>
                                 <tr>                                
                                     <th style='text-align: left'>Memoria:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Memoria" name="memoria" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Memoria" name="memoria" onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                 </tr>
                                 <tr>                                
                                     <th style='text-align: left'>Atención:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Atención" name="atencion" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Atención" name="atencion"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                 </tr>
                                 <tr>                                
                                     <th style='text-align: left'>Afectividad:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Afectividad" name="afectividad" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Afectividad" name="afectividad"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                 </tr>
                                 <tr>                                
                                     <th style='text-align: left'>Juicio:</th>
-                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Juicio" name="juicio" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: left; width: 140%' type="text" id="txt-name" class="inp-name" placeholder="Juicio" name="juicio" onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                                 </tr>
                             </tbody>
                              <thead>
@@ -262,7 +262,7 @@
                        </thead>
                        <tbody align="center">
                             <tr> 
-                                <td colspan="4" align="left"><div class="div-cont-name"><input style= 'text-align: left' type="text" id="txt-name" class="inp-namee" placeholder="Recomendaciones y/o tratamiento" name="recomendacion" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
+                                <td colspan="4" align="left"><div class="div-cont-name"><input style= 'text-align: left' type="text" id="txt-name" class="inp-namee" placeholder="Recomendaciones y/o tratamiento" name="recomendacion"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
                         </tbody>
                          <thead>
