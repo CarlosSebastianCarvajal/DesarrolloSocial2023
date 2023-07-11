@@ -1,21 +1,509 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="74a445b0-781f-45ae-bd0d-e3d8d03e0fb0">
-	<property name="ireport.zoom" value="4.0"/>
-	<property name="ireport.x" value="577"/>
-	<property name="ireport.y" value="595"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cedula" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[select paciente_primer_nombre, paciente_apellido_paterno, paciente_direccion, paciente_canton, paciente_telefono from paciente where paciente_dni='1206972433'
+		<![CDATA[	
+select CONCAT(p.paciente_primer_nombre, ' ',p.paciente_segundo_nombre) as nombre, 
+CONCAT(p.paciente_apellido_paterno, ' ',p.paciente_apellido_materno)as apellido,
+p.paciente_direccion, p.paciente_canton, p.paciente_telefono, p.paciente_edad, p.paciente_dni,
+TO_CHAR (p.paciente_fnacimiento:: DATE, 'dd-mm-yyyy')as fecha_nacimiento,
+case when p.paciente_edad<15 then 'x' else case when p.paciente_edad>35 then 'x' else ' ' end end cuadro_edad,
+case when p.paciente_etnia='Blanca' then 'x' else ' ' end Blanca,
+case when p.paciente_etnia='Indigena' then 'x' else ' ' end Indigena,
+case when p.paciente_etnia='Mestiza' then 'x' else ' ' end Mestiza,
+case when p.paciente_etnia='Negra' then 'x' else ' ' end Negra,
+case when p.paciente_etnia='Otra' then 'x' else ' ' end Otra,
+case when ghp.per_alfa_beta='Si' then 'x' else ' ' end alfa_betaSI,
+case when ghp.per_alfa_beta='No' then 'x' else ' ' end alfa_betaNo,
+case when p.paciente_nivel_estudio='Ninguno' then 'x' else ' ' end nivel_estudio_Ninguno,
+case when p.paciente_nivel_estudio='Basico' then 'x' else ' ' end nivel_estudio_Primaria,
+case when p.paciente_nivel_estudio='Bachillerato' then 'x' else ' ' end nivel_estudio_Secundaria,
+case when p.paciente_nivel_estudio='Superior' then 'x' else ' ' end nivel_estudio_Universidad, 
+p.paciente_anios_nivel,
+case when p.paciente_estado_civil='Casado' then 'x' else ' ' end paciente_estado_civil_Casada,
+case when p.paciente_estado_civil='Union libre' then 'x' else ' ' end paciente_estado_civil_Union,
+case when p.paciente_estado_civil='Soltero' then 'x' else ' ' end paciente_estado_civil_Soltera,
+case when p.paciente_estado_civil='Divorciado' then 'x' else ' ' end paciente_estado_Otro,
+case when ghp.per_vive_sola='Si' then 'x' else ' ' end per_vive_solaSI,
+case when ghp.per_vive_sola='No' then 'x' else ' ' end per_vive_solaNo,
+case when ghp.af_tbc='Si' then 'x' else ' ' end af_tbcSI,
+case when ghp.af_tbc='No' then 'x' else ' ' end af_tbcNo,
+case when ghp.af_diabetes='I' then 'x' else case when ghp.af_diabetes='II' then 'x' else case when ghp.af_diabetes='G' then 'x' else ' ' end end end af_diabetesSI,
+case when ghp.af_diabetes='No' then 'x' else ' ' end af_diabetesNo,
+case when ghp.af_hipertension='Si' then 'x' else ' ' end af_hipertensionSI,
+case when ghp.af_hipertension='No' then 'x' else ' ' end af_hipertensionNo,
+case when ghp.af_preeclampsia='Si' then 'x' else ' ' end af_preeclampsiaSI,
+case when ghp.af_preeclampsia='No' then 'x' else ' ' end af_preeclampsiaNo,
+case when ghp.af_eclampsia='Si' then 'x' else ' ' end af_eclampsiaSI,
+case when ghp.af_eclampsia='No' then 'x' else ' ' end af_eclampsiaNo, 
+case when ghp.af_ocmg='Si' then 'x' else ' ' end af_ocmgSI,
+case when ghp.af_ocmg='No' then 'x' else ' ' end af_ocmgNo,
+case when ghp.ap_tbc='Si' then 'x' else ' ' end ap_tbcSI,
+case when ghp.ap_tbc='No' then 'x' else ' ' end ap_tbcNo,
+case when ghp.ap_diabetes='I' then 'x' else ' '  end ap_diabetesI,
+case when ghp.ap_diabetes='II' then 'x' else ' ' end ap_diabetesII,
+case when ghp.ap_diabetes='G' then 'x' else ' ' end ap_diabetesG,
+case when ghp.ap_diabetes='No' then 'x' else ' ' end ap_diabetesNo,
+case when ghp.ap_hipertension='Si' then 'x' else ' ' end ap_hipertensionSI,
+case when ghp.ap_hipertension='No' then 'x' else ' ' end ap_hipertensionNo,
+case when ghp.ap_preeclampsia='Si' then 'x' else ' ' end ap_preeclampsiaSI,
+case when ghp.ap_preeclampsia='No' then 'x' else ' ' end ap_preeclampsiaNo,
+case when ghp.ap_eclampsia='Si' then 'x' else ' ' end ap_eclampsiaSI,
+case when ghp.ap_eclampsia='No' then 'x' else ' ' end ap_eclampsiaNo,
+case when ghp.ap_ocmg='Si' then 'x' else ' ' end ap_ocmgSI,
+case when ghp.ap_ocmg='No' then 'x' else ' ' end ap_ocmgNo,
+ghp.ap_ocmg_desc,
+case when ghp.ap_cirugia_gu='Si' then 'x' else ' ' end ap_cirugia_guSI,
+case when ghp.ap_cirugia_gu='No' then 'x' else ' ' end ap_cirugia_guNo,
+case when ghp.ap_infertilidad='Si' then 'x' else ' ' end ap_infertilidadSI,
+case when ghp.ap_infertilidad='No' then 'x' else ' ' end ap_infertilidadNo,
+case when ghp.ap_cardiopat='Si' then 'x' else ' ' end ap_cardiopatSI,
+case when ghp.ap_cardiopat='No' then 'x' else ' ' end ap_cardiopatNo,
+case when ghp.ap_nefropatia='Si' then 'x' else ' ' end ap_nefropatiaSI,
+case when ghp.ap_nefropatia='No' then 'x' else ' ' end ap_nefropatiaNo,
+case when ghp.ap_violencia='Si' then 'x' else ' ' end ap_violenciaSI,
+case when ghp.ap_violencia='No' then 'x' else ' ' end ap_violenciaNo,
+case when ghp.ao_up_nc='Nc' then 'x' else ' ' end ao_up_ncNC,
+case when ghp.ao_up_nc='>2500g' then 'x' else ' ' end ao_up_nc2500,
+case when ghp.ao_up_normal='Normal' then 'x' else ' ' end ao_up_normalNormal,
+case when ghp.ao_up_normal='4000g' then 'x' else ' ' end ao_up_normal4000g,
+case when ghp.ao_ant_gem='Si' then 'x' else ' ' end ao_ant_gemSI,
+case when ghp.ao_ant_gem='No' then 'x' else ' ' end ao_ant_gemNo,
+ghp.ao_gestas_previas, ghp.ao_emb_ectopico, ghp.ao_abortos, 
+case when ghp.ao_abortos_cons='Si' then 'x' else ' ' end ao_abortos_consSI,
+ghp.ao_partos, ghp.ao_partos_vag, ghp.ao_partos_ces, ghp.ao_nac_vivos, ghp.ao_nac_muertos, ghp.ao_viven, 
+ghp.ao_nac_muer_ant, ghp.ao_nac_muer_des, TO_CHAR (ghp.ao_fin_emb_ant:: DATE, 'dd-mm-yyyy') as fecha_fin_emb,
+case when cast(extract(YEAR FROM (age(current_date, ghp.ao_fin_emb_ant::DATE))) as integer)>0 then 'x' else ' ' end menosde1,
+case when ghp.ao_emb_planeado='Si' then 'x' else ' ' end ao_emb_planeadoSI,
+case when ghp.ao_emb_planeado='No' then 'x' else ' ' end ao_emb_planeadoNo,
+case when ghp.ao_fma='No usaba' then 'x' else ' ' end ao_fmaNo,
+case when ghp.ao_fma='Barrera' then 'x' else ' ' end ao_fmaBarrera,
+case when ghp.ao_fma='DIU' then 'x' else ' ' end ao_fmaDIU,
+case when ghp.ao_fma='Hormonal' then 'x' else ' ' end ao_fmaHormonal,
+case when ghp.ao_fma='Emergencia' then 'x' else ' ' end ao_fmaEmergencia,
+case when ghp.ao_fma='Natural' then 'x' else ' ' end ao_fmaNatural,
+ghp.ga_peso, ghp.ga_talla, 
+TO_CHAR (ghp.ga_fum:: DATE, 'dd-mm-yyyy') as fecha_fum, 
+TO_CHAR (ghp.ga_fpp:: DATE, 'dd-mm-yyyy') as fecha_fpp, 
+case when ghp.ga_egconf_fum='Si' then 'x' else ' ' end ga_egconf_fumSI,
+case when ghp.ga_egconf_fum='No' then 'x' else ' ' end ga_egconf_fumNo,
+case when ghp.ga_egconf_eco='Si' then 'x' else ' ' end ga_egconf_ecoSI,
+case when ghp.ga_egconf_eco='No' then 'x' else ' ' end ga_egconf_ecoNo,
+case when ghp.ga_fuma_act_uno='Si' then 'x' else ' ' end ga_fuma_act_unoSi,
+case when ghp.ga_fuma_act_uno='No' then 'x' else ' ' end ga_fuma_act_unoNo, 
+case when ghp.ga_fuma_pas_uno='Si' then 'x' else ' ' end ga_fuma_pas_unoSi,
+case when ghp.ga_fuma_pas_uno='No' then 'x' else ' ' end ga_fuma_pas_unoNo,
+case when ghp.ga_drogas_uno='Si' then 'x' else ' ' end ga_drogas_unoSi,
+case when ghp.ga_drogas_uno='No' then 'x' else ' ' end ga_drogas_unoNo, 
+case when ghp.ga_alcohol_uno='Si' then 'x' else ' ' end ga_alcohol_unoSi,
+case when ghp.ga_alcohol_uno='No' then 'x' else ' ' end ga_alcohol_unoNo,
+case when ghp.ga_violencia_uno='Si' then 'x' else ' ' end ga_violencia_unoSi,
+case when ghp.ga_violencia_uno='No' then 'x' else ' ' end ga_violencia_unoNo,
+case when ghp.ga_fuma_act_dos='Si' then 'x' else ' ' end ga_fuma_act_dosSi,
+case when ghp.ga_fuma_act_dos='No' then 'x' else ' ' end ga_fuma_act_dosNo,
+case when ghp.ga_fuma_pas_dos='Si' then 'x' else ' ' end ga_fuma_pas_dosSi,
+case when ghp.ga_fuma_pas_dos='No' then 'x' else ' ' end ga_fuma_pas_dosNo,
+case when ghp.ga_drogas_dos='Si' then 'x' else ' ' end ga_drogas_dosSi,
+case when ghp.ga_drogas_dos='No' then 'x' else ' ' end ga_drogas_dosNo,
+case when ghp.ga_alcohol_dos='Si' then 'x' else ' ' end ga_alcohol_dosSi,
+case when ghp.ga_alcohol_dos='No' then 'x' else ' ' end ga_alcohol_dosNo,
+case when ghp.ga_violencia_dos='Si' then 'x' else ' ' end ga_violencia_dosSi,
+case when ghp.ga_violencia_dos='No' then 'x' else ' ' end ga_violencia_dosNo,
+case when ghp.ga_fuma_act_tres='Si' then 'x' else ' ' end ga_fuma_act_tresSi,
+case when ghp.ga_fuma_act_tres='No' then 'x' else ' ' end ga_fuma_act_tresNo,
+case when ghp.ga_fuma_pas_tres='Si' then 'x' else ' ' end ga_fuma_pas_tresSi,
+case when ghp.ga_fuma_pas_tres='No' then 'x' else ' ' end ga_fuma_pas_tresNo,
+case when ghp.ga_drogas_tres='Si' then 'x' else ' ' end ga_drogas_tresSi,
+case when ghp.ga_drogas_tres='No' then 'x' else ' ' end ga_drogas_tresNo,
+case when ghp.ga_alcohol_tres='Si' then 'x' else ' ' end ga_alcohol_tresSi,
+case when ghp.ga_alcohol_tres='No' then 'x' else ' ' end ga_alcohol_tresNo,
+case when ghp.ga_violencia_tres='Si' then 'x' else ' ' end ga_violencia_tresSi,
+case when ghp.ga_violencia_tres='No' then 'x' else ' ' end ga_violencia_tresNo,
+case when ghp.ga_antirubeola='Previa' then 'x' else ' ' end ga_antirubeolaPrevia,
+case when ghp.ga_antirubeola='No sabe' then 'x' else ' ' end ga_antirubeolaNosabe,
+case when ghp.ga_antirubeola='Embarazo' then 'x' else ' ' end ga_antirubeolaEmbarazo,
+case when ghp.ga_antirubeola='No' then 'x' else ' ' end ga_antirubeolaNo,
+case when ghp.ga_antitet='Si' then 'x' else ' ' end ga_antitetSi,
+case when ghp.ga_antitet='No' then 'x' else ' ' end ga_antitetNo,
+ghp.ga_antitet_dosis_uno, ghp.ga_antitet_dosis_dos, 
+case when ghp.ga_exnormal_odont='Si' then 'x' else ' ' end ga_exnormal_odontSi,
+case when ghp.ga_exnormal_odont='No' then 'x' else ' ' end ga_exnormal_odontNo,
+case when ghp.ga_exnormal_mamas='Si' then 'x' else ' ' end ga_exnormal_mamasSi,
+case when ghp.ga_exnormal_mamas='No' then 'x' else ' ' end ga_exnormal_mamasNo,
+case when ghp.ga_cervix_insp='Normal' then 'x' else ' ' end ga_cervix_inspNormal,
+case when ghp.ga_cervix_insp='Anormal' then 'x' else ' ' end ga_cervix_inspAnormal,
+case when ghp.ga_cervix_insp='No se hizo' then 'x' else ' ' end ga_cervix_inspNoseh, 
+case when ghp.ga_cervix_pap='Normal' then 'x' else ' ' end ga_cervix_papNormal,
+case when ghp.ga_cervix_pap='Anormal' then 'x' else ' ' end ga_cervix_papAnormal,
+case when ghp.ga_cervix_pap='No se hizo' then 'x' else ' ' end ga_cervix_papNoseh,
+case when ghp.ga_cervix_colp='Normal' then 'x' else ' ' end ga_cervix_colpNormal,
+case when ghp.ga_cervix_colp='Anormal' then 'x' else ' ' end ga_cervix_colpAnormal,
+case when ghp.ga_cervix_colp='No se hizo' then 'x' else ' ' end ga_cervix_colpNoseh,
+ghp.ga_san_grupo, 
+case when ghp.ga_san_rh='+' then 'x' else ' ' end ga_san_rhpo,
+case when ghp.ga_san_rh='-' then 'x' else ' ' end ga_san_rhne,
+case when ghp.ga_san_inmuniz='Si' then 'x' else ' ' end ga_san_inmunizSi,
+case when ghp.ga_san_inmuniz='No' then 'x' else ' ' end ga_san_inmunizNo,
+case when ghp.ga_san_globulina='Si' then 'x' else ' ' end ga_san_globulinaSi,
+case when ghp.ga_san_globulina='No' then 'x' else ' ' end ga_san_globulinaNo,
+case when ghp.ga_san_globulina='Nc' then 'x' else ' ' end ga_san_globulinaNc,
+case when ghp.ga_toxo_menor='-' then 'x' else ' ' end ga_toxo_menorNeg,
+case when ghp.ga_toxo_menor='+' then 'x' else ' ' end ga_toxo_menorPoS,
+case when ghp.ga_toxo_menor='No se hizo' then 'x' else ' ' end ga_toxo_menorNos,
+case when ghp.ga_toxo_mayor='-' then 'x' else ' ' end ga_toxo_mayorNeg,
+case when ghp.ga_toxo_mayor='+' then 'x' else ' ' end ga_toxo_mayorPoS,
+case when ghp.ga_toxo_mayor='No se hizo' then 'x' else ' ' end ga_toxo_mayorNos,
+case when ghp.ga_toxo_prim_cons='-' then 'x' else ' ' end ga_toxo_prim_consNeg,
+case when ghp.ga_toxo_prim_cons='+' then 'x' else ' ' end ga_toxo_prim_consPoS,
+case when ghp.ga_toxo_prim_cons='No se hizo' then 'x' else ' ' end ga_toxo_prim_consNos,
+case when ghp.ga_chagas='-' then 'x' else ' ' end ga_chagasNeg,
+case when ghp.ga_chagas='+' then 'x' else ' ' end ga_chagasPoS,
+case when ghp.ga_chagas='No se hizo' then 'x' else ' ' end ga_chagasNos,
+case when ghp.ga_pal_mal='-' then 'x' else ' ' end ga_pal_malNeg,
+case when ghp.ga_pal_mal='+' then 'x' else ' ' end ga_pal_malPoS,
+case when ghp.ga_pal_mal='No se hizo' then 'x' else ' ' end ga_pal_malNos,
+case when ghp.ga_bac_menor='Normal' then 'x' else ' ' end ga_bac_menorNormal,
+case when ghp.ga_bac_menor='Anormal' then 'x' else ' ' end ga_bac_menorAnormal,
+case when ghp.ga_bac_menor='No se hizo' then 'x' else ' ' end ga_bac_menorNoseh,
+case when ghp.ga_bac_mayor='Normal' then 'x' else ' ' end ga_bac_mayorNormal,
+case when ghp.ga_bac_mayor='Anormal' then 'x' else ' ' end ga_bac_mayorAnormal,
+case when ghp.ga_bac_mayor='No se hizo' then 'x' else ' ' end ga_bac_mayorNoseh,
+ghp.ga_glu_menor20, 
+case when ghp.ga_glu_menor20_105='Si' then 'x' else ' ' end ga_glu_menor20_105Si,
+ghp.ga_glu_mayor30, 
+case when ghp.ga_glu_mayor30_105='Si' then 'x' else ' ' end ga_glu_mayor30_105Si,
+case when ghp.ga_vih_sol_menor20='Si' then 'x' else ' ' end ga_vih_sol_menor20Si,
+case when ghp.ga_vih_sol_menor20='No' then 'x' else ' ' end ga_vih_sol_menor20No,
+case when ghp.ga_vih_rea_menor20='Si' then 'x' else ' ' end ga_vih_rea_menor20Si,
+case when ghp.ga_vih_rea_menor20='No' then 'x' else ' ' end ga_vih_rea_menor20No,
+case when ghp.ga_vih_sol_mayor20='Si' then 'x' else ' ' end ga_vih_sol_mayor20Si,
+case when ghp.ga_vih_sol_mayor20='No' then 'x' else ' ' end ga_vih_sol_mayor20No,
+case when ghp.ga_vih_rea_mayor20='Si' then 'x' else ' ' end ga_vih_rea_mayor20Si,
+case when ghp.ga_vih_rea_mayor20='No' then 'x' else ' ' end ga_vih_rea_mayor20No,
+ghp.ga_hb_menor_20, 
+case when ghp.ga_hb_menor_bajo='Si' then 'x' else ' ' end ga_hb_menor_bajoSi,
+case when ghp.ga_fe='Si' then 'x' else ' ' end ga_feSi,
+case when ghp.ga_fe='No' then 'x' else ' ' end ga_feNo,
+case when ghp.ga_folatos='Si' then 'x' else ' ' end ga_folatosSi,
+case when ghp.ga_folatos='No' then 'x' else ' ' end ga_folatosNo,
+ghp.ga_hb_mayor_20, 
+case when ghp.ga_hb_mayor_bajo='Si' then 'x' else ' ' end ga_hb_mayor_bajoSi,
+case when ghp.ga_hb_mayor_bajo='No' then 'x' else ' ' end ga_hb_mayor_bajoNo,
+case when ghp.ga_estreptococo='-' then 'x' else ' ' end ga_estreptococoNeg,
+case when ghp.ga_estreptococo='+' then 'x' else ' ' end ga_estreptococoPosi,
+case when ghp.ga_estreptococo='No se hizo' then 'x' else ' ' end ga_estreptococoNose,
+case when ghp.ga_prepa_parto='Si' then 'x' else ' ' end ga_prepa_partoSi,
+case when ghp.ga_prepa_parto='No' then 'x' else ' ' end ga_prepa_partoNo,
+case when ghp.ga_consej_lactancia='Si' then 'x' else ' ' end ga_consej_lactanciaSi,
+case when ghp.ga_consej_lactancia='No' then 'x' else ' ' end ga_consej_lactanciaNo, 
+case when ghp.ga_sif_prue_notre_res_men='-' then 'x' else ' ' end ga_sif_prue_notre_res_menNeg,
+case when ghp.ga_sif_prue_notre_res_men='+' then 'x' else ' ' end ga_sif_prue_notre_res_menPosi,
+case when ghp.ga_sif_prue_notre_res_men='Sd' then 'x' else ' ' end ga_sif_prue_notre_res_menSD,
+ghp.ga_sif_prue_notre_sem_men, 
+case when ghp.ga_sif_prue_notre_res_may='-' then 'x' else ' ' end ga_sif_prue_notre_res_mayNeg,
+case when ghp.ga_sif_prue_notre_res_may='+' then 'x' else ' ' end ga_sif_prue_notre_res_mayPosi,
+case when ghp.ga_sif_prue_notre_res_may='Sd' then 'x' else ' ' end ga_sif_prue_notre_res_maySD,
+ghp.ga_sif_prue_notre_sem_may, 
+case when ghp.ga_sif_prue_tre_res_men='-' then 'x' else ' ' end ga_sif_prue_tre_res_menNeg,
+case when ghp.ga_sif_prue_tre_res_men='+' then 'x' else ' ' end ga_sif_prue_tre_res_menPosi,
+case when ghp.ga_sif_prue_tre_res_men='Sd' then 'x' else ' ' end ga_sif_prue_tre_res_menSD,
+case when ghp.ga_sif_prue_tre_res_men='Nc' then 'x' else ' ' end ga_sif_prue_tre_res_menNc,
+ghp.ga_sif_prue_tre_sem_men,  
+case when ghp.ga_sif_prue_tre_res_may='-' then 'x' else ' ' end ga_sif_prue_tre_res_mayNeg,
+case when ghp.ga_sif_prue_tre_res_may='+' then 'x' else ' ' end ga_sif_prue_tre_res_mayPosi,
+case when ghp.ga_sif_prue_tre_res_may='Sd' then 'x' else ' ' end ga_sif_prue_tre_res_maySD,
+case when ghp.ga_sif_prue_tre_res_may='Nc' then 'x' else ' ' end ga_sif_prue_tre_res_mayNc,
+ghp.ga_sif_prue_tre_sem_may, 
+case when ghp.ga_sif_trat_menor='No' then 'x' else ' ' end ga_sif_trat_menorNo,
+case when ghp.ga_sif_trat_menor='Si' then 'x' else ' ' end ga_sif_trat_menorSi,
+case when ghp.ga_sif_trat_menor='Sd' then 'x' else ' ' end ga_sif_trat_menorSD,
+case when ghp.ga_sif_trat_menor='Nc' then 'x' else ' ' end ga_sif_trat_menorNc,
+ghp.ga_sif_trat_menor_sem, 
+case when ghp.ga_sif_trat_mayor='No' then 'x' else ' ' end ga_sif_trat_mayorNo,
+case when ghp.ga_sif_trat_mayor='Si' then 'x' else ' ' end ga_sif_trat_mayorSi,
+case when ghp.ga_sif_trat_mayor='Sd' then 'x' else ' ' end ga_sif_trat_mayorSD,
+case when ghp.ga_sif_trat_mayor='Nc' then 'x' else ' ' end ga_sif_trat_mayorNc,
+ghp.ga_sif_trat_mayor_sem, 
+case when ghp.ga_sif_trat_par_menor='No' then 'x' else ' ' end ga_sif_trat_par_menorNo,
+case when ghp.ga_sif_trat_par_menor='Si' then 'x' else ' ' end ga_sif_trat_par_menorSi,
+case when ghp.ga_sif_trat_par_menor='Sd' then 'x' else ' ' end ga_sif_trat_par_menorSD,
+case when ghp.ga_sif_trat_par_menor='Nc' then 'x' else ' ' end ga_sif_trat_par_menorNc,
+case when ghp.ga_sif_trat_par_mayor='No' then 'x' else ' ' end ga_sif_trat_par_mayorNo,
+case when ghp.ga_sif_trat_par_mayor='Si' then 'x' else ' ' end ga_sif_trat_par_mayorSi,
+case when ghp.ga_sif_trat_par_mayor='Sd' then 'x' else ' ' end ga_sif_trat_par_mayorSD,
+case when ghp.ga_sif_trat_par_mayor='Nc' then 'x' else ' ' end ga_sif_trat_par_mayorNc,
+TO_CHAR (ca.ca_fecha:: DATE, 'dd-mm-yyyy') as fecha_cita, ca.ca_edad_ges, ca.ca_peso, ca.ca_pa, ca.ca_altura_uterina, 
+ca.ca_presentacion, ca.ca_fcp, ca.ca_mov_fetales, ca.ca_proteinuria, ca.ca_signos_notas, ca.ca_iniciales_tecnico, 
+TO_CHAR (ca.ca_prox_cita:: DATE, 'dd-mm-yyyy') as fecha_proxima
+from ginecologia_historia_clinica_per as ghp, ginecologia_historia_clinica as gh, paciente as p, consultas_antenatales as ca
+where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.ghcp_id and p.paciente_dni=$P{cedula}
 ]]>
 	</queryString>
-	<field name="paciente_primer_nombre" class="java.lang.String"/>
-	<field name="paciente_apellido_paterno" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apellido" class="java.lang.String"/>
 	<field name="paciente_direccion" class="java.lang.String"/>
 	<field name="paciente_canton" class="java.lang.String"/>
 	<field name="paciente_telefono" class="java.lang.String"/>
+	<field name="paciente_edad" class="java.lang.Integer"/>
+	<field name="paciente_dni" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.lang.String"/>
+	<field name="cuadro_edad" class="java.lang.String"/>
+	<field name="blanca" class="java.lang.String"/>
+	<field name="indigena" class="java.lang.String"/>
+	<field name="mestiza" class="java.lang.String"/>
+	<field name="negra" class="java.lang.String"/>
+	<field name="otra" class="java.lang.String"/>
+	<field name="alfa_betasi" class="java.lang.String"/>
+	<field name="alfa_betano" class="java.lang.String"/>
+	<field name="nivel_estudio_ninguno" class="java.lang.String"/>
+	<field name="nivel_estudio_primaria" class="java.lang.String"/>
+	<field name="nivel_estudio_secundaria" class="java.lang.String"/>
+	<field name="nivel_estudio_universidad" class="java.lang.String"/>
+	<field name="paciente_anios_nivel" class="java.lang.Integer"/>
+	<field name="paciente_estado_civil_casada" class="java.lang.String"/>
+	<field name="paciente_estado_civil_union" class="java.lang.String"/>
+	<field name="paciente_estado_civil_soltera" class="java.lang.String"/>
+	<field name="paciente_estado_otro" class="java.lang.String"/>
+	<field name="per_vive_solasi" class="java.lang.String"/>
+	<field name="per_vive_solano" class="java.lang.String"/>
+	<field name="af_tbcsi" class="java.lang.String"/>
+	<field name="af_tbcno" class="java.lang.String"/>
+	<field name="af_diabetessi" class="java.lang.String"/>
+	<field name="af_diabetesno" class="java.lang.String"/>
+	<field name="af_hipertensionsi" class="java.lang.String"/>
+	<field name="af_hipertensionno" class="java.lang.String"/>
+	<field name="af_preeclampsiasi" class="java.lang.String"/>
+	<field name="af_preeclampsiano" class="java.lang.String"/>
+	<field name="af_eclampsiasi" class="java.lang.String"/>
+	<field name="af_eclampsiano" class="java.lang.String"/>
+	<field name="af_ocmgsi" class="java.lang.String"/>
+	<field name="af_ocmgno" class="java.lang.String"/>
+	<field name="ap_tbcsi" class="java.lang.String"/>
+	<field name="ap_tbcno" class="java.lang.String"/>
+	<field name="ap_diabetesi" class="java.lang.String"/>
+	<field name="ap_diabetesii" class="java.lang.String"/>
+	<field name="ap_diabetesg" class="java.lang.String"/>
+	<field name="ap_diabetesno" class="java.lang.String"/>
+	<field name="ap_hipertensionsi" class="java.lang.String"/>
+	<field name="ap_hipertensionno" class="java.lang.String"/>
+	<field name="ap_preeclampsiasi" class="java.lang.String"/>
+	<field name="ap_preeclampsiano" class="java.lang.String"/>
+	<field name="ap_eclampsiasi" class="java.lang.String"/>
+	<field name="ap_eclampsiano" class="java.lang.String"/>
+	<field name="ap_ocmgsi" class="java.lang.String"/>
+	<field name="ap_ocmgno" class="java.lang.String"/>
+	<field name="ap_ocmg_desc" class="java.lang.String"/>
+	<field name="ap_cirugia_gusi" class="java.lang.String"/>
+	<field name="ap_cirugia_guno" class="java.lang.String"/>
+	<field name="ap_infertilidadsi" class="java.lang.String"/>
+	<field name="ap_infertilidadno" class="java.lang.String"/>
+	<field name="ap_cardiopatsi" class="java.lang.String"/>
+	<field name="ap_cardiopatno" class="java.lang.String"/>
+	<field name="ap_nefropatiasi" class="java.lang.String"/>
+	<field name="ap_nefropatiano" class="java.lang.String"/>
+	<field name="ap_violenciasi" class="java.lang.String"/>
+	<field name="ap_violenciano" class="java.lang.String"/>
+	<field name="ao_up_ncnc" class="java.lang.String"/>
+	<field name="ao_up_nc2500" class="java.lang.String"/>
+	<field name="ao_up_normalnormal" class="java.lang.String"/>
+	<field name="ao_up_normal4000g" class="java.lang.String"/>
+	<field name="ao_ant_gemsi" class="java.lang.String"/>
+	<field name="ao_ant_gemno" class="java.lang.String"/>
+	<field name="ao_gestas_previas" class="java.lang.Integer"/>
+	<field name="ao_emb_ectopico" class="java.lang.Integer"/>
+	<field name="ao_abortos" class="java.lang.Integer"/>
+	<field name="ao_abortos_conssi" class="java.lang.String"/>
+	<field name="ao_partos" class="java.lang.Integer"/>
+	<field name="ao_partos_vag" class="java.lang.Integer"/>
+	<field name="ao_partos_ces" class="java.lang.Integer"/>
+	<field name="ao_nac_vivos" class="java.lang.Integer"/>
+	<field name="ao_nac_muertos" class="java.lang.Integer"/>
+	<field name="ao_viven" class="java.lang.Integer"/>
+	<field name="ao_nac_muer_ant" class="java.lang.Integer"/>
+	<field name="ao_nac_muer_des" class="java.lang.Integer"/>
+	<field name="fecha_fin_emb" class="java.lang.String"/>
+	<field name="menosde1" class="java.lang.String"/>
+	<field name="ao_emb_planeadosi" class="java.lang.String"/>
+	<field name="ao_emb_planeadono" class="java.lang.String"/>
+	<field name="ao_fmano" class="java.lang.String"/>
+	<field name="ao_fmabarrera" class="java.lang.String"/>
+	<field name="ao_fmadiu" class="java.lang.String"/>
+	<field name="ao_fmahormonal" class="java.lang.String"/>
+	<field name="ao_fmaemergencia" class="java.lang.String"/>
+	<field name="ao_fmanatural" class="java.lang.String"/>
+	<field name="ga_peso" class="java.math.BigDecimal"/>
+	<field name="ga_talla" class="java.lang.Integer"/>
+	<field name="fecha_fum" class="java.lang.String"/>
+	<field name="fecha_fpp" class="java.lang.String"/>
+	<field name="ga_egconf_fumsi" class="java.lang.String"/>
+	<field name="ga_egconf_fumno" class="java.lang.String"/>
+	<field name="ga_egconf_ecosi" class="java.lang.String"/>
+	<field name="ga_egconf_econo" class="java.lang.String"/>
+	<field name="ga_fuma_act_unosi" class="java.lang.String"/>
+	<field name="ga_fuma_act_unono" class="java.lang.String"/>
+	<field name="ga_fuma_pas_unosi" class="java.lang.String"/>
+	<field name="ga_fuma_pas_unono" class="java.lang.String"/>
+	<field name="ga_drogas_unosi" class="java.lang.String"/>
+	<field name="ga_drogas_unono" class="java.lang.String"/>
+	<field name="ga_alcohol_unosi" class="java.lang.String"/>
+	<field name="ga_alcohol_unono" class="java.lang.String"/>
+	<field name="ga_violencia_unosi" class="java.lang.String"/>
+	<field name="ga_violencia_unono" class="java.lang.String"/>
+	<field name="ga_fuma_act_dossi" class="java.lang.String"/>
+	<field name="ga_fuma_act_dosno" class="java.lang.String"/>
+	<field name="ga_fuma_pas_dossi" class="java.lang.String"/>
+	<field name="ga_fuma_pas_dosno" class="java.lang.String"/>
+	<field name="ga_drogas_dossi" class="java.lang.String"/>
+	<field name="ga_drogas_dosno" class="java.lang.String"/>
+	<field name="ga_alcohol_dossi" class="java.lang.String"/>
+	<field name="ga_alcohol_dosno" class="java.lang.String"/>
+	<field name="ga_violencia_dossi" class="java.lang.String"/>
+	<field name="ga_violencia_dosno" class="java.lang.String"/>
+	<field name="ga_fuma_act_tressi" class="java.lang.String"/>
+	<field name="ga_fuma_act_tresno" class="java.lang.String"/>
+	<field name="ga_fuma_pas_tressi" class="java.lang.String"/>
+	<field name="ga_fuma_pas_tresno" class="java.lang.String"/>
+	<field name="ga_drogas_tressi" class="java.lang.String"/>
+	<field name="ga_drogas_tresno" class="java.lang.String"/>
+	<field name="ga_alcohol_tressi" class="java.lang.String"/>
+	<field name="ga_alcohol_tresno" class="java.lang.String"/>
+	<field name="ga_violencia_tressi" class="java.lang.String"/>
+	<field name="ga_violencia_tresno" class="java.lang.String"/>
+	<field name="ga_antirubeolaprevia" class="java.lang.String"/>
+	<field name="ga_antirubeolanosabe" class="java.lang.String"/>
+	<field name="ga_antirubeolaembarazo" class="java.lang.String"/>
+	<field name="ga_antirubeolano" class="java.lang.String"/>
+	<field name="ga_antitetsi" class="java.lang.String"/>
+	<field name="ga_antitetno" class="java.lang.String"/>
+	<field name="ga_antitet_dosis_uno" class="java.lang.Integer"/>
+	<field name="ga_antitet_dosis_dos" class="java.lang.Integer"/>
+	<field name="ga_exnormal_odontsi" class="java.lang.String"/>
+	<field name="ga_exnormal_odontno" class="java.lang.String"/>
+	<field name="ga_exnormal_mamassi" class="java.lang.String"/>
+	<field name="ga_exnormal_mamasno" class="java.lang.String"/>
+	<field name="ga_cervix_inspnormal" class="java.lang.String"/>
+	<field name="ga_cervix_inspanormal" class="java.lang.String"/>
+	<field name="ga_cervix_inspnoseh" class="java.lang.String"/>
+	<field name="ga_cervix_papnormal" class="java.lang.String"/>
+	<field name="ga_cervix_papanormal" class="java.lang.String"/>
+	<field name="ga_cervix_papnoseh" class="java.lang.String"/>
+	<field name="ga_cervix_colpnormal" class="java.lang.String"/>
+	<field name="ga_cervix_colpanormal" class="java.lang.String"/>
+	<field name="ga_cervix_colpnoseh" class="java.lang.String"/>
+	<field name="ga_san_grupo" class="java.lang.String"/>
+	<field name="ga_san_rhpo" class="java.lang.String"/>
+	<field name="ga_san_rhne" class="java.lang.String"/>
+	<field name="ga_san_inmunizsi" class="java.lang.String"/>
+	<field name="ga_san_inmunizno" class="java.lang.String"/>
+	<field name="ga_san_globulinasi" class="java.lang.String"/>
+	<field name="ga_san_globulinano" class="java.lang.String"/>
+	<field name="ga_san_globulinanc" class="java.lang.String"/>
+	<field name="ga_toxo_menorneg" class="java.lang.String"/>
+	<field name="ga_toxo_menorpos" class="java.lang.String"/>
+	<field name="ga_toxo_menornos" class="java.lang.String"/>
+	<field name="ga_toxo_mayorneg" class="java.lang.String"/>
+	<field name="ga_toxo_mayorpos" class="java.lang.String"/>
+	<field name="ga_toxo_mayornos" class="java.lang.String"/>
+	<field name="ga_toxo_prim_consneg" class="java.lang.String"/>
+	<field name="ga_toxo_prim_conspos" class="java.lang.String"/>
+	<field name="ga_toxo_prim_consnos" class="java.lang.String"/>
+	<field name="ga_chagasneg" class="java.lang.String"/>
+	<field name="ga_chagaspos" class="java.lang.String"/>
+	<field name="ga_chagasnos" class="java.lang.String"/>
+	<field name="ga_pal_malneg" class="java.lang.String"/>
+	<field name="ga_pal_malpos" class="java.lang.String"/>
+	<field name="ga_pal_malnos" class="java.lang.String"/>
+	<field name="ga_bac_menornormal" class="java.lang.String"/>
+	<field name="ga_bac_menoranormal" class="java.lang.String"/>
+	<field name="ga_bac_menornoseh" class="java.lang.String"/>
+	<field name="ga_bac_mayornormal" class="java.lang.String"/>
+	<field name="ga_bac_mayoranormal" class="java.lang.String"/>
+	<field name="ga_bac_mayornoseh" class="java.lang.String"/>
+	<field name="ga_glu_menor20" class="java.lang.Integer"/>
+	<field name="ga_glu_menor20_105si" class="java.lang.String"/>
+	<field name="ga_glu_mayor30" class="java.lang.Integer"/>
+	<field name="ga_glu_mayor30_105si" class="java.lang.String"/>
+	<field name="ga_vih_sol_menor20si" class="java.lang.String"/>
+	<field name="ga_vih_sol_menor20no" class="java.lang.String"/>
+	<field name="ga_vih_rea_menor20si" class="java.lang.String"/>
+	<field name="ga_vih_rea_menor20no" class="java.lang.String"/>
+	<field name="ga_vih_sol_mayor20si" class="java.lang.String"/>
+	<field name="ga_vih_sol_mayor20no" class="java.lang.String"/>
+	<field name="ga_vih_rea_mayor20si" class="java.lang.String"/>
+	<field name="ga_vih_rea_mayor20no" class="java.lang.String"/>
+	<field name="ga_hb_menor_20" class="java.math.BigDecimal"/>
+	<field name="ga_hb_menor_bajosi" class="java.lang.String"/>
+	<field name="ga_fesi" class="java.lang.String"/>
+	<field name="ga_feno" class="java.lang.String"/>
+	<field name="ga_folatossi" class="java.lang.String"/>
+	<field name="ga_folatosno" class="java.lang.String"/>
+	<field name="ga_hb_mayor_20" class="java.math.BigDecimal"/>
+	<field name="ga_hb_mayor_bajosi" class="java.lang.String"/>
+	<field name="ga_hb_mayor_bajono" class="java.lang.String"/>
+	<field name="ga_estreptococoneg" class="java.lang.String"/>
+	<field name="ga_estreptococoposi" class="java.lang.String"/>
+	<field name="ga_estreptococonose" class="java.lang.String"/>
+	<field name="ga_prepa_partosi" class="java.lang.String"/>
+	<field name="ga_prepa_partono" class="java.lang.String"/>
+	<field name="ga_consej_lactanciasi" class="java.lang.String"/>
+	<field name="ga_consej_lactanciano" class="java.lang.String"/>
+	<field name="ga_sif_prue_notre_res_menneg" class="java.lang.String"/>
+	<field name="ga_sif_prue_notre_res_menposi" class="java.lang.String"/>
+	<field name="ga_sif_prue_notre_res_mensd" class="java.lang.String"/>
+	<field name="ga_sif_prue_notre_sem_men" class="java.lang.Integer"/>
+	<field name="ga_sif_prue_notre_res_mayneg" class="java.lang.String"/>
+	<field name="ga_sif_prue_notre_res_mayposi" class="java.lang.String"/>
+	<field name="ga_sif_prue_notre_res_maysd" class="java.lang.String"/>
+	<field name="ga_sif_prue_notre_sem_may" class="java.lang.Integer"/>
+	<field name="ga_sif_prue_tre_res_menneg" class="java.lang.String"/>
+	<field name="ga_sif_prue_tre_res_menposi" class="java.lang.String"/>
+	<field name="ga_sif_prue_tre_res_mensd" class="java.lang.String"/>
+	<field name="ga_sif_prue_tre_res_mennc" class="java.lang.String"/>
+	<field name="ga_sif_prue_tre_sem_men" class="java.lang.Integer"/>
+	<field name="ga_sif_prue_tre_res_mayneg" class="java.lang.String"/>
+	<field name="ga_sif_prue_tre_res_mayposi" class="java.lang.String"/>
+	<field name="ga_sif_prue_tre_res_maysd" class="java.lang.String"/>
+	<field name="ga_sif_prue_tre_res_maync" class="java.lang.String"/>
+	<field name="ga_sif_prue_tre_sem_may" class="java.lang.Integer"/>
+	<field name="ga_sif_trat_menorno" class="java.lang.String"/>
+	<field name="ga_sif_trat_menorsi" class="java.lang.String"/>
+	<field name="ga_sif_trat_menorsd" class="java.lang.String"/>
+	<field name="ga_sif_trat_menornc" class="java.lang.String"/>
+	<field name="ga_sif_trat_menor_sem" class="java.lang.Integer"/>
+	<field name="ga_sif_trat_mayorno" class="java.lang.String"/>
+	<field name="ga_sif_trat_mayorsi" class="java.lang.String"/>
+	<field name="ga_sif_trat_mayorsd" class="java.lang.String"/>
+	<field name="ga_sif_trat_mayornc" class="java.lang.String"/>
+	<field name="ga_sif_trat_mayor_sem" class="java.lang.Integer"/>
+	<field name="ga_sif_trat_par_menorno" class="java.lang.String"/>
+	<field name="ga_sif_trat_par_menorsi" class="java.lang.String"/>
+	<field name="ga_sif_trat_par_menorsd" class="java.lang.String"/>
+	<field name="ga_sif_trat_par_menornc" class="java.lang.String"/>
+	<field name="ga_sif_trat_par_mayorno" class="java.lang.String"/>
+	<field name="ga_sif_trat_par_mayorsi" class="java.lang.String"/>
+	<field name="ga_sif_trat_par_mayorsd" class="java.lang.String"/>
+	<field name="ga_sif_trat_par_mayornc" class="java.lang.String"/>
+	<field name="fecha_cita" class="java.lang.String"/>
+	<field name="ca_edad_ges" class="java.lang.Integer"/>
+	<field name="ca_peso" class="java.math.BigDecimal"/>
+	<field name="ca_pa" class="java.lang.Integer"/>
+	<field name="ca_altura_uterina" class="java.lang.String"/>
+	<field name="ca_presentacion" class="java.lang.String"/>
+	<field name="ca_fcp" class="java.lang.String"/>
+	<field name="ca_mov_fetales" class="java.lang.String"/>
+	<field name="ca_proteinuria" class="java.lang.String"/>
+	<field name="ca_signos_notas" class="java.lang.String"/>
+	<field name="ca_iniciales_tecnico" class="java.lang.String"/>
+	<field name="fecha_proxima" class="java.lang.String"/>
 	<pageHeader>
-		<band height="802" splitType="Stretch">
+		<band height="277" splitType="Stretch">
 			<rectangle>
-				<reportElement x="19" y="13" width="531" height="743" uuid="f1553110-c7c1-4df0-a6ca-5f0dffe7b523"/>
+				<reportElement x="19" y="13" width="531" height="262" uuid="f1553110-c7c1-4df0-a6ca-5f0dffe7b523"/>
 			</rectangle>
 			<rectangle>
 				<reportElement x="19" y="13" width="215" height="60" uuid="549e3655-f654-4aa7-bcc6-7d386ca14d2a"/>
@@ -73,35 +561,35 @@
 			<textField>
 				<reportElement x="50" y="28" width="71" height="10" uuid="4ee17637-1ad6-44d8-aa15-593064e850c1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{paciente_primer_nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="158" y="28" width="71" height="10" uuid="207078fa-7eda-408f-a6ed-8ac8aa1e7fc8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{paciente_apellido_paterno}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="55" y="44" width="174" height="10" uuid="6f77374a-b62c-449c-8688-c629f70bd971"/>
 				<textElement verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{paciente_direccion}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="54" y="61" width="71" height="10" uuid="1ca3fe62-3943-4c75-b3dd-f9a4aa1a35b1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{paciente_canton}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="155" y="60" width="71" height="10" uuid="342fbd4e-97e6-4db4-a466-2db1e2f6839f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{paciente_telefono}]]></textFieldExpression>
 			</textField>
@@ -128,9 +616,9 @@
 			<textField>
 				<reportElement x="234" y="33" width="67" height="10" uuid="4dbd5e1f-3ef5-4507-9144-8e109a7516b0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="232" y="44" width="41" height="8" uuid="aee2e2fb-6a63-4197-b16e-0cdeffbf8c8c"/>
@@ -145,9 +633,9 @@
 			<textField>
 				<reportElement x="242" y="54" width="19" height="16" uuid="1f21cec9-44f2-4d12-9c36-a3058ffca5a2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{paciente_edad}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="301" y="13" width="29" height="60" uuid="4bad2813-0fa7-4f37-8b83-2bbf7c4cc715"/>
@@ -167,7 +655,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cuadro_edad}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="301" y="13" width="29" height="8" uuid="72a7b07b-cdcb-421d-855b-25370733d2c9"/>
@@ -184,7 +672,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{blanca}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="303" y="31" width="9" height="9" backcolor="#FFFFFF" uuid="34cda820-cfca-4485-b6eb-c224bc27d3dd"/>
@@ -194,7 +682,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{indigena}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="303" y="41" width="9" height="9" backcolor="#FFFFFF" uuid="b17a132a-7694-4a4b-a1ae-2bf966ee2bd7"/>
@@ -204,7 +692,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{mestiza}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="303" y="51" width="9" height="9" backcolor="#FFFFFF" uuid="933133fc-7079-4fab-bd75-15df6cf1cad7"/>
@@ -214,7 +702,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{negra}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="303" y="61" width="9" height="9" backcolor="#FFFFFF" uuid="1e136bff-c0de-4198-b534-3bec0e6c2118"/>
@@ -224,7 +712,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{otra}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="313" y="21" width="17" height="8" uuid="89f587dd-ce03-41b8-8a50-27a9195f984a"/>
@@ -293,17 +781,17 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{alfa_betano}]]></textFieldExpression>
 			</textField>
 			<ellipse>
-				<reportElement x="334" y="59" width="9" height="9" backcolor="#FFFF00" uuid="699690fb-f77e-4f7a-8d77-b6a35617bdbf"/>
+				<reportElement x="334" y="59" width="9" height="9" backcolor="#FFFFFF" uuid="699690fb-f77e-4f7a-8d77-b6a35617bdbf"/>
 			</ellipse>
 			<textField>
 				<reportElement x="334" y="59" width="9" height="9" uuid="ae56ab08-1827-4738-bb1b-4893398cf95c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{alfa_betasi}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="348" y="13" width="41" height="60" uuid="8a95fd5f-3123-4379-a07a-6c3b40a81194"/>
@@ -323,7 +811,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nivel_estudio_ninguno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="374" y="22" width="9" height="9" backcolor="#FFFF00" uuid="6d274826-9f6e-4e51-bd8a-029412ca772b"/>
@@ -333,7 +821,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nivel_estudio_primaria}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="349" y="30" width="18" height="8" uuid="43ebf676-51ab-4453-863d-84c200937eb7"/>
@@ -357,7 +845,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nivel_estudio_secundaria}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="374" y="39" width="9" height="9" backcolor="#FFFF00" uuid="887f527e-34f5-4513-bd2e-113d2ac37543"/>
@@ -367,7 +855,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nivel_estudio_universidad}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="349" y="47" width="18" height="8" uuid="e4e7756d-1ff6-44dc-85f2-f4e9b2b5a0fe"/>
@@ -398,7 +886,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{paciente_anios_nivel}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="389" y="13" width="46" height="60" uuid="bb67672e-c535-49e8-91c5-fdf6ab56e0f6"/>
@@ -418,7 +906,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{paciente_estado_civil_casada}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="424" y="25" width="9" height="9" backcolor="#FFFFFF" uuid="5e60ff8f-2e77-409f-b14e-8643525e3a55"/>
@@ -428,7 +916,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{paciente_estado_civil_union}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="424" y="35" width="9" height="9" backcolor="#FFFFFF" uuid="77bb99dc-27d0-46e2-9212-7ce3c8ae3cd2"/>
@@ -438,7 +926,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{paciente_estado_civil_soltera}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="424" y="45" width="9" height="9" backcolor="#FFFFFF" uuid="ec5b3c62-e49f-4b90-93b9-451ed594e2c5"/>
@@ -448,7 +936,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{paciente_estado_otro}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="404" y="16" width="18" height="8" uuid="369a1909-a741-437c-ab12-ea9599cf68d9"/>
@@ -500,7 +988,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{per_vive_solasi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="407" y="60" width="9" height="9" backcolor="#FFFFFF" uuid="1caf99f8-9e36-4a3c-9c76-4af66a1dae4c"/>
@@ -510,7 +998,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{per_vive_solano}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="417" y="61" width="8" height="8" uuid="f0b3e44b-9f50-4197-955a-88651fc87e63"/>
@@ -585,9 +1073,9 @@
 			<textField>
 				<reportElement x="467" y="58" width="83" height="10" uuid="88eeab1a-286a-4d95-baeb-4f26b864f1ac"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{paciente_dni}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="19" y="73" width="531" height="73" uuid="43ed9c28-e38b-49b3-9954-3768fcb5f546"/>
@@ -607,7 +1095,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_tbcno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="35" y="109" width="8" height="8" backcolor="#FFFFFF" uuid="a170be58-df63-4a48-a98e-6afae22b6a53"/>
@@ -617,7 +1105,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_hipertensionno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="35" y="118" width="8" height="8" backcolor="#FFFFFF" uuid="3df3dbe2-dcbf-4273-b4e9-d77f5df7e7bc"/>
@@ -627,7 +1115,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_preeclampsiano}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="35" y="127" width="8" height="8" backcolor="#FFFFFF" uuid="e7474367-0aff-46a9-b689-3df8f4dc278b"/>
@@ -637,7 +1125,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_eclampsiano}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="35" y="136" width="8" height="8" backcolor="#FFFFFF" uuid="15a74190-8f92-4982-9b2b-493693b67152"/>
@@ -647,7 +1135,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_ocmgno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="46" y="100" width="8" height="8" backcolor="#FFFF00" uuid="e38a1c97-8dc2-4e1b-8f70-1c610fd204f4"/>
@@ -657,7 +1145,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_diabetessi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="46" y="109" width="8" height="8" backcolor="#FFFF00" uuid="0c12bc30-9374-48d9-8761-0af8cce6ac04"/>
@@ -667,7 +1155,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_hipertensionsi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="46" y="118" width="8" height="8" backcolor="#FFFF00" uuid="af2ef406-7687-4a5a-8193-a459982f66e2"/>
@@ -677,7 +1165,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_preeclampsiasi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="46" y="127" width="8" height="8" backcolor="#FFFF00" uuid="1a986d72-6b91-4aa9-9509-f2a4b3620278"/>
@@ -687,7 +1175,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_eclampsiasi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="46" y="136" width="8" height="8" backcolor="#FFFF00" uuid="89380bf8-d3e0-4e0d-9ba6-49364aa64699"/>
@@ -697,7 +1185,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_ocmgsi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="35" y="91" width="8" height="8" backcolor="#FFFFFF" uuid="c4a85b5b-2dbf-4ad2-9807-24d5bf6fe86a"/>
@@ -707,7 +1195,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_tbcno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="46" y="91" width="8" height="8" backcolor="#FFFF00" uuid="deb34384-60b2-483e-938e-55838240cbe5"/>
@@ -717,7 +1205,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_tbcsi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="35" y="83" width="8" height="8" uuid="b8a77144-41c5-4c00-8847-0298e0c6f679"/>
@@ -804,7 +1292,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_diabetesno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="90" y="109" width="8" height="8" backcolor="#FFFFFF" uuid="a844c75a-161c-4f45-b193-e476d59ba362"/>
@@ -814,7 +1302,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_hipertensionno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="90" y="118" width="8" height="8" backcolor="#FFFFFF" uuid="6abec613-a186-40c2-b025-a8c18f5b42ab"/>
@@ -824,7 +1312,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_preeclampsiano}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="90" y="127" width="8" height="8" backcolor="#FFFFFF" uuid="8e941a02-bd82-4772-8442-7794f5034d42"/>
@@ -834,7 +1322,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_eclampsiano}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="90" y="136" width="8" height="8" backcolor="#FFFFFF" uuid="bf62fdca-b8e9-4144-8f8b-aa971fd614eb"/>
@@ -844,7 +1332,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_ocmgno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="101" y="100" width="8" height="8" backcolor="#FFFF00" uuid="c70409ba-d61b-4a7e-bfb4-5e79adf86229"/>
@@ -854,7 +1342,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_diabetesi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="101" y="109" width="8" height="8" backcolor="#FFFF00" uuid="ccf4ddba-1009-4195-a0b8-136e5a3b9692"/>
@@ -864,7 +1352,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_hipertensionsi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="101" y="118" width="8" height="8" backcolor="#FFFF00" uuid="167de602-312d-426d-85d9-adffc8d4b06d"/>
@@ -874,7 +1362,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_preeclampsiasi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="101" y="127" width="8" height="8" backcolor="#FFFF00" uuid="cf54d076-20f8-40f2-b51f-a4a77de20073"/>
@@ -884,7 +1372,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_eclampsiasi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="101" y="136" width="8" height="8" backcolor="#FFFF00" uuid="8975b486-189f-4335-bff4-f478303df00e"/>
@@ -894,7 +1382,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_ocmgsi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="90" y="91" width="8" height="8" backcolor="#FFFFFF" uuid="52bd55db-8a42-4eb9-89ae-a6e4b8145db4"/>
@@ -904,7 +1392,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_tbcno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="101" y="91" width="8" height="8" backcolor="#FFFF00" uuid="8fb4f6f6-5380-4c4e-9afc-924e29af7c89"/>
@@ -914,7 +1402,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_tbcsi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="90" y="83" width="8" height="8" uuid="0407aa72-040b-4305-a9d5-7991d3d85649"/>
@@ -952,7 +1440,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_diabetesii}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="121" y="100" width="8" height="8" backcolor="#FFFF00" uuid="89b67eb6-6b9a-40e7-bbb3-c77199a53255"/>
@@ -962,7 +1450,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_diabetesg}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="121" y="93" width="8" height="8" uuid="24527070-c20b-45c0-9638-7fca6b363271"/>
@@ -1002,7 +1490,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_infertilidadno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="157" y="101" width="8" height="8" backcolor="#FFFFFF" uuid="2e23a3e2-de55-487f-9ed7-d48f62ec3f3d"/>
@@ -1012,7 +1500,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_cardiopatno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="157" y="110" width="8" height="8" backcolor="#FFFFFF" uuid="6fb80bad-033d-4aab-b839-c18fe11956e3"/>
@@ -1022,7 +1510,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_nefropatiano}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="157" y="119" width="8" height="8" backcolor="#FFFFFF" uuid="d4a9d565-585c-49d5-a972-68253abb8615"/>
@@ -1032,7 +1520,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_violenciano}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="168" y="92" width="8" height="8" backcolor="#FFFF00" uuid="55f39958-88a4-47e6-93cc-5915381071ee"/>
@@ -1042,7 +1530,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_infertilidadsi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="168" y="101" width="8" height="8" backcolor="#FFFF00" uuid="8d58a2d3-f775-417f-97c6-79cb80b67a30"/>
@@ -1052,6 +1540,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ap_cardiopatsi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="168" y="110" width="8" height="8" backcolor="#FFFF00" uuid="89ea9877-a4ae-400c-ae23-848cac3103e3"/>
@@ -1061,7 +1550,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_nefropatiasi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="168" y="119" width="8" height="8" backcolor="#FFFF00" uuid="db5d3d7e-26e7-4cf3-8938-542ac44ac05c"/>
@@ -1071,7 +1560,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_violenciasi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="157" y="83" width="8" height="8" backcolor="#FFFFFF" uuid="363c32b0-0ce5-43cd-ae8a-8e3e9c7f7ae4"/>
@@ -1081,7 +1570,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_cirugia_guno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="168" y="83" width="8" height="8" backcolor="#FFFF00" uuid="cfe3e517-d0e7-4066-baf4-7be1839b1032"/>
@@ -1091,7 +1580,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_cirugia_gusi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="157" y="75" width="8" height="8" uuid="39d7077d-faa3-42a8-a97e-00aa755cf884"/>
@@ -1170,7 +1659,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_ant_gemno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="227" y="132" width="8" height="8" backcolor="#FFFF00" uuid="8a050ae5-95ef-427d-811e-34a85185e93e"/>
@@ -1180,7 +1669,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_ant_gemsi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="186" y="128" width="27" height="13" uuid="6a33028a-2b83-44f3-8780-24ea0e394d2a"/>
@@ -1214,7 +1703,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_up_nc2500}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="227" y="109" width="8" height="8" backcolor="#FFFF00" uuid="e045ee38-b185-4d22-ad3c-a4e7dbecdc7a"/>
@@ -1224,7 +1713,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_up_normal4000g}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="201" y="99" width="8" height="8" backcolor="#FFFFFF" uuid="1e591234-95b0-4991-b608-b88e376dd15c"/>
@@ -1234,7 +1723,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_up_ncnc}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="201" y="109" width="8" height="8" backcolor="#FFFFFF" uuid="0ecea7fd-16e3-482e-8b9a-34a27a84c4db"/>
@@ -1244,7 +1733,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_up_normalnormal}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="212" y="99" width="15" height="8" uuid="9ae3075d-d616-4bc4-853b-f5eea14e4dd7"/>
@@ -1296,7 +1785,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_gestas_previas}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="257" y="101" width="8" height="15" uuid="4ca68b59-8ad9-46bf-a583-4fde97a894ee"/>
@@ -1306,7 +1795,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_emb_ectopico}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="241" y="116" width="40" height="8" uuid="03b7d0d5-70d0-42bd-aafe-69fb59df6dd1"/>
@@ -1330,7 +1819,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_abortos}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="317" y="75" width="26" height="8" uuid="e1488b8f-4ebf-4765-b93f-18617a09552b"/>
@@ -1347,7 +1836,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_partos_vag}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="348" y="74" width="38" height="8" uuid="0994386d-3069-4d27-88eb-d7a741b1135b"/>
@@ -1364,7 +1853,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_nac_vivos}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="300" y="102" width="8" height="8" backcolor="#FFFF00" uuid="21be68f2-be13-4287-bc18-1ffe723c7197"/>
@@ -1374,7 +1863,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_abortos_conssi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="272" y="101" width="28" height="12" uuid="745ad97c-e0c9-4409-9c57-716298fa162b"/>
@@ -1398,7 +1887,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_partos}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="244" y="136" width="46" height="1" uuid="fff35650-ba68-493e-907f-0a541c08b238"/>
@@ -1426,7 +1915,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_partos_ces}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="317" y="121" width="26" height="8" uuid="65bfcdb5-a65c-4563-a056-66258d6613c9"/>
@@ -1455,6 +1944,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ao_nac_muertos}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="353" y="116" width="26" height="13" uuid="0e91df9d-8adb-4a6c-b7c8-95afac4ee040"/>
@@ -1484,7 +1974,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_viven}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="415" y="104" width="8" height="15" uuid="e59ed0c1-45a8-47a4-9458-6833a90875f7"/>
@@ -1494,6 +1984,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ao_nac_muer_ant}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="415" y="127" width="8" height="15" uuid="aa12bb35-b617-4d5d-8a2c-848a76e410ce"/>
@@ -1503,6 +1994,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ao_nac_muer_des}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="390" y="128" width="26" height="13" uuid="f702197a-3d39-45f0-b5be-a362747b3b6b"/>
@@ -1545,7 +2037,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_emb_planeadosi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="516" y="104" width="8" height="8" backcolor="#FFFF00" uuid="af6e195e-006c-4c37-a16b-d260a530f6e2"/>
@@ -1555,7 +2047,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_emb_planeadono}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="528" y="105" width="8" height="8" uuid="3ceee4af-d837-4270-94df-bf1659445a5e"/>
@@ -1586,7 +2078,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_fmano}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="459" y="124" width="8" height="8" backcolor="#FFFF00" uuid="a9de0e71-dc83-4d9f-9239-d7922365abb3"/>
@@ -1596,7 +2088,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_fmabarrera}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="478" y="124" width="8" height="8" backcolor="#FFFF00" uuid="7ed3cbe8-87e9-4116-975d-62b928047e6a"/>
@@ -1606,7 +2098,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_fmadiu}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="498" y="124" width="8" height="8" backcolor="#FFFF00" uuid="a53fb630-fa32-448f-a459-e72416ae0c63"/>
@@ -1616,7 +2108,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_fmahormonal}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="516" y="124" width="8" height="8" backcolor="#FFFF00" uuid="bf1e2e96-0336-4665-b047-ad87aaaaa553"/>
@@ -1626,7 +2118,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_fmaemergencia}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="533" y="124" width="8" height="8" backcolor="#FFFF00" uuid="e4d70ad1-428c-451f-93ce-3cc6d1038797"/>
@@ -1636,7 +2128,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_fmanatural}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="437" y="131" width="17" height="13" uuid="bdfe11b5-f664-487a-a4ab-651cbb7d9eb6"/>
@@ -1700,9 +2192,9 @@
 			<textField>
 				<reportElement x="444" y="92" width="65" height="10" uuid="5d3645c7-cfdd-491f-8a91-44d378de5d25"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha_fin_emb}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="533" y="84" width="8" height="8" backcolor="#FFFF00" uuid="c6470134-3788-44b6-b156-abe5a2a6e3ee"/>
@@ -1712,7 +2204,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{menosde1}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="515" y="91" width="33" height="8" uuid="ef24ff32-36e4-4be8-87b8-3df58e1d1c01"/>
@@ -1760,9 +2252,9 @@
 			<textField>
 				<reportElement x="25" y="168" width="18" height="17" uuid="273b5920-529d-4bc7-8df5-5ab024afcb6e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
+					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_peso}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="64" y="168" width="22" height="17" uuid="5cd33a58-2c7e-48ae-b7cf-92e1837c8ae6"/>
@@ -1777,9 +2269,9 @@
 			<textField>
 				<reportElement x="66" y="168" width="18" height="17" uuid="c8fc748b-aa50-4822-98cf-6b02deb036d5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
+					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_talla}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="93" y="145" width="75" height="42" uuid="e2068954-8b45-4889-a33f-8d1420465f6b"/>
@@ -1797,9 +2289,9 @@
 			<textField>
 				<reportElement x="101" y="155" width="65" height="10" uuid="aab0e720-9dc9-464f-8651-1a39d5d60c8e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha_fum}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="101" y="167" width="65" height="18" uuid="f40e7dac-be73-4cc9-8269-7400e665e5b8"/>
@@ -1814,9 +2306,9 @@
 			<textField>
 				<reportElement x="101" y="175" width="65" height="10" uuid="634e625c-bbb3-4704-aa7d-48df2d95702e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha_fpp}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="92" y="168" width="10" height="15" uuid="cafe936f-f25e-4d76-a0b5-c71b65e049d7"/>
@@ -1850,7 +2342,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_egconf_fumno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="199" y="162" width="8" height="8" backcolor="#FFFF00" uuid="800992b9-53f5-47e4-acf4-f5a0493e224e"/>
@@ -1860,7 +2352,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_egconf_econo}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="179" y="175" width="8" height="8" backcolor="#FFFFFF" uuid="64983064-2860-46eb-acd5-42cd6cb83b25"/>
@@ -1870,7 +2362,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_egconf_fumsi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="199" y="175" width="8" height="8" backcolor="#FFFFFF" uuid="8deb2b17-bba8-459c-9a04-28e903e6c9d8"/>
@@ -1880,7 +2372,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_egconf_ecosi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="171" y="162" width="8" height="8" uuid="894a94d1-aa0e-4bde-961f-960d5030d9c8"/>
@@ -1977,7 +2469,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fuma_act_unono}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="242" y="168" width="8" height="8" backcolor="#FFFFFF" uuid="3d6b6111-d4f0-4ab0-83d9-4acd40b63953"/>
@@ -1987,7 +2479,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fuma_act_dosno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="242" y="177" width="8" height="8" backcolor="#FFFFFF" uuid="d136697a-6f05-4072-9266-e4339f0ad36f"/>
@@ -1997,7 +2489,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fuma_act_tresno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="253" y="159" width="8" height="8" backcolor="#FFFF00" uuid="60849e92-a549-48b4-bd39-9a31ded3bb67"/>
@@ -2007,7 +2499,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fuma_act_unosi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="253" y="168" width="8" height="8" backcolor="#FFFF00" uuid="b54595c0-799a-4458-b8d8-12dfdbb55b7e"/>
@@ -2017,6 +2509,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ga_fuma_act_dossi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="253" y="177" width="8" height="8" backcolor="#FFFF00" uuid="9549b505-8294-4f69-8fe8-fd36cee2d86f"/>
@@ -2026,7 +2519,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fuma_act_tressi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="242" y="152" width="8" height="8" uuid="05f18185-de79-410b-8b4d-1f71c3822774"/>
@@ -2050,7 +2543,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fuma_pas_unono}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="268" y="168" width="8" height="8" backcolor="#FFFFFF" uuid="dabf54a8-8ab9-4f1f-8c89-0b521a077cc2"/>
@@ -2060,7 +2553,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fuma_pas_dosno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="268" y="177" width="8" height="8" backcolor="#FFFFFF" uuid="42968244-0bad-4048-a9ee-45dc56ca94ea"/>
@@ -2070,7 +2563,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fuma_pas_tresno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="279" y="159" width="8" height="8" backcolor="#FFFF00" uuid="cb3f8e41-eaf8-417c-995c-5a70e5cd09d6"/>
@@ -2080,7 +2573,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fuma_pas_unosi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="279" y="168" width="8" height="8" backcolor="#FFFF00" uuid="8c217fc6-41f9-4197-8c40-77cc8f08ce4d"/>
@@ -2090,6 +2583,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ga_fuma_pas_dossi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="279" y="177" width="8" height="8" backcolor="#FFFF00" uuid="789a8033-bb35-468b-b015-8d8a70bf5cfc"/>
@@ -2099,7 +2593,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fuma_pas_tressi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="268" y="152" width="8" height="8" uuid="4594e209-74ab-472a-b0ec-20d869774c76"/>
@@ -2123,7 +2617,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_drogas_unono}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="294" y="168" width="8" height="8" backcolor="#FFFFFF" uuid="0333dc8e-f9fb-4f74-9601-cc3a84892fda"/>
@@ -2133,7 +2627,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_drogas_dosno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="294" y="177" width="8" height="8" backcolor="#FFFFFF" uuid="6790b889-7987-451f-be5a-4504ef218e8a"/>
@@ -2143,7 +2637,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_drogas_tressi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="305" y="159" width="8" height="8" backcolor="#FFFF00" uuid="064a6c4c-fee3-4ff2-a2a4-08c89236d171"/>
@@ -2153,7 +2647,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_drogas_unosi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="305" y="168" width="8" height="8" backcolor="#FFFF00" uuid="3165f319-4c67-4b7c-8125-56a44ebf7232"/>
@@ -2163,6 +2657,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ga_drogas_dossi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="305" y="177" width="8" height="8" backcolor="#FFFF00" uuid="3ff08a17-0e81-439a-ad55-8842cf3f96b5"/>
@@ -2172,7 +2667,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_drogas_tresno}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="294" y="152" width="8" height="8" uuid="258cfa43-a1d8-486a-b9b3-d75f229440aa"/>
@@ -2196,7 +2691,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_alcohol_unono}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="320" y="168" width="8" height="8" backcolor="#FFFFFF" uuid="cf166904-55bd-43e3-819b-4ef8b99a2b87"/>
@@ -2206,7 +2701,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_alcohol_dosno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="320" y="177" width="8" height="8" backcolor="#FFFFFF" uuid="c268dd5e-9f5f-47e0-af73-cdfb0c8abf71"/>
@@ -2216,7 +2711,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_alcohol_tresno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="331" y="159" width="8" height="8" backcolor="#FFFF00" uuid="b076c77e-ccd0-4c3d-9ab1-1df3a1b99bb2"/>
@@ -2226,7 +2721,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_alcohol_unosi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="331" y="168" width="8" height="8" backcolor="#FFFF00" uuid="01ba96b9-4a58-496d-9dc1-83aa08ac6beb"/>
@@ -2236,6 +2731,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ga_alcohol_dossi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="331" y="177" width="8" height="8" backcolor="#FFFF00" uuid="1463b40c-9bf8-4bcc-81d0-6d8582395b2c"/>
@@ -2245,7 +2741,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_alcohol_tressi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="320" y="152" width="8" height="8" uuid="0fc02423-fcdb-494c-ae5f-c0aad708d07b"/>
@@ -2269,7 +2765,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_violencia_unono}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="348" y="168" width="8" height="8" backcolor="#FFFFFF" uuid="d677d481-90db-4e96-81df-c27c627dfe3b"/>
@@ -2279,7 +2775,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_violencia_dosno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="348" y="177" width="8" height="8" backcolor="#FFFFFF" uuid="81dc5698-d291-4ac1-9ef7-3e2845d962b2"/>
@@ -2289,7 +2785,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_violencia_tresno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="359" y="159" width="8" height="8" backcolor="#FFFF00" uuid="4269d5ff-2c4f-4520-bb0e-e095f6693b66"/>
@@ -2299,7 +2795,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_violencia_unosi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="359" y="168" width="8" height="8" backcolor="#FFFF00" uuid="2a021f47-c801-4468-b218-040d032afb52"/>
@@ -2309,6 +2805,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ga_violencia_dossi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="359" y="177" width="8" height="8" backcolor="#FFFF00" uuid="880d5804-1fc6-4269-b867-1729daa3759f"/>
@@ -2318,7 +2815,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_violencia_tressi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="348" y="152" width="8" height="8" uuid="4c8c9ab7-2b6f-410c-9eda-8ea8d2fa0846"/>
@@ -2352,7 +2849,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_antirubeolaprevia}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="403" y="160" width="8" height="8" backcolor="#FFFF00" uuid="f0fee4d1-1d3d-4b1f-bf2a-5838bc6cd57e"/>
@@ -2362,7 +2859,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_antirubeolanosabe}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="383" y="176" width="8" height="8" backcolor="#FFFF00" uuid="c8a4d0cf-bc92-412d-9357-392d6e2396b9"/>
@@ -2372,7 +2869,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_antirubeolaembarazo}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="403" y="176" width="8" height="8" backcolor="#FFFF00" uuid="8597cb97-0b04-4455-9804-93cd687c6b77"/>
@@ -2382,7 +2879,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_antirubeolano}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="380" y="152" width="13" height="8" uuid="eb0d09f1-48f3-47ff-8b16-14e62371abe3"/>
@@ -2437,7 +2934,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_antitetsi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="448" y="156" width="8" height="8" backcolor="#FFFF00" uuid="246ece20-ab3f-4f4a-9885-b0913d69d9df"/>
@@ -2447,7 +2944,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_antitetno}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="460" y="157" width="8" height="8" uuid="2b6b046e-8d08-4884-b867-95701fc0202f"/>
@@ -2471,6 +2968,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ga_antitet_dosis_dos}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="460" y="169" width="8" height="15" uuid="f0df8c38-0bb5-473a-bde6-8436a49697d2"/>
@@ -2480,6 +2978,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ga_antitet_dosis_uno}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="419" y="172" width="21" height="11" uuid="b899c6f1-a929-4a09-8da1-2422185fec76"/>
@@ -2517,7 +3016,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_exnormal_odontno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="524" y="173" width="8" height="8" backcolor="#FFFF00" uuid="f032bff7-9096-4a5e-ab31-b0d2b7ff6fcc"/>
@@ -2527,7 +3026,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_exnormal_mamasno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="535" y="161" width="8" height="8" backcolor="#FFFFFF" uuid="5da4bd23-2f17-4a94-8a0e-229622ef0bc2"/>
@@ -2537,7 +3036,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_exnormal_odontsi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="535" y="173" width="8" height="8" backcolor="#FFFFFF" uuid="9e7549bf-09c9-429e-bf7f-357238a84cd3"/>
@@ -2547,7 +3046,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_exnormal_mamassi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="524" y="153" width="8" height="8" uuid="5f24c06c-8a18-49a2-be03-55d5a8463646"/>
@@ -2622,7 +3121,8 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_cervix_inspnormal}
+]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="45" y="208" width="8" height="8" backcolor="#FFFFFF" uuid="b4d8284f-abfa-403c-a2c4-c4f5f92ee8a5"/>
@@ -2632,7 +3132,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_cervix_papnormal}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="45" y="218" width="8" height="8" backcolor="#FFFFFF" uuid="2f88dfaa-4fb3-464f-abb8-dd251d0c32b0"/>
@@ -2642,7 +3142,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_cervix_colpnormal}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="64" y="198" width="8" height="8" backcolor="#FFFF00" uuid="c3ebf98b-e3e4-49f5-bf9c-3755c40233cc"/>
@@ -2652,7 +3152,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_cervix_inspanormal}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="64" y="208" width="8" height="8" backcolor="#FFFF00" uuid="b753325e-73fa-4863-8796-d11836dca7d6"/>
@@ -2662,7 +3162,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_cervix_papanormal}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="64" y="218" width="8" height="8" backcolor="#FFFF00" uuid="3e49e5cd-817f-4929-8585-808eb7bb517d"/>
@@ -2672,7 +3172,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_cervix_colpanormal}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="82" y="198" width="8" height="8" backcolor="#FFFF00" uuid="5de44021-2044-4f3c-8098-9aeedf7cc7ae"/>
@@ -2682,7 +3182,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_cervix_inspnoseh}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="82" y="208" width="8" height="8" backcolor="#FFFF00" uuid="6baea317-379d-4405-a347-5c1fbc1d5477"/>
@@ -2692,7 +3192,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_cervix_papnoseh}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="82" y="218" width="8" height="8" backcolor="#FFFF00" uuid="d06e3def-fe10-480c-a53e-8308f910b9e1"/>
@@ -2702,7 +3202,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_cervix_colpnoseh}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="40" y="189" width="16" height="8" uuid="ae1e8c67-5bf0-485a-8343-c5176a86d0ef"/>
@@ -2752,9 +3252,9 @@
 			<textField>
 				<reportElement x="98" y="197" width="15" height="10" uuid="1489cbf0-7feb-4e2e-861a-378b0e558bd4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_san_grupo}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="117" y="200" width="8" height="8" backcolor="#FFFF00" uuid="1e829977-bb51-4992-94de-129d291140c6"/>
@@ -2764,7 +3264,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_san_rhne}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="128" y="200" width="8" height="8" backcolor="#FFFFFF" uuid="4d95b281-b259-44df-82e8-737584f16d6c"/>
@@ -2774,6 +3274,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ga_san_rhpo}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="117" y="192" width="19" height="8" uuid="80bc970b-a97a-4a14-bd9c-af71aa87d411"/>
@@ -2790,7 +3291,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_san_inmunizno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="146" y="205" width="8" height="8" backcolor="#FFFF00" uuid="2feac375-ea5c-40ab-8a5a-d51f4536125f"/>
@@ -2800,7 +3301,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_san_inmunizsi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="138" y="196" width="8" height="8" uuid="012df1f8-67db-469b-90a5-17d705db519e"/>
@@ -2831,7 +3332,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_san_globulinasi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="106" y="218" width="8" height="8" backcolor="#FFFF00" uuid="ee4d3b52-518a-43b6-a31f-0244f0dc9c54"/>
@@ -2841,7 +3342,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_san_globulinano}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="118" y="219" width="8" height="8" uuid="a8280ef4-8556-4f5c-bb4c-e14881601d97"/>
@@ -2865,7 +3366,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_san_globulinanc}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="135" y="219" width="8" height="8" uuid="1183616c-43c5-41d0-be8c-50a71c58aab8"/>
@@ -2889,7 +3390,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_toxo_menorneg}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="203" y="208" width="8" height="8" backcolor="#FFFF00" uuid="3dff2410-423d-416d-aab7-6b039f506f69"/>
@@ -2899,7 +3400,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_toxo_mayorneg}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="203" y="219" width="8" height="8" backcolor="#FFFF00" uuid="1442aca5-82d9-42b8-9b87-1e9d19fba4e2"/>
@@ -2909,7 +3410,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_toxo_prim_consneg}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="215" y="198" width="8" height="8" backcolor="#FFFFFF" uuid="61517700-aad2-4750-a152-2daf96f7dc4f"/>
@@ -2919,7 +3420,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_toxo_menorpos}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="215" y="208" width="8" height="8" backcolor="#FFFF00" uuid="83299205-733d-427e-8756-e8b5e869fcfe"/>
@@ -2929,6 +3430,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ga_toxo_mayorpos}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="215" y="219" width="8" height="8" backcolor="#FFFF00" uuid="544f6025-a21e-49a6-945b-432b5317314f"/>
@@ -2938,7 +3440,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_toxo_prim_conspos}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="227" y="198" width="8" height="8" backcolor="#FFFF00" uuid="d72acb9f-f015-413a-97e5-2d41af4811b8"/>
@@ -2948,7 +3450,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_toxo_menornos}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="227" y="208" width="8" height="8" backcolor="#FFFF00" uuid="04b7b0f0-0574-40f5-8e72-2dba0da4e6fe"/>
@@ -2958,6 +3460,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ga_toxo_mayornos}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="227" y="219" width="8" height="8" backcolor="#FFFF00" uuid="a5706b97-2119-43fa-8322-5967aee1f8f9"/>
@@ -2967,7 +3470,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_toxo_prim_consnos}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="204" y="188" width="19" height="8" uuid="447afdef-20c8-482e-915e-a3f8609eabc9"/>
@@ -3032,7 +3535,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_chagasneg}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="32" y="249" width="8" height="8" backcolor="#FFFF00" uuid="135d5b93-d696-4679-8ed9-41c775961f44"/>
@@ -3042,7 +3545,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_chagaspos}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="32" y="239" width="9" height="8" uuid="2c3b2dc8-87a0-430f-adda-dad44ab70bc2"/>
@@ -3066,7 +3569,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_chagasnos}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="19" y="262" width="14" height="12" uuid="dbd48b09-a545-4564-9b04-18dc033f304a"/>
@@ -3090,7 +3593,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_pal_malneg}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="65" y="244" width="8" height="8" backcolor="#FFFF00" uuid="b9ea14a3-0f15-461e-857f-32ef6a2e5cc4"/>
@@ -3100,6 +3603,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{ga_pal_malpos}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="54" y="251" width="19" height="8" uuid="56f302ed-e694-45fe-864a-2c0276710216"/>
@@ -3116,7 +3620,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_pal_malnos}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="57" y="264" width="14" height="12" uuid="c1beb68f-8b2b-4382-8c85-92e152744f05"/>
@@ -3140,7 +3644,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_bac_menornormal}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="108" y="261" width="8" height="8" backcolor="#FFFFFF" uuid="f9fe08c9-ed6a-4a4d-a5fd-96dd956f6a9d"/>
@@ -3150,7 +3654,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_bac_mayornormal}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="127" y="249" width="8" height="8" backcolor="#FFFF00" uuid="ce161771-6271-47f3-958d-0d72fc928983"/>
@@ -3160,7 +3664,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_bac_menoranormal}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="127" y="261" width="8" height="8" backcolor="#FFFF00" uuid="45c950ee-45e1-41e9-8c89-2eff7e2e56d2"/>
@@ -3170,7 +3674,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_bac_mayoranormal}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="145" y="249" width="8" height="8" backcolor="#FFFF00" uuid="34e8d9e8-aa63-41b2-ab50-1669bea30b5d"/>
@@ -3180,7 +3684,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_bac_menornoseh}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="145" y="261" width="8" height="8" backcolor="#FFFF00" uuid="7201173b-901f-4855-8b11-5ecf54b9c037"/>
@@ -3190,7 +3694,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_bac_mayornoseh}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="103" y="239" width="16" height="8" uuid="e3a85e08-e934-48a4-ac2c-fa3fe1b8a3aa"/>
@@ -3263,7 +3767,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_glu_menor20_105si}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="220" y="259" width="8" height="8" backcolor="#FFFF00" uuid="a8ae92c1-b94a-438b-a938-6c2d4c3f2aaa"/>
@@ -3273,7 +3777,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_glu_mayor30_105si}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="213" y="250" width="24" height="8" uuid="d27879c9-1a7d-45a9-9961-6e18cd32179b"/>
@@ -3293,14 +3797,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_glu_menor20}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="180" y="258" width="32" height="8" uuid="6808004d-382c-442c-b3a7-5798f77fd82d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_glu_mayor30}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="280" y="187" width="121" height="89" uuid="bd5160fa-c8ee-4900-a346-7076931b96dc"/>
@@ -3327,7 +3831,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_vih_sol_menor20no}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="257" y="222" width="8" height="8" backcolor="#FFFF00" uuid="62d2bf98-75a6-4495-8abc-5daf9e612936"/>
@@ -3337,7 +3841,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_vih_rea_menor20no}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="269" y="210" width="8" height="8" backcolor="#FFFFFF" uuid="7ac281c6-f255-44a7-bd02-1f7ffc90b99d"/>
@@ -3347,7 +3851,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_vih_sol_menor20si}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="269" y="222" width="8" height="8" backcolor="#FFFFFF" uuid="ea43e9a4-5a81-43f0-824b-e125b5e26fdf"/>
@@ -3357,7 +3861,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_vih_rea_menor20si}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="257" y="202" width="8" height="8" uuid="e9306f5a-9a4c-43e6-b630-5ea46bd142c4"/>
@@ -3402,7 +3906,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_vih_sol_mayor20no}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="257" y="264" width="8" height="8" backcolor="#FFFF00" uuid="a725f61b-f0c4-42fc-81da-9c7f0a96ae15"/>
@@ -3412,7 +3916,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_vih_rea_mayor20no}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="269" y="252" width="8" height="8" backcolor="#FFFFFF" uuid="759e8424-e6da-4530-91b3-c98d2c2b234d"/>
@@ -3422,7 +3926,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_vih_sol_mayor20si}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="269" y="264" width="8" height="8" backcolor="#FFFFFF" uuid="9cef1988-763b-4976-a554-bb470bac82fc"/>
@@ -3432,7 +3936,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_vih_rea_mayor20si}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="257" y="244" width="8" height="8" uuid="2bf519cc-b615-47c4-a89a-4deabe5bca29"/>
@@ -3501,7 +4005,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_hb_menor_bajosi}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="287" y="198" width="22" height="18" uuid="93b61bec-ff16-49cc-aee9-b4ab4af8437d"/>
@@ -3511,7 +4015,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_hb_menor_20}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="310" y="210" width="6" height="8" uuid="140676f4-cabe-439f-a1c7-ed590627e397"/>
@@ -3542,7 +4046,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_hb_mayor_bajosi}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="368" y="198" width="22" height="18" uuid="54a9b41d-65d7-4f1b-9f13-32c876c66892"/>
@@ -3552,7 +4056,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_hb_mayor_20}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="391" y="210" width="6" height="8" uuid="2b521c4d-08de-46db-ad9d-0edad4948d36"/>
@@ -3576,7 +4080,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_folatosno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="332" y="210" width="8" height="8" backcolor="#FFFF00" uuid="7cc74f0c-3d3a-451f-8b93-83792ed897ba"/>
@@ -3586,7 +4090,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_feno}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="344" y="211" width="8" height="8" uuid="3f240ff9-e46f-4b8d-aba5-2a7a8ea871ff"/>
@@ -3610,7 +4114,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_folatossi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="332" y="221" width="8" height="8" backcolor="#FFFFFF" uuid="f52ce0eb-947f-4a50-b3e6-635b9020fd9d"/>
@@ -3620,7 +4124,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fesi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="344" y="222" width="8" height="8" uuid="c68a02e7-bba7-4751-8def-a2e4786bdfbf"/>
@@ -3682,7 +4186,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_prepa_partosi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="332" y="263" width="8" height="8" backcolor="#FFFF00" uuid="0a442915-f2b9-4a1c-b301-c982f8bbc115"/>
@@ -3692,7 +4196,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_prepa_partono}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="341" y="264" width="8" height="8" uuid="bda8e95c-bfe1-4b8b-bf39-2617dc38c3d7"/>
@@ -3716,7 +4220,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_consej_lactanciasi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="372" y="262" width="8" height="8" backcolor="#FFFF00" uuid="29ee55f3-9d2f-4520-a617-c51c463bdb85"/>
@@ -3726,7 +4230,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_consej_lactanciano}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="381" y="263" width="8" height="8" uuid="0f4142f0-ad8c-40a9-a396-ba4f713e4158"/>
@@ -3757,7 +4261,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_estreptococoneg}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="295" y="260" width="8" height="8" backcolor="#FFFFFF" uuid="969a66ea-6350-41b2-8acc-dd7635879027"/>
@@ -3767,7 +4271,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_estreptococoposi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="309" y="260" width="8" height="8" backcolor="#FFFF00" uuid="5f8fc3fc-1822-44a6-881a-5566623e66dc"/>
@@ -3777,7 +4281,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_estreptococonose}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="284" y="267" width="19" height="8" uuid="04722102-9496-45f2-9681-edd008792e8b"/>
@@ -3855,7 +4359,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_notre_res_menneg}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="417" y="219" width="8" height="8" backcolor="#FFFF00" uuid="cac960af-2862-4f05-8e2a-b2ebb7158a79"/>
@@ -3865,7 +4369,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_notre_res_menposi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="429" y="219" width="8" height="8" backcolor="#FFFF00" uuid="f91e294a-b6b8-419f-8c32-cd1092b41558"/>
@@ -3875,7 +4379,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_notre_res_mensd}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="406" y="211" width="19" height="8" uuid="a641652e-066e-4960-b2b1-f0704d5d3c3d"/>
@@ -3899,7 +4403,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_notre_sem_men}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="403" y="231" width="13" height="12" uuid="2300ed92-daeb-433a-951f-25d5139f2520"/>
@@ -3916,7 +4420,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_notre_sem_may}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="403" y="247" width="13" height="12" uuid="9d18dbc5-4890-44e5-8433-d190782f18f5"/>
@@ -3933,7 +4437,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_notre_res_mayneg}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="417" y="267" width="8" height="8" backcolor="#FFFF00" uuid="cd239efd-b064-47ef-9bdc-4f99ed4fdbc6"/>
@@ -3943,7 +4447,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_notre_res_mayposi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="429" y="267" width="8" height="8" backcolor="#FFFF00" uuid="f8501cf9-2a4c-41be-a8d3-013e2b17dc6c"/>
@@ -3953,7 +4457,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_notre_res_maysd}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="406" y="259" width="19" height="8" uuid="6213c686-28b0-4025-900e-1e36b3ef0ad4"/>
@@ -3977,7 +4481,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_tre_res_menneg}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="452" y="219" width="8" height="8" backcolor="#FFFF00" uuid="7a6ab25e-eebe-43e5-b247-de286d502247"/>
@@ -3987,7 +4491,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_tre_res_menposi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="463" y="219" width="8" height="8" backcolor="#FFFF00" uuid="93348be8-708f-4dea-8ef5-7d0f32a377eb"/>
@@ -3997,7 +4501,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_tre_res_mensd}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="441" y="211" width="19" height="8" uuid="9dadf187-12bd-40a3-88eb-703ca267a22e"/>
@@ -4021,7 +4525,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_tre_sem_men}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="451" y="246" width="18" height="13" uuid="c67de1d4-03a4-41c8-8ee3-72ccb6c6e72a"/>
@@ -4031,7 +4535,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_tre_sem_may}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="441" y="267" width="8" height="8" backcolor="#FFFFFF" uuid="3d1f79e7-ee79-41d3-8279-6f30a74c0348"/>
@@ -4041,7 +4545,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_tre_res_mayneg}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="452" y="267" width="8" height="8" backcolor="#FFFF00" uuid="ca58fdd3-6e5d-4587-b2d9-e93336c20e67"/>
@@ -4051,7 +4555,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_tre_res_mayposi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="463" y="267" width="8" height="8" backcolor="#FFFF00" uuid="dd37ac4e-9271-42ff-aa4a-056d6ab90408"/>
@@ -4061,7 +4565,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_tre_res_maysd}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="441" y="259" width="19" height="8" uuid="6d5e4e15-418b-44d6-b3da-e7434af969e7"/>
@@ -4085,7 +4589,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_tre_res_mennc}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="474" y="267" width="8" height="8" backcolor="#FFFFFF" uuid="9642a2b1-c5cb-47eb-ba8b-6d7703319090"/>
@@ -4095,7 +4599,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_prue_tre_res_maync}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="474" y="211" width="8" height="8" uuid="b052a394-e677-40a5-b53c-2323228c07df"/>
@@ -4133,7 +4637,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_menorno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="496" y="219" width="8" height="8" backcolor="#FFFFFF" uuid="65f8a506-7d8b-4e0d-bc1b-26029bbc2145"/>
@@ -4143,7 +4647,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_menorsi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="507" y="219" width="8" height="8" backcolor="#FFFF00" uuid="5dd796ca-a3c9-4f9e-80d3-907c00e70218"/>
@@ -4153,7 +4657,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_menorsd}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="507" y="211" width="8" height="8" uuid="78069662-ceb6-411c-96a3-dd4327c90bd6"/>
@@ -4170,7 +4674,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_menor_sem}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="495" y="246" width="18" height="13" uuid="37f39440-a32b-4d1a-97f8-8ca1e9485472"/>
@@ -4180,7 +4684,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_mayor_sem}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="485" y="267" width="8" height="8" backcolor="#FFFF00" uuid="127c873f-9315-447a-9047-d5216c9c6a69"/>
@@ -4190,7 +4694,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_mayorno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="496" y="267" width="8" height="8" backcolor="#FFFFFF" uuid="915d655f-ad56-4f20-b71d-f6d74a21e52e"/>
@@ -4200,7 +4704,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_mayorsi}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="507" y="267" width="8" height="8" backcolor="#FFFF00" uuid="c2e05334-ab9c-46ad-b6a5-21c5bfb18488"/>
@@ -4210,7 +4714,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_mayorsd}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="507" y="259" width="8" height="8" uuid="e65f4ea4-9f69-4926-90f1-7600be370ed5"/>
@@ -4227,7 +4731,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_menornc}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="518" y="267" width="8" height="8" backcolor="#FFFFFF" uuid="f37d3874-f04b-4ca9-857c-20d890b16f3e"/>
@@ -4237,7 +4741,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_mayornc}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="518" y="211" width="8" height="8" uuid="b95ed1b0-113f-45a2-8447-4113bdc9f169"/>
@@ -4310,7 +4814,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_par_menorno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="540" y="214" width="8" height="8" backcolor="#FFFFFF" uuid="9dd33ad1-993f-480f-a4f7-4b77785ba535"/>
@@ -4320,7 +4824,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_par_menorsi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="529" y="221" width="8" height="8" uuid="1f3320de-33d8-44cd-beac-88523b3ff590"/>
@@ -4344,7 +4848,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_par_menorsd}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="540" y="230" width="8" height="8" backcolor="#FFFFFF" uuid="82e8634e-c3b8-4672-ace1-df150f5be8ea"/>
@@ -4354,7 +4858,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_par_menornc}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="529" y="237" width="8" height="8" uuid="08bab663-d01f-4add-ab02-e29d1d3a1a3c"/>
@@ -4378,7 +4882,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_par_mayorno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="540" y="246" width="8" height="8" backcolor="#FFFFFF" uuid="20600885-6eb6-4706-9392-eaec55d46c6c"/>
@@ -4388,7 +4892,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_par_mayorsi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="529" y="253" width="8" height="8" uuid="86f0a68b-1f3c-4862-9944-e40a54943495"/>
@@ -4412,7 +4916,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_par_mayorsd}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="540" y="262" width="8" height="8" backcolor="#FFFFFF" uuid="8911338a-5c79-447f-8ff9-3e1266011cfe"/>
@@ -4422,7 +4926,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_sif_trat_par_mayornc}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="529" y="269" width="8" height="8" uuid="294b0fee-7a22-4356-a8a4-65c81d54b777"/>
@@ -4438,604 +4942,274 @@
 				</textElement>
 				<text><![CDATA[n/c]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement x="19" y="276" width="531" height="84" uuid="c784bf55-6c3f-4d3a-9dc5-01eeb477791a"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="19" y="276" width="11" height="84" uuid="ee1c00a6-b722-40a9-b529-9b8072458e09"/>
-			</rectangle>
 			<staticText>
-				<reportElement x="20" y="277" width="10" height="83" uuid="81cada74-947d-49dd-b4b0-5574da0a125a"/>
+				<reportElement x="4" y="26" width="14" height="234" uuid="6335411d-e3c6-445a-8821-aa6eff80529e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
 					<font size="5"/>
 				</textElement>
-				<text><![CDATA[CONSULTAS ANTENATALES]]></text>
+				<text><![CDATA[Este color significa ALERTA      (no indica necesariamente riesgo ni prácticas inadecuadas)]]></text>
 			</staticText>
+			<ellipse>
+				<reportElement x="7" y="254" width="8" height="8" backcolor="#FFFF00" uuid="5ebbc816-9bfa-41f2-8222-f5bb5879d14a"/>
+			</ellipse>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="15">
 			<rectangle>
-				<reportElement x="30" y="276" width="61" height="15" uuid="6963f14c-5d4c-440f-a49f-363ff8a0f4b4"/>
+				<reportElement x="19" y="0" width="11" height="15" uuid="9a447f4e-acc7-4e23-8595-5274f909dbf4"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="91" y="276" width="27" height="15" uuid="fe9a0235-d979-4a31-9f93-1bb5af611827"/>
+				<reportElement x="30" y="0" width="61" height="15" uuid="eeedc41c-6913-45da-a141-a148d808a949"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="118" y="276" width="43" height="15" uuid="09fa8255-eb22-4b90-ab17-e7d0d145c624"/>
+				<reportElement x="91" y="0" width="27" height="15" uuid="203a0eb1-e0c2-43c5-8dbb-668208e82ec8"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="161" y="276" width="35" height="15" uuid="45737e34-f880-47d4-a08b-4f193ee9f774"/>
+				<reportElement x="118" y="0" width="43" height="15" uuid="6e0ea8c0-bf25-47ac-976d-0ab8c6e3233f"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="196" y="276" width="24" height="15" uuid="1b5c2cfe-df42-4fef-af8a-d243ff49cf30"/>
+				<reportElement x="161" y="0" width="35" height="15" uuid="4206eb43-6ce7-43fe-a4ad-ab841884a64a"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="220" y="276" width="18" height="15" uuid="0d836569-7fd0-4762-9d1a-2047d4db5b94"/>
+				<reportElement x="196" y="0" width="24" height="15" uuid="670c8614-4f4f-4204-90b6-9531a263c867"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="237" y="276" width="24" height="15" uuid="2bfb1ba4-711d-4a32-a014-58cb795c6391"/>
+				<reportElement x="220" y="0" width="18" height="15" uuid="8ac28fa9-9cb6-4ed9-9633-70742861d7ef"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="261" y="276" width="22" height="15" uuid="493389a9-15ea-4b91-9ada-67c960f1f3d8"/>
+				<reportElement x="237" y="0" width="24" height="15" uuid="1a78e070-869c-443b-aa48-971ee0c2f8c4"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="283" y="276" width="20" height="15" uuid="f03e9003-c982-4ac5-94c5-7cfcc7615b09"/>
+				<reportElement x="261" y="0" width="22" height="15" uuid="e85a49a4-f848-4a42-adcf-380905ca53ce"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="303" y="276" width="179" height="15" uuid="b8724c49-1022-476d-a080-37fffc5764e3"/>
+				<reportElement x="283" y="0" width="20" height="15" uuid="d574e812-ba90-45e6-a9cf-4455450edbbb"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="482" y="276" width="23" height="15" uuid="9b9fe5df-ae6d-4abe-8109-d69404bc3d07"/>
+				<reportElement x="303" y="0" width="179" height="15" uuid="195681fa-1304-4dde-9f8c-39be5227613c"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="505" y="276" width="45" height="15" uuid="09b3fea1-d82b-4093-8486-15eadee765be"/>
+				<reportElement x="482" y="0" width="23" height="15" uuid="34f3624f-048b-4e70-bd3c-ba08466a93ef"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="505" y="0" width="45" height="15" uuid="eb342514-daf5-491a-9f10-14d38884caf0"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="31" y="276" width="59" height="15" uuid="4f006b1a-b193-454c-9364-95e408be032e"/>
+				<reportElement x="31" y="0" width="59" height="15" uuid="38387857-f435-4117-ae09-286b1a5de2eb"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[dia     mes    año]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="94" y="276" width="21" height="15" uuid="23215c86-8ddb-4a65-b05a-fbbb261e136d"/>
+				<reportElement x="94" y="0" width="21" height="15" uuid="06e358a0-2723-4257-b92c-4aef92f8420b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[edad gest.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="118" y="276" width="42" height="15" uuid="7485ead1-6483-4de0-bd56-805aa211009d"/>
+				<reportElement x="118" y="0" width="42" height="15" uuid="3e189f60-b622-4025-ac95-e54df5e04307"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[peso]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="162" y="276" width="32" height="15" uuid="52db1f66-0cd3-4c75-92b3-8c9101e7d318"/>
+				<reportElement x="162" y="0" width="32" height="15" uuid="e1906b1c-5918-41c2-b547-63c09bf2b474"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[PA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="197" y="276" width="21" height="15" uuid="b7455621-79a3-4a4a-9874-c6528b7381dd"/>
+				<reportElement x="197" y="0" width="21" height="15" uuid="a3c76d08-9645-42bc-8833-1d71cc9ad198"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[altura uterina]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="221" y="276" width="16" height="15" uuid="763a19a1-aebd-4c5b-a874-b2ccd1e31b44"/>
+				<reportElement x="221" y="0" width="16" height="15" uuid="d7ce2b73-44b1-44f2-bd3e-051433377318"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[presentación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="239" y="276" width="19" height="15" uuid="9bc76fd5-8ed6-475a-a5a4-8cb7f602ef6b"/>
+				<reportElement x="239" y="0" width="19" height="15" uuid="0bebba3c-8c32-4050-b373-61cf53a9644f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[FCF (Ipm)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="262" y="276" width="21" height="15" uuid="98e1fd52-f2e5-4d1c-a37e-1fdf7636cb17"/>
+				<reportElement x="262" y="0" width="21" height="15" uuid="45a530a4-8081-48c2-8df2-1de075a1430d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[movim. fetales]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="284" y="276" width="19" height="15" uuid="d8e3c24e-edc9-43e2-82f2-4c290de197ba"/>
+				<reportElement x="284" y="0" width="19" height="15" uuid="19db8555-76c7-44ef-808d-94a1ddb92518"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[proteinuria]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="304" y="276" width="178" height="15" uuid="9d943be4-bdfb-4555-860e-965af1100bfb"/>
+				<reportElement x="304" y="0" width="178" height="15" uuid="6461e02f-8579-481c-bd7f-3dfeb62014d9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[signos de alarma, exámenes, tratamientos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="483" y="276" width="22" height="15" uuid="e40d1429-f100-4ddd-b25e-5f9b4f1643a4"/>
+				<reportElement x="483" y="0" width="22" height="15" uuid="598e11cb-5fe7-46f4-90a1-0be17f55b180"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[Iniciales Técnico]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="505" y="276" width="45" height="15" uuid="604bddc5-6b03-473d-aaeb-6814800c7320"/>
+				<reportElement x="505" y="0" width="45" height="15" uuid="4d2ca83e-34ff-4918-989b-2b8a436375d1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[próxima cita]]></text>
 			</staticText>
-			<line>
-				<reportElement x="91" y="276" width="1" height="84" uuid="c4b03746-e4d9-452d-8ea0-313ae4c348b0"/>
-			</line>
-			<line>
-				<reportElement x="118" y="276" width="1" height="84" uuid="1e5a9419-5e0e-4783-b07b-a086c69f8901"/>
-			</line>
-			<line>
-				<reportElement x="161" y="276" width="1" height="84" uuid="b82cb762-f906-495d-babe-7e2906562ef8"/>
-			</line>
-			<line>
-				<reportElement x="196" y="276" width="1" height="84" uuid="b3ad2099-51a3-446f-b66b-d1ba07f9bc0f"/>
-			</line>
-			<line>
-				<reportElement x="220" y="276" width="1" height="84" uuid="21652e2f-8266-4913-9bd3-17d4e35999a5"/>
-			</line>
-			<line>
-				<reportElement x="237" y="276" width="1" height="84" uuid="8bc5fcac-f92a-4ea6-9d11-91cd91f980bb"/>
-			</line>
-			<line>
-				<reportElement x="261" y="276" width="1" height="84" uuid="1ebb874e-24d4-436f-a5d9-8d505251becf"/>
-			</line>
-			<line>
-				<reportElement x="283" y="276" width="1" height="84" uuid="9e868c02-0a96-47d7-a305-2dd67f516229"/>
-			</line>
-			<line>
-				<reportElement x="303" y="276" width="1" height="84" uuid="5a8be65b-2b7c-4a98-ab7d-03ab0b6042cb"/>
-			</line>
-			<line>
-				<reportElement x="482" y="276" width="1" height="84" uuid="f4128e2a-6512-4092-8b57-ada3994ffb08"/>
-			</line>
-			<line>
-				<reportElement x="505" y="276" width="1" height="84" uuid="ae6a9341-0278-4308-96b1-d946a3c81aa4"/>
-			</line>
-			<line>
-				<reportElement x="30" y="305" width="520" height="1" uuid="d31b9afd-77c4-4b7e-9a95-fb7d85549915"/>
-			</line>
-			<line>
-				<reportElement x="30" y="318" width="520" height="1" uuid="d2e03244-0669-43f0-b2f2-4ec50fc83dff"/>
-			</line>
-			<line>
-				<reportElement x="30" y="331" width="520" height="1" uuid="59fa34c1-edc9-4a01-b970-341885e0fc8c"/>
-			</line>
-			<line>
-				<reportElement x="30" y="344" width="520" height="1" uuid="1ab71480-3e8c-477c-a238-df262fd93749"/>
-			</line>
-			<textField>
-				<reportElement x="31" y="291" width="60" height="14" uuid="e5e1a062-65bb-4992-8a58-771a515de62f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="30" y="306" width="61" height="12" uuid="e38831ce-a270-4188-bf65-ea4921c1587a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="31" y="319" width="59" height="12" uuid="309ca698-4304-45b6-b84a-87b02da7abd0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="30" y="333" width="60" height="11" uuid="6a376063-1897-4c9d-83d4-16b920fcc491"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="30" y="345" width="60" height="15" uuid="e98f86cb-c4f7-4f13-8e2a-f574725e347a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="91" y="292" width="27" height="13" uuid="a2bf8c7d-a6f6-4821-a34f-2311bb176dba"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="92" y="306" width="26" height="12" uuid="a3a29c78-0b81-463a-be78-7c946cc2e9a0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="92" y="319" width="26" height="12" uuid="d3af1112-e399-4814-b3c0-81e182915ac6"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="92" y="332" width="26" height="12" uuid="471f8bc9-8cd7-4067-b15f-dcc49852f16b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="92" y="346" width="26" height="12" uuid="83761b9f-e1c7-44d6-a816-05c6a53539b6"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="119" y="292" width="41" height="12" uuid="c9051df2-67bd-4bfd-8735-0ba3fa1b0d6e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="120" y="306" width="41" height="12" uuid="f046b0ef-1f76-43a4-8aae-8bdccc52cd90"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="119" y="319" width="41" height="12" uuid="dbc402ca-e576-49a1-8f6e-a25a9729ac62"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="119" y="332" width="41" height="12" uuid="3146384c-e597-45b4-bd69-e75e05feff3b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="120" y="346" width="41" height="12" uuid="e8c05111-0c18-49ae-ad7b-38a9ef033734"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="162" y="292" width="34" height="13" uuid="33012011-7c1f-4791-b595-92517919a927"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="162" y="305" width="34" height="13" uuid="b179a70e-801e-4499-a06b-8b5667d9c17c"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="162" y="319" width="34" height="12" uuid="178f4a1c-07b2-4171-93c4-30e85a516167"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="162" y="332" width="34" height="12" uuid="a4352984-fabe-4df1-b1a6-4a0f23c64856"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="162" y="346" width="34" height="12" uuid="61794bc1-dd83-4d13-a670-eb8955dca84f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="196" y="291" width="24" height="13" uuid="881a6cd1-f04d-4461-8639-c317b85480f9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="197" y="306" width="23" height="13" uuid="e91ff2fa-6132-4094-9cd7-609bc2753cfe"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="197" y="319" width="23" height="12" uuid="ebd4c2f1-7bbe-4589-b258-889abaa3d619"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="197" y="332" width="23" height="12" uuid="5e8cc742-d778-4d5c-9341-562ac2b98cbe"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="197" y="346" width="23" height="12" uuid="b353f660-5310-4eb9-b02c-3f014ccc39a4"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="221" y="292" width="16" height="13" uuid="5759524d-f5c0-4cfb-bd59-c587d69cf034"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="221" y="306" width="16" height="12" uuid="af8cf625-ed40-43bb-9931-7de31645ce6b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="221" y="319" width="16" height="12" uuid="eeada0b4-a2d0-4eb2-b375-cd1eb23c5963"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="221" y="332" width="16" height="12" uuid="1efb33fc-f036-493d-b705-a9cc4af73a64"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="221" y="346" width="16" height="12" uuid="5d79f550-3496-49f6-a306-4e08834184a1"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="237" y="292" width="24" height="12" uuid="c59111e3-6b1f-4124-807f-fecdfb21c713"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="239" y="306" width="22" height="12" uuid="af78945b-f4bb-4376-b687-8a29f3a36d14"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="239" y="319" width="22" height="12" uuid="91bd14ad-b96d-428f-98b2-830c5b641816"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="238" y="332" width="22" height="12" uuid="6025dfdd-cb8b-48a6-8de6-ecd7574c5d01"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="238" y="346" width="22" height="12" uuid="51f9f236-a5d6-4fad-b1fa-c453287ccf5d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="262" y="292" width="20" height="13" uuid="8f54b283-0abe-4db9-8cc2-c334be706793"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="262" y="306" width="20" height="12" uuid="1f89dc92-caf3-4bfe-86e8-ba53ad3e3773"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="263" y="319" width="20" height="12" uuid="de76d328-aec1-4575-b4f4-05cca73490e2"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="263" y="332" width="20" height="12" uuid="e517b2ed-aa6f-482f-bbce-e885f40677b8"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="262" y="346" width="20" height="12" uuid="8fa05b24-2377-4697-bc2a-f99cdfb91e35"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="284" y="292" width="19" height="13" uuid="bc72d30a-37ea-4bda-8e49-9d1e60cac8fc"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="284" y="306" width="19" height="12" uuid="0cdd4a02-db0b-4976-ae52-cd67b2044307"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="284" y="319" width="19" height="12" uuid="e9f8ab73-d171-4afb-ab51-069ab6590586"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="284" y="332" width="19" height="12" uuid="6c08d599-b55e-4773-9809-c54c37eceee0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="284" y="346" width="19" height="12" uuid="1b741a5e-7265-4366-a89d-1095b1b17fff"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="304" y="292" width="178" height="13" uuid="bcc3608f-525f-4669-8514-a2c9662fd803"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="304" y="306" width="178" height="12" uuid="ffee6478-2cc1-4ad7-8509-d0e850eaff75"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="304" y="319" width="178" height="12" uuid="0cd7f919-8991-4db5-bab1-fc484debd6e3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="304" y="332" width="178" height="12" uuid="58b9f843-ed32-4a5d-9b15-9ec447031174"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="304" y="346" width="178" height="12" uuid="9504b791-d52b-4845-bc00-541f59f8acac"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="482" y="292" width="23" height="12" uuid="0fc7e38c-6b53-4bc6-a909-de8a582998f7"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="483" y="306" width="22" height="12" uuid="87b5ebd4-85f8-4384-a358-421770032fbc"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="483" y="319" width="22" height="12" uuid="4454f001-6092-4110-8ba1-f1f0c422ef12"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="483" y="332" width="22" height="12" uuid="824ad591-7d0f-4010-9e9c-fdd5f65b6c09"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="483" y="346" width="22" height="12" uuid="1636b665-4bf1-4cc8-afe6-a9d8ad94844f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="506" y="291" width="43" height="14" uuid="e02e5c8e-8906-40cd-9163-59891fb53da3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="505" y="306" width="43" height="12" uuid="b544deea-d1eb-4491-8314-e7b3818727c9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="506" y="319" width="43" height="12" uuid="651f252f-f1d7-421b-9f28-35d39ddf869d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="506" y="332" width="43" height="12" uuid="f9c7dbb8-0889-4b43-8990-542f4566733d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="506" y="346" width="43" height="12" uuid="d1888077-dcef-4da2-b6a3-8759ed363040"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
 		</band>
-	</pageHeader>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<rectangle>
+				<reportElement x="30" y="0" width="61" height="15" uuid="6e45ef6a-71ba-4c38-b4cf-1f26a9aefb56"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="91" y="0" width="27" height="15" uuid="e2fb0f52-f5ed-43ba-8692-f46d573f1b67"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="118" y="0" width="43" height="15" uuid="f198adba-0e97-4535-bdc6-0993521830ea"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="161" y="0" width="35" height="15" uuid="520191b4-2db4-46c0-be67-dfbeecb2d5a2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="196" y="0" width="24" height="15" uuid="bd225a1e-3078-4984-ba2c-4aad48aa47f0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="220" y="0" width="18" height="15" uuid="a5b684af-7539-4a2d-8187-2c367858f32d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="237" y="0" width="24" height="15" uuid="d026c7ab-f21a-46c5-a49f-381b40ae1c19"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="261" y="0" width="22" height="15" uuid="67f59dee-0bfe-49cf-bb9f-c97bdaeb07e3"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="283" y="0" width="20" height="15" uuid="5a1b5eda-bb3a-4a9f-8061-3805140c0f65"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="303" y="0" width="179" height="15" uuid="5e6be2aa-8832-445d-a9c3-8c2c05ddfdf9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="482" y="0" width="23" height="15" uuid="85cd73f6-0dfb-455f-946e-732318f687ad"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="505" y="0" width="45" height="15" uuid="89b88623-51d5-4de1-a8e1-2708e5f28485"/>
+			</rectangle>
+			<textField>
+				<reportElement x="30" y="0" width="60" height="14" uuid="dbe84209-0165-475a-a560-ae230ce04141"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_cita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="0" width="27" height="14" uuid="9e7ffadd-c778-4194-ac91-c68d193248e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ca_edad_ges}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="0" width="41" height="14" uuid="c446e10a-60e8-4298-92c3-e41d202a7d83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ca_peso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="162" y="0" width="33" height="14" uuid="8d574ef3-4a4b-43c3-beed-9f4ec8d2d80b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ca_pa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="196" y="0" width="24" height="14" uuid="8d022e80-b5aa-4487-b80f-a247abf44f65"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ca_altura_uterina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="0" width="16" height="14" uuid="35c4314d-43f7-4a4f-aab1-356a571597e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ca_presentacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="0" width="23" height="14" uuid="6f6c1020-7b9f-4180-97f4-7aabc8280328"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ca_fcp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="262" y="0" width="20" height="14" uuid="3354e02a-09a6-42ba-8813-8f35181cf63f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ca_mov_fetales}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="0" width="177" height="14" uuid="f79e9cc4-a317-4b66-a302-9ae8f06d19be"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ca_signos_notas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="0" width="23" height="14" uuid="ad0dfc5f-a842-4324-a575-deee838ce0cb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ca_iniciales_tecnico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="506" y="0" width="43" height="14" uuid="8881f81d-5821-4244-b0ba-bc4b814976bd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_proxima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="0" width="18" height="14" uuid="119a5604-e702-4c35-8a25-302f935a0a81"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ca_proteinuria}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="-15" width="10" height="15" uuid="03b68562-f952-4b3f-8e51-868cf965f122"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
 </jasperReport>
