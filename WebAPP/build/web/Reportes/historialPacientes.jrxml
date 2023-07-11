@@ -1,66 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="794" pageHeight="1122" columnWidth="754" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="65804259-265d-4aea-9575-9b9208fbb8cb">
 	<property name="ireport.zoom" value="1.4641000000000013"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.x" value="218"/>
+	<property name="ireport.y" value="354"/>
 	<parameter name="p_usuario" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
 	pa.paciente_dni,
-	concat(pa.paciente_apellido_paterno || ' ' || pa.paciente_apellido_materno) as pa_apellidos,
 	concat(pa.paciente_primer_nombre || ' ' || pa.paciente_segundo_nombre) as pa_nombres,
-	pa.paciente_grupo,
+	concat(pa.paciente_apellido_paterno || ' ' || pa.paciente_apellido_materno) as pa_apellidos,
+	pa.paciente_tipo_discapacidad,
 	pa.paciente_ayudasocial,
 	ga.galeno_dni,
-	ma.fechaconsulta,
-	ma.motivoconsulta,
-	ma.diagnositico,
-	concat(ga.galeno_apellido_paterno || ' ' || ga.galeno_apellido_materno) as ga_apellidos,
-	concat(ga.galeno_primer_nombre || ' ' || ga.galeno_segundo_nombre) as ga_nombres,
+TO_CHAR (mg.fecha:: DATE, 'dd-mm-yyyy')as fecha,
+	concat(ga.galeno_apellido_paterno || ' ' || ga.galeno_apellido_materno || ' ' || ga.galeno_primer_nombre || ' ' || ga.galeno_segundo_nombre) as ga_apellidos,
 	ga.galeno_telefono,
 	ga.galeno_correoelectronico
-	FROM paciente pa, medicinageneral ma, galeno ga
-	WHERE ma.paciente_dni = pa.paciente_dni AND ma.galeno_user = ga.galeno_user AND
-		  ga.galeno_user = $P{p_usuario}]]>
+	FROM paciente pa, medicinageneral ma, galeno ga, mg_seguimiento mg
+	WHERE ma.paciente_id = pa.paciente_id AND ma.galeno_id = ga.galeno_id AND mg.idmedicinageneral=ma.idmedicinageneral and
+		  ga.galeno_user =$P{p_usuario}]]>
 	</queryString>
 	<field name="paciente_dni" class="java.lang.String"/>
-	<field name="pa_apellidos" class="java.lang.String"/>
 	<field name="pa_nombres" class="java.lang.String"/>
-	<field name="paciente_grupo" class="java.lang.String"/>
+	<field name="pa_apellidos" class="java.lang.String"/>
+	<field name="paciente_tipo_discapacidad" class="java.lang.String"/>
 	<field name="paciente_ayudasocial" class="java.lang.String"/>
 	<field name="galeno_dni" class="java.lang.String"/>
-	<field name="fechaconsulta" class="java.lang.String"/>
-	<field name="motivoconsulta" class="java.lang.String"/>
-	<field name="diagnositico" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
 	<field name="ga_apellidos" class="java.lang.String"/>
-	<field name="ga_nombres" class="java.lang.String"/>
 	<field name="galeno_telefono" class="java.lang.String"/>
 	<field name="galeno_correoelectronico" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="130" splitType="Prevent">
+		<band height="80" splitType="Prevent">
 			<staticText>
-				<reportElement x="190" y="97" width="377" height="27" uuid="b7918f8a-e44d-42e7-bbf5-497675b4cc10"/>
+				<reportElement x="190" y="49" width="377" height="27" uuid="b7918f8a-e44d-42e7-bbf5-497675b4cc10"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DEPARTAMENTO DE MEDICINA GENERAL]]></text>
 			</staticText>
 			<image>
-				<reportElement x="26" y="8" width="211" height="102" uuid="f56ffd0f-5719-4531-8027-8175d2183121"/>
-				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
+				<reportElement x="295" y="0" width="301" height="48" uuid="5f579b9e-b526-49e7-bf1f-0d96ef0721ee"/>
+				<imageExpression><![CDATA["LogoMunicipio1.png"]]></imageExpression>
 			</image>
-			<staticText>
-				<reportElement x="216" y="8" width="525" height="71" uuid="31915f2a-50e2-4af5-9532-f7dbe12b8686"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="20" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL CIUDADANO DE QUEVEDO]]></text>
-			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -80,18 +67,11 @@
 				<textFieldExpression><![CDATA[$F{galeno_dni}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="88" y="56" width="148" height="20" uuid="d6fc7e68-1d66-4228-9a91-013c4f820a67"/>
+				<reportElement x="88" y="56" width="452" height="20" uuid="d6fc7e68-1d66-4228-9a91-013c4f820a67"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ga_apellidos}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="236" y="56" width="304" height="20" uuid="7e881ad4-2508-47b2-b3f8-1cddb5e38af5"/>
-				<textElement verticalAlignment="Middle">
-					<font isItalic="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ga_nombres}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="88" y="76" width="452" height="20" uuid="880bbc3b-b3f0-42be-80c9-bfdb3a4bff33"/>
@@ -153,106 +133,92 @@
 				<text><![CDATA[PACIENTES ATENDIDOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="7" y="20" width="81" height="20" uuid="4c255d0f-495e-4d9b-b717-147aed17d32e"/>
+				<reportElement x="81" y="20" width="81" height="20" uuid="4c255d0f-495e-4d9b-b717-147aed17d32e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[IDENTIFICADOR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="90" y="20" width="129" height="20" uuid="341767d2-25b1-44ef-a570-3711404049bb"/>
+				<reportElement x="164" y="20" width="129" height="20" uuid="341767d2-25b1-44ef-a570-3711404049bb"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[APELLIDOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="221" y="20" width="135" height="20" uuid="4d3eed7d-e812-415b-9d82-0988246b2ec2"/>
+				<reportElement x="295" y="20" width="135" height="20" uuid="4d3eed7d-e812-415b-9d82-0988246b2ec2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOMBRES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="358" y="20" width="82" height="20" uuid="00f65701-f4dc-4e43-a908-3d88e480cf42"/>
+				<reportElement x="432" y="20" width="82" height="20" uuid="00f65701-f4dc-4e43-a908-3d88e480cf42"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[DISCAPACIDAD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="442" y="20" width="57" height="20" uuid="f009288a-be9b-4195-b7ea-77e6a28f3f47"/>
+				<reportElement x="516" y="20" width="57" height="20" uuid="f009288a-be9b-4195-b7ea-77e6a28f3f47"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[AYUDA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="501" y="20" width="74" height="20" uuid="f009288a-be9b-4195-b7ea-77e6a28f3f47"/>
+				<reportElement x="575" y="20" width="74" height="20" uuid="f009288a-be9b-4195-b7ea-77e6a28f3f47"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[FECHA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="578" y="20" width="170" height="20" uuid="f009288a-be9b-4195-b7ea-77e6a28f3f47"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[MOTIVO DE CONSULTA]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="25" splitType="Stretch">
 			<textField>
-				<reportElement x="7" y="0" width="81" height="20" uuid="26c7e680-218f-4654-b4d6-a757167f5451"/>
+				<reportElement x="81" y="0" width="81" height="20" uuid="26c7e680-218f-4654-b4d6-a757167f5451"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{paciente_dni}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="90" y="0" width="129" height="20" uuid="061ba73a-46cf-4f77-9fdf-5c29145c3e72"/>
+				<reportElement x="164" y="0" width="129" height="20" uuid="061ba73a-46cf-4f77-9fdf-5c29145c3e72"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pa_apellidos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="221" y="0" width="135" height="20" uuid="4d5e7027-33fc-4e74-825e-d35f8e111181"/>
+				<reportElement x="295" y="0" width="135" height="20" uuid="4d5e7027-33fc-4e74-825e-d35f8e111181"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pa_nombres}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="358" y="0" width="82" height="20" uuid="345a7e5e-1ff6-4318-b0f0-9efef54c56aa"/>
+				<reportElement x="432" y="0" width="82" height="20" uuid="345a7e5e-1ff6-4318-b0f0-9efef54c56aa"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{paciente_grupo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{paciente_tipo_discapacidad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="442" y="0" width="57" height="20" uuid="26427daa-51a3-416d-8783-a621f1571caa"/>
+				<reportElement x="516" y="0" width="57" height="20" uuid="26427daa-51a3-416d-8783-a621f1571caa"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{paciente_ayudasocial}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="501" y="0" width="74" height="20" uuid="79c4763b-a981-4c06-af56-e710ab9a868f"/>
-				<textElement textAlignment="Center">
+				<reportElement x="575" y="0" width="74" height="20" uuid="79c4763b-a981-4c06-af56-e710ab9a868f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fechaconsulta}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="578" y="0" width="170" height="20" uuid="23deeff7-d0cd-49c0-9040-ee732f40df69"/>
-				<textElement textAlignment="Center">
-					<font isItalic="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{motivoconsulta}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -262,33 +228,26 @@
 				<reportElement x="218" y="55" width="357" height="1" uuid="a906a3a5-5ae7-463d-902b-142f04383cae"/>
 			</line>
 			<textField>
-				<reportElement x="202" y="55" width="171" height="20" uuid="3c29f7ff-a8c6-469f-a0b7-4e926b9434cd"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="219" y="56" width="356" height="20" uuid="3c29f7ff-a8c6-469f-a0b7-4e926b9434cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ga_apellidos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="381" y="56" width="162" height="20" uuid="429223d9-d8e6-4d68-bfd0-057957006ad2"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font isItalic="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ga_nombres}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="328" y="76" width="100" height="20" uuid="433fce56-d5b9-45e3-b97e-0303d240ab28"/>
+				<reportElement x="221" y="74" width="354" height="20" uuid="433fce56-d5b9-45e3-b97e-0303d240ab28"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{galeno_dni}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="736" y="133" width="80" height="20" uuid="2aa427f5-0026-4142-a684-797f5e2ba4af"/>
+				<reportElement x="634" y="133" width="80" height="20" uuid="2aa427f5-0026-4142-a684-797f5e2ba4af"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="816" y="133" width="40" height="20" uuid="3cc29555-b9f3-4b3a-8b19-d59ca50abb47"/>
+				<reportElement x="714" y="133" width="40" height="20" uuid="3cc29555-b9f3-4b3a-8b19-d59ca50abb47"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

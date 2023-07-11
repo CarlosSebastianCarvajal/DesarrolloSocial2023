@@ -4,6 +4,7 @@
     Author     : Unknown
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="BD.conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="net.sf.jasperreports.engine.*" %> 
@@ -15,7 +16,7 @@
 con la siguiente linea de codigo*/
     conexion conexion1 = new conexion();
     /*Establecemos la ruta del reporte*/
-    File reportFile = new File(application.getRealPath("/Reportes/RecetaMedica.jasper"));
+    File reportFile = new File(application.getRealPath("/Reportes/Receta_Medica_Mejorado.jasper"));
     /*Enviamos parámetros porque nuestro reporte los necesita asi que escriba 
 y seguiremos el formato del método runReportToPdf*/
  /*Con Map y el HaspMap nos servira para crear los paramentros*/
@@ -25,12 +26,14 @@ varchar(5), lo almacenamos en una String*/
     String idcliente = request.getParameter("cedulaCliente");
     String Cedulaagalenos = request.getParameter("cedulaGaleno");
     String f = request.getParameter("fecha");
+    SimpleDateFormat objSDF = new SimpleDateFormat("yyyy-MM-dd");
+    Date fi = objSDF.parse(f);
     /*Digitamos la siguiente linea de codigo entre parentesis ira el parametro que agregamos en nuestro reporte
 llamado $P{CODIGO}, pero solo se escribira "CODIGO", el String que capturamos lo colocamos, en este caso el 
 reporte solo nos pide un parametro*/
-    parameters.put("CEDULApaciente", idcliente);
-    parameters.put("CEDULAgalenos", Cedulaagalenos);
-    parameters.put("FECHA", f);
+    parameters.put("cedula", idcliente);
+    parameters.put("usuario", Cedulaagalenos);
+    parameters.put("fecha", fi);
     /*Enviamos la ruta del reporte, los parámetros y la conexión(objeto Connection)*/
     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conexion1.getConecction());
 

@@ -47,28 +47,21 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="133" splitType="Prevent">
+		<band height="77" splitType="Prevent">
 			<line>
-				<reportElement x="3" y="128" width="749" height="1" uuid="245a4aed-b748-49a7-b38a-0283272624b2"/>
+				<reportElement x="3" y="73" width="749" height="1" uuid="245a4aed-b748-49a7-b38a-0283272624b2"/>
 			</line>
-			<image>
-				<reportElement x="22" y="4" width="126" height="124" uuid="8dd0a5f6-774b-40b0-9f26-ddf4a1be5c51"/>
-				<imageExpression><![CDATA["C:\\Users\\Sebastian Carvajal\\Documents\\GitHub\\DesarrolloSocial2023\\WebAPP\\web\\Reportes\\LogoDS1.png"]]></imageExpression>
-			</image>
 			<staticText>
-				<reportElement x="184" y="3" width="525" height="71" uuid="0a015137-e305-4a41-adbe-050e1a64b115"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="20" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL CIUDADANO DE QUEVEDO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="189" y="96" width="377" height="27" uuid="babd24d3-2831-4521-b5f6-bdbd42d2056f"/>
+				<reportElement x="189" y="41" width="377" height="27" uuid="babd24d3-2831-4521-b5f6-bdbd42d2056f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DEPARTAMENTO DE GINECOLOGÍA]]></text>
 			</staticText>
+			<image>
+				<reportElement x="306" y="0" width="289" height="39" uuid="3a5a83f2-9810-48e7-a13b-32f90fa32c08"/>
+				<imageExpression><![CDATA["LogoMunicipio1.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

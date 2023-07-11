@@ -50,28 +50,21 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="133" splitType="Prevent">
+		<band height="80" splitType="Prevent">
 			<staticText>
-				<reportElement x="189" y="92" width="377" height="27" uuid="b7918f8a-e44d-42e7-bbf5-497675b4cc10"/>
+				<reportElement x="189" y="39" width="377" height="27" uuid="b7918f8a-e44d-42e7-bbf5-497675b4cc10"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="15" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DEPARTAMENTO DE TERAPIA FÍSICA]]></text>
 			</staticText>
-			<image>
-				<reportElement x="36" y="10" width="211" height="102" uuid="f56ffd0f-5719-4531-8027-8175d2183121"/>
-				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
-			</image>
 			<line>
-				<reportElement x="3" y="128" width="749" height="1" uuid="245a4aed-b748-49a7-b38a-0283272624b2"/>
+				<reportElement x="3" y="75" width="749" height="1" uuid="245a4aed-b748-49a7-b38a-0283272624b2"/>
 			</line>
-			<staticText>
-				<reportElement x="184" y="1" width="525" height="71" uuid="4713aacf-bdc8-4057-bff0-6728b5443ffe"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="20" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL CIUDADANO DE QUEVEDO]]></text>
-			</staticText>
+			<image>
+				<reportElement x="305" y="0" width="289" height="39" uuid="f971b2a0-06ec-461e-913f-2eaa095f7823"/>
+				<imageExpression><![CDATA["LogoMunicipio1.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

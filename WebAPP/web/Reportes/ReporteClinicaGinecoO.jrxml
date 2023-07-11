@@ -75,30 +75,23 @@ from
 	<title>
 		<band height="71" splitType="Stretch">
 			<staticText>
-				<reportElement x="104" y="38" width="406" height="16" uuid="580632c2-9529-4442-a644-f6c4ef97eb48"/>
+				<reportElement x="0" y="38" width="555" height="16" uuid="580632c2-9529-4442-a644-f6c4ef97eb48"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ÁREA DE GINECOLOGIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="104" y="54" width="406" height="16" uuid="12eb320a-ab96-438d-af1f-63cd5f2d5b88"/>
+				<reportElement x="0" y="54" width="555" height="16" uuid="12eb320a-ab96-438d-af1f-63cd5f2d5b88"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HISTORIA CLINICA GINECO-OBSTETRICO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="23" y="2" width="109" height="66" uuid="3266911e-7a48-4e59-a5bf-3022ab14bfdd"/>
-				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
+				<reportElement x="223" y="-1" width="289" height="39" uuid="8fb78c5a-5f46-42ca-88da-8f444d3cc8f0"/>
+				<imageExpression><![CDATA["LogoMunicipio1.png"]]></imageExpression>
 			</image>
-			<staticText>
-				<reportElement x="103" y="3" width="406" height="35" uuid="888d1221-189b-4d79-996f-5b8d7bf33bb3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESARROLLO SOCIAL CIUDADANO DE QUEVEDO]]></text>
-			</staticText>
 		</band>
 	</title>
 	<pageHeader>

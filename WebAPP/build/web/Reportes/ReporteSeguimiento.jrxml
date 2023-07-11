@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6b3ed357-2cd9-42fc-9194-ae9f9ca8600d">
-	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="cedulaPaciente" class="java.lang.String"/>
@@ -24,30 +24,23 @@ and p.paciente_dni=$P{cedulaPaciente}]]>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="105" y="40" width="406" height="18" uuid="f97dade9-cfd3-4036-a3eb-f69e28498993"/>
+				<reportElement x="0" y="41" width="555" height="18" uuid="f97dade9-cfd3-4036-a3eb-f69e28498993"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ÁREA DE PSICOLOGÍA]]></text>
 			</staticText>
-			<image>
-				<reportElement x="28" y="4" width="94" height="58" uuid="eeddbb58-f0c4-4221-b8a9-1f4bcab55dc1"/>
-				<imageExpression><![CDATA["LogoDS1.png"]]></imageExpression>
-			</image>
 			<staticText>
-				<reportElement x="105" y="59" width="406" height="18" uuid="1c6c7abc-c085-4725-8c07-ccb370d7417f"/>
+				<reportElement x="0" y="59" width="555" height="18" uuid="1c6c7abc-c085-4725-8c07-ccb370d7417f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SEGUIMIENTO DEL CASO]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="114" y="0" width="394" height="38" uuid="3c492733-8ece-4da0-ba65-b3e1d2acc439"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN DE GESTIÓN DE DESAROLLO SOCIAL CIUDADANO DE QUEVEDO]]></text>
-			</staticText>
+			<image>
+				<reportElement x="215" y="0" width="289" height="39" uuid="b593454f-fb2f-4b96-9658-a3ae19ef3443"/>
+				<imageExpression><![CDATA["LogoMunicipio1.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
