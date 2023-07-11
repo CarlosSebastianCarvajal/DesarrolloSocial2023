@@ -156,7 +156,7 @@
                                     <div class="div-cont-sel-dep-to-transf"  >
                                         <select class="sel-dep-to-transf"required=""  name="paciente_nivel_estudio">
                                             <option>Eliga nivel de estudios</option>
-                                            <option>Inicial</option>
+                                            <option>Ninguno</option>
                                             <option>Basico</option>
                                             <option>Bachillerato</option>
                                             <option>Superior</option>

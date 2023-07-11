@@ -49,6 +49,7 @@ public class AddGineHistoriaEvolucion extends HttpServlet {
             
             //Preparar los parametros
             String checkcito_examen = request.getParameter("checkcito_examen");
+            if(checkcito_examen == null){ checkcito_examen = "off"; }
             String galenoid = "", hcid = "";
             String pacienteid,
                 //Datos de los signos vitales  (Crear Variable)   

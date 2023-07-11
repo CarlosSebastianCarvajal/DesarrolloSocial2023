@@ -34,13 +34,14 @@
                             <input type="button" id="btn-actionb" class="inp-search" value="Buscar"/>
                             <input type="text" id="txt-cede" class="inp-ced" onkeypress='return validaNumericos(event)' placeholder="Cédula" name="Identificacion" maxlength="15"/>
                         </div>
+                    <!--
                         <hr />
                         <div class="div-cont-ced">
                             <input type="button" id="btn-actionbusc" class="inp-search" value="Buscar"/></th>
                             <input style='width: 40%' type="text" id="txt-namea" class="inp-name" placeholder="Nombres" name="PrimerNombre"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/>
                             <p></p>
                             <input  style='width: 40%; margin-left:5%;'  type="text" id="txt-lnamesega" class="inp-lname" placeholder="Apellidos" name="SegundoNombre"  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/>
-                        </div>
+                        </div>-->
                         <hr />
                     <table align="center" style='width: 98%; margin-left: 10px; margin-top: 30px'>
                        <thead>
@@ -63,8 +64,8 @@
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-nombres" class="inp-lname" placeholder="Nombres" name="hg_nombres"required=""  onkeypress="return soloLetras(event)" readonly="readonly"/></div></td>
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-apellidos" class="inp-name" placeholder="Apellidos" name="hg_apellidos"required=""  onkeypress="return soloLetras(event)" readonly="readonly"/></div></td>
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-estadoc" class="inp-lname" placeholder="Estado Civil" name="hg_estado_civil"required=""  onkeypress="return soloLetras(event)" readonly="readonly"/></div></td>
-                                <input  type="text" id="txt-id" class="inp-lname" placeholder="txt-id" name="txtid"/>
-                                <input  type="text" id="ghc_id" class="inp-lname" placeholder="txt-id" name="ghc_id"/>
+                                <input hidden type="text" id="txt-id" class="inp-lname" placeholder="txt-id" name="txtid"/>
+                                <input hidden type="text" id="ghc_id" class="inp-lname" placeholder="txt-id" name="ghc_id"/>
                             </tr>
                         </tbody>
                         <thead >
@@ -303,7 +304,7 @@
                                 <td><input style= 'text-align: center; width: 75%;' type="text" id="txt-apellidos1" class="inp-name" placeholder="Apellidos" name="hg_apellidos1"required=""  onkeypress="return soloLetras(event)" readonly="readonly"/></td>
                                 <td><input style= 'text-align: center; width: 75%;' type="text" id="txt-domicilio1" class="inp-edad" placeholder="Domicilio" name=".." value=""  readonly="readonly" /></td>
                                 <td><input style= 'text-align: center; width: 75%;' type="text" id="txt-localidad1" class="inp-edad" placeholder="Localidad" name=".." value="" readonly="readonly" /></td>
-                                <input  type="text" id="ghcp_id" class="inp-lname" placeholder="ghcp_id" name="ghcp_id"/>
+                                <input hidden type="text" id="ghcp_id" class="inp-lname" placeholder="ghcp_id" name="ghcp_id"/>
                             </tr>
                         </tbody>
                          <thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead><thead></thead>
@@ -1626,8 +1627,8 @@
                         <table style='width: 95%; margin-left: 10px; '>
                             <thead >
                                 <th style='background: #d5ddda; width: 33.33%' >Semana Gestación</th>
-                                <th style='background: #d5ddda; width: 33.33%' >Índice de masa corporal</th>
-                                <th style='background: #d5ddda; width: 33.33%' >Ganancia</th>
+                                <th style='background: #d5ddda; width: 33.33%' >Peso (Kg)</th>
+                                <th style='background: #d5ddda; width: 33.33%' >Ganancia de peso</th>
                             </thead>
                             <tbody id="body_imc" align="center">
                                 
@@ -1648,7 +1649,7 @@
                                 <th>Peso</th>
                                 <th>Talla</th>
                                 <th>IMC</th>
-                                <th>Ganancia</th>
+                                <th>Ganancia de peso</th>
                             </thead>
                             <tbody align="center">
                             <td><input style="margin-top: -8px; border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda; width: 50%; height: 40px; display: flex; align-items: center; text-align: center;" type="number" id="num-imc-semana" name="imc_semana" placeholder="Semana" onkeypress="return validaNumericos(event)" required="" readonly="true"/></td>
@@ -1764,7 +1765,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <input  type="text" id="txt-tabla-datos-medicamentos" name="txt-tabla-datos-medicamentos" class="inp-lname"/>
+                                                                <input hidden type="text" id="txt-tabla-datos-medicamentos" name="txt-tabla-datos-medicamentos" class="inp-lname"/>
                                                                 <td><div class="div-cont-lname"><input type="text" onkeyup="mayus(this);" id="txt-medicamento" class="inp-lname" placeholder="Medicamento" name="medicamento"/></div></td>
                                                                 <td><div class="div-cont-name"><input type="text"onkeyup="mayus(this);" id="txt-med-indicacion" class="inp-name" placeholder="Indicación Médica" name="indicaciones"/></div></td>
                                                                 <td><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action-receta" class="btn-accept" value="+"> 
@@ -1800,7 +1801,7 @@
                         <table style='width: 95%; margin-left: 10px; '>
                             <tbody align="center" >
                                 <td style="width: 50%; text-align: right;" >¿Enviará a realizarse examanes a la paciente?&nbsp &nbsp</td>
-                                <td style="width: 50%; text-align: left;" aling="left"><input style= 'text-align: center; margin-top: 5px; align-content: left;' type="checkbox" id="checkcito-examen"  name="checkcito_examen" /></td>
+                                <td style="width: 50%; text-align: left;" aling="left"><input style= 'text-align: center; margin-top: 5px; align-content: left;' type="checkbox" id="checkcito-examen"  name="checkcito_examen"/></td>
                              </tbody>
                           </table>
                         <hr /> 
@@ -1889,7 +1890,7 @@
             if(peso > 0 && talla > 0){
                 imc = peso / Math.pow((talla * 0.01), 2);
                 imc = Number(imc.toFixed(3));
-                calcularGanancia(imc);
+                calcularGanancia(peso);
                 document.getElementById("txt-imc-seg").value = imc;
                 pasarPesoTallaValoracion1(peso, talla, imc)
             }else{
@@ -1898,10 +1899,10 @@
             }
         }
         
-        function calcularGanancia(imc){
+        function calcularGanancia(peso){
             var ganancia = 0;
-            var imc_inicial = document.getElementById("txt-imc").value;
-            ganancia = imc - imc_inicial;
+            var peso_inicial = document.getElementById("txt-peso").value;
+            ganancia = peso - peso_inicial;
             ganancia = Number(ganancia.toFixed(3));
             document.getElementById("txt-imc-rango").value = ganancia;
         }

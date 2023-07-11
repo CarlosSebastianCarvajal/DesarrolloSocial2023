@@ -52,6 +52,7 @@ public class AddGineHistoriaClinica extends HttpServlet {
             session = request.getSession(true);
             //Preparar los parametros
             String checkcito_examen = request.getParameter("checkcito_examen");
+            if(checkcito_examen == null){ checkcito_examen = "off"; }
             String galenoid = "";
             String pacienteid,
                 //Datos de los signos vitales  (Crear Variable)   

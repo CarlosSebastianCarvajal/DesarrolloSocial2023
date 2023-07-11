@@ -52,6 +52,7 @@ public class AddGineHistoriaClinicaEmb extends HttpServlet {
             out = response.getWriter();
             session = request.getSession(true);
             String checkcito_examen = request.getParameter("checkcito_examen");
+            if(checkcito_examen == null){ checkcito_examen = "off"; }
             String galenoid = "";
             String pacienteid,
                 //Datos de los signos vitales  (Crear Variable)   
@@ -219,7 +220,8 @@ public class AddGineHistoriaClinicaEmb extends HttpServlet {
             
                 //Para los valores de valoracion IMC
                 imc_semana,
-                imc_imc;
+                imc_imc,
+                imc_peso;
             
             pacienteid = request.getParameter("txtid");
             // Capturar valores de signos vitales
@@ -385,9 +387,10 @@ public class AddGineHistoriaClinicaEmb extends HttpServlet {
             ca_iniciales_tecnico = request.getParameter("ca_iniciales_tecnico");
             ca_prox_cita = request.getParameter("ca_prox_cita");
             
-            //Capturar para Valoacion IMC
+            //Capturar para Valoacion IMC  
             imc_semana = request.getParameter("imc_semana");
             imc_imc= request.getParameter("imc_valor_inicial");
+            imc_peso= request.getParameter("imc_peso");
             
             //Capturar usuario de la sesion
             String galenoUser = (String) session.getAttribute("galeno_user11");
@@ -672,7 +675,7 @@ public class AddGineHistoriaClinicaEmb extends HttpServlet {
                                             ps = c.getConecction().prepareStatement(sqlImc);
                                             ps.setInt(1, id_ghcp);
                                             ps.setInt(2, Integer.parseInt(imc_semana));
-                                            ps.setFloat(3, Float.parseFloat(imc_imc));
+                                            ps.setFloat(3, Float.parseFloat(imc_peso));
                                             int resIMC = 0;
                                             resIMC = ps.executeUpdate();
                                         }

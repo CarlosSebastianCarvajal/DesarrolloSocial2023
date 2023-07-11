@@ -52,6 +52,7 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
             out = response.getWriter();
             session = request.getSession(true);
             String checkcito_examen = request.getParameter("checkcito_examen");
+            if(checkcito_examen == null){ checkcito_examen = "off"; }
             String galenoid = "";
             String pacienteid,
                 //Datos de los signos vitales  (Crear Variable)   
@@ -222,6 +223,7 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                 //Para los valores de valoracion IMC
                 imc_semana,
                 imc_imc,
+                imc_peso,
                 
                 //Datos de los signos vitales  (Crear Variable)   
                 presion_arterial_s_seg,
@@ -405,10 +407,10 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
             ca_iniciales_tecnico = request.getParameter("ca_iniciales_tecnico");
             ca_prox_cita = request.getParameter("ca_prox_cita");
             
-            //Capturar para Valoracion IMC Inicial
+            //Capturar para Valoracion IMC Inicial  imc_peso
             imc_semana = request.getParameter("imc_semana");
             imc_imc= request.getParameter("imc_valor_inicial");
-            
+            imc_peso= request.getParameter("imc_peso");
             
             //capturar valores de signos vitales de la nueva consulta
             presion_arterial_s_seg = request.getParameter("presion_arterial_s_seg");
@@ -670,7 +672,7 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                         ps = c.getConecction().prepareStatement(sqlImc);
                         ps.setInt(1, Integer.parseInt(ghcp_id));
                         ps.setInt(2, Integer.parseInt(imc_semana));
-                        ps.setFloat(3, Float.parseFloat(imc_imc));
+                        ps.setFloat(3, Float.parseFloat(imc_peso));
                         ps.setFloat(4, Float.parseFloat(imc_rango));
                         int resIMC = 0;
                         resIMC = ps.executeUpdate();
@@ -794,6 +796,9 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                     out.println(e);
                 }
             }
+            
+            
+            
 
         } catch (IOException e) {
             out.println("Exception: " + e);
