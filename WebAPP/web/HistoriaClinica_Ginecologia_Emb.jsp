@@ -1533,7 +1533,7 @@
                             </thead>
                             </thead>
                             <tbody >
-                            <td>¿ La paciente se encuentra dentro de las primeras 20 semanas ?</td>
+                            <td>¿ La paciente tiene mas de 20 semanas de gestación ?</td>
                             <td><input style= 'text-align: center; margin-top: 5px;' type="checkbox" id="checkcito"  name="checkcito" oninput="habDes(this);" checked="true" /></td>
                             </tbody>
                         </table>

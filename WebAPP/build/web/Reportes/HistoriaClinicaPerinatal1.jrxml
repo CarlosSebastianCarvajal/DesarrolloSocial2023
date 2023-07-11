@@ -9,7 +9,10 @@
 	<queryString>
 		<![CDATA[select CONCAT(p.paciente_primer_nombre, ' ',p.paciente_segundo_nombre) as nombre, 
 CONCAT(p.paciente_apellido_paterno, ' ',p.paciente_apellido_materno)as apellido,
-p.paciente_direccion, p.paciente_canton, p.paciente_telefono, p.paciente_edad, p.paciente_dni,
+case when p.paciente_direccion IS NULL then '' else p.paciente_direccion end paciente_direccion,
+case when p.paciente_canton IS NULL then '' else p.paciente_canton end paciente_canton,
+case when p.paciente_telefono IS NULL then '' else p.paciente_telefono end paciente_telefono,
+extract(YEAR FROM (age(current_date, p.paciente_fnacimiento::DATE)))::varchar as p_edad, p.paciente_dni,
 TO_CHAR (p.paciente_fnacimiento:: DATE, 'dd-mm-yyyy')as fecha_nacimiento,
 case when p.paciente_edad<15 then 'x' else case when p.paciente_edad>35 then 'x' else ' ' end end cuadro_edad,
 case when p.paciente_etnia='Blanca' then 'x' else ' ' end Blanca,
@@ -56,7 +59,7 @@ case when ghp.ap_eclampsia='Si' then 'x' else ' ' end ap_eclampsiaSI,
 case when ghp.ap_eclampsia='No' then 'x' else ' ' end ap_eclampsiaNo,
 case when ghp.ap_ocmg='Si' then 'x' else ' ' end ap_ocmgSI,
 case when ghp.ap_ocmg='No' then 'x' else ' ' end ap_ocmgNo,
-ghp.ap_ocmg_desc,
+case when ghp.ap_ocmg_desc IS NULL then '' else ghp.ap_ocmg_desc end ap_ocmg_desc,
 case when ghp.ap_cirugia_gu='Si' then 'x' else ' ' end ap_cirugia_guSI,
 case when ghp.ap_cirugia_gu='No' then 'x' else ' ' end ap_cirugia_guNo,
 case when ghp.ap_infertilidad='Si' then 'x' else ' ' end ap_infertilidadSI,
@@ -76,7 +79,8 @@ case when ghp.ao_ant_gem='No' then 'x' else ' ' end ao_ant_gemNo,
 ghp.ao_gestas_previas, ghp.ao_emb_ectopico, ghp.ao_abortos, 
 case when ghp.ao_abortos_cons='Si' then 'x' else ' ' end ao_abortos_consSI,
 ghp.ao_partos, ghp.ao_partos_vag, ghp.ao_partos_ces, ghp.ao_nac_vivos, ghp.ao_nac_muertos, ghp.ao_viven, 
-ghp.ao_nac_muer_ant, ghp.ao_nac_muer_des, TO_CHAR (ghp.ao_fin_emb_ant:: DATE, 'dd-mm-yyyy') as fecha_fin_emb,
+ghp.ao_nac_muer_ant, ghp.ao_nac_muer_des, 
+case when ghp.ao_fin_emb_ant IS NULL then '' else TO_CHAR (ghp.ao_fin_emb_ant:: DATE, 'dd-mm-yyyy') end fecha_fin_emb,
 case when cast(extract(YEAR FROM (age(current_date, ghp.ao_fin_emb_ant::DATE))) as integer)>0 then 'x' else ' ' end menosde1,
 case when ghp.ao_emb_planeado='Si' then 'x' else ' ' end ao_emb_planeadoSI,
 case when ghp.ao_emb_planeado='No' then 'x' else ' ' end ao_emb_planeadoNo,
@@ -87,8 +91,8 @@ case when ghp.ao_fma='Hormonal' then 'x' else ' ' end ao_fmaHormonal,
 case when ghp.ao_fma='Emergencia' then 'x' else ' ' end ao_fmaEmergencia,
 case when ghp.ao_fma='Natural' then 'x' else ' ' end ao_fmaNatural,
 ghp.ga_peso, ghp.ga_talla, 
-TO_CHAR (ghp.ga_fum:: DATE, 'dd-mm-yyyy') as fecha_fum, 
-TO_CHAR (ghp.ga_fpp:: DATE, 'dd-mm-yyyy') as fecha_fpp, 
+case when ghp.ga_fum IS NULL then '' else TO_CHAR (ghp.ga_fum:: DATE, 'dd-mm-yyyy') end ga_fum,
+case when ghp.ga_fpp IS NULL then '' else TO_CHAR (ghp.ga_fpp:: DATE, 'dd-mm-yyyy') end ga_fpp,
 case when ghp.ga_egconf_fum='Si' then 'x' else ' ' end ga_egconf_fumSI,
 case when ghp.ga_egconf_fum='No' then 'x' else ' ' end ga_egconf_fumNo,
 case when ghp.ga_egconf_eco='Si' then 'x' else ' ' end ga_egconf_ecoSI,
@@ -128,8 +132,9 @@ case when ghp.ga_antirubeola='No sabe' then 'x' else ' ' end ga_antirubeolaNosab
 case when ghp.ga_antirubeola='Embarazo' then 'x' else ' ' end ga_antirubeolaEmbarazo,
 case when ghp.ga_antirubeola='No' then 'x' else ' ' end ga_antirubeolaNo,
 case when ghp.ga_antitet='Si' then 'x' else ' ' end ga_antitetSi,
-case when ghp.ga_antitet='No' then 'x' else ' ' end ga_antitetNo,
-ghp.ga_antitet_dosis_uno, ghp.ga_antitet_dosis_dos, 
+case when ghp.ga_antitet='No' then 'x' else ' ' end ga_antitetNo, 
+case when ghp.ga_antitet_dosis_uno IS NULL then 0 else ghp.ga_antitet_dosis_uno end ga_antitet_dosis_uno,
+case when ghp.ga_antitet_dosis_dos IS NULL then 0 else ghp.ga_antitet_dosis_dos end ga_antitet_dosis_dos,
 case when ghp.ga_exnormal_odont='Si' then 'x' else ' ' end ga_exnormal_odontSi,
 case when ghp.ga_exnormal_odont='No' then 'x' else ' ' end ga_exnormal_odontNo,
 case when ghp.ga_exnormal_mamas='Si' then 'x' else ' ' end ga_exnormal_mamasSi,
@@ -143,7 +148,7 @@ case when ghp.ga_cervix_pap='No se hizo' then 'x' else ' ' end ga_cervix_papNose
 case when ghp.ga_cervix_colp='Normal' then 'x' else ' ' end ga_cervix_colpNormal,
 case when ghp.ga_cervix_colp='Anormal' then 'x' else ' ' end ga_cervix_colpAnormal,
 case when ghp.ga_cervix_colp='No se hizo' then 'x' else ' ' end ga_cervix_colpNoseh,
-ghp.ga_san_grupo, 
+case when ghp.ga_san_grupo IS NULL then '' else ghp.ga_san_grupo end ga_san_grupo,
 case when ghp.ga_san_rh='+' then 'x' else ' ' end ga_san_rhpo,
 case when ghp.ga_san_rh='-' then 'x' else ' ' end ga_san_rhne,
 case when ghp.ga_san_inmuniz='Si' then 'x' else ' ' end ga_san_inmunizSi,
@@ -172,9 +177,9 @@ case when ghp.ga_bac_menor='No se hizo' then 'x' else ' ' end ga_bac_menorNoseh,
 case when ghp.ga_bac_mayor='Normal' then 'x' else ' ' end ga_bac_mayorNormal,
 case when ghp.ga_bac_mayor='Anormal' then 'x' else ' ' end ga_bac_mayorAnormal,
 case when ghp.ga_bac_mayor='No se hizo' then 'x' else ' ' end ga_bac_mayorNoseh,
-ghp.ga_glu_menor20, 
+case when ghp.ga_glu_menor20 IS NULL then 0 else ghp.ga_glu_menor20 end ga_glu_menor20,
 case when ghp.ga_glu_menor20_105='Si' then 'x' else ' ' end ga_glu_menor20_105Si,
-ghp.ga_glu_mayor30, 
+case when ghp.ga_glu_mayor30 IS NULL then 0 else ghp.ga_glu_mayor30 end ga_glu_mayor30,
 case when ghp.ga_glu_mayor30_105='Si' then 'x' else ' ' end ga_glu_mayor30_105Si,
 case when ghp.ga_vih_sol_menor20='Si' then 'x' else ' ' end ga_vih_sol_menor20Si,
 case when ghp.ga_vih_sol_menor20='No' then 'x' else ' ' end ga_vih_sol_menor20No,
@@ -184,13 +189,13 @@ case when ghp.ga_vih_sol_mayor20='Si' then 'x' else ' ' end ga_vih_sol_mayor20Si
 case when ghp.ga_vih_sol_mayor20='No' then 'x' else ' ' end ga_vih_sol_mayor20No,
 case when ghp.ga_vih_rea_mayor20='Si' then 'x' else ' ' end ga_vih_rea_mayor20Si,
 case when ghp.ga_vih_rea_mayor20='No' then 'x' else ' ' end ga_vih_rea_mayor20No,
-ghp.ga_hb_menor_20, 
+case when ghp.ga_hb_menor_20 IS NULL then 0 else ghp.ga_hb_menor_20 end ga_hb_menor_20,
 case when ghp.ga_hb_menor_bajo='Si' then 'x' else ' ' end ga_hb_menor_bajoSi,
 case when ghp.ga_fe='Si' then 'x' else ' ' end ga_feSi,
 case when ghp.ga_fe='No' then 'x' else ' ' end ga_feNo,
 case when ghp.ga_folatos='Si' then 'x' else ' ' end ga_folatosSi,
 case when ghp.ga_folatos='No' then 'x' else ' ' end ga_folatosNo,
-ghp.ga_hb_mayor_20, 
+case when ghp.ga_hb_mayor_20 IS NULL then 0 else ghp.ga_hb_mayor_20 end ga_hb_mayor_20,
 case when ghp.ga_hb_mayor_bajo='Si' then 'x' else ' ' end ga_hb_mayor_bajoSi,
 case when ghp.ga_hb_mayor_bajo='No' then 'x' else ' ' end ga_hb_mayor_bajoNo,
 case when ghp.ga_estreptococo='-' then 'x' else ' ' end ga_estreptococoNeg,
@@ -203,31 +208,31 @@ case when ghp.ga_consej_lactancia='No' then 'x' else ' ' end ga_consej_lactancia
 case when ghp.ga_sif_prue_notre_res_men='-' then 'x' else ' ' end ga_sif_prue_notre_res_menNeg,
 case when ghp.ga_sif_prue_notre_res_men='+' then 'x' else ' ' end ga_sif_prue_notre_res_menPosi,
 case when ghp.ga_sif_prue_notre_res_men='Sd' then 'x' else ' ' end ga_sif_prue_notre_res_menSD,
-ghp.ga_sif_prue_notre_sem_men, 
+case when ghp.ga_sif_prue_notre_sem_men IS NULL then 0 else ghp.ga_sif_prue_notre_sem_men end ga_sif_prue_notre_sem_men,
 case when ghp.ga_sif_prue_notre_res_may='-' then 'x' else ' ' end ga_sif_prue_notre_res_mayNeg,
 case when ghp.ga_sif_prue_notre_res_may='+' then 'x' else ' ' end ga_sif_prue_notre_res_mayPosi,
 case when ghp.ga_sif_prue_notre_res_may='Sd' then 'x' else ' ' end ga_sif_prue_notre_res_maySD,
-ghp.ga_sif_prue_notre_sem_may, 
+case when ghp.ga_sif_prue_notre_sem_may IS NULL then 0 else ghp.ga_sif_prue_notre_sem_may end ga_sif_prue_notre_sem_may,
 case when ghp.ga_sif_prue_tre_res_men='-' then 'x' else ' ' end ga_sif_prue_tre_res_menNeg,
 case when ghp.ga_sif_prue_tre_res_men='+' then 'x' else ' ' end ga_sif_prue_tre_res_menPosi,
 case when ghp.ga_sif_prue_tre_res_men='Sd' then 'x' else ' ' end ga_sif_prue_tre_res_menSD,
 case when ghp.ga_sif_prue_tre_res_men='Nc' then 'x' else ' ' end ga_sif_prue_tre_res_menNc,
-ghp.ga_sif_prue_tre_sem_men,  
+case when ghp.ga_sif_prue_tre_sem_men IS NULL then 0 else ghp.ga_sif_prue_tre_sem_men end ga_sif_prue_tre_sem_men,
 case when ghp.ga_sif_prue_tre_res_may='-' then 'x' else ' ' end ga_sif_prue_tre_res_mayNeg,
 case when ghp.ga_sif_prue_tre_res_may='+' then 'x' else ' ' end ga_sif_prue_tre_res_mayPosi,
 case when ghp.ga_sif_prue_tre_res_may='Sd' then 'x' else ' ' end ga_sif_prue_tre_res_maySD,
 case when ghp.ga_sif_prue_tre_res_may='Nc' then 'x' else ' ' end ga_sif_prue_tre_res_mayNc,
-ghp.ga_sif_prue_tre_sem_may, 
+case when ghp.ga_sif_prue_tre_sem_may IS NULL then 0 else ghp.ga_sif_prue_tre_sem_may end ga_sif_prue_tre_sem_may,
 case when ghp.ga_sif_trat_menor='No' then 'x' else ' ' end ga_sif_trat_menorNo,
 case when ghp.ga_sif_trat_menor='Si' then 'x' else ' ' end ga_sif_trat_menorSi,
 case when ghp.ga_sif_trat_menor='Sd' then 'x' else ' ' end ga_sif_trat_menorSD,
 case when ghp.ga_sif_trat_menor='Nc' then 'x' else ' ' end ga_sif_trat_menorNc,
-ghp.ga_sif_trat_menor_sem, 
+case when ghp.ga_sif_trat_menor_sem IS NULL then 0 else ghp.ga_sif_trat_menor_sem end ga_sif_trat_menor_sem,
 case when ghp.ga_sif_trat_mayor='No' then 'x' else ' ' end ga_sif_trat_mayorNo,
 case when ghp.ga_sif_trat_mayor='Si' then 'x' else ' ' end ga_sif_trat_mayorSi,
 case when ghp.ga_sif_trat_mayor='Sd' then 'x' else ' ' end ga_sif_trat_mayorSD,
 case when ghp.ga_sif_trat_mayor='Nc' then 'x' else ' ' end ga_sif_trat_mayorNc,
-ghp.ga_sif_trat_mayor_sem, 
+case when ghp.ga_sif_trat_mayor_sem IS NULL then 0 else ghp.ga_sif_trat_mayor_sem end ga_sif_trat_mayor_sem,
 case when ghp.ga_sif_trat_par_menor='No' then 'x' else ' ' end ga_sif_trat_par_menorNo,
 case when ghp.ga_sif_trat_par_menor='Si' then 'x' else ' ' end ga_sif_trat_par_menorSi,
 case when ghp.ga_sif_trat_par_menor='Sd' then 'x' else ' ' end ga_sif_trat_par_menorSD,
@@ -238,7 +243,7 @@ case when ghp.ga_sif_trat_par_mayor='Sd' then 'x' else ' ' end ga_sif_trat_par_m
 case when ghp.ga_sif_trat_par_mayor='Nc' then 'x' else ' ' end ga_sif_trat_par_mayorNc,
 TO_CHAR (ca.ca_fecha:: DATE, 'dd-mm-yyyy') as fecha_cita, ca.ca_edad_ges, ca.ca_peso, ca.ca_pa, ca.ca_altura_uterina, 
 ca.ca_presentacion, ca.ca_fcp, ca.ca_mov_fetales, ca.ca_proteinuria, ca.ca_signos_notas, ca.ca_iniciales_tecnico, 
-TO_CHAR (ca.ca_prox_cita:: DATE, 'dd-mm-yyyy') as fecha_proxima
+TO_CHAR (ca.ca_prox_cita:: DATE, 'dd-mm-yyyy') as fecha_cita
 from ginecologia_historia_clinica_per as ghp, ginecologia_historia_clinica as gh, paciente as p, consultas_antenatales as ca
 where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.ghcp_id and p.paciente_dni=$P{cedula}
 order by ghp.ghcp_id desc]]>
@@ -248,7 +253,7 @@ order by ghp.ghcp_id desc]]>
 	<field name="paciente_direccion" class="java.lang.String"/>
 	<field name="paciente_canton" class="java.lang.String"/>
 	<field name="paciente_telefono" class="java.lang.String"/>
-	<field name="paciente_edad" class="java.lang.Integer"/>
+	<field name="p_edad" class="java.lang.String"/>
 	<field name="paciente_dni" class="java.lang.String"/>
 	<field name="fecha_nacimiento" class="java.lang.String"/>
 	<field name="cuadro_edad" class="java.lang.String"/>
@@ -337,8 +342,8 @@ order by ghp.ghcp_id desc]]>
 	<field name="ao_fmanatural" class="java.lang.String"/>
 	<field name="ga_peso" class="java.math.BigDecimal"/>
 	<field name="ga_talla" class="java.lang.Integer"/>
-	<field name="fecha_fum" class="java.lang.String"/>
-	<field name="fecha_fpp" class="java.lang.String"/>
+	<field name="ga_fum" class="java.lang.String"/>
+	<field name="ga_fpp" class="java.lang.String"/>
 	<field name="ga_egconf_fumsi" class="java.lang.String"/>
 	<field name="ga_egconf_fumno" class="java.lang.String"/>
 	<field name="ga_egconf_ecosi" class="java.lang.String"/>
@@ -498,7 +503,6 @@ order by ghp.ghcp_id desc]]>
 	<field name="ca_proteinuria" class="java.lang.String"/>
 	<field name="ca_signos_notas" class="java.lang.String"/>
 	<field name="ca_iniciales_tecnico" class="java.lang.String"/>
-	<field name="fecha_proxima" class="java.lang.String"/>
 	<pageHeader>
 		<band height="277" splitType="Stretch">
 			<rectangle>
@@ -634,7 +638,7 @@ order by ghp.ghcp_id desc]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{paciente_edad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{p_edad}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="301" y="13" width="29" height="60" uuid="4bad2813-0fa7-4f37-8b83-2bbf7c4cc715"/>
@@ -2276,7 +2280,7 @@ order by ghp.ghcp_id desc]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fecha_fum}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fum}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="101" y="167" width="65" height="18" uuid="f40e7dac-be73-4cc9-8269-7400e665e5b8"/>
@@ -2293,7 +2297,7 @@ order by ghp.ghcp_id desc]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fecha_fpp}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_fpp}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="92" y="168" width="10" height="15" uuid="cafe936f-f25e-4d76-a0b5-c71b65e049d7"/>
@@ -5185,7 +5189,7 @@ order by ghp.ghcp_id desc]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fecha_proxima}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha_cita}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="284" y="0" width="18" height="14" uuid="119a5604-e702-4c35-8a25-302f935a0a81"/>
