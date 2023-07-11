@@ -151,7 +151,7 @@ $(function () {
                 if(data.ap_nefropatia!== "null")document.querySelector('#ap_nefropatia > [value="'+data.ap_nefropatia+'"]').checked = true;
                 if(data.ap_violencia!== "null")document.querySelector('#ap_violencia > [value="'+data.ap_violencia+'"]').checked = true;
                 if(data.ao_up_nc!== "null")document.querySelector('#ao_up_nc > [value="'+data.ao_up_nc+'"]').checked = true;
-                if(data.ao_up_normal!== "null")document.querySelector('#ao_up_normal > [value="'+data.ao_up_normal+'"]').checked = true;
+                //if(data.ao_up_normal!== "null")document.querySelector('#ao_up_normal > [value="'+data.ao_up_normal+'"]').checked = true;
                 if(data.ao_ant_gem!== "null")document.querySelector('#ao_ant_gem > [value="'+data.ao_ant_gem+'"]').checked = true;
                 
                 if(data.ao_gestas_previas!== "null")$("#ao_gestas_previas").val(data.ao_gestas_previas);

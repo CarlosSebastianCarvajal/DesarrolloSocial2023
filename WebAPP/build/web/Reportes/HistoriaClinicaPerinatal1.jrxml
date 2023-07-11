@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="74a445b0-781f-45ae-bd0d-e3d8d03e0fb0">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="319"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="cedula" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -240,7 +240,8 @@ TO_CHAR (ca.ca_fecha:: DATE, 'dd-mm-yyyy') as fecha_cita, ca.ca_edad_ges, ca.ca_
 ca.ca_presentacion, ca.ca_fcp, ca.ca_mov_fetales, ca.ca_proteinuria, ca.ca_signos_notas, ca.ca_iniciales_tecnico, 
 TO_CHAR (ca.ca_prox_cita:: DATE, 'dd-mm-yyyy') as fecha_proxima
 from ginecologia_historia_clinica_per as ghp, ginecologia_historia_clinica as gh, paciente as p, consultas_antenatales as ca
-where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.ghcp_id and p.paciente_dni=$P{cedula}]]>
+where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.ghcp_id and p.paciente_dni=$P{cedula}
+order by ghp.ghcp_id desc]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="apellido" class="java.lang.String"/>
@@ -1129,7 +1130,7 @@ where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.g
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{af_diabetessi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{af_diabetesno}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="46" y="109" width="8" height="8" backcolor="#FFFF00" uuid="0c12bc30-9374-48d9-8761-0af8cce6ac04"/>
