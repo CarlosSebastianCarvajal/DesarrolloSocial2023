@@ -154,6 +154,33 @@
             </section>            
         </form>
         
+        <form name="form1" method="post" action="ReporteHC_PERINATAL.jsp" target="_blank" >
+            <section class="sec-main">
+                <div class="div-cont-main"> 
+                    <div class="div-cont-ced">
+                        <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px' >
+                            <thead>
+                                <h1 class="textgrueso"  style='text-align: center; '>HISTORIA CLINICA PERINATAL</h1>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th><div></div>Ingrese Cédula del paciente</th>
+                                </tr>
+                                <tr>
+                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Cédula del paciente" name="cedulaPaciente"/></div></td>
+                                </tr>
+                                <tr>
+                                    <td></td> 
+                                    <td><input type="submit" name="button" id="btn-actiong" class="btn-accept" value="GENERAR DOCUMENTO" style='width: 300px;'/></td>                               
+                                    
+                                </tr>
+                            </tbody>   
+                        </table>
+                    </div>           
+                </div>
+            </section>            
+        </form>
+        
         <form name="form1" method="post" action="REPORTE_CLINICO_OBS.jsp" target="_blank" >
             <section class="sec-main">
                 <div class="div-cont-main"> 

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="74a445b0-781f-45ae-bd0d-e3d8d03e0fb0">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="319"/>
 	<parameter name="cedula" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[	
-select CONCAT(p.paciente_primer_nombre, ' ',p.paciente_segundo_nombre) as nombre, 
+		<![CDATA[select CONCAT(p.paciente_primer_nombre, ' ',p.paciente_segundo_nombre) as nombre, 
 CONCAT(p.paciente_apellido_paterno, ' ',p.paciente_apellido_materno)as apellido,
 p.paciente_direccion, p.paciente_canton, p.paciente_telefono, p.paciente_edad, p.paciente_dni,
 TO_CHAR (p.paciente_fnacimiento:: DATE, 'dd-mm-yyyy')as fecha_nacimiento,
@@ -69,9 +68,9 @@ case when ghp.ap_nefropatia='No' then 'x' else ' ' end ap_nefropatiaNo,
 case when ghp.ap_violencia='Si' then 'x' else ' ' end ap_violenciaSI,
 case when ghp.ap_violencia='No' then 'x' else ' ' end ap_violenciaNo,
 case when ghp.ao_up_nc='Nc' then 'x' else ' ' end ao_up_ncNC,
-case when ghp.ao_up_nc='>2500g' then 'x' else ' ' end ao_up_nc2500,
-case when ghp.ao_up_normal='Normal' then 'x' else ' ' end ao_up_normalNormal,
-case when ghp.ao_up_normal='4000g' then 'x' else ' ' end ao_up_normal4000g,
+case when ghp.ao_up_nc='<2500g' then 'x' else ' ' end ao_up_nc2500,
+case when ghp.ao_up_nc='Normal' then 'x' else ' ' end ao_up_ncNormal,
+case when ghp.ao_up_nc='4000g' then 'x' else ' ' end ao_up_nc4000g,
 case when ghp.ao_ant_gem='Si' then 'x' else ' ' end ao_ant_gemSI,
 case when ghp.ao_ant_gem='No' then 'x' else ' ' end ao_ant_gemNo,
 ghp.ao_gestas_previas, ghp.ao_emb_ectopico, ghp.ao_abortos, 
@@ -241,8 +240,7 @@ TO_CHAR (ca.ca_fecha:: DATE, 'dd-mm-yyyy') as fecha_cita, ca.ca_edad_ges, ca.ca_
 ca.ca_presentacion, ca.ca_fcp, ca.ca_mov_fetales, ca.ca_proteinuria, ca.ca_signos_notas, ca.ca_iniciales_tecnico, 
 TO_CHAR (ca.ca_prox_cita:: DATE, 'dd-mm-yyyy') as fecha_proxima
 from ginecologia_historia_clinica_per as ghp, ginecologia_historia_clinica as gh, paciente as p, consultas_antenatales as ca
-where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.ghcp_id and p.paciente_dni=$P{cedula}
-]]>
+where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.ghcp_id and p.paciente_dni=$P{cedula}]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="apellido" class="java.lang.String"/>
@@ -310,8 +308,8 @@ where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.g
 	<field name="ap_violenciano" class="java.lang.String"/>
 	<field name="ao_up_ncnc" class="java.lang.String"/>
 	<field name="ao_up_nc2500" class="java.lang.String"/>
-	<field name="ao_up_normalnormal" class="java.lang.String"/>
-	<field name="ao_up_normal4000g" class="java.lang.String"/>
+	<field name="ao_up_ncnormal" class="java.lang.String"/>
+	<field name="ao_up_nc4000g" class="java.lang.String"/>
 	<field name="ao_ant_gemsi" class="java.lang.String"/>
 	<field name="ao_ant_gemno" class="java.lang.String"/>
 	<field name="ao_gestas_previas" class="java.lang.Integer"/>
@@ -1057,20 +1055,6 @@ where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.g
 				<reportElement x="467" y="52" width="83" height="21" uuid="6d153303-327f-431d-9d18-f62d979eb380"/>
 			</rectangle>
 			<textField>
-				<reportElement x="467" y="19" width="83" height="10" uuid="af508fc5-5b8e-47be-abf8-c24cca444c7b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="467" y="38" width="83" height="10" uuid="c648dab5-9dfe-48ac-a2ef-93a1933bc372"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="467" y="58" width="83" height="10" uuid="88eeab1a-286a-4d95-baeb-4f26b864f1ac"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
@@ -1637,9 +1621,9 @@ where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.g
 			<textField>
 				<reportElement x="119" y="134" width="57" height="8" uuid="f69950f8-9e79-465c-847b-f2ee34a4aaf1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="5"/>
+					<font size="4"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ap_ocmg_desc}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="181" y="73" width="37" height="8" uuid="8e3cbc22-03ee-4e53-92d1-ece6bb147fc8"/>
@@ -1713,7 +1697,7 @@ where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.g
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ao_up_normal4000g}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_up_nc4000g}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="201" y="99" width="8" height="8" backcolor="#FFFFFF" uuid="1e591234-95b0-4991-b608-b88e376dd15c"/>
@@ -1733,7 +1717,7 @@ where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.g
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ao_up_normalnormal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ao_up_ncnormal}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="212" y="99" width="15" height="8" uuid="9ae3075d-d616-4bc4-853b-f5eea14e4dd7"/>
@@ -1743,11 +1727,11 @@ where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.g
 				<text><![CDATA[<2500g]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="211" y="109" width="15" height="8" uuid="82b850b9-f31e-4024-8689-5788e92c453d"/>
+				<reportElement x="212" y="109" width="15" height="8" uuid="82b850b9-f31e-4024-8689-5788e92c453d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="4"/>
 				</textElement>
-				<text><![CDATA[<4000g]]></text>
+				<text><![CDATA[4000g]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="186" y="99" width="13" height="8" uuid="46737c6b-10c0-4e77-97c3-40c26df06c54"/>
@@ -3121,8 +3105,7 @@ where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.g
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ga_cervix_inspnormal}
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ga_cervix_inspnormal}]]></textFieldExpression>
 			</textField>
 			<ellipse>
 				<reportElement x="45" y="208" width="8" height="8" backcolor="#FFFFFF" uuid="b4d8284f-abfa-403c-a2c4-c4f5f92ee8a5"/>
@@ -4952,6 +4935,13 @@ where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.g
 			<ellipse>
 				<reportElement x="7" y="254" width="8" height="8" backcolor="#FFFF00" uuid="5ebbc816-9bfa-41f2-8222-f5bb5879d14a"/>
 			</ellipse>
+			<staticText>
+				<reportElement x="469" y="14" width="81" height="20" uuid="629c733d-9d0a-4a46-ab62-6a07e22bdd73"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Dirección de Gestión de Desarrollo Social]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
