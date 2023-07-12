@@ -220,7 +220,7 @@
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ago-partos" class="inp-edad"  minlength="1" maxlength="2" placeholder="Partos" name="ago_partos" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ago-abortos" class="inp-edad"  minlength="1" maxlength="2" placeholder="Abortos" name="ago_abortos" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ago-cesareas" class="inp-edad"  minlength="1" maxlength="2" placeholder="Cesárea" name="ago_cesareas" value="" required="" onkeypress='return validaNumericos(event)' /></div> </td>
-                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ago-edad-ges" class="inp-edad"  maxlength="2" placeholder="Edad Gestacional" name="ago_edad_gestacional" value="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ago-edad-ges" class="inp-edad"  maxlength="2" placeholder="Edad Gestacional" name="ago_edad_gestacional" value="" onkeypress='return validaNumericos(event)' oninput="pasarDatos(this);"/></div> </td>
                             </tr>
                         </tbody>
                          </table>
@@ -700,8 +700,8 @@
                                 <th>FPP</th>
                             </thead>
                             <tbody align="center">
-                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-ga-peso" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="ga_peso"  onkeypress="return validaNumericosDec(event)" readonly="true"></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-ga-talla" class="inp-name" placeholder="Talla en Cemtímetros" name="ga_talla" onkeypress="return validaNumericos(event)" readonly="true"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-ga-peso" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="ga_peso"  onkeypress="return validaNumericosDec(event)" oninput="calcularIMC1(this);"></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-ga-talla" class="inp-name" placeholder="Talla en Cemtímetros" name="ga_talla" onkeypress="return validaNumericos(event)" oninput="calcularIMC1(this);" /></div></td>
                                 <td><div class="div-cont-lname"><input type="date" id="txt-ga-fum" class="inp-name" name="ga_fum"/></div></td> 
                                 <td><div class="div-cont-lname"><input type="date" id="txt-ga-fpp" class="inp-name" name="ga_fpp"/></div></td> 
                             </tbody>
@@ -1702,19 +1702,19 @@
             if(peso > 0 && talla > 0){
                 imc = peso / Math.pow((talla * 0.01), 2);
                 imc = Number(imc.toFixed(3));
-                calcularRangoIMC(imc);
+                //calcularRangoIMC(imc);
                 document.getElementById("txt-imc").value = imc;
-                pasarPesoTallaValoracion(peso, talla, imc)
+                //pasarPesoTallaValoracion(peso, talla, imc)
             }else{
                 document.getElementById("txt-imc").value = '';
-                limpiarPesoTallaValoracion();
+                //limpiarPesoTallaValoracion();
             }
         }
         
         function pasarPesoTalla(){
             document.getElementById("txt-ca-peso").value = document.getElementById("txt-peso").value;
-            document.getElementById("txt-ga-peso").value = document.getElementById("txt-peso").value;
-            document.getElementById("txt-ga-talla").value = document.getElementById("txt-talla").value;
+            //document.getElementById("txt-ga-peso").value = document.getElementById("txt-peso").value;
+            //document.getElementById("txt-ga-talla").value = document.getElementById("txt-talla").value;
         }
         
         function pasarPesoTallaValoracion(peso, talla, imc){
@@ -1745,6 +1745,53 @@
                 document.getElementById("txt-imc-rango").value = 'Desconocido';
             }
             
+        }
+        
+        //Nuevo ganancia de peso
+        function pasarDatos(e){
+            var semana = Number(document.getElementById("txt-ago-edad-ges").value);
+            document.getElementById("txt-ca-edad-ges").value = semana;
+            document.getElementById("num-imc-semana").value = semana;
+            
+            if(semana > 0 && semana <= 13){
+                var imc = document.getElementById("txt-imc").value;
+                document.getElementById("txt-imc-imc").value = imc;
+                document.getElementById("txt-imc-peso").value = document.getElementById("txt-peso").value;
+                document.getElementById("txt-imc-talla").value = document.getElementById("txt-talla").value;
+                calcularRangoIMC(Number(imc));
+                
+                //pasar peso talla en perinatal
+                document.getElementById("txt-ga-peso").value = document.getElementById("txt-peso").value;
+                document.getElementById("txt-ga-talla").value = document.getElementById("txt-talla").value;
+                document.getElementById("txt-ga-peso").readonly=true;
+                document.getElementById("txt-ga-talla").readonly=true;
+            }else{
+                limpiarPesoTallaValoracion();
+                document.getElementById("txt-ga-peso").readonly=false;
+                document.getElementById("txt-ga-talla").readonly=false;
+                
+                document.getElementById("txt-ga-peso").value = '';
+                document.getElementById("txt-ga-talla").value = '';
+            }
+        }
+        
+        
+        
+        function calcularIMC1(e) {
+            //e.value = e.value.toUpperCase();
+            var imc = 0;
+            var peso = Number(document.getElementById("txt-ga-peso").value);
+            var talla = Number(document.getElementById("txt-ga-talla").value);
+            if(peso > 0 && talla > 0){
+                imc = peso / Math.pow((talla * 0.01), 2);
+                imc = Number(imc.toFixed(3));
+                calcularRangoIMC(imc);
+                //document.getElementById("txt-imc").value = imc;
+                pasarPesoTallaValoracion(peso, talla, imc)
+            }else{
+                //document.getElementById("txt-imc").value = '';
+                limpiarPesoTallaValoracion();
+            }
         }
     </script>
           

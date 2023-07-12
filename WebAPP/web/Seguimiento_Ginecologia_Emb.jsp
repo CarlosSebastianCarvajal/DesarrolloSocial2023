@@ -1907,7 +1907,7 @@
         
         function calcularGanancia(peso){
             var ganancia = 0;
-            var peso_inicial = document.getElementById("txt-peso").value;
+            var peso_inicial = document.getElementById("txt-ga-peso").value;
             ganancia = peso - peso_inicial;
             ganancia = Number(ganancia.toFixed(3));
             document.getElementById("txt-imc-rango").value = ganancia;

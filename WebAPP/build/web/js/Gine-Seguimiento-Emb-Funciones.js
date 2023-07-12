@@ -286,11 +286,7 @@ $(function () {
                 //13148117
                 console.log(data);
                 $("#ant-consulta-1").val(data[0].ca_edad_ges);
-                if(parseInt(data[0].ca_edad_ges) > 26){
-                    $("#ant-consulta-res").append('No existe seguimiento de ganancia de peso de la paciente (La primer consulta la realizó despues del primer semestre de gestación)');
-                }else{
-                    $("#ant-consulta-res").html("");
-                }
+                
                 
                 $("#body_antenatales").html("");
                 var output = ``;

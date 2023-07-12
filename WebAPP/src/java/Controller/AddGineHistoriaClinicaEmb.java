@@ -667,7 +667,7 @@ public class AddGineHistoriaClinicaEmb extends HttpServlet {
                                         int resCA = 0;
                                         resCA = ps.executeUpdate();
                                         
-                                        if(Integer.parseInt(imc_semana) <= 26){
+                                        if(Integer.parseInt(imc_semana) <= 13){
                                             
                                             String sqlImc = "INSERT INTO public.imc_seguimiento(\n" +
                                                             "   ghcp_id, imc_semana, imc_imc, imc_ganancia)\n" +
@@ -676,6 +676,18 @@ public class AddGineHistoriaClinicaEmb extends HttpServlet {
                                             ps.setInt(1, id_ghcp);
                                             ps.setInt(2, Integer.parseInt(imc_semana));
                                             ps.setFloat(3, Float.parseFloat(imc_peso));
+                                            int resIMC = 0;
+                                            resIMC = ps.executeUpdate();
+                                        }else{
+                                            String sqlImc = "INSERT INTO public.imc_seguimiento(\n" +
+                                                            "   ghcp_id, imc_semana, imc_imc, imc_ganancia)\n" +
+                                                            "	VALUES (?, ?, ?, ?);";
+                                            ps = c.getConecction().prepareStatement(sqlImc);
+                                            float ganancia = Float.parseFloat(peso) - Float.parseFloat(imc_peso);
+                                            ps.setInt(1, id_ghcp);
+                                            ps.setInt(2, Integer.parseInt(imc_semana));
+                                            ps.setFloat(3, Float.parseFloat(imc_peso));
+                                            ps.setFloat(4, ganancia);
                                             int resIMC = 0;
                                             resIMC = ps.executeUpdate();
                                         }

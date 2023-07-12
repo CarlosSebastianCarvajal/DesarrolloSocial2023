@@ -670,7 +670,7 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                     
                     
                     //Ingresamos registro de valoracion //verificamos si se esta haciendo el registro de aquello
-                    if(Integer.parseInt(ant_consulta_1) <= 26){
+                    
                         String sqlImc = "INSERT INTO public.imc_seguimiento(\n" +
                                         "   ghcp_id, imc_semana, imc_imc, imc_ganancia)\n" +
                                         "	VALUES (?, ?, ?, ?);";
@@ -681,7 +681,6 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                         ps.setFloat(4, Float.parseFloat(imc_rango));
                         int resIMC = 0;
                         resIMC = ps.executeUpdate();
-                    }
                     
                     
                     //Ingresamos los signos vitales
