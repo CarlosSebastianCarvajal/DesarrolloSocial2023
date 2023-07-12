@@ -62,6 +62,12 @@ public class ActPaciente extends HttpServlet {
         String genero = request.getParameter("genero");
         String email = request.getParameter("email");
         String cond = request.getParameter("cedula");
+        
+        String paciente_etnia = request.getParameter("paciente_etnia");
+        String paciente_nivel_estudio = request.getParameter("paciente_nivel_estudio");
+        String paciente_anios_nivel = request.getParameter("paciente_anios_nivel");
+        int anio = Integer.parseInt(paciente_anios_nivel);
+        System.out.print("Anio:"+anio);
         try {
             System.out.println("connection done");
             String sql = "UPDATE public.paciente\n"
@@ -71,7 +77,7 @@ public class ActPaciente extends HttpServlet {
                     + "       paciente_apellido_materno=?, paciente_segundo_nombre=?, \n"
                     + "       paciente_provincia=?,paciente_parroquia=?, \n"
                     + "       paciente_nacionalidad=?, paciente_estado_civil=?, paciente_convencional=?, \n"
-                    + "       paciente_tipo_sangre=?, paciente_correoelectronico=?\n"
+                    + "       paciente_tipo_sangre=?, paciente_correoelectronico=?, paciente_etnia=?, paciente_nivel_estudio=?, paciente_anios_nivel=?\n"
                     + " WHERE paciente_dni=?;";
             ps = c.getConecction().prepareStatement(sql);
             ps.setString(2, PrimerNombre);
@@ -91,7 +97,12 @@ public class ActPaciente extends HttpServlet {
             ps.setString(16, tipoSangre);
             ps.setString(6, genero);
             ps.setString(17, email);
-            ps.setString(18, cond);
+            ps.setString(21, cond);
+            
+            ps.setString(18, paciente_etnia);
+            ps.setString(19, paciente_nivel_estudio);
+            ps.setInt(20, Integer.parseInt(paciente_anios_nivel));
+            
             ps.executeUpdate();
 //            JOptionPane.showMessageDialog(null, "ACTUALIZADO INFORMACION CORRECTAMENTE");
             

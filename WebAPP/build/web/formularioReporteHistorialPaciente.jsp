@@ -12,7 +12,7 @@
             </a>
         </header>
         <div class="div-head-tittle"><h2></h2></div>
-        <form name="form1" method="post" action="REPORTEHistorialpaciente.jsp">
+        <form name="form1" method="post" action="REPORTEHistorialpaciente.jsp"  target="_blank">
             <%
                 HttpSession s = request.getSession();
                 //variables de session

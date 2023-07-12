@@ -120,6 +120,44 @@
                             <td><div class="div-cont-lname"><input type="text" id="txt-lnamedis" class="inp-lname" placeholder="Discapacidad"required=""  name="discapacidad" onkeyup="mayus(this);"/></div></td>
                         </tr>
                     </tbody>
+                    
+                    <thead >
+                            <tr>                                
+                                <th>Etnia</th>
+                                <th>Nivel de estudios</th>
+                                <th>Años en el nivel de estudio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr> 
+                                <td>
+                                    <div class="div-cont-sel-dep-to-transf"  >
+                                        <select class="sel-dep-to-transf"required=""  name="paciente_etnia" id="txt-etnia">
+                                            <option>Eliga etnia</option>
+                                            <option>Blanca</option>
+                                            <option>Indigena</option>
+                                            <option>Mestiza</option>
+                                            <option>Negra</option>
+                                            <option>Otra</option>
+                                        </select>
+                                    </div>
+                                </td> 
+                                <td>
+                                    <div class="div-cont-sel-dep-to-transf"  >
+                                        <select class="sel-dep-to-transf"required=""  name="paciente_nivel_estudio" id="txt-nivel">
+                                            <option>Eliga nivel de estudios</option>
+                                            <option>Ninguno</option>
+                                            <option>Basico</option>
+                                            <option>Bachillerato</option>
+                                            <option>Superior</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td><div style='margin-top: -40px !important;'class="div-cont-ced"><input type="text" id="txt-anio-nivel" minlength="1" maxlength="2" class="inp-ced" placeholder="Años en el nivel de estudio" name="paciente_anios_nivel" required="" onkeypress='return validaNumericos(event)'/></div></td>
+
+                            </tr>
+                        </tbody>
+                    
                     <thead >
                         <tr>
                             <th>Tipo de sangre</th>
@@ -147,73 +185,73 @@
 <script src="js/newjavascript.js" type="text/javascript"></script>
 <script>
                                 function cargarProvincias() {
-                                    var array = ["Azuay", "Bolívar", "Cañar", "Carchi", "Chimborazo", "Cotopaxi", "Oro", "Esmeraldas", "Galápagos", "Guayas", "Imbabura", "Loja", "LosRíos",
-                                        "Manabí", "MoronaSantiago", "Napo", "Orellana", "Pastaza", "Pichincha", "SantaElena", "SantoDomingo", "Sucumbíos", "Tungurahua", "ZamoraChinchipe"];
-                                    array.sort();
-                                    addOptions("Provincia", array);
-                                }
-
-                                function addOptions(domElement, array) {
-                                    var selector = document.getElementsByName(domElement)[0];
-                                    for (Provincia in array) {
-                                        var opcion = document.createElement("option");
-                                        opcion.text = array[Provincia];
-                                        opcion.value = array[Provincia].toLowerCase()
-                                        selector.add(opcion);
-                                    }
-                                }
-                                function cargarPueblos() {
-                                    // Objeto de provincias con pueblos
-                                    var listaPueblos = {
-                                        azuay: ["Cuenca", "camilo ponce Enriquez", "Chordeleg", "El pan", "Girón", "Guachapala", "Gualaceo", "Nabón", "Oña", "Paute", "Pucará", "San Fernando", "Santa Isabel", "Sevilla de oro", "Sígsig"],
-                                        bolívar: ["Guaranda", "Caluma", "Chillanes", "Chimbo", "Echeandía", "Las naves", "San Miguel"],
-                                        cañar: ["Azogues", "Biblián", "Cañar", "Déleg", "El Tambo", "La Troncal", "Suscal"],
-                                        carchi: ["Tulcán", " Bolívar", "Espejo", "Mira", "Montúfar", "San Pedro de Huaca"],
-                                        chimborazo: ["Riobamba", "Alausí", "Chambo", "Chunchi", "Colta", "Cumandá", "Guamote", "Guano", "Pallatanga", "Penipe"],
-                                        cotopaxi: ["Latacunga", "La Maná", "Pangua", "Pujilí", "Salcedo", "Saquisilí", "Sigchos"],
-                                        oro: ["Machala", "Arenillas", "Atahualpa", "Balsas", "Chilla", "El Guabo", "Huaquillas", "Las Lajas", "Marcabelí", "Pasaje", "Piñas", "Portovelo", "Santa Rosa", "Zaruma"],
-                                        esmeraldas: ["Esmeraldas", "Atacames", "Eloy Alfaro", "Muisne", "Quinindé", "Rioverde", "San Lorenzo"],
-                                        galápagos: ["San Cristóbal", "Isabela", "Santa Cruz"],
-                                        guayas: ["Guayaquil", "Alfredo Baquerizo Moreno", "Balao", "Balzar", "Colimes", "Daule", "Durán", "El Empalme", "El Triunfo", "General Antonio Elizalde", "Isidro Ayora", "Lomas de Sargentillo", "Marcelino Maridueña", "Milagro", "Naranjal", "Naranjito", "Nobol", "Palestina", "Pedro Carbo", "Playas", "Salitre", "Samborondón", "Santa Lucía", "Simón Bolívar", "Yaguachi"],
-                                        imbabura: ["Ibarra", " Antonio Ante", "Cotacachi", " Otavalo", "Pimampiro", "San Miguel de Urcuquí"],
-                                        loja: ["Loja", "Calvas", "Catamayo", "Celica", "Chaguarpamba", "Espíndola", "Gonzanamá", "Macará", "Olmedo", "Paltas", "Pindal", "Puyango", "Quilanga", "Saraguro", "Sozoranga", "Zapotillo"],
-                                        losríos: ["Babahoyo", "Baba", "Buena Fe", "Mocache", "Montalvo", "Palenque", "Puebloviejo", "Quevedo", " Quinsaloma", "Urdaneta", "Valencia", "Ventanas", "Vinces"],
-                                        manabí: ["Portoviejo", "24 de Mayo", "Bolívar", "Chone", "El Carmen", " Flavio Alfaro", "Jama", "Jaramijó", "Jipijapa", "Junín", "Manta", "Montecristi", "Olmedo", "Paján", "Pedernales", "Pichincha", "Puerto López", " Rocafuerte", "San Vicente", "Santa Ana", "Sucre", " Tosagua"],
-                                        moronasantiago: ["Morona", " Gualaquiza", "Huamboya", "Limón Indanza", "Logroño", "Pablo Sexto", "Palora", "San Juan Bosco", "Santiago de Méndez", "Sucúa", "Taisha", "Tiwintza"],
-                                        napo: ["Tena", "Archidona", "Carlos Julio Arosemena Tola", "El Chaco", "Quijos"],
-                                        orellana: ["Francisco de Orellana", "Aguarico", "La Joya de los Sachas", "Loreto"],
-                                        pastaza: ["Pastaza", "Arajuno", "Mera", "Santa Clara"],
-                                        pichincha: [" Quito", "Cayambe", "Mejía", "Pedro Moncayo", " Pedro Vicente Maldonado", "Puerto Quito", " Rumiñahui", "San Miguel de los Bancos"],
-                                        santaElena: ["Santa Elena", "La Libertad", "Salinas"],
-                                        santodomingo: ["Santo Domingo", "La Concordia"],
-                                        sucumbíos: ["Lago Agrio", "Cascales", "Cuyabeno", "Gonzalo Pizarro", "Putumayo", "Shushufindi", "Sucumbíos"],
-                                        tungurahua: ["Ambato", " Baños", "Cevallos", "Mocha", "Patate", "Pelileo", "Quero", "Santiago de Píllaro", "Tisaleo"],
-                                        zamorachinchipe: ["Zamora", "Centinela del Cóndor", "Chinchipe", "El Pangui", "Nangaritza", "Palanda", " Paquisha", "Yacuambi", "Yantzaza"]
-
+                                        var array = ["Azuay", "Bolivar", "Cañar", "Carchi", "Chimborazo", "Cotopaxi", "El Oro", "Esmeraldas", "Galapagos", "Guayas", "Imbabura", "Loja", "Los Rios",
+                                            "Manabi", "Morona Santiago", "Napo", "Orellana", "Pastaza", "Pichincha", "Santa Elena", "Santo Domingo", "Sucumbios", "Tungurahua", "Zamora Chinchipe"];
+                                        array.sort();
+                                        addOptions("Provincia", array);
                                     }
 
-                                    var provincias = document.getElementById('Provincia');
-                                    var pueblos = document.getElementById('canton');
-                                    var provinciaSeleccionada = provincias.value;
-
-                                    // Se limpian los pueblos
-                                    pueblos.innerHTML = '<option value="">Seleccione un canton...</option>'
-
-                                    if (provinciaSeleccionada !== '') {
-                                        // Se seleccionan los pueblos y se ordenan
-                                        provinciaSeleccionada = listaPueblos[provinciaSeleccionada]
-                                        provinciaSeleccionada.sort()
-
-                                        // Insertamos los pueblos
-                                        provinciaSeleccionada.forEach(function (pueblo) {
-                                            let opcion = document.createElement('option');
-                                            opcion.value = pueblo;
-                                            opcion.text = pueblo;
-                                            pueblos.add(opcion);
-                                        });
+                                    function addOptions(domElement, array) {
+                                        var selector = document.getElementsByName(domElement)[0];
+                                        for (Provincia in array) {
+                                            var opcion = document.createElement("option");
+                                            opcion.text = array[Provincia];
+                                            opcion.value = array[Provincia].toLowerCase()
+                                            selector.add(opcion);
+                                        }
                                     }
+                                    function cargarPueblos() {
+                                        // Objeto de provincias con pueblos
+                                        var listaPueblos = {
+                                            azuay: ["Cuenca", "camilo ponce Enriquez", "Chordeleg", "El pan", "Girón", "Guachapala", "Gualaceo", "Nabón", "Oña", "Paute", "Pucará", "San Fernando", "Santa Isabel", "Sevilla de oro", "Sígsig"],
+                                            bolívar: ["Guaranda", "Caluma", "Chillanes", "Chimbo", "Echeandía", "Las naves", "San Miguel"],
+                                            cañar: ["Azogues", "Biblián", "Cañar", "Déleg", "El Tambo", "La Troncal", "Suscal"],
+                                            carchi: ["Tulcán", " Bolívar", "Espejo", "Mira", "Montúfar", "San Pedro de Huaca"],
+                                            chimborazo: ["Riobamba", "Alausí", "Chambo", "Chunchi", "Colta", "Cumandá", "Guamote", "Guano", "Pallatanga", "Penipe"],
+                                            cotopaxi: ["Latacunga", "La Maná", "Pangua", "Pujilí", "Salcedo", "Saquisilí", "Sigchos"],
+                                            eloro: ["Machala", "Arenillas", "Atahualpa", "Balsas", "Chilla", "El Guabo", "Huaquillas", "Las Lajas", "Marcabelí", "Pasaje", "Piñas", "Portovelo", "Santa Rosa", "Zaruma"],
+                                            esmeraldas: ["Esmeraldas", "Atacames", "Eloy Alfaro", "Muisne", "Quinindé", "Rioverde", "San Lorenzo"],
+                                            galapagos: ["San Cristóbal", "Isabela", "Santa Cruz"],
+                                            guayas: ["Guayaquil", "Alfredo Baquerizo Moreno", "Balao", "Balzar", "Colimes", "Daule", "Durán", "El Empalme", "El Triunfo", "General Antonio Elizalde", "Isidro Ayora", "Lomas de Sargentillo", "Marcelino Maridueña", "Milagro", "Naranjal", "Naranjito", "Nobol", "Palestina", "Pedro Carbo", "Playas", "Salitre", "Samborondón", "Santa Lucía", "Simón Bolívar", "Yaguachi"],
+                                            imbabura: ["Ibarra", " Antonio Ante", "Cotacachi", " Otavalo", "Pimampiro", "San Miguel de Urcuquí"],
+                                            loja: ["Loja", "Calvas", "Catamayo", "Celica", "Chaguarpamba", "Espíndola", "Gonzanamá", "Macará", "Olmedo", "Paltas", "Pindal", "Puyango", "Quilanga", "Saraguro", "Sozoranga", "Zapotillo"],
+                                            losrios: ["Babahoyo", "Baba", "Buena Fe", "Mocache", "Montalvo", "Palenque", "Puebloviejo", "Quevedo", " Quinsaloma", "Urdaneta", "Valencia", "Ventanas", "Vinces"],
+                                            manabi: ["Portoviejo", "24 de Mayo", "Bolívar", "Chone", "El Carmen", " Flavio Alfaro", "Jama", "Jaramijó", "Jipijapa", "Junín", "Manta", "Montecristi", "Olmedo", "Paján", "Pedernales", "Pichincha", "Puerto López", " Rocafuerte", "San Vicente", "Santa Ana", "Sucre", " Tosagua"],
+                                            moronasantiago: ["Morona", " Gualaquiza", "Huamboya", "Limón Indanza", "Logroño", "Pablo Sexto", "Palora", "San Juan Bosco", "Santiago de Méndez", "Sucúa", "Taisha", "Tiwintza"],
+                                            napo: ["Tena", "Archidona", "Carlos Julio Arosemena Tola", "El Chaco", "Quijos"],
+                                            orellana: ["Francisco de Orellana", "Aguarico", "La Joya de los Sachas", "Loreto"],
+                                            pastaza: ["Pastaza", "Arajuno", "Mera", "Santa Clara"],
+                                            pichincha: [" Quito", "Cayambe", "Mejía", "Pedro Moncayo", " Pedro Vicente Maldonado", "Puerto Quito", " Rumiñahui", "San Miguel de los Bancos"],
+                                            santaelena: ["Santa Elena", "La Libertad", "Salinas"],
+                                            santodomingo: ["Santo Domingo", "La Concordia"],
+                                            sucumbios: ["Lago Agrio", "Cascales", "Cuyabeno", "Gonzalo Pizarro", "Putumayo", "Shushufindi", "Sucumbíos"],
+                                            tungurahua: ["Ambato", " Baños", "Cevallos", "Mocha", "Patate", "Pelileo", "Quero", "Santiago de Píllaro", "Tisaleo"],
+                                            zamorachinchipe: ["Zamora", "Centinela del Cóndor", "Chinchipe", "El Pangui", "Nangaritza", "Palanda", " Paquisha", "Yacuambi", "Yantzaza"]
 
-                                }
+                                        }
+
+                                        var provincias = document.getElementById('Provincia');
+                                        var pueblos = document.getElementById('canton');
+                                        var provinciaSeleccionada = provincias.value;
+                                        provinciaSeleccionada=provinciaSeleccionada.replace(' ','');
+                                        // Se limpian los pueblos
+                                        pueblos.innerHTML = '<option value="">Seleccione un canton...</option>'
+
+                                        if (provinciaSeleccionada !== '') {
+                                            // Se seleccionan los pueblos y se ordenan
+                                            provinciaSeleccionada = listaPueblos[provinciaSeleccionada]
+                                            provinciaSeleccionada.sort()
+
+                                            // Insertamos los pueblos
+                                            provinciaSeleccionada.forEach(function (pueblo) {
+                                                let opcion = document.createElement('option');
+                                                opcion.value = pueblo;
+                                                opcion.text = pueblo;
+                                                pueblos.add(opcion);
+                                            });
+                                        }
+
+                                    }
 
                                 function validaNumericos(event) {
                                     if (event.charCode >= 48 && event.charCode <= 57) {

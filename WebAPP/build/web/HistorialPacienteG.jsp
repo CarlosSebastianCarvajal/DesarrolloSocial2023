@@ -49,9 +49,9 @@
                             Statement smt;
                             ResultSet rs;
                             smt = con.getConecction().createStatement();
-                            rs = smt.executeQuery("select g.fecha, p.paciente_dni as cedula, (p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre || ' ' || p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as paciente_nombres, g.notas, g.archivo, case when g.archivo is null then ' ' else 'Download' end as descarga from ginecologia_seguimiento as g, paciente p, ginecologia_historia_clinica as gh, galeno as ga where gh.ghc_id=g.ghc_id and gh.paciente_id=p.paciente_id and gh.galeno_id=ga.galeno_id and ga.galeno_user='" + session.getAttribute("galeno_user11") + "' order by fecha");
+                            rs = smt.executeQuery("select p.paciente_dni as cedula, CONCAT(p.paciente_primer_nombre,' ',p.paciente_segundo_nombre,' ',p.paciente_apellido_paterno,' ',p.paciente_apellido_materno)as nombre, s.sesion_numero as numero, cast(s.fecha as text)as fecha from seguimiento as s, paciente as p, galeno as g where s.paciente_id=p.paciente_id and  g.galeno_id=s.galeno_id and g.galeno_user='" + session.getAttribute("galeno_user11") + "' order by s.fecha");
                             if (rs.next()) {
-                                rs = smt.executeQuery("select g.fecha, p.paciente_dni as cedula, (p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre || ' ' || p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as paciente_nombres, g.notas, g.archivo, case when g.archivo is null then ' ' else 'Download' end as descarga from ginecologia_seguimiento as g, paciente p, ginecologia_historia_clinica as gh, galeno as ga where gh.ghc_id=g.ghc_id and gh.paciente_id=p.paciente_id and gh.galeno_id=ga.galeno_id and ga.galeno_user='" + session.getAttribute("galeno_user11") + "' order by fecha");
+                                rs = smt.executeQuery("select p.paciente_dni as cedula, CONCAT(p.paciente_primer_nombre,' ',p.paciente_segundo_nombre,' ',p.paciente_apellido_paterno,' ',p.paciente_apellido_materno)as nombre, s.sesion_numero as numero, cast(s.fecha as text)as fecha from seguimiento as s, paciente as p, galeno as g where s.paciente_id=p.paciente_id and  g.galeno_id=s.galeno_id and g.galeno_user='" + session.getAttribute("galeno_user11") + "' order by s.fecha");
                         %>
                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
@@ -59,8 +59,7 @@
                                     <th>Fecha Consulta</th>
                                     <th>Cedula</th>
                                     <th>Paciente</th>
-                                    <th>Motivo Consulta</th>
-                                    <th>Archivo</th>
+                                    <th>Sesión</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,9 +68,8 @@
                                 <tr>
                                     <td><%= rs.getString("fecha")%></td>
                                     <td><%= rs.getString("cedula")%></td>
-                                    <td><%= rs.getString("paciente_nombres")%></td>
-                                    <td><%= rs.getString("notas")%></td>
-                                    <td><a href="DownloadServlet?fileName=<%=rs.getString("archivo")%>"><%=rs.getString("descarga")%></a></td>
+                                    <td><%= rs.getString("nombre")%></td>
+                                    <td><%= rs.getString("numero")%></td>
                                 </tr>
                                 <%}%>
                             </tbody>        

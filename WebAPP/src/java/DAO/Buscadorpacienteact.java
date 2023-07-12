@@ -22,6 +22,7 @@ public class Buscadorpacienteact {
             sql_command = "select paciente_dni,paciente_tipo_dni, paciente_primer_nombre, paciente_segundo_nombre, \n"
                     + "paciente_apellido_paterno, paciente_apellido_materno,paciente_fnacimiento,\n"
                     + "paciente_convencional,paciente_telefono, paciente_provincia,paciente_canton, paciente_parroquia,\n"
+                    + "paciente_etnia, paciente_nivel_estudio, paciente_anios_nivel,"
                     + "paciente_direccion, paciente_genero,paciente_estado_civil, paciente_ayudasocial,paciente_nacionalidad, paciente_grupo,\n"
                     + "paciente_tipo_sangre,paciente_correoelectronico from paciente where paciente_dni ='" + cedula + "'";
             pst = cn.getConecction().prepareStatement(sql_command);
@@ -47,6 +48,10 @@ public class Buscadorpacienteact {
                 newbuscarp.setPaciente_grupo(String.valueOf(rs.getString("paciente_grupo")));
                 newbuscarp.setPaciente_tiposangre(String.valueOf(rs.getString("paciente_tipo_sangre")));
                 newbuscarp.setPaciente_correoelectronico(String.valueOf(rs.getString("paciente_correoelectronico")));
+                
+                newbuscarp.setPaciente_etnia(String.valueOf(rs.getString("paciente_etnia")));
+                newbuscarp.setPaciente_nivel_estudio(String.valueOf(rs.getString("paciente_nivel_estudio")));
+                newbuscarp.setPaciente_anios_nivel(String.valueOf(rs.getString("paciente_anios_nivel")));
 
             }
         } catch (SQLException ex) {
@@ -77,6 +82,7 @@ public class Buscadorpacienteact {
             sql_command = "select paciente_dni,paciente_tipo_dni, paciente_primer_nombre, paciente_segundo_nombre, \n"
                     + "paciente_apellido_paterno, paciente_apellido_materno,paciente_fnacimiento,\n"
                     + "paciente_convencional,paciente_telefono, paciente_provincia,paciente_canton, paciente_parroquia,\n"
+                    + "paciente_etnia, paciente_nivel_estudio, paciente_anios_nivel,"
                     + "paciente_direccion, paciente_genero,paciente_estado_civil, paciente_ayudasocial,paciente_nacionalidad, paciente_grupo,\n"
                     + "paciente_tipo_sangre,paciente_correoelectronico from paciente where CONCAT(paciente_primer_nombre, ' ',paciente_segundo_nombre) like '%" + nombre + "%' AND CONCAT(paciente_apellido_paterno, ' ',paciente_apellido_materno) like '%" + apellido + "%'";
             pst = cn.getConecction().prepareStatement(sql_command);
@@ -102,6 +108,10 @@ public class Buscadorpacienteact {
                 newbuscarp.setPaciente_grupo(String.valueOf(rs.getString("paciente_grupo")));
                 newbuscarp.setPaciente_tiposangre(String.valueOf(rs.getString("paciente_tipo_sangre")));
                 newbuscarp.setPaciente_correoelectronico(String.valueOf(rs.getString("paciente_correoelectronico")));
+                
+                newbuscarp.setPaciente_etnia(String.valueOf(rs.getString("paciente_etnia")));
+                newbuscarp.setPaciente_nivel_estudio(String.valueOf(rs.getString("paciente_nivel_estudio")));
+                newbuscarp.setPaciente_anios_nivel(String.valueOf(rs.getString("paciente_anios_nivel")));
 
             }
         } catch (SQLException ex) {

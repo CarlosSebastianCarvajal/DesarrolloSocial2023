@@ -145,7 +145,7 @@
                                         <select class="sel-dep-to-transf"required=""  name="paciente_etnia">
                                             <option>Eliga etnia</option>
                                             <option>Blanca</option>
-                                            <option>Indígena</option>
+                                            <option>Indigena</option>
                                             <option>Mestiza</option>
                                             <option>Negra</option>
                                             <option>Otra</option>

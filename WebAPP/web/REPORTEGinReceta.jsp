@@ -18,7 +18,7 @@
 con la siguiente linea de codigo*/
     conexion conexion1 = new conexion();
     /*Establecemos la ruta del reporte*/
-    File reportFile = new File(application.getRealPath("/Reportes/recetaGin.jasper"));
+    File reportFile = new File(application.getRealPath("/Reportes/Receta_gin_mejorado.jasper"));
     /*Enviamos parámetros porque nuestro reporte los necesita asi que escriba 
 y seguiremos el formato del método runReportToPdf*/
  /*Con Map y el HaspMap nos servira para crear los paramentros*/
@@ -33,9 +33,9 @@ y seguiremos el formato del método runReportToPdf*/
     SimpleDateFormat objSDF = new SimpleDateFormat("yyyy-MM-dd");
     Date fi = objSDF.parse(fi_);
     
-    parameters.put("p_usuario", usuarioss);
-    parameters.put("p_fecha", fi);
-    parameters.put("p_cedula", cedulaPaciente);
+    parameters.put("usuario", usuarioss);
+    parameters.put("fechas", fi);
+    parameters.put("cedula", cedulaPaciente);
     
     /*Enviamos la ruta del reporte, los parámetros y la conexión(objeto Connection)*/
     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conexion1.getConecction());

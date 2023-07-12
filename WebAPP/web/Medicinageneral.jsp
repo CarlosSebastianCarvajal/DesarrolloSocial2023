@@ -139,6 +139,20 @@
                             <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-imc" class="inp-name" placeholder="IMC" name="imc" readonly="readonly"  /></div></td>
                         </tr>
                     </tbody>
+                    
+                    <thead >
+                        <tr>            
+                            <th>FR</th>
+                            <th>Glucosa</th>
+                        </tr>
+                    </thead>
+                    <tbody align="center">
+                        <tr>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla" class="inp-name" placeholder="FR" name="fr" required=""  onkeypress="return validaNumericos(event)"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-imc" class="inp-name" placeholder="Glucosa" name="glucosa"   onkeypress="return validaNumericos(event)"/></div></td>
+                        </tr>
+                    </tbody>
+                    
                 </table>
                 <table style='width: 95%; margin-left: 10px; '>
                     <thead >

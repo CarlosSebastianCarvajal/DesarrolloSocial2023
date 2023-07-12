@@ -57,6 +57,8 @@ public class AddMedicinaGeneral extends HttpServlet {
                 peso,
                 estatura,
                 imc,
+                fr,
+                glucosa,
                 
                 // DATOS DE MEDICINA GENERAL
                 // antecedentes
@@ -84,6 +86,8 @@ public class AddMedicinaGeneral extends HttpServlet {
             peso = request.getParameter("peso");
             estatura = request.getParameter("estatura");
             imc = request.getParameter("imc");
+            fr = request.getParameter("fr");
+            glucosa = request.getParameter("glucosa");
             
             //antecedentes
             antecedentesalergicos = request.getParameter("antecedentesalergicos");
@@ -116,8 +120,8 @@ public class AddMedicinaGeneral extends HttpServlet {
                 
                 //Guardar las signos vitales
                 String sqlSignos = "INSERT INTO public.signos_vitales(\n" +
-                                "	paciente_id, galeno_id, pa_sistolica, pa_diastolica, temperatura, frecuencia_cardiaca, saturacion, peso, estatura, imc, fecha, hora)\n" +
-                                "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
+                                "	paciente_id, galeno_id, pa_sistolica, pa_diastolica, temperatura, frecuencia_cardiaca, saturacion, peso, estatura, imc, fr, glucosa, fecha, hora)\n" +
+                                "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
 
                 ps = c.getConecction().prepareStatement(sqlSignos, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, Integer.parseInt(pacienteid));
@@ -130,6 +134,8 @@ public class AddMedicinaGeneral extends HttpServlet {
                 ps.setFloat(8, Float.parseFloat(peso));
                 ps.setInt(9, Integer.parseInt(estatura));
                 ps.setFloat(10, Float.parseFloat(imc));
+                ps.setInt(11, Integer.parseInt(fr));
+                ps.setInt(12, Integer.parseInt(glucosa));
                 int resSignos = 0;
                 resSignos = ps.executeUpdate();
                 
@@ -137,8 +143,6 @@ public class AddMedicinaGeneral extends HttpServlet {
                     int id_signos = 0;
                     ResultSet resultSet = ps.getGeneratedKeys();
                     if (resultSet.next()) {
-                        id_signos = resultSet.getInt(1);
-                        
                         id_signos = resultSet.getInt(1);                        
                         // Guardar la Histoia clínica Gineco-Obstetrico
                         String sqlHistorial = "INSERT INTO public.medicinageneral(\n" +

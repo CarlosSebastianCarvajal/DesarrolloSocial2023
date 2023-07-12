@@ -27,7 +27,7 @@
         <div class="div-head-titl" style="margin-top:-18px"><h2></h2></div>
 
 
-        <form class="form1" action="AddGineHistoriaClinicaEmb" method="GET" style="margin-top:2850px">
+        <form class="form1" action="AddGineHistoriaClinicaEmb" method="GET" style="margin-top:2850px" id="divv">
             <section class="sec-main">
                 <div class="div-cont-main2">
                         <div class="div-cont-ced">
@@ -1601,6 +1601,64 @@
                             </tbody>
                        </table>
                        <hr/>
+                       <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px; margin-bottom: 30px'> 
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-4 col-xs well">
+                                            <a href="#info2" class="inf"><h3>PRESCRIPCIONES</h3></a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="info2" class="oculto">
+                                            <section>
+                                                <div>
+                                                    <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
+                                                        <thead >
+                                                            <tr>                          
+                                                                <th>Medicamento</th>
+                                                                <th>Indicación Médica</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <input hidden type="text" id="txt-tabla-datos-medicamentos" name="txt-tabla-datos-medicamentos" class="inp-lname"/>
+                                                                <td><div class="div-cont-lname"><input type="text" onkeyup="mayus(this);" id="txt-medicamento" class="inp-lname" placeholder="Medicamento" name="medicamento"/></div></td>
+                                                                <td><div class="div-cont-name"><input type="text"onkeyup="mayus(this);" id="txt-med-indicacion" class="inp-name" placeholder="Indicación Médica" name="indicaciones"/></div></td>
+                                                                <td><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action-receta" class="btn-accept" value="+"> 
+                                                            </tr>
+                                                        </tbody>                        
+                                                    </table> 
+
+                                                    <div style="width: 80%; height: auto; margin-left: auto; margin-right: auto" >
+                                                        <div >
+                                                            <table id="tablaReceta" style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
+                                                                <thead>
+                                                                    <tr> 
+
+                                                                        <td>Nª</td>
+                                                                        <td>Medicamentos</td>
+                                                                        <td>Indicaciones Médicas</td>
+                                                                        <td>Acciones</td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                       
+                       <hr/>
                        <table style='width: 95%; margin-left: 10px; '>
                            <thead>
                                <th></th>
@@ -1624,11 +1682,13 @@
             </section>
         </form>
         <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+        <script src="js/newjavascript.js" type="text/javascript"></script>
         
     </body>
     <footer></footer>
     <script src="js/JQuery.js" type="text/javascript"></script>
     <script src="js/Gine-Historial-Emb-Funciones.js" type="text/javascript"></script>
+    <script src="js/TF-AddReceta.js" type="text/javascript"></script>
     <script type="text/javascript">
         function cancel(){
             window.location.href = "./MenuGinecologia.jsp";

@@ -88,7 +88,10 @@ public class AddGineHistoriaClinica extends HttpServlet {
                 motivo_consulta,
                 enfermedad_acual,
                 diagnostico,
-                tratamiento;            
+                tratamiento,
+                    
+                // Receta (Crear Variable)
+                receta;             
             
             pacienteid = request.getParameter("txtid");
             // Capturar valores de signos vitales
@@ -125,6 +128,9 @@ public class AddGineHistoriaClinica extends HttpServlet {
             enfermedad_acual = request.getParameter("enfermedad_acual");
             diagnostico = request.getParameter("diagnostico");
             tratamiento = request.getParameter("tratamiento");
+            
+            //Capturar los datos de la receta
+            receta = request.getParameter("txt-tabla-datos-medicamentos");
             
             //Capturar usuario de la sesion
             String galenoUser = (String) session.getAttribute("galeno_user11");
@@ -225,20 +231,76 @@ public class AddGineHistoriaClinica extends HttpServlet {
                             resultSet = ps.getGeneratedKeys();
                             if (resultSet.next()) {
                                 id_ghc = resultSet.getInt(1);
-                                // Guardar Notas de evolucion sin receta
-                                String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
-                                                "	ghc_id, signos_id, notas, fecha, hora, examen)\n" +
-                                                "	VALUES (?, ?, ?, now(), now(), ?);";
-                                String notas = "Motivo de consulta: " + motivo_consulta;
-                                ps = c.getConecction().prepareStatement(sqlNotas);
-                                ps.setInt(1, id_ghc);
-                                ps.setInt(2, id_signos);
-                                ps.setString(3, notas);
-                                if(checkcito_examen.equals("on")) { ps.setBoolean(4, true); }else { ps.setBoolean(4, false);}
-                                int resSeg = 0;
-                                resSeg = ps.executeUpdate();
-                                if(resSeg!= 0){
-                                    response.sendRedirect("MenuGinecologia.jsp");
+                                
+                                
+                                //Verificar datos de receta medica y guardar
+                                if(receta.length() > 2){
+                                    int idR = -1;
+                                    String Sqlreceta = "INSERT INTO recetamedica(galeno_id, paciente_id, fecha)\n" +
+                                                "	VALUES (?, ?, now())";
+                                    ps = c.getConecction().prepareStatement(Sqlreceta, Statement.RETURN_GENERATED_KEYS);
+                                    ps.setInt(1, Integer.parseInt(galenoid));
+                                    ps.setInt(2, Integer.parseInt(pacienteid));
+                                    int resRec = 0;
+                                    resRec = ps.executeUpdate();
+                                    if (resRec != 0) {
+                                        ResultSet resultSetRec = ps.getGeneratedKeys();
+                                        if (resultSetRec.next()) {
+                                            idR = resultSetRec.getInt(1);
+
+                                            String jsonR  = prepararjson(receta);
+                                            JSONArray array = new JSONArray(jsonR);
+                                            for(int i = 0; i < array.length(); i++){
+                                                JSONObject object = array.getJSONObject(i);
+                                                String medicamento = object.getString("medicamento");
+                                                String indicacion_ = object.getString("indicacion");
+
+                                                //Guardado de Receta medica
+                                                String sqlDetReceta = "INSERT INTO detalle_recetamedica(id_recetamedica, medicamento, indicaciones)\n" +
+                                                                "	VALUES (?, ?, ?)";
+                                                ps = c.getConecction().prepareStatement(sqlDetReceta);
+                                                ps.setInt(1, idR);
+                                                ps.setString(2, medicamento);
+                                                ps.setString(3, indicacion_);
+                                                int resRe = 0;
+
+                                                resRe = ps.executeUpdate();
+                                            }
+                                        }
+                                    }
+                                    // Guardar Notas de evolucion con receta
+                                    int aaaa = idR;
+                                    String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
+                                                    "	ghc_id, signos_id, id_recetamedica, notas, fecha, hora, examen)\n" +
+                                                    "	VALUES (?, ?, ?, ?, now(), now(), ?);";
+                                    ps = c.getConecction().prepareStatement(sqlNotas);
+                                    ps.setInt(1, id_ghc);
+                                    ps.setInt(2, id_signos);
+                                    ps.setInt(3, idR);
+                                    ps.setString(4, motivo_consulta);
+                                    if(checkcito_examen.equals("on")) { ps.setBoolean(5, true); }else { ps.setBoolean(5, false);}
+                                    int resSe0 = 0;
+                                    resSe0 = ps.executeUpdate();
+                                    if(resSe0!= 0){
+                                        response.sendRedirect("MenuGinecologia.jsp");
+                                    }
+                                }else{
+                                    // Guardar Notas de evolucion sin receta
+                                    String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
+                                                        "	ghc_id, signos_id, notas, fecha, hora, examen)\n" +
+                                                        "	VALUES (?, ?, ?, now(), now(), ?);";
+                                        ps = c.getConecction().prepareStatement(sqlNotas);
+                                        ps.setInt(1, id_ghc);
+                                        ps.setInt(2, id_signos);
+                                        ps.setString(3, motivo_consulta);
+                                        if(checkcito_examen.equals("on")) { ps.setBoolean(4, true); }else { ps.setBoolean(4, false);}
+
+
+                                    int resSe1 = 0;
+                                    resSe1 = ps.executeUpdate();
+                                    if(resSe1!= 0){
+                                        response.sendRedirect("MenuGinecologia.jsp");
+                                    }
                                 }
                             }
                             
@@ -266,6 +328,14 @@ public class AddGineHistoriaClinica extends HttpServlet {
             out.println("Exception: " + e);
             System.out.println("Exception2: " + e);
         }
+    }
+    
+    protected String prepararjson(String s){
+        s = s.replaceAll("<", "[");
+        s = s.replaceAll(">", "]");
+        s = s.replaceAll("\\(", "{");
+        s = s.replaceAll("\\)", "}");
+        return s;
     }
 
 }

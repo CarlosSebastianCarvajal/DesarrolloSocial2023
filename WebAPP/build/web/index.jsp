@@ -22,8 +22,8 @@
             <!--Div para el logotipo-->
             <div id="divlogo">
                 <div id="logotipo" style="display: inline-block">
-                    <img src="img/logo_quevedo.png" alt="Alternate Text"style="height:65px; width: 65px; margin:auto; text-align:center; margin-top:5px">
-                    <p><strong style="color:#F5F0EE; font-size:32px; font-size: 120%" class="textgrueso">DIRECCION DE DESARROLLO SOCIAL</strong></p>
+                    <img src="img/logo_municipio2.png" alt="Alternate Text"style="height:65px; width: 65px; margin:auto; text-align:center; margin-top:5px">
+                    <p><strong style="color:#F5F0EE; font-size:32px; font-size: 120%" class="textgrueso">DIRECCIÓN DE GESTIÓN DE DESARROLLO SOCIAL</strong></p>
                 </div>
             </div>
 

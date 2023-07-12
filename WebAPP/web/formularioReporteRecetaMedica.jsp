@@ -14,7 +14,7 @@
         <nav class="nav-tp"></nav>
     </header>
          <div class="div-head-tittle"><h2></h2></div>
-        <form name="form1" method="post" action="REPORTERecetaMedica.jsp">
+        <form name="form1" method="post" action="REPORTERecetaMedica.jsp" target="_blank">
             <%
                 HttpSession s = request.getSession();
                 //variables de session

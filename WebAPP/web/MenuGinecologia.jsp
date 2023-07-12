@@ -218,7 +218,7 @@
               window.location.href = "./ListarPacientesGeneralG.jsp";
             }
             function historial(){
-              window.location.href = "./HistorialPacienteG.jsp";
+              window.location.href = "./HistorialPacienteP.jsp";
             }
             
         </script>

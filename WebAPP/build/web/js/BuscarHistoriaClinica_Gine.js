@@ -46,7 +46,7 @@ $(function () {
                 $("#txt-MetodosAnt").val(data.ago_metodos_anti);
                 $("#txt-FUM").val(data.ago_fum);
                 $("#txt-FPP").val(data.ago_fpp);
-                $("#txt-Menopausia").val(data.ago_menopausia);
+                if(data.ago_menopausia!== "null"){$("#txt-Menopausia").val(data.ago_menopausia);}
                 $("#txt-Gestas").val(data.ago_gestas);
                 $("#txt-Partos").val(data.ago_partos);
                 $("#txt-Abortos").val(data.ago_abortos);

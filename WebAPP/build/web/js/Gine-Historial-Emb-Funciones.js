@@ -4,9 +4,28 @@
  * and open the template in the editor.
  */
 
+var divv = document.getElementById('divv');
+var porc_div = 2850;
+
 $(document).ready(function () {
-    //document.getElementById("checkcito").checked = true;
-    usermedico();
+    
+    $(".oculto").hide();              
+    $(".inf").click(function(){
+          var nodo = $(this).attr("href");  
+          
+          if ($(nodo).is(":visible")){
+               $(nodo).hide();
+               porc_div = 2850;
+               divv.style.marginTop= porc_div + "px";
+               return false;
+          }else{
+            $(".oculto").hide("slow");                             
+            $(nodo).fadeToggle("fast");
+            porc_div = 2980;
+            divv.style.marginTop= porc_div + "px";
+            return false;
+          }
+    });
     
 });
 

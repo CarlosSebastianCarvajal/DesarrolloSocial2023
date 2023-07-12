@@ -38,6 +38,10 @@ $(function () {
                 $("#txt-lnamedis").val(data.paciente_grupo);
                 $("#txt-lnametiposangre").val(data.paciente_tiposangre);
                 $("#txt-lnamecorreo").val(data.paciente_correoelectronico);
+                
+                $("#txt-etnia").val(data.paciente_etnia);
+                $("#txt-nivel").val(data.paciente_nivel_estudio);
+                $("#txt-anio-nivel").val(data.paciente_anios_nivel);
             }
         });
     };
