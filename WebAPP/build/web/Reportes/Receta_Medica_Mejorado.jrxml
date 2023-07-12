@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e969611d-8848-4c77-af0e-4e67d5b095c1">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="135"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="fecha" class="java.util.Date">
+	<parameter name="fechas" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="cedula" class="java.lang.String">
@@ -18,7 +18,7 @@ dr.medicamento, dr.indicaciones,
 	concat(pa.paciente_primer_nombre || ' ' || pa.paciente_segundo_nombre || ' ' || pa.paciente_apellido_paterno || ' ' || pa.paciente_apellido_materno) as pa_apellidos
 	FROM paciente pa, galeno ga, recetamedica rm, detalle_recetamedica dr, mg_seguimiento as mg
 	WHERE pa.paciente_id=rm.paciente_id and ga.galeno_id=rm.galeno_id and rm.id_recetamedica=dr.id_recetamedica and
-	mg.id_recetamedica=rm.id_recetamedica and ga.galeno_user = $P{usuario} and pa.paciente_dni=$P{cedula} and mg.fecha=$P{fecha}]]>
+	mg.id_recetamedica=rm.id_recetamedica and ga.galeno_user = $P{usuario} and pa.paciente_dni=$P{cedula} and mg.fecha=$P{fechas}]]>
 	</queryString>
 	<field name="fecha" class="java.lang.String"/>
 	<field name="medicamento" class="java.lang.String"/>

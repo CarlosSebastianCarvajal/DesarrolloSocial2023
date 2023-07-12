@@ -33,9 +33,9 @@
                             </thead> 
                             <tbody>
                                 <tr>                                  
-                                    <td><div class="div-cont-ced"><label for="cedulaCliente"></label><input type="text" id="cedulaCliente" class="inp-ced" placeholder="Cedula del Paciente" name="cedulaCliente"/></div></td>
-                                    <td><div class="div-cont-ced"><label for="cedulaGaleno" name="cedulaGaleno" id="cedulaGaleno"></label><input type="text" id="cedulaGaleno" class="inp-ced" placeholder="Su Usuario:" name="cedulaGaleno"/></div></td>
-                                    <td><div class="div-cont-lname"><label for="fecha"></label><input type="date" id="fecha" class="inp-lname" placeholder="Fecha"required=""  name="fecha"onchange="myFunction(value)"/></div></td>  
+                                    <td><div class="div-cont-ced"><label for="cedula"></label><input type="text" id="cedulaCliente" class="inp-ced" placeholder="Cedula del Paciente" name="cedula"/></div></td>
+                                    <td><div class="div-cont-ced"><label for="usuario"></label><input type="text" id="cedulaGaleno" class="inp-ced" placeholder="Su Usuario:" name="usuario"/></div></td>
+                                    <td><div class="div-cont-lname"><label for="fecha"></label><input type="date" id="fechi" class="inp-lname" placeholder="Fecha"required=""  name="fecha"onchange="myFunction(value)"/></div></td>  
                                  </tr>  
                             </tbody>  
                             <tbody>

@@ -12,6 +12,7 @@
 <%@page import="javax.servlet.ServletResponse"%>
 <%@ page import="java.util.*" %> 
 <%@ page import="java.io.*" %> 
+<%@ page import="java.util.Date" %>
 <%  /*Importamos la clase "Conexion_Postgresql" y la instanciamos por el nombre conexion
 con la siguiente linea de codigo*/
     conexion conexion1 = new conexion();
@@ -23,17 +24,19 @@ y seguiremos el formato del método runReportToPdf*/
     Map parameters = new HashMap();
     /*Capturamos el valor de nuestra formulario que es el codigo del cliente que es un
 varchar(5), lo almacenamos en una String*/
-    String idcliente = request.getParameter("cedulaCliente");
-    String Cedulaagalenos = request.getParameter("cedulaGaleno");
-    String f = request.getParameter("fecha");
+    String Cedula = request.getParameter("cedula");
+    String Usuario = request.getParameter("usuario");
+    String fecha_desde = request.getParameter("fecha");
     SimpleDateFormat objSDF = new SimpleDateFormat("yyyy-MM-dd");
-    Date fi = objSDF.parse(f);
+    Date fi = objSDF.parse(fecha_desde);
     /*Digitamos la siguiente linea de codigo entre parentesis ira el parametro que agregamos en nuestro reporte
 llamado $P{CODIGO}, pero solo se escribira "CODIGO", el String que capturamos lo colocamos, en este caso el 
 reporte solo nos pide un parametro*/
-    parameters.put("cedula", idcliente);
-    parameters.put("usuario", Cedulaagalenos);
-    parameters.put("fecha", fi);
+    parameters.put("cedula", Cedula);
+    parameters.put("usuario", Usuario);
+    parameters.put("fechas", fi);
+
+    
     /*Enviamos la ruta del reporte, los parámetros y la conexión(objeto Connection)*/
     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conexion1.getConecction());
 
