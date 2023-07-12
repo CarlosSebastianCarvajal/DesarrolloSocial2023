@@ -139,32 +139,36 @@
         <script>
             //document.getElementById("departamento").innerHTML
             function abrirMedicinaGeneral(){
-                if(document.getElementById("departamento").innerHTML === "1"){
+                var dep = document.getElementById("departamento").innerHTML;
+                if(dep === "1" || dep === "0"){
                     window.location.href = "./MenuMedicinaGeneral.jsp"; 
                 }else{
                     alert("Acceso permitido solo para el departamento de Medicina General");
-                }//*/
+                }
             }
             function abrirPsicologia(){
-                if(document.getElementById("departamento").innerHTML === "2"){
+                var dep = document.getElementById("departamento").innerHTML;
+                if(dep === "2" || dep === "0"){
                     window.location.href = "./MenuPsicologia.jsp"; 
                 }else{
                     alert("Acceso permitido solo para el departamento de Psicología");
-                }//*/
+                }
             }
             function abrirTerapiaFisica(){
-                if(document.getElementById("departamento").innerHTML === "3"){
+                var dep = document.getElementById("departamento").innerHTML;
+                if(dep === "3" || dep === "0"){
                     window.location.href = "./MenuTerapiaFisica.jsp"; 
                 }else{
                     alert("Acceso permitido solo para el departamento de Terapia Física");
-                }//*/
+                }
             }
             function abrirGinecologia(){
-                //if(document.getElementById("departamento").innerHTML === "3"){
+                var dep = document.getElementById("departamento").innerHTML;
+                if(dep === "4" || dep === "0"){
                     window.location.href = "./MenuGinecologia.jsp"; 
-                //}else{
-                    //alert("Acceso permitido solo para el departamento de Terapia Física");
-                //}//*/
+                }else{
+                    alert("Acceso permitido solo para el departamento de Ginecología");
+                }
             }
             function abrirActualizarDatos(){
                 window.location.href = "./ActualizarDatosPersonalesMedicos.jsp";
