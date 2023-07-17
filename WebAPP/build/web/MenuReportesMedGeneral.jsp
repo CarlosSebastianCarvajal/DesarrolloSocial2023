@@ -64,6 +64,34 @@
                             <a href="formularioReporteRecetaMedica.jsp" class="button primary" style=" background: #007653 !important;">Acceder</a>
                         </div>
                     </section>
+                    
+                    <!-- TERCER MODULO-->
+                    <section class="animadoagregarinformacion">
+                        <div class="content">
+                            <header>
+                                <a href="" >
+                                    <img alt="" src="svg/receta.svg" width="96" height="96">
+                                    <span class="label"></span></a>
+                                <h3 style="color:#007653; font-weight: bold" class="textgrueso">Historia Clínica</h3>
+                            </header>
+                            <p>Descargar en PDF las recetas medicas</p>
+                            <a href="formularioReporteHC.jsp" class="button primary" style=" background: #007653 !important;">Acceder</a>
+                        </div>
+                    </section>
+                    
+                    <!-- CUARTO MODULO-->
+                    <section class="animadoagregarinformacion">
+                        <div class="content">
+                            <header>
+                                <a href="" >
+                                    <img alt="" src="svg/receta.svg" width="96" height="96">
+                                    <span class="label"></span></a>
+                                <h3 style="color:#007653; font-weight: bold" class="textgrueso">Evolución y Prescripciones</h3>
+                            </header>
+                            <p>Descargar en PDF las recetas medicas</p>
+                            <a href="formularioReporteEP.jsp" class="button primary" style=" background: #007653 !important;">Acceder</a>
+                        </div>
+                    </section>
                      
                 </div>
             </div>

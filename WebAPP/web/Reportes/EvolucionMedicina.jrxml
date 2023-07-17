@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="26eb5c59-5d47-4a89-9567-a5b5c5155553">
+	<parameter name="cedula" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select p.paciente_dni, (p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre) as nombres,
+(p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as apellidos,
+TO_CHAR (mg.fecha:: DATE, 'dd-mm-yyyy')as fecha, TO_CHAR (mg.hora:: TIME, 'HH24:MI')as HORA,
+string_agg(dr.medicamento, '' || CHR(13))as medicamento, string_agg(dr.indicaciones, ''|| CHR(13)) as indicacion,
+('PA: '|| s.pa_sistolica || '/' || s.pa_diastolica || CHR(13) || 'FC: '|| s.frecuencia_cardiaca || 'x' || CHR(13) ||
+	   'FR: ' || s.fr || 'x'|| CHR(13) || 'SPO: '|| s.saturacion || '%' || CHR(13) || 'T: '|| s.temperatura || 'ºC'|| CHR(13) ||
+	   'Peso: ' || s.peso || 'kg' || CHR(13) || 'Talla: ' || s.estatura || 'cm' || CHR(13) || 'HEA= ' || mg.notas) as evolucion
+from medicinageneral as m, signos_vitales as s, paciente as p, mg_seguimiento as mg, recetamedica as r, detalle_recetamedica as dr
+where m.signos_id=s.signos_id and m.paciente_id=p.paciente_id and mg.idmedicinageneral=m.idmedicinageneral and
+r.id_recetamedica=mg.id_recetamedica and dr.id_recetamedica=r.id_recetamedica and p.paciente_dni= $P{cedula}
+group by 1, s.pa_sistolica, s.pa_diastolica, s.frecuencia_cardiaca, s.fr, s.saturacion, s.temperatura, s.peso,
+s.estatura, mg.notas, mg.hora, mg.fecha, p.paciente_primer_nombre, p.paciente_segundo_nombre, paciente_apellido_paterno,
+p.paciente_apellido_materno, p.paciente_dni]]>
+	</queryString>
+	<field name="paciente_dni" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="hora" class="java.lang.String"/>
+	<field name="medicamento" class="java.lang.String"/>
+	<field name="indicacion" class="java.lang.String"/>
+	<field name="evolucion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<image>
+				<reportElement x="410" y="5" width="138" height="39" uuid="6c0c7e46-f93b-4963-8944-45239e54b666"/>
+				<imageExpression><![CDATA["LogoMunicipio1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="111" y="14" width="299" height="20" uuid="66b82220-d12a-4128-96fa-3ea20ab4b319"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ÁREA DE SEGURIDAD Y SALUD OCUPACIONAL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="49" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="20" width="128" height="20" uuid="cc16631e-8132-4adf-b5ff-1687180a9bc8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="433" y="20" width="122" height="20" uuid="af806130-44ee-4cdb-b557-e7f91664b219"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="368" y="20" width="65" height="20" uuid="b01a544e-0608-4df1-9859-980feea0b984"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="248" y="20" width="120" height="20" uuid="2a9c76a0-5a92-4fea-8cb0-f73b45d64631"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="128" y="20" width="120" height="20" uuid="0da9848b-247b-4323-974b-b0d9e38b433f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="128" height="20" uuid="b6c56c53-c8da-4a47-8ca1-58cf7666121d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="128" y="0" width="120" height="20" uuid="6027a78e-a5b8-4fb2-8d7c-ccdd17ca89b9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="248" y="0" width="120" height="20" uuid="fa85b230-ae34-45ac-9ce3-e2c08bde64ad"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="368" y="0" width="65" height="20" uuid="f26813dc-1525-4b13-8e17-6736bdc35594"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="433" y="0" width="122" height="20" uuid="dfde229e-2e05-45e9-a77c-ba3aaaac3408"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="0" width="127" height="20" uuid="78f15a0d-4453-4788-abfd-e0fcba0f70e4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ESTABLECIMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="0" width="120" height="20" uuid="329938b7-94bd-40ab-a842-770ebb2b682f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="0" width="120" height="20" uuid="fb97a63b-3162-4030-9538-769de8c336ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[APELLIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="0" width="65" height="20" uuid="82a24059-8338-48ef-95d9-9983dc2b4c09"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ Nº HOJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="0" width="121" height="20" uuid="6f4ce310-0171-4946-8ebb-aec919629ec4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nº HISTORIA CLINICA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="128" y="20" width="120" height="20" uuid="095804d2-77fa-409e-b9c3-86d98a82b8d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="20" width="120" height="20" uuid="66974323-5e86-453a-9307-044711ad02a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="20" width="121" height="20" uuid="64ec206b-885f-4fb7-b75e-a41fba067f8b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="20" width="65" height="20" uuid="0881f804-4d49-4a77-b074-5ae9ac19be66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="45" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="4" width="309" height="20" uuid="6ed56ba6-efcb-4fcc-bb1d-898920163cfc"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="319" y="4" width="236" height="20" uuid="89eee69a-5abb-4e46-bc27-47aa971d11bf"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="24" width="61" height="20" uuid="bd4f4cc8-352c-4b3e-8215-ecfbd0261f24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="61" y="24" width="47" height="20" uuid="eabb41d5-4943-47ed-9c69-bd8493442d31"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="108" y="24" width="201" height="20" uuid="a799d0cb-c297-40a9-b291-f258336600f8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="319" y="24" width="236" height="20" uuid="d1f52ca7-eddb-4176-bccc-8a61183db956"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="25" width="61" height="20" uuid="0b01a7d2-0ab8-4013-80b6-5c1cd53d6465"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="4" width="309" height="20" uuid="4d5782a2-c658-40a5-ba35-e168fba44fb4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[  1 EVOLUCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="4" width="228" height="20" uuid="23e954e8-fc9d-485c-8e23-124252d6929f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[2 PRESCRIPCIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="24" width="47" height="20" uuid="c9f611ee-800c-4ae9-8fdf-96d899c691ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HORA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="25" width="200" height="20" uuid="090d90ba-fa6e-43e5-85dd-43981285bd11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NOTAS DE EVOLUCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="323" y="24" width="228" height="20" uuid="9b66c41c-1619-4f28-8933-28eb213f0414"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FARMACOTERAPIA E INDICACIONES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="215" splitType="Stretch">
+			<rectangle>
+				<reportElement x="458" y="0" width="97" height="215" uuid="b6eafd8a-8be8-49d1-8d50-333842141317"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="61" height="215" uuid="0e03f7ae-e2a0-4f6c-9a28-507545ea7a81"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="61" y="0" width="47" height="215" uuid="980134f3-8b0c-4b88-a879-32024e8dd22b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="108" y="0" width="201" height="215" uuid="4393ea72-8e85-43e0-b6c4-44bcb8293f0c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="319" y="0" width="139" height="215" uuid="23765523-e464-42ab-bc37-f6bbaec27462"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="61" height="20" uuid="92095285-912f-4b16-aa03-249e565e288c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="5" width="198" height="205" uuid="e40cbcb7-5ff5-48a7-97fb-054045df1e16"/>
+				<textElement verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{evolucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="5" width="135" height="205" uuid="39e5bf1b-63c6-468b-8481-f87175a932d0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medicamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="0" width="47" height="20" uuid="a7f2a624-c608-4848-87d0-e43a88a38bbb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="6" width="94" height="205" uuid="d7c5295a-3758-4f3d-a8a0-e5a8acca2fab"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{indicacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
