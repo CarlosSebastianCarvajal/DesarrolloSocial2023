@@ -105,9 +105,21 @@ $(function () {
                     //alert('no hay nada');
                     $("#txt-idsv").val('no');
                     $("#signos-res").html('No se han tomado signos vitales del paciente');
+                    
+                    $("#txt-pa-sistolica").val("");
+                    $("#txt-pa-diastolica").val("");
+                    $("#txt-Temperatura").val("");
+                    $("#txt-FrecuenciaC").val("");
+                    $("#txt-saturacion").val("");
+                    $("#txt-peso").val("");
+                    $("#txt-talla").val("");
+                    $("#txt-imc").val("");
+                    $("#txt-fr").val("");
+                    $("#txt-glucosa").val("");
                 }else{
                     $("#signos-res").html('Signos vitales tomados hoy a las '+ data.hora);
                     $("#txt-idsv").val(data.signos_id);
+                    
                     $("#txt-pa-sistolica").val(data.pa_sistolica);
                     $("#txt-pa-diastolica").val(data.pa_diastolica);
                     $("#txt-Temperatura").val(data.temperatura);
@@ -180,9 +192,21 @@ $(function () {
                     //alert('no hay nada');
                     $("#txt-idsv").val('no');
                     $("#signos-res").html('No se han tomado signos vitales del paciente');
+                    
+                    $("#txt-pa-sistolica").val("");
+                    $("#txt-pa-diastolica").val("");
+                    $("#txt-Temperatura").val("");
+                    $("#txt-FrecuenciaC").val("");
+                    $("#txt-saturacion").val("");
+                    $("#txt-peso").val("");
+                    $("#txt-talla").val("");
+                    $("#txt-imc").val("");
+                    $("#txt-fr").val("");
+                    $("#txt-glucosa").val("");
                 }else{
                     $("#signos-res").html('Signos vitales tomados hoy a las '+ data.hora);
                     $("#txt-idsv").val(data.signos_id);
+                    
                     $("#txt-pa-sistolica").val(data.pa_sistolica);
                     $("#txt-pa-diastolica").val(data.pa_diastolica);
                     $("#txt-Temperatura").val(data.temperatura);

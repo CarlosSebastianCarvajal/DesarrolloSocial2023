@@ -382,7 +382,7 @@
                                 <th>TBC</th>
                                 <th>Diabetes</th>
                                 <th>Hipertensión</th>
-                                <th>Preclampsia</th>
+                                <th>Preeclampsia</th>
                                 <th>Eclampsia</th>
                                 <th>Otra Condición</th>
                                 <th>Describir Otra Condición médica grave</th>
@@ -458,7 +458,7 @@
                                 <th>TBC</th>
                                 <th>Diabetes</th>
                                 <th>Hipertensión</th>
-                                <th>Preclampsia</th>
+                                <th>Preeclampsia</th>
                                 <th>Eclampsia</th>
                                 <th>Otra Condición</th>
                                 <th>Describir Otra Condición médica grave</th>
@@ -619,7 +619,7 @@
                                 <th>¿3 abortos consecutivos?</th>
                                 <th>PARTOS</th>
                                 <th>Partos Vaginales</th>
-                                <th>Cesareas</th>
+                                <th>Cesáreas</th>
                                 <th>Nacidos Vivos</th>
                                 <th>Nacidos Muertos</th>
                             </thead>
@@ -1058,7 +1058,7 @@
                             <thead>
                                 <tr>
                                     <th style='background: #afadac; text-align: left; ' colspan="1" >GESTACIÓN ACTUAL</th>
-                                    <th style='background: #afadac; text-align: left' colspan="3">Taxoplasmosis</th>
+                                    <th style='background: #afadac; text-align: left' colspan="3">Toxoplasmosis</th>
                                 </tr>
                             </thead>
                             <thead >
@@ -1548,7 +1548,7 @@
                                 <th>Peso</th>
                                 <th>PA sistólica</th>
                                 <th>PA diastólica</th>
-                                <th>Altura terina</th>
+                                <th>Altura uterina</th>
                                 <th>Presentación</th>
                                 <th>FCF(lpm)</th>
                                 <th>Movin. fetales</th>
