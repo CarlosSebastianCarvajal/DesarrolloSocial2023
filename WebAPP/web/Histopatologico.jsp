@@ -100,7 +100,7 @@
                        </thead>
                        <tbody> 
                             <tr style='height: 175px'>
-                                <td colspan="3" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="Diagnostico" name="Diagnostico" onkeyup="mayus(this);"style='height: 120px; width: 1100px'/></textarea></td>
+                                <td colspan="3" align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="Diagnostico" name="Diagnostico" onkeyup="mayus(this);"style='height: 120px; width: 900px'/></textarea></td>
                                 <td align="left"><div class="div-cont-ln" style="height: 175px;"><textarea type="text" id="txt-informacionRO" class="inp-lname" required="" placeholder="CIE" name="CIE" onkeyup="mayus(this);"style='height: 120px; width: 200px;'/></textarea></td>
                             </tr>
                         </tbody>
