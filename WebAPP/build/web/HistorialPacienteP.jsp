@@ -72,6 +72,7 @@
                                     <td><%= rs.getString("paciente_nombres")%></td>
                                     <td><%= rs.getString("notas")%></td>
                                     <td><a href="DownloadServlet?fileName=<%=rs.getString("archivo")%>"><%=rs.getString("descarga")%></a></td>
+                                    <td><a href="REPORTEGinEvolucion.jsp?cedulaPaciente=<%=rs.getString("cedula")%>" target="_blank" >Visualizar</a></td>
                                 </tr>
                                 <%}%>
                             </tbody>        

@@ -43,22 +43,20 @@
                             Statement smt;
                             ResultSet rs;
                             smt = con.getConecction().createStatement();
-                            rs = smt.executeQuery("select p.paciente_dni as cedula, (p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre || ' ' || p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as nombrepaciente, p.paciente_canton as canton, p.paciente_direccion as direccion, mgs.fecha as fecha, mgs.notas as motivoconsulta, mgs.archivo as archivo from mg_seguimiento as mgs inner join medicinageneral as mg on mgs.idmedicinageneral = mg.idmedicinageneral inner join paciente as p on mg.paciente_id = p.paciente_id inner join galeno as g on mg.galeno_id = g.galeno_id where  g.galeno_user = '" + session.getAttribute("galeno_user11") + "' ");
+                            rs = smt.executeQuery("select case when mgs.archivo is null then ' ' else 'Download' end archivo1, p.paciente_dni as cedula, (p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre || ' ' || p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as nombrepaciente, p.paciente_canton as canton, p.paciente_direccion as direccion, mgs.fecha as fecha, mgs.notas as motivoconsulta, mgs.archivo as archivo from mg_seguimiento as mgs inner join medicinageneral as mg on mgs.idmedicinageneral = mg.idmedicinageneral inner join paciente as p on mg.paciente_id = p.paciente_id inner join galeno as g on mg.galeno_id = g.galeno_id where  g.galeno_user = '" + session.getAttribute("galeno_user11") + "' ");
                             if (rs.next()) {
-                                rs = smt.executeQuery("select p.paciente_dni as cedula, (p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre || ' ' || p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as nombrepaciente, p.paciente_canton as canton, p.paciente_direccion as direccion, mgs.fecha as fecha, mgs.notas as motivoconsulta, mgs.archivo as archivo from mg_seguimiento as mgs inner join medicinageneral as mg on mgs.idmedicinageneral = mg.idmedicinageneral inner join paciente as p on mg.paciente_id = p.paciente_id inner join galeno as g on mg.galeno_id = g.galeno_id where  g.galeno_user = '" + session.getAttribute("galeno_user11") + "' ");
+                                rs = smt.executeQuery("select case when mgs.archivo is null then ' ' else 'Download' end archivo1, p.paciente_dni as cedula, (p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre || ' ' || p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as nombrepaciente, p.paciente_canton as canton, p.paciente_direccion as direccion, mgs.fecha as fecha, mgs.notas as motivoconsulta, mgs.archivo as archivo from mg_seguimiento as mgs inner join medicinageneral as mg on mgs.idmedicinageneral = mg.idmedicinageneral inner join paciente as p on mg.paciente_id = p.paciente_id inner join galeno as g on mg.galeno_id = g.galeno_id where  g.galeno_user = '" + session.getAttribute("galeno_user11") + "' ");
                         %>
                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Cedula</th>
                                     <th>Nombres del paciente</th>
-                                    <th>canton</th>
-                                    <th>direccion</th>
-                                    
-                                    <th>Fechaconsulta</th>
-                                    <th>motivoConsulta</th>
-                                    
+                                    <th>Cantón</th>
+                                    <th>Direccion</th>
+                                    <th>Fecha Consulta</th>
                                     <th>Archivo de Examenes</th>
+                                     <th>Evolución</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,9 +69,9 @@
                                     <td><%= rs.getString("direccion")%></td>
                                     
                                     <td><%= rs.getString("fecha")%></td>
-                                    <td><%= rs.getString("motivoconsulta")%></td>
                                     
-                                    <td><a href="DownloadServlet?fileName=<%=rs.getString("archivo")%>">Download</a></td>
+                                    <td><a href="DownloadServlet?fileName=<%=rs.getString("archivo")%>"><%=rs.getString("archivo1")%></a></td>
+                                    <td><a href="REPORTEEP.jsp?cedulaPaciente=<%=rs.getString("cedula")%>" target="_blank">Visualizar</a></td>
                                 </tr>
                                 <%}%>
                             </tbody>        
