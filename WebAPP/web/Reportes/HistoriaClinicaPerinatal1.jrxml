@@ -241,7 +241,7 @@ case when ghp.ga_sif_trat_par_mayor='No' then 'x' else ' ' end ga_sif_trat_par_m
 case when ghp.ga_sif_trat_par_mayor='Si' then 'x' else ' ' end ga_sif_trat_par_mayorSi,
 case when ghp.ga_sif_trat_par_mayor='Sd' then 'x' else ' ' end ga_sif_trat_par_mayorSD,
 case when ghp.ga_sif_trat_par_mayor='Nc' then 'x' else ' ' end ga_sif_trat_par_mayorNc,
-TO_CHAR (ca.ca_fecha:: DATE, 'dd-mm-yyyy') as fecha_cita, ca.ca_edad_ges, ca.ca_peso, ca.ca_pa, ca.ca_altura_uterina, 
+TO_CHAR (ca.ca_fecha:: DATE, 'dd-mm-yyyy') as fecha_cita, ca.ca_edad_ges, ca.ca_peso, (ca.ca_pa || '/' || ca_pad)as presion, ca.ca_altura_uterina, 
 ca.ca_presentacion, ca.ca_fcp, ca.ca_mov_fetales, ca.ca_proteinuria, ca.ca_signos_notas, ca.ca_iniciales_tecnico, 
 TO_CHAR (ca.ca_prox_cita:: DATE, 'dd-mm-yyyy') as fecha_cita
 from ginecologia_historia_clinica_per as ghp, ginecologia_historia_clinica as gh, paciente as p, consultas_antenatales as ca
@@ -495,7 +495,7 @@ order by ghp.ghcp_id desc]]>
 	<field name="fecha_cita" class="java.lang.String"/>
 	<field name="ca_edad_ges" class="java.lang.Integer"/>
 	<field name="ca_peso" class="java.math.BigDecimal"/>
-	<field name="ca_pa" class="java.lang.Integer"/>
+	<field name="presion" class="java.lang.String"/>
 	<field name="ca_altura_uterina" class="java.lang.String"/>
 	<field name="ca_presentacion" class="java.lang.String"/>
 	<field name="ca_fcp" class="java.lang.String"/>
@@ -5140,7 +5140,7 @@ order by ghp.ghcp_id desc]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ca_pa}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{presion}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="196" y="0" width="24" height="14" uuid="8d022e80-b5aa-4487-b80f-a247abf44f65"/>
