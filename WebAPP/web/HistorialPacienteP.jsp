@@ -61,6 +61,7 @@
                                     <th>Paciente</th>
                                     <th>Motivo Consulta</th>
                                     <th>Archivo</th>
+                                    <th>Evolución</th>
                                 </tr>
                             </thead>
                             <tbody>

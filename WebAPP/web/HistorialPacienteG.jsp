@@ -71,7 +71,7 @@
                                     <td><%= rs.getString("cedula")%></td>
                                     <td><%= rs.getString("nombre")%></td>
                                     <td><%= rs.getString("numero")%></td>
-                                    <td><a href="REPORTESeguimiento.jsp?cedulaPaciente=<%=rs.getString("cedula")%>&numeroSesion="<%=rs.getString("numero")%> target="_blank">Visualizar</a></td>
+                                    <td><a href="REPORTESeguimiento.jsp?cedulaPaciente=<%=rs.getString("cedula")%>&numeroSesion=<%=rs.getString("numero")%>" target="_blank">Visualizar</a></td>
                                 </tr>
                                 <%}%>
                             </tbody>        
