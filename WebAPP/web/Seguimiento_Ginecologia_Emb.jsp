@@ -1576,7 +1576,7 @@
                             </thead>
                             </thead>
                             <tbody >
-                            <td>¿ La paciente se encuentra dentro de las primeras 20 semanas ?</td>
+                            <td>¿ La paciente tiene 20 o mas semanas de gestación ?</td>
                             <td><input style= 'text-align: center; margin-top: 5px;' type="checkbox" id="checkcito"  name="checkcito" oninput="habDes(this);" checked="true" /></td>
                             </tbody>
                         </table>
@@ -1584,7 +1584,8 @@
                             <thead >
                                 <th>Edad gest.</th>
                                 <th>Peso</th>
-                                <th>PA</th>
+                                <th>PA sistólica</th>
+                                <th>PA diastólica</th>
                                 <th>Altura terina</th>
                                 <th>Presentación</th>
                                 <th>FCF(lpm)</th>
@@ -1595,6 +1596,7 @@
                                 <td><input style="margin-top: -8px; border-style: solid; border-color: #d5ddda; border-radius: 10px; background: #d5ddda; width: 70%; height: 40px; display: flex; align-items: center; text-align: center;" type="number" id="txt-ca-edad-ges" name="ca_edad_ges" placeholder="Semana" onkeypress="return validaNumericos(event)" required="" oninput="pasarSemGest(this);"/></td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-peso" class="inp-edad"  maxlength="6" placeholder="Peso" name="ca_peso" value="" onkeypress='return validaNumericosDec(event)' readonly="true" required=""/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-pa" class="inp-edad"  maxlength="3" placeholder="PA" name="ca_pa" value="" onkeypress='return validaNumericos(event)' readonly="true" required=""/></div> </td>
+                                <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-pad" class="inp-edad"  maxlength="3" placeholder="PA" name="ca_pad" value="" onkeypress='return validaNumericos(event)' required=""/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-altura-uterina" class="inp-edad"  maxlength="2" placeholder="altura"  name="ca_altura_uterina" value="" required=""/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-presentacion" class="inp-edad"  maxlength="50" placeholder="presentacion" name="ca_presentacion" value=""  required=""/></div> </td>
                                 <td><div class="div-cont-edad"><input style= 'text-align: center' type="text" id="txt-ca-FCP" class="inp-edad"  maxlength="50" placeholder="FCF" name="ca_FCP" value=""  required=""/></div> </td>
@@ -1676,6 +1678,7 @@
                                 </tr>
                             </thead>
                         </table>
+                        <label style='margin-left: 10px;' id="signos-res"></label>
                         <table style='width: 100%; text-align: center;  margin-top: 30px'>
                             <thead >
                                 <tr>                                
@@ -1689,10 +1692,10 @@
                             <tbody align="center">
                                 <tr> 
                                     <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-pa-sistolica-seg" class="inp-name" placeholder="P/A Sistólica" name="presion_arterial_s_seg" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);" oninput="pasarPresion1(this)"/></div></td>
-                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="P/A Daistólica" name="presion_arterial_d_seg" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
-                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Temperatura (Ejem: 36.8)" name="temperatura_seg" required=""  onkeypress="return validaNumericosDec(event)" onkeyup="mayus(this);"/></div></td>
-                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Frecuencia Cardíaca" name="frecuencia_cardiaca_seg" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
-
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-pa-diastolica-seg" class="inp-name" placeholder="P/A Daistólica" name="presion_arterial_d_seg" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);" oninput="pasarPresionD(this)"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-Temperatura-seg" class="inp-name" placeholder="Temperatura (Ejem: 36.8)" name="temperatura_seg" required=""  onkeypress="return validaNumericosDec(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-FrecuenciaC-seg" class="inp-name" placeholder="Frecuencia Cardíaca" name="frecuencia_cardiaca_seg" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                    <input hidden type="text" id="txt-idsv" class="inp-lname" placeholder="txt-idsv" name="txtidsv"/>
                                 </tr>
                             </tbody>
                             <thead >
@@ -1705,7 +1708,7 @@
                             </thead>
                             <tbody align="center">
                                 <tr> 
-                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Saturación de oxígeno" name="saturacion_seg" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                    <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-saturacion-seg" class="inp-name" placeholder="Saturación de oxígeno" name="saturacion_seg" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
                                     <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-peso-seg" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="peso_seg" required=""  onkeypress="return validaNumericosDec(event)" oninput="calcularIMC1(this);"/></div></td>
                                     <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla-seg" class="inp-name" placeholder="Talla en Cemtímetros" name="estatura_seg" required=""  onkeypress="return validaNumericos(event)" oninput="calcularIMC1(this);"/></div></td>
                                     <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-imc-seg" class="inp-name" placeholder="IMC" name="imc_seg" readonly="readonly_seg"  /></div></td>
@@ -1884,6 +1887,10 @@
         
         function pasarPresion1(e){
             document.getElementById("txt-ca-pa").value = document.getElementById("txt-pa-sistolica-seg").value;
+        }
+        
+        function pasarPresionD(e){
+            document.getElementById("txt-ca-pad").value = document.getElementById("txt-pa-diastolica-seg").value;
         }
         
         function calcularIMC1(e) {

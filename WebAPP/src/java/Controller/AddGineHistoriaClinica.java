@@ -91,7 +91,9 @@ public class AddGineHistoriaClinica extends HttpServlet {
                 tratamiento,
                     
                 // Receta (Crear Variable)
-                receta;             
+                receta,
+                    
+                signos_id;
             
             pacienteid = request.getParameter("txtid");
             // Capturar valores de signos vitales
@@ -132,6 +134,10 @@ public class AddGineHistoriaClinica extends HttpServlet {
             //Capturar los datos de la receta
             receta = request.getParameter("txt-tabla-datos-medicamentos");
             
+            // signos
+            signos_id = request.getParameter("txtidsv");
+            
+            
             //Capturar usuario de la sesion
             String galenoUser = (String) session.getAttribute("galeno_user11");
             
@@ -149,164 +155,178 @@ public class AddGineHistoriaClinica extends HttpServlet {
                 }
                 
                 //Guardar las signos vitales
-                String sqlSignos = "INSERT INTO public.signos_vitales(\n" +
-                                "	paciente_id, galeno_id, pa_sistolica, pa_diastolica, temperatura, frecuencia_cardiaca, saturacion, peso, estatura, imc, fecha, hora)\n" +
-                                "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
-
-                ps = c.getConecction().prepareStatement(sqlSignos, Statement.RETURN_GENERATED_KEYS);
-                ps.setInt(1, Integer.parseInt(pacienteid));
-                ps.setInt(2, Integer.parseInt(galenoid));
-                ps.setInt(3, Integer.parseInt(presion_arterial_s));
-                ps.setInt(4, Integer.parseInt(presion_arterial_d));
-                ps.setFloat(5, Float.parseFloat(temperatura));
-                ps.setInt(6, Integer.parseInt(frecuencia_cardiaca));
-                ps.setInt(7, Integer.parseInt(saturacion));
-                ps.setFloat(8, Float.parseFloat(peso));
-                ps.setInt(9, Integer.parseInt(estatura));
-                ps.setFloat(10, Float.parseFloat(imc));
-                
                 int resSignos = 0;
+                int id_signos = 0;
+                ResultSet resultSet;
+                
+                if(signos_id.equals("no")){
+                    //Guardar las signos vitales
+                    String sqlSignos = "INSERT INTO public.signos_vitales(\n" +
+                                    "	paciente_id, galeno_id, pa_sistolica, pa_diastolica, temperatura, frecuencia_cardiaca, saturacion, peso, estatura, imc, fecha, hora)\n" +
+                                    "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
 
-                resSignos = ps.executeUpdate();
-                if (resSignos != 0) {
-                    int id_signos = 0;
-                    ResultSet resultSet = ps.getGeneratedKeys();
-                    if (resultSet.next()) {
-                        id_signos = resultSet.getInt(1);                        
-                        // Guardar la Histoia clínica Gineco-Obstetrico
-                        String sqlHistorial = "INSERT INTO public.ginecologia_historia_clinica(\n" +
-                                        "	paciente_id, galeno_id, signos_id, \n" +
-                                        "	ap_personales, ap_familiares, ap_quirurgicos, ap_alergicos, ap_habitos,\n" +
-                                        "	ago_menarquia, ago_irs, ago_parejas, ago_ultimo_pap, ago_metodos_anti,\n" +
-                                        "	ago_fum, ago_fpp, ago_menopausia, ago_gestas, ago_partos, ago_abortos,\n" +
-                                        "	ago_cesareas, ago_edad_gestacional, ago_complicaciones,\n" +
-                                        "	motivo_consulta, enfermedad_acual, diagnostico, tratamiento, fecha)\n" +
-                                        "	VALUES (?, ?, ?,\n" +
-                                        "			?, ?, ?, ?, ?,\n" +
-                                        "			?, ?, ?, ?, ?,\n" +
-                                        "			?, ?, ?, ?, ?, ?,\n" +
-                                        "			?, ?, ?,\n" +
-                                        "			?, ?, ?, ?, now());";
-                        ps = c.getConecction().prepareStatement(sqlHistorial, Statement.RETURN_GENERATED_KEYS);
-                        ps.setInt(1, Integer.parseInt(pacienteid));
-                        ps.setInt(2, Integer.parseInt(galenoid));
-                        ps.setInt(3, id_signos);
-                        
-                        ps.setString(4, ap_personales);
-                        ps.setString(5, ap_familiares);
-                        ps.setString(6, ap_quirurgicos);
-                        ps.setString(7, ap_alergicos);
-                        ps.setString(8, ap_habitos);
-                        
-                        if(ago_menarquia != null && ago_menarquia.length() > 0){ ps.setInt(9, Integer.parseInt(ago_menarquia)); }else{ ps.setNull(9, Types.INTEGER); }
-                        if(ago_irs != null && ago_irs.length() > 0){ ps.setInt(10, Integer.parseInt(ago_irs)); }else{ ps.setNull(10, Types.INTEGER); }
-                        ps.setInt(11, Integer.parseInt(ago_parejas));
-                        if(ago_ultimo_pap != null && ago_ultimo_pap.length() > 0){ ps.setDate(12, Date.valueOf(ago_ultimo_pap)); }else{ ps.setNull(12, Types.DATE); }
-                        
-                        ps.setString(13, ago_metodos_anti);
-                        
-                        if(ago_fum != null && ago_fum.length() > 0){ ps.setDate(14, Date.valueOf(ago_fum)); }else{ ps.setNull(14, Types.DATE); }
-                        if(ago_fpp != null && ago_fpp.length() > 0){ ps.setDate(15, Date.valueOf(ago_fpp)); }else{ ps.setNull(15, Types.DATE); }
-                        if(ago_menopausia != null && ago_menopausia.length() > 0){ ps.setInt(16, Integer.parseInt(ago_menopausia)); }else{ ps.setNull(16, Types.INTEGER); }
-                        ps.setInt(17, Integer.parseInt(ago_gestas));
-                        ps.setInt(18, Integer.parseInt(ago_partos));
-                        ps.setInt(19, Integer.parseInt(ago_abortos));
-                        
-                        ps.setInt(20, Integer.parseInt(ago_cesareas));
-                        ps.setInt(21, Integer.parseInt(ago_edad_gestacional));
-                        ps.setString(22, ago_complicaciones);
-                        
-                        ps.setString(23, motivo_consulta);
-                        ps.setString(24, enfermedad_acual);
-                        ps.setString(25, diagnostico);
-                        ps.setString(26, tratamiento);
-                        //ps.setNull(26, 1);
-                        
-                        int resSe = 0;
+                    ps = c.getConecction().prepareStatement(sqlSignos, Statement.RETURN_GENERATED_KEYS);
+                    ps.setInt(1, Integer.parseInt(pacienteid));
+                    ps.setInt(2, Integer.parseInt(galenoid));
+                    ps.setInt(3, Integer.parseInt(presion_arterial_s));
+                    ps.setInt(4, Integer.parseInt(presion_arterial_d));
+                    ps.setFloat(5, Float.parseFloat(temperatura));
+                    ps.setInt(6, Integer.parseInt(frecuencia_cardiaca));
+                    ps.setInt(7, Integer.parseInt(saturacion));
+                    ps.setFloat(8, Float.parseFloat(peso));
+                    ps.setInt(9, Integer.parseInt(estatura));
+                    ps.setFloat(10, Float.parseFloat(imc));
+                    
+                    resSignos = ps.executeUpdate();
+                    if (resSignos != 0) {
+                        resultSet = ps.getGeneratedKeys();
+                        if (resultSet.next()) {
+                            id_signos = resultSet.getInt(1);
+                        }
+                    }
+                    
+                }else{
+                    resSignos = 1;
+                    id_signos = Integer.parseInt(signos_id);
+                }
+                
+                
+                
+                if (resSignos != 0) {                      
+                    // Guardar la Histoia clínica Gineco-Obstetrico
+                    String sqlHistorial = "INSERT INTO public.ginecologia_historia_clinica(\n" +
+                                    "	paciente_id, galeno_id, signos_id, \n" +
+                                    "	ap_personales, ap_familiares, ap_quirurgicos, ap_alergicos, ap_habitos,\n" +
+                                    "	ago_menarquia, ago_irs, ago_parejas, ago_ultimo_pap, ago_metodos_anti,\n" +
+                                    "	ago_fum, ago_fpp, ago_menopausia, ago_gestas, ago_partos, ago_abortos,\n" +
+                                    "	ago_cesareas, ago_edad_gestacional, ago_complicaciones,\n" +
+                                    "	motivo_consulta, enfermedad_acual, diagnostico, tratamiento, fecha)\n" +
+                                    "	VALUES (?, ?, ?,\n" +
+                                    "			?, ?, ?, ?, ?,\n" +
+                                    "			?, ?, ?, ?, ?,\n" +
+                                    "			?, ?, ?, ?, ?, ?,\n" +
+                                    "			?, ?, ?,\n" +
+                                    "			?, ?, ?, ?, now());";
+                    ps = c.getConecction().prepareStatement(sqlHistorial, Statement.RETURN_GENERATED_KEYS);
+                    ps.setInt(1, Integer.parseInt(pacienteid));
+                    ps.setInt(2, Integer.parseInt(galenoid));
+                    ps.setInt(3, id_signos);
 
-                        resSe = ps.executeUpdate();
-                      
-                        if(resSe!= 0){
-                            int id_ghc = 0;
-                            resultSet = ps.getGeneratedKeys();
-                            if (resultSet.next()) {
-                                id_ghc = resultSet.getInt(1);
-                                
-                                
-                                //Verificar datos de receta medica y guardar
-                                if(receta.length() > 2){
-                                    int idR = -1;
-                                    String Sqlreceta = "INSERT INTO recetamedica(galeno_id, paciente_id, fecha)\n" +
-                                                "	VALUES (?, ?, now())";
-                                    ps = c.getConecction().prepareStatement(Sqlreceta, Statement.RETURN_GENERATED_KEYS);
-                                    ps.setInt(1, Integer.parseInt(galenoid));
-                                    ps.setInt(2, Integer.parseInt(pacienteid));
-                                    int resRec = 0;
-                                    resRec = ps.executeUpdate();
-                                    if (resRec != 0) {
-                                        ResultSet resultSetRec = ps.getGeneratedKeys();
-                                        if (resultSetRec.next()) {
-                                            idR = resultSetRec.getInt(1);
+                    ps.setString(4, ap_personales);
+                    ps.setString(5, ap_familiares);
+                    ps.setString(6, ap_quirurgicos);
+                    ps.setString(7, ap_alergicos);
+                    ps.setString(8, ap_habitos);
 
-                                            String jsonR  = prepararjson(receta);
-                                            JSONArray array = new JSONArray(jsonR);
-                                            for(int i = 0; i < array.length(); i++){
-                                                JSONObject object = array.getJSONObject(i);
-                                                String medicamento = object.getString("medicamento");
-                                                String indicacion_ = object.getString("indicacion");
+                    if(ago_menarquia != null && ago_menarquia.length() > 0){ ps.setInt(9, Integer.parseInt(ago_menarquia)); }else{ ps.setNull(9, Types.INTEGER); }
+                    if(ago_irs != null && ago_irs.length() > 0){ ps.setInt(10, Integer.parseInt(ago_irs)); }else{ ps.setNull(10, Types.INTEGER); }
+                    ps.setInt(11, Integer.parseInt(ago_parejas));
+                    if(ago_ultimo_pap != null && ago_ultimo_pap.length() > 0){ ps.setDate(12, Date.valueOf(ago_ultimo_pap)); }else{ ps.setNull(12, Types.DATE); }
 
-                                                //Guardado de Receta medica
-                                                String sqlDetReceta = "INSERT INTO detalle_recetamedica(id_recetamedica, medicamento, indicaciones)\n" +
-                                                                "	VALUES (?, ?, ?)";
-                                                ps = c.getConecction().prepareStatement(sqlDetReceta);
-                                                ps.setInt(1, idR);
-                                                ps.setString(2, medicamento);
-                                                ps.setString(3, indicacion_);
-                                                int resRe = 0;
+                    ps.setString(13, ago_metodos_anti);
 
-                                                resRe = ps.executeUpdate();
-                                            }
+                    if(ago_fum != null && ago_fum.length() > 0){ ps.setDate(14, Date.valueOf(ago_fum)); }else{ ps.setNull(14, Types.DATE); }
+                    if(ago_fpp != null && ago_fpp.length() > 0){ ps.setDate(15, Date.valueOf(ago_fpp)); }else{ ps.setNull(15, Types.DATE); }
+                    if(ago_menopausia != null && ago_menopausia.length() > 0){ ps.setInt(16, Integer.parseInt(ago_menopausia)); }else{ ps.setNull(16, Types.INTEGER); }
+                    ps.setInt(17, Integer.parseInt(ago_gestas));
+                    ps.setInt(18, Integer.parseInt(ago_partos));
+                    ps.setInt(19, Integer.parseInt(ago_abortos));
+
+                    ps.setInt(20, Integer.parseInt(ago_cesareas));
+                    ps.setInt(21, Integer.parseInt(ago_edad_gestacional));
+                    ps.setString(22, ago_complicaciones);
+
+                    ps.setString(23, motivo_consulta);
+                    ps.setString(24, enfermedad_acual);
+                    ps.setString(25, diagnostico);
+                    ps.setString(26, tratamiento);
+                    //ps.setNull(26, 1);
+
+                    int resSe = 0;
+
+                    resSe = ps.executeUpdate();
+
+                    if(resSe!= 0){
+                        int id_ghc = 0;
+                        resultSet = ps.getGeneratedKeys();
+                        if (resultSet.next()) {
+                            id_ghc = resultSet.getInt(1);
+
+
+                            //Verificar datos de receta medica y guardar
+                            if(receta.length() > 2){
+                                int idR = -1;
+                                String Sqlreceta = "INSERT INTO recetamedica(galeno_id, paciente_id, fecha)\n" +
+                                            "	VALUES (?, ?, now())";
+                                ps = c.getConecction().prepareStatement(Sqlreceta, Statement.RETURN_GENERATED_KEYS);
+                                ps.setInt(1, Integer.parseInt(galenoid));
+                                ps.setInt(2, Integer.parseInt(pacienteid));
+                                int resRec = 0;
+                                resRec = ps.executeUpdate();
+                                if (resRec != 0) {
+                                    ResultSet resultSetRec = ps.getGeneratedKeys();
+                                    if (resultSetRec.next()) {
+                                        idR = resultSetRec.getInt(1);
+
+                                        String jsonR  = prepararjson(receta);
+                                        JSONArray array = new JSONArray(jsonR);
+                                        for(int i = 0; i < array.length(); i++){
+                                            JSONObject object = array.getJSONObject(i);
+                                            String medicamento = object.getString("medicamento");
+                                            String indicacion_ = object.getString("indicacion");
+
+                                            //Guardado de Receta medica
+                                            String sqlDetReceta = "INSERT INTO detalle_recetamedica(id_recetamedica, medicamento, indicaciones)\n" +
+                                                            "	VALUES (?, ?, ?)";
+                                            ps = c.getConecction().prepareStatement(sqlDetReceta);
+                                            ps.setInt(1, idR);
+                                            ps.setString(2, medicamento);
+                                            ps.setString(3, indicacion_);
+                                            int resRe = 0;
+
+                                            resRe = ps.executeUpdate();
                                         }
                                     }
-                                    // Guardar Notas de evolucion con receta
-                                    int aaaa = idR;
-                                    String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
-                                                    "	ghc_id, signos_id, id_recetamedica, notas, fecha, hora, examen)\n" +
-                                                    "	VALUES (?, ?, ?, ?, now(), now(), ?);";
+                                }
+                                // Guardar Notas de evolucion con receta
+                                int aaaa = idR;
+                                String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
+                                                "	ghc_id, signos_id, id_recetamedica, notas, fecha, hora, examen)\n" +
+                                                "	VALUES (?, ?, ?, ?, now(), now(), ?);";
+                                ps = c.getConecction().prepareStatement(sqlNotas);
+                                ps.setInt(1, id_ghc);
+                                ps.setInt(2, id_signos);
+                                ps.setInt(3, idR);
+                                ps.setString(4, motivo_consulta);
+                                if(checkcito_examen.equals("on")) { ps.setBoolean(5, true); }else { ps.setBoolean(5, false);}
+                                int resSe0 = 0;
+                                resSe0 = ps.executeUpdate();
+                                if(resSe0!= 0){
+                                    response.sendRedirect("MenuGinecologia.jsp");
+                                }
+                            }else{
+                                // Guardar Notas de evolucion sin receta
+                                String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
+                                                    "	ghc_id, signos_id, notas, fecha, hora, examen)\n" +
+                                                    "	VALUES (?, ?, ?, now(), now(), ?);";
                                     ps = c.getConecction().prepareStatement(sqlNotas);
                                     ps.setInt(1, id_ghc);
                                     ps.setInt(2, id_signos);
-                                    ps.setInt(3, idR);
-                                    ps.setString(4, motivo_consulta);
-                                    if(checkcito_examen.equals("on")) { ps.setBoolean(5, true); }else { ps.setBoolean(5, false);}
-                                    int resSe0 = 0;
-                                    resSe0 = ps.executeUpdate();
-                                    if(resSe0!= 0){
-                                        response.sendRedirect("MenuGinecologia.jsp");
-                                    }
-                                }else{
-                                    // Guardar Notas de evolucion sin receta
-                                    String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
-                                                        "	ghc_id, signos_id, notas, fecha, hora, examen)\n" +
-                                                        "	VALUES (?, ?, ?, now(), now(), ?);";
-                                        ps = c.getConecction().prepareStatement(sqlNotas);
-                                        ps.setInt(1, id_ghc);
-                                        ps.setInt(2, id_signos);
-                                        ps.setString(3, motivo_consulta);
-                                        if(checkcito_examen.equals("on")) { ps.setBoolean(4, true); }else { ps.setBoolean(4, false);}
+                                    ps.setString(3, motivo_consulta);
+                                    if(checkcito_examen.equals("on")) { ps.setBoolean(4, true); }else { ps.setBoolean(4, false);}
 
 
-                                    int resSe1 = 0;
-                                    resSe1 = ps.executeUpdate();
-                                    if(resSe1!= 0){
-                                        response.sendRedirect("MenuGinecologia.jsp");
-                                    }
+                                int resSe1 = 0;
+                                resSe1 = ps.executeUpdate();
+                                if(resSe1!= 0){
+                                    response.sendRedirect("MenuGinecologia.jsp");
                                 }
                             }
-                            
                         }
-                        
+
                     }
+                        
+                    
                     
                     //response.sendRedirect(request.getContextPath() + "/Principal.jsp");
                 }

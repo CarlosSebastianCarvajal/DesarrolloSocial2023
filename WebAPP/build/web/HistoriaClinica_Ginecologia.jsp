@@ -81,13 +81,18 @@
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-domicilio" class="inp-edad"  minlength="1" maxlength="2" placeholder="Domicilio" name="edadP" value="" required="" readonly="readonly" /></div> </td>
                                </tr> 
                         </tbody>
-                        
+                    </table>
+                        <table align="center" style='width: 98%; margin-left: 10px; margin-top: 30px'>
                         <thead>
                             <tr>
+                                
                                 <th style='background: #007653; text-align: left' colspan="4">2.- SIGNOS VITALES</th>
                             </tr>
                        </thead>
-                        <thead >
+                       </table>   
+                       <label style='margin-left: 10px;' id="signos-res"></label>
+                       <table align="center" style='width: 98%; margin-left: 10px; margin-top: 30px'> 
+                       <thead >
                             <tr>                                
                                 <th>Presión Arterial Sistólica</th>
                                 <th>Presión Arterial Diastólica</th>
@@ -98,11 +103,11 @@
                         </thead>
                         <tbody align="center">
                             <tr> 
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="P/A Sistólica" name="presion_arterial_s" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="P/A Daistólica" name="presion_arterial_d" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Temperatura (Ejem: 36.8)" name="temperatura" required=""  onkeypress="return validaNumericosDec(event)" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Frecuencia Cardíaca" name="frecuencia_cardiaca" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
-                                
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-pa-sistolica" class="inp-name" placeholder="P/A Sistólica" name="presion_arterial_s" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-pa-diastolica" class="inp-name" placeholder="P/A Daistólica" name="presion_arterial_d" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-Temperatura" class="inp-name" placeholder="Temperatura (Ejem: 36.8)" name="temperatura" required=""  onkeypress="return validaNumericosDec(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-FrecuenciaC" class="inp-name" placeholder="Frecuencia Cardíaca" name="frecuencia_cardiaca" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                <input hidden type="text" id="txt-idsv" class="inp-lname" placeholder="txt-idsv" name="txtidsv"/>
                             </tr>
                         </tbody>
                         <thead >
@@ -115,7 +120,7 @@
                         </thead>
                         <tbody align="center">
                             <tr> 
-                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-name" class="inp-name" placeholder="Saturación de oxígeno" name="saturacion" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-saturacion" class="inp-name" placeholder="Saturación de oxígeno" name="saturacion" required=""  onkeypress="return validaNumericos(event)" onkeyup="mayus(this);"/></div></td>
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-peso" class="inp-name" placeholder="Peso en Kg (Ejem: 59.7)" name="peso" required=""  onkeypress="return validaNumericosDec(event)" oninput="clacularIMC(this);"/></div></td>
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla" class="inp-name" placeholder="Talla en Cemtímetros" name="estatura" required=""  onkeypress="return validaNumericos(event)" oninput="clacularIMC(this);"/></div></td>
                                 <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-imc" class="inp-name" placeholder="IMC" name="imc" readonly="readonly"  /></div></td>

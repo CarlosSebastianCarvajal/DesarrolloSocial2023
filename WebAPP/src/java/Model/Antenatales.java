@@ -17,6 +17,7 @@ public class Antenatales {
                 ca_edad_ges,
                 ca_peso,
                 ca_pa,
+                ca_pad,
                 ca_altura_uterina,
                 ca_presentacion,
                 ca_FCP,
@@ -29,13 +30,14 @@ public class Antenatales {
     public Antenatales() {
     }
 
-    public Antenatales(String ca_id, String ghcp_id, String ca_fecha, String ca_edad_ges, String ca_peso, String ca_pa, String ca_altura_uterina, String ca_presentacion, String ca_FCP, String ca_mov_fetales, String ca_proteinuria, String ca_signos_notas, String ca_iniciales_tecnico, String ca_prox_cita) {
+    public Antenatales(String ca_id, String ghcp_id, String ca_fecha, String ca_edad_ges, String ca_peso, String ca_pa, String ca_pad, String ca_altura_uterina, String ca_presentacion, String ca_FCP, String ca_mov_fetales, String ca_proteinuria, String ca_signos_notas, String ca_iniciales_tecnico, String ca_prox_cita) {
         this.ca_id = ca_id;
         this.ghcp_id = ghcp_id;
         this.ca_fecha = ca_fecha;
         this.ca_edad_ges = ca_edad_ges;
         this.ca_peso = ca_peso;
         this.ca_pa = ca_pa;
+        this.ca_pad = ca_pad;
         this.ca_altura_uterina = ca_altura_uterina;
         this.ca_presentacion = ca_presentacion;
         this.ca_FCP = ca_FCP;
@@ -46,6 +48,14 @@ public class Antenatales {
         this.ca_prox_cita = ca_prox_cita;
     }
 
+    public String getCa_pad() {
+        return ca_pad;
+    }
+
+    public void setCa_pad(String ca_pad) {
+        this.ca_pad = ca_pad;
+    }
+    
     public String getCa_id() {
         return ca_id;
     }

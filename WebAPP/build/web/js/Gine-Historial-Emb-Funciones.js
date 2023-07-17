@@ -41,6 +41,15 @@ function getQueryVariableRe() {
 
 }
 
+function isEmptyObject(obj) {
+    for (var property in obj) {
+        if (obj.hasOwnProperty(property)) {
+            return false;
+        }
+    }
+    return true;
+}
+
 $(function () {
     $('#btn-actionbusc').click(function (e) {
         buscador();
@@ -89,6 +98,60 @@ $(function () {
                 $("#txt-etnia1").val(data.paciente_etnia);
                 $("#txt-estudios1").val(data.paciente_nivel_estudio);
                 $("#txt-años-nivel1").val(data.paciente_anios_nivel);
+                
+                signos(data.pacienteid);
+            }
+        });
+    };
+    
+    const signos = (paciente_id) => {
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "BuscadorSignos",
+            data: {paciente_id: paciente_id},
+            dataType: 'json',
+            error: function (request, status, error)
+            {
+                alert(request, status, error);
+            },
+            success: function (data)
+            {
+                console.log(data);
+                if(isEmptyObject(data)){
+                    //alert('no hay nada');
+                    $("#txt-idsv").val('no');
+                    $("#signos-res").html('No se han tomado signos vitales del paciente');
+                    
+                    $("#txt-pa-sistolica").val("");
+                    $("#txt-pa-diastolica").val("");
+                    $("#txt-Temperatura").val("");
+                    $("#txt-FrecuenciaC").val("");
+                    $("#txt-saturacion").val("");
+                    $("#txt-peso").val("");
+                    $("#txt-talla").val("");
+                    $("#txt-imc").val("");
+                    
+                    $("#txt-ca-pa").val("");
+                    $("#txt-ca-pad").val("");
+                    $("#txt-ca-peso").val("");
+                }else{
+                    $("#signos-res").html('Signos vitales tomados hoy a las '+ data.hora);
+                    $("#txt-idsv").val(data.signos_id);
+                    $("#txt-pa-sistolica").val(data.pa_sistolica);
+                    $("#txt-pa-diastolica").val(data.pa_diastolica);
+                    $("#txt-Temperatura").val(data.temperatura);
+                    $("#txt-FrecuenciaC").val(data.frecuencia_cardiaca);
+                    $("#txt-saturacion").val(data.saturacion);
+                    $("#txt-peso").val(data.peso);
+                    $("#txt-talla").val(data.estatura);
+                    $("#txt-imc").val(data.imc);
+                    
+                    $("#txt-ca-pa").val(data.pa_sistolica);
+                    $("#txt-ca-pad").val(data.pa_diastolica);
+                    $("#txt-ca-peso").val(data.peso);
+                }
             }
         });
     };
@@ -140,11 +203,74 @@ $(function () {
                 $("#txt-etnia1").val(data.paciente_etnia);
                 $("#txt-estudios1").val(data.paciente_nivel_estudio);
                 $("#txt-años-nivel1").val(data.paciente_anios_nivel);
+                
+                signos(data.pacienteid);
             }
 
         });
     };
+    
+    const signos = (paciente_id) => {
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "BuscadorSignos",
+            data: {paciente_id: paciente_id},
+            dataType: 'json',
+            error: function (request, status, error)
+            {
+                alert(request, status, error);
+            },
+            success: function (data)
+            {
+                console.log(data);
+                if(isEmptyObject(data)){
+                    //alert('no hay nada');
+                    $("#txt-idsv").val('no');
+                    $("#signos-res").html('No se han tomado signos vitales del paciente');
+                    
+                    $("#txt-pa-sistolica").val("");
+                    $("#txt-pa-diastolica").val("");
+                    $("#txt-Temperatura").val("");
+                    $("#txt-FrecuenciaC").val("");
+                    $("#txt-saturacion").val("");
+                    $("#txt-peso").val("");
+                    $("#txt-talla").val("");
+                    $("#txt-imc").val("");
+                    
+                    $("#txt-ca-pa").val("");
+                    $("#txt-ca-pad").val("");
+                    $("#txt-ca-peso").val("");
+                }else{
+                    $("#signos-res").html('Signos vitales tomados hoy a las '+ data.hora);
+                    $("#txt-idsv").val(data.signos_id);
+                    $("#txt-pa-sistolica").val(data.pa_sistolica);
+                    $("#txt-pa-diastolica").val(data.pa_diastolica);
+                    $("#txt-Temperatura").val(data.temperatura);
+                    $("#txt-FrecuenciaC").val(data.frecuencia_cardiaca);
+                    $("#txt-saturacion").val(data.saturacion);
+                    $("#txt-peso").val(data.peso);
+                    $("#txt-talla").val(data.estatura);
+                    $("#txt-imc").val(data.imc);
+                    
+                    $("#txt-ca-pa").val(data.pa_sistolica);
+                    $("#txt-ca-pad").val(data.pa_diastolica);
+                    $("#txt-ca-peso").val(data.peso);
+                }
+            }
+        });
+    };
 });
+
+function isEmptyObject(obj) {
+    for (var property in obj) {
+        if (obj.hasOwnProperty(property)) {
+            return false;
+        }
+    }
+    return true;
+}
 
 function calcularEdad(fecha) {
     var hoy = new Date();

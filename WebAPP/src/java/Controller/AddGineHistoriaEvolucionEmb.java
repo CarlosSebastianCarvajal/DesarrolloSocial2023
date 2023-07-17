@@ -211,6 +211,7 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                 ca_edad_ges,
                 ca_peso,
                 ca_pa,
+                ca_pad,
                 ca_altura_uterina,
                 ca_presentacion,
                 ca_FCP,
@@ -240,6 +241,8 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
             
                 //para la receta
                 receta,
+                    
+                signos_id,
             
                 //para la sem de la primer consulta
                 ant_consulta_1;
@@ -403,6 +406,7 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
             ca_edad_ges = request.getParameter("ca_edad_ges");
             ca_peso = request.getParameter("ca_peso");
             ca_pa = request.getParameter("ca_pa");
+            ca_pad = request.getParameter("ca_pad");
             ca_altura_uterina = request.getParameter("ca_altura_uterina");
             ca_presentacion = request.getParameter("ca_presentacion");
             ca_FCP = request.getParameter("ca_FCP");
@@ -432,6 +436,9 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
             
             //Capturar datos de la receta
             receta = request.getParameter("txt-tabla-datos-medicamentos");
+            
+            // signos
+            signos_id = request.getParameter("txtidsv");
             
             //Capturar usuario de la sesion
             String galenoUser = (String) session.getAttribute("galeno_user11");
@@ -649,8 +656,8 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                 if(resHcp!= 0){
                     //Ingresamos el nuevo registro de consultas antenatales
                     String sqlCA = "INSERT INTO public.consultas_antenatales(\n" +
-                                    "	ghcp_id, ca_fecha, ca_edad_ges, ca_peso, ca_pa, ca_altura_uterina, ca_presentacion, ca_fcp, ca_mov_fetales, ca_proteinuria, ca_signos_notas, ca_iniciales_tecnico, ca_prox_cita)\n" +
-                                    "	VALUES (?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                                                    "	ghcp_id, ca_fecha, ca_edad_ges, ca_peso, ca_pa, ca_altura_uterina, ca_presentacion, ca_fcp, ca_mov_fetales, ca_proteinuria, ca_signos_notas, ca_iniciales_tecnico, ca_prox_cita, ca_pad)\n" +
+                                                    "	VALUES (?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
                     ps = c.getConecction().prepareStatement(sqlCA);
                     ps.setInt(1, Integer.parseInt(ghcp_id));
                     ps.setInt(2, Integer.parseInt(ca_edad_ges));
@@ -664,6 +671,7 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                     ps.setString(10, ca_signos_notas);
                     ps.setString(11, ca_iniciales_tecnico);
                     ps.setDate(12, Date.valueOf(ca_prox_cita));
+                    ps.setInt(13, Integer.parseInt(ca_pad));
                     int resCA = 0;
                     resCA = ps.executeUpdate();
                     
@@ -683,99 +691,113 @@ public class AddGineHistoriaEvolucionEmb extends HttpServlet {
                         resIMC = ps.executeUpdate();
                     
                     
-                    //Ingresamos los signos vitales
-                    String sqlSignos = "INSERT INTO public.signos_vitales(\n" +
-                                    "	paciente_id, galeno_id, pa_sistolica, pa_diastolica, temperatura, frecuencia_cardiaca, saturacion, peso, estatura, imc, fecha, hora)\n" +
-                                    "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
-
-                    ps = c.getConecction().prepareStatement(sqlSignos, Statement.RETURN_GENERATED_KEYS);
-                    ps.setInt(1, Integer.parseInt(pacienteid));
-                    ps.setInt(2, Integer.parseInt(galenoid));
-                    ps.setInt(3, Integer.parseInt(presion_arterial_s_seg));
-                    ps.setInt(4, Integer.parseInt(presion_arterial_d_seg));
-                    ps.setFloat(5, Float.parseFloat(temperatura_seg));
-                    ps.setInt(6, Integer.parseInt(frecuencia_cardiaca_seg));
-                    ps.setInt(7, Integer.parseInt(saturacion_seg));
-                    ps.setFloat(8, Float.parseFloat(peso_seg));
-                    ps.setInt(9, Integer.parseInt(estatura_seg));
-                    ps.setFloat(10, Float.parseFloat(imc_seg));
+                    
+                    
+                    //Guardar las signos vitales
                     int resSignos = 0;
-                    resSignos = ps.executeUpdate();
+                    int id_signos = 0;
+                    ResultSet resultSet;
+                
+                    if(signos_id.equals("no")){
+                        //Guardar las signos vitales
+                        String sqlSignos = "INSERT INTO public.signos_vitales(\n" +
+                                        "	paciente_id, galeno_id, pa_sistolica, pa_diastolica, temperatura, frecuencia_cardiaca, saturacion, peso, estatura, imc, fecha, hora)\n" +
+                                        "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
+
+                        ps = c.getConecction().prepareStatement(sqlSignos, Statement.RETURN_GENERATED_KEYS);
+                        ps.setInt(1, Integer.parseInt(pacienteid));
+                        ps.setInt(2, Integer.parseInt(galenoid));
+                        ps.setInt(3, Integer.parseInt(presion_arterial_s));
+                        ps.setInt(4, Integer.parseInt(presion_arterial_d));
+                        ps.setFloat(5, Float.parseFloat(temperatura));
+                        ps.setInt(6, Integer.parseInt(frecuencia_cardiaca));
+                        ps.setInt(7, Integer.parseInt(saturacion));
+                        ps.setFloat(8, Float.parseFloat(peso));
+                        ps.setInt(9, Integer.parseInt(estatura));
+                        ps.setFloat(10, Float.parseFloat(imc));
+
+                        resSignos = ps.executeUpdate();
+                        if (resSignos != 0) {
+                            resultSet = ps.getGeneratedKeys();
+                            if (resultSet.next()) {
+                                id_signos = resultSet.getInt(1);
+                            }
+                        }
+
+                    }else{
+                        resSignos = 1;
+                        id_signos = Integer.parseInt(signos_id);
+                    }
                     
                     if(resSignos != 0){
-                        int id_signos = 0;
-                        ResultSet resultSet = ps.getGeneratedKeys();
-                        if (resultSet.next()) {
-                            id_signos = resultSet.getInt(1);
+                        //Verificar datos de receta medica y guardar
+                        if(receta.length() > 2){
+                            int idR = -1;
+                            String Sqlreceta = "INSERT INTO recetamedica(galeno_id, paciente_id, fecha)\n" +
+                                        "	VALUES (?, ?, now())";
+                            ps = c.getConecction().prepareStatement(Sqlreceta, Statement.RETURN_GENERATED_KEYS);
+                            ps.setInt(1, Integer.parseInt(galenoid));
+                            ps.setInt(2, Integer.parseInt(pacienteid));
+                            int resRec = 0;
+                            resRec = ps.executeUpdate();
+                            if (resRec != 0) {
+                                ResultSet resultSetRec = ps.getGeneratedKeys();
+                                if (resultSetRec.next()) {
+                                    idR = resultSetRec.getInt(1);
 
-                            //Verificar datos de receta medica y guardar
-                            if(receta.length() > 2){
-                                int idR = -1;
-                                String Sqlreceta = "INSERT INTO recetamedica(galeno_id, paciente_id, fecha)\n" +
-                                            "	VALUES (?, ?, now())";
-                                ps = c.getConecction().prepareStatement(Sqlreceta, Statement.RETURN_GENERATED_KEYS);
-                                ps.setInt(1, Integer.parseInt(galenoid));
-                                ps.setInt(2, Integer.parseInt(pacienteid));
-                                int resRec = 0;
-                                resRec = ps.executeUpdate();
-                                if (resRec != 0) {
-                                    ResultSet resultSetRec = ps.getGeneratedKeys();
-                                    if (resultSetRec.next()) {
-                                        idR = resultSetRec.getInt(1);
+                                    String jsonR  = prepararjson(receta);
+                                    JSONArray array = new JSONArray(jsonR);
+                                    for(int i = 0; i < array.length(); i++){
+                                        JSONObject object = array.getJSONObject(i);
+                                        String medicamento = object.getString("medicamento");
+                                        String indicacion_ = object.getString("indicacion");
 
-                                        String jsonR  = prepararjson(receta);
-                                        JSONArray array = new JSONArray(jsonR);
-                                        for(int i = 0; i < array.length(); i++){
-                                            JSONObject object = array.getJSONObject(i);
-                                            String medicamento = object.getString("medicamento");
-                                            String indicacion_ = object.getString("indicacion");
+                                        //Guardado de Receta medica
+                                        String sqlDetReceta = "INSERT INTO detalle_recetamedica(id_recetamedica, medicamento, indicaciones)\n" +
+                                                        "	VALUES (?, ?, ?)";
+                                        ps = c.getConecction().prepareStatement(sqlDetReceta);
+                                        ps.setInt(1, idR);
+                                        ps.setString(2, medicamento);
+                                        ps.setString(3, indicacion_);
+                                        int resRe = 0;
 
-                                            //Guardado de Receta medica
-                                            String sqlDetReceta = "INSERT INTO detalle_recetamedica(id_recetamedica, medicamento, indicaciones)\n" +
-                                                            "	VALUES (?, ?, ?)";
-                                            ps = c.getConecction().prepareStatement(sqlDetReceta);
-                                            ps.setInt(1, idR);
-                                            ps.setString(2, medicamento);
-                                            ps.setString(3, indicacion_);
-                                            int resRe = 0;
-
-                                            resRe = ps.executeUpdate();
-                                        }
+                                        resRe = ps.executeUpdate();
                                     }
                                 }
-                                // Guardar Notas de evolucion con receta
-                                int aaaa = idR;
-                                String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
-                                                "	ghc_id, signos_id, id_recetamedica, notas, fecha, hora, examen)\n" +
-                                                "	VALUES (?, ?, ?, ?, now(), now(), ?);";
+                            }
+                            // Guardar Notas de evolucion con receta
+                            int aaaa = idR;
+                            String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
+                                            "	ghc_id, signos_id, id_recetamedica, notas, fecha, hora, examen)\n" +
+                                            "	VALUES (?, ?, ?, ?, now(), now(), ?);";
+                            ps = c.getConecction().prepareStatement(sqlNotas);
+                            ps.setInt(1, Integer.parseInt(ghc_id));
+                            ps.setInt(2, id_signos);
+                            ps.setInt(3, idR);
+                            ps.setString(4, notas);
+                            if(checkcito_examen.equals("on")) { ps.setBoolean(5, true); }else { ps.setBoolean(5, false);}
+                            int resSe = 0;
+                            resSe = ps.executeUpdate();
+                            if(resSe!= 0){
+                                response.sendRedirect("MenuGinecologia.jsp");
+                            }
+                        }else{
+                            // Guardar Notas de evolucion sin receta
+                            String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
+                                                "	ghc_id, signos_id, notas, fecha, hora, examen)\n" +
+                                                "	VALUES (?, ?, ?, now(), now(), ?);";
                                 ps = c.getConecction().prepareStatement(sqlNotas);
                                 ps.setInt(1, Integer.parseInt(ghc_id));
                                 ps.setInt(2, id_signos);
-                                ps.setInt(3, idR);
-                                ps.setString(4, notas);
-                                if(checkcito_examen.equals("on")) { ps.setBoolean(5, true); }else { ps.setBoolean(5, false);}
-                                int resSe = 0;
-                                resSe = ps.executeUpdate();
-                                if(resSe!= 0){
-                                    response.sendRedirect("MenuGinecologia.jsp");
-                                }
-                            }else{
-                                // Guardar Notas de evolucion sin receta
-                                String sqlNotas = "INSERT INTO public.ginecologia_seguimiento(\n" +
-                                                    "	ghc_id, signos_id, notas, fecha, hora, examen)\n" +
-                                                    "	VALUES (?, ?, ?, now(), now(), ?);";
-                                    ps = c.getConecction().prepareStatement(sqlNotas);
-                                    ps.setInt(1, Integer.parseInt(ghc_id));
-                                    ps.setInt(2, id_signos);
-                                    ps.setString(3, notas);
-                                    if(checkcito_examen.equals("on")) { ps.setBoolean(4, true); }else { ps.setBoolean(4, false);}
-                                int resSe = 0;
-                                resSe = ps.executeUpdate();
-                                if(resSe!= 0){
-                                    response.sendRedirect("MenuGinecologia.jsp");
-                                }
+                                ps.setString(3, notas);
+                                if(checkcito_examen.equals("on")) { ps.setBoolean(4, true); }else { ps.setBoolean(4, false);}
+                            int resSe = 0;
+                            resSe = ps.executeUpdate();
+                            if(resSe!= 0){
+                                response.sendRedirect("MenuGinecologia.jsp");
                             }
                         }
+                        
                     }
                     /*
                     

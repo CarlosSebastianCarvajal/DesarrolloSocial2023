@@ -22,7 +22,14 @@ $(document).ready(function () {
     });
 });
 
-
+function isEmptyObject(obj) {
+    for (var property in obj) {
+        if (obj.hasOwnProperty(property)) {
+            return false;
+        }
+    }
+    return true;
+}
 
 $(function () {
     $('#btn-actionb').click(function (e) {
@@ -99,14 +106,81 @@ $(function () {
                 $("#txt-etnia1").val(data.paciente_etnia);
                 $("#txt-estudios1").val(data.paciente_nivel_estudio);
                 $("#txt-anios-nivel1").val(data.paciente_anios_nivel);
-                BuscadorPer(data.ghc_id);
+                
+                
+                BuscadorPer(data.ghc_id, data.paciente_id);
                 
                 
             }
         });
     };
     
-    const BuscadorPer= (ghcid) => {
+    const signos = (paciente_id, ga_peso) => {
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "BuscadorSignos",
+            data: {paciente_id: paciente_id},
+            dataType: 'json',
+            error: function (request, status, error)
+            {
+                alert(request, status, error);
+            },
+            success: function (data)
+            {
+                console.log(data);
+                if(isEmptyObject(data)){
+                    alert('no hay nada');
+                    $("#txt-idsv").val('no');
+                    $("#signos-res").html('No se han tomado signos vitales del paciente');
+                    
+                    $("#txt-pa-sistolica-seg").val("");
+                    $("#txt-pa-diastolica-seg").val("");
+                    $("#txt-Temperatura-seg").val("");
+                    $("#txt-FrecuenciaC-seg").val("");
+                    $("#txt-saturacion-seg").val("");
+                    $("#txt-peso-seg").val("");
+                    $("#txt-talla-seg").val("");
+                    $("#txt-imc-seg").val("");
+                    
+                    $("#txt-imc-peso").val("");
+                    $("#txt-imc-talla").val("");
+                    $("#txt-imc-imc").val("");
+                    $("#txt-imc-rango").val("");
+                    
+                    $("#txt-ca-pa").val("");
+                    $("#txt-ca-pad").val("");
+                    $("#txt-ca-peso").val("");
+                    
+                }else{
+                    $("#signos-res").html('Signos vitales tomados hoy a las '+ data.hora);
+                    $("#txt-idsv").val(data.signos_id);
+                    
+                    $("#txt-pa-sistolica-seg").val(data.pa_sistolica);
+                    $("#txt-pa-diastolica-seg").val(data.pa_diastolica);
+                    $("#txt-Temperatura-seg").val(data.temperatura);
+                    $("#txt-FrecuenciaC-seg").val(data.frecuencia_cardiaca);
+                    $("#txt-saturacion-seg").val(data.saturacion);
+                    $("#txt-peso-seg").val(data.peso);
+                    $("#txt-talla-seg").val(data.estatura);
+                    $("#txt-imc-seg").val(data.imc);
+                    
+                    $("#txt-imc-peso").val(data.peso);
+                    $("#txt-imc-talla").val(data.estatura);
+                    $("#txt-imc-imc").val(data.imc);
+                    var ganancia = (Number(data.peso) - Number(ga_peso))
+                    $("#txt-imc-rango").val(ganancia.toFixed(3));
+                    
+                    $("#txt-ca-peso").val(data.peso);
+                    $("#txt-ca-pa").val(data.pa_sistolica);
+                    $("#txt-ca-pad").val(data.pa_diastolica);
+                }
+            }
+        });
+    };
+    
+    const BuscadorPer= (ghcid, paciente_id) => {
         //alert("aqui pasa a buscar:"+ghcid);
         $.ajax({
             cache: false,
@@ -263,7 +337,7 @@ $(function () {
                 if(data.imc_valor_inicial!== "null")document.querySelector('#imc_valor_inicial > [value="'+data.imc_valor_inicial+'"]').checked = true;
                 if(data.imc_rango!== "null")document.querySelector('#imc_rango > [value="'+data.imc_rango+'"]').checked = true;
                 */
-               
+                signos(paciente_id, data.ga_peso);
                 renderConsultasAntenatales(data.ghcp_id);
                 renderIMC(data.ghcp_id);
             }
@@ -296,7 +370,7 @@ $(function () {
                             <td style="border: solid #d5ddda;">${data[i].ca_fecha}</th>
                             <td style="border: solid #d5ddda;">${data[i].ca_edad_ges}</th>
                             <td style="border: solid #d5ddda;">${data[i].ca_peso}</th>
-                            <td style="border: solid #d5ddda;">${data[i].ca_pa}</th>
+                            <td style="border: solid #d5ddda;">${data[i].ca_pa} / ${data[i].ca_pad}</th>
                             <td style="border: solid #d5ddda;">${data[i].ca_altura_uterina}</th>
                             <td style="border: solid #d5ddda;">${data[i].ca_presentacion}</th>
                             <td style="border: solid #d5ddda;">${data[i].ca_FCP}</th>

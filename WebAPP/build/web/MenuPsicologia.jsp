@@ -21,6 +21,11 @@
     <body>
         <%
             HttpSession s = request.getSession();
+            String usuario=(String)s.getAttribute("galeno_user11");
+            if(usuario==null)
+            {
+                response.sendRedirect("index.jsp");
+            }
             //variables de session
         %>
 

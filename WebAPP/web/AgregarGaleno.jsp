@@ -115,6 +115,7 @@
                                             <option value="2">Psicología</option>
                                             <option value="3">Terapia Física</option>
                                             <option value="4">Ginecología</option>
+                                            <option value="5">Enfermería</option>
                                         </select></div></td> 
                             </tr>
                         </tbody>

@@ -119,6 +119,21 @@
                         </div>
                     </section>
                     
+                    <!-- ENFERMERIA MODULO -->
+                    <section class="animadoagregarinformacion">
+                        <div class="content">
+                            <header>
+                                <a href="" >
+                                    <img alt="" src="img/enfermeria.png">
+                                    <span class="label"></span></a>
+                                <h3 style="color:#007653; font-weight: bold" class="textgrueso">ENFERMERÍA</h3>
+                            </header>
+                            <p>Ingresar al módulo enfermería para registrar signos vitales de los pacientes atendidos de las distintas areas médicas</p>
+                            <input type="button" onclick="javascript:abrirEnfermeria();" value="Ingresar" class="button primary" style=" background: #007653 !important;"/>
+                            
+                        </div>
+                    </section>
+                    
                     <!-- QUINTO MODULO -->
                     <section class="animadoagregarinformacion">
                         <div class="content">
@@ -170,6 +185,16 @@
                     alert("Acceso permitido solo para el departamento de Ginecología");
                 }
             }
+            
+            function abrirEnfermeria(){
+                var dep = document.getElementById("departamento").innerHTML;
+                if(dep === "5" || dep === "0"){
+                    window.location.href = "./MenuEnfermeria.jsp"; 
+                }else{
+                    alert("Acceso permitido solo para el departamento de Enfermería");
+                }
+            }
+            
             function abrirActualizarDatos(){
                 window.location.href = "./ActualizarDatosPersonalesMedicos.jsp";
             }

@@ -45,6 +45,7 @@ public class ConsultarHcpAntenatales {
                 String ca_edad_ges = String.valueOf(rs.getString("ca_edad_ges"));
                 String ca_peso = String.valueOf(rs.getString("ca_peso"));
                 String ca_pa = String.valueOf(rs.getString("ca_pa"));
+                String ca_pad = String.valueOf(rs.getString("ca_pad"));
                 String ca_altura_uterina = String.valueOf(rs.getString("ca_altura_uterina"));
                 String ca_presentacion = String.valueOf(rs.getString("ca_presentacion"));
                 String ca_FCP = String.valueOf(rs.getString("ca_FCP"));
@@ -60,6 +61,7 @@ public class ConsultarHcpAntenatales {
                                 ca_edad_ges,
                                 ca_peso,
                                 ca_pa,
+                                ca_pad,
                                 ca_altura_uterina,
                                 ca_presentacion,
                                 ca_FCP,
