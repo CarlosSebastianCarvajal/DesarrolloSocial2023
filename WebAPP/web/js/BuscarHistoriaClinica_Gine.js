@@ -1,3 +1,5 @@
+
+
 $(function () {
     $('#btn-actionb').click(function (e) {
         buscadoract();
@@ -23,7 +25,7 @@ $(function () {
                 $("#txt-apellidos").val(data.apellidos);
                 $("#txt-estadoc").val(data.paciente_estado_civil);
                 $("#txt-fn").val(data.paciente_fnacimiento);
-                $("#txt-edad").val(data.paciente_edad);
+                $("#txt-edad").val(calcularEdad(data.paciente_fnacimiento));
                 $("#txt-telefono").val(data.paciente_telefono);
                 $("#txt-domicilio").val(data.paciente_direccion);
                 $("#txt-presionArterialS").val(data.pa_sistolica);
@@ -91,7 +93,7 @@ $(function () {
                 $("#txt-apellidos").val(data.apellidos);
                 $("#txt-estadoc").val(data.paciente_estado_civil);
                 $("#txt-fn").val(data.paciente_fnacimiento);
-                $("#txt-edad").val(data.paciente_edad);
+                $("#txt-edad").val(calcularEdad(data.paciente_fnacimiento));
                 $("#txt-telefono").val(data.paciente_telefono);
                 $("#txt-domicilio").val(data.paciente_direccion);
                 $("#txt-presionArterialS").val(data.pa_sistolica);
@@ -133,3 +135,14 @@ $(function () {
     
 });
 
+function calcularEdad(fecha) {
+    var hoy = new Date();
+    var cumpleanos = new Date(fecha);
+    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    var m = hoy.getMonth() - cumpleanos.getMonth();
+
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+    }
+    return edad;
+}

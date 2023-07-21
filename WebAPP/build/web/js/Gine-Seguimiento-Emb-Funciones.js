@@ -131,7 +131,7 @@ $(function () {
             {
                 console.log(data);
                 if(isEmptyObject(data)){
-                    alert('no hay nada');
+                    //alert('Aún no se ha tomado signos vitales al paciente');
                     $("#txt-idsv").val('no');
                     $("#signos-res").html('No se han tomado signos vitales del paciente');
                     

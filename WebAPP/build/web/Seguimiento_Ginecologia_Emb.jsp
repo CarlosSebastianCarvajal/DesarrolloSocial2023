@@ -17,6 +17,15 @@
         <title>Historia Clínica Embarazadas</title>
     </head>
     <body>
+        <%
+            HttpSession s = request.getSession();
+            String usuario=(String)s.getAttribute("galeno_user11");
+            if(usuario==null)
+            {
+                response.sendRedirect("index.jsp");
+            }
+            //variables de session
+        %>
         <header id="header" style=" background: #007653 !important;">
             
                 <a class="logo" href="Principal.jsp" id="ulUserData"> 
@@ -1619,12 +1628,12 @@
                             </tbody>
                        </table>
                        
-                       <hr /> <h1 style="text-align:  center;">VALORACIÓN DEL ÍNDICE DE MASA CORPORAL</h1> <hr />
+                       <hr /> <h1 style="text-align:  center;">GANANCIA DE PESO DE LA MUJER GESTANTE</h1> <hr />
                        
                        <table style='width: 95%; margin-left: 10px; '>
                             <thead >
                                 <tr>
-                                    <th style='background: #afadac; text-align: left; width: 33%' colspan="1" >VALORACIÓN DEL ÍNDICE DE MASA CORPORAL</th>
+                                    <th style='background: #afadac; text-align: left; width: 33%' colspan="1" >GANANCIA DE PESO DE LA MUJER GESTANTE</th>
                                     <th style='background: #afadac; text-align: left; width: 67%' colspan="16" >Historial</th>
                                 </tr>
                             </thead>

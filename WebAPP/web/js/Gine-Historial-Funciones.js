@@ -50,6 +50,8 @@ function isEmptyObject(obj) {
     return true;
 }
 
+
+
 $(function () {
     $('#btn-actionbusc').click(function (e) {
         buscador();
@@ -81,7 +83,7 @@ $(function () {
                 $("#txt-apellidos").val(apellidos);
                 $("#txt-estadoc").val(data.paciente_estadocivil);
                 $("#txt-fn").val(data.paciente_fechanacimiento);
-                $("#txt-edad").val('aqui va la edad');
+                $("#txt-edad").val(calcularEdad(data.paciente_fechanacimiento));
                 $("#txt-telefono").val(data.paciente_telefono);
                 $("#txt-domicilio").val(data.paciente_direccion);
                 signos(data.pacienteid);

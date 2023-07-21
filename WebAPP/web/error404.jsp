@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Proyecto VI - Remenber me</title>
+    <title>Desarrollo Social</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="img/logoblancod.ico" href="img/logoblancod.ico"/>
@@ -22,7 +22,7 @@
 			<div class="wrapper-full">
 				<div class="main-content">
 					<h2>Lo siento</h2>
-					<h4> Error 404, parece que algo salio mal... no podimos localizar vuesta página:(</h4>
+					<h4> Error 404, parece que algo salio mal... no podimos localizar vuestra página:(</h4>
 					<p>No te preocupes pronto solucionaremos esto... </p>
 					<!-- buttons -->
 					<div class="buttons">

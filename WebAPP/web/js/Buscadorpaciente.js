@@ -1,28 +1,24 @@
 var divv = document.getElementById('divv');
-var porc_div = 115;
+var porc_div = 190;
 
 
 $(document).ready(function () {
-    divv.style.marginTop= porc_div + "%";
-    /*
-    $("#btn-actionr").click(function () {
+    divv.style.marginTop= porc_div + "px";
 
-        window.location.href = "./RecetaMedica.jsp?user=" + getQueryVariableRe();
-    });*/
     $(".oculto").hide();              
     $(".inf").click(function(){
           var nodo = $(this).attr("href");  
           
           if ($(nodo).is(":visible")){
                $(nodo).hide();
-               porc_div = 115;
-               divv.style.marginTop= porc_div + "%";
+               porc_div = 190;
+               divv.style.marginTop= porc_div + "px";
                return false;
           }else{
             $(".oculto").hide("slow");                             
             $(nodo).fadeToggle("fast");
-            porc_div = 135;
-            divv.style.marginTop= porc_div + "%";
+            porc_div = 340;
+            divv.style.marginTop= porc_div + "px";
             return false;
           }
     });

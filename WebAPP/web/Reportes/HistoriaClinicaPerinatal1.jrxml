@@ -7,7 +7,13 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select CONCAT(p.paciente_primer_nombre, ' ',p.paciente_segundo_nombre) as nombre, 
+		<![CDATA[select D.*,
+TO_CHAR (ca.ca_fecha:: DATE, 'dd-mm-yyyy') as fecha_cita, ca.ca_edad_ges, ca.ca_peso, (ca.ca_pa || '/' || ca_pad)as presion, ca.ca_altura_uterina, 
+ca.ca_presentacion, ca.ca_fcp, ca.ca_mov_fetales, ca.ca_proteinuria, ca.ca_signos_notas, ca.ca_iniciales_tecnico, 
+TO_CHAR (ca.ca_prox_cita:: DATE, 'dd-mm-yyyy') as fecha_cita
+from
+(
+select CONCAT(p.paciente_primer_nombre, ' ',p.paciente_segundo_nombre) as nombre, 
 CONCAT(p.paciente_apellido_paterno, ' ',p.paciente_apellido_materno)as apellido,
 case when p.paciente_direccion IS NULL then '' else p.paciente_direccion end paciente_direccion,
 case when p.paciente_canton IS NULL then '' else p.paciente_canton end paciente_canton,
@@ -240,13 +246,12 @@ case when ghp.ga_sif_trat_par_menor='Nc' then 'x' else ' ' end ga_sif_trat_par_m
 case when ghp.ga_sif_trat_par_mayor='No' then 'x' else ' ' end ga_sif_trat_par_mayorNo,
 case when ghp.ga_sif_trat_par_mayor='Si' then 'x' else ' ' end ga_sif_trat_par_mayorSi,
 case when ghp.ga_sif_trat_par_mayor='Sd' then 'x' else ' ' end ga_sif_trat_par_mayorSD,
-case when ghp.ga_sif_trat_par_mayor='Nc' then 'x' else ' ' end ga_sif_trat_par_mayorNc,
-TO_CHAR (ca.ca_fecha:: DATE, 'dd-mm-yyyy') as fecha_cita, ca.ca_edad_ges, ca.ca_peso, (ca.ca_pa || '/' || ca_pad)as presion, ca.ca_altura_uterina, 
-ca.ca_presentacion, ca.ca_fcp, ca.ca_mov_fetales, ca.ca_proteinuria, ca.ca_signos_notas, ca.ca_iniciales_tecnico, 
-TO_CHAR (ca.ca_prox_cita:: DATE, 'dd-mm-yyyy') as fecha_cita
-from ginecologia_historia_clinica_per as ghp, ginecologia_historia_clinica as gh, paciente as p, consultas_antenatales as ca
-where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and ca.ghcp_id=ghp.ghcp_id and p.paciente_dni=$P{cedula}
-order by ghp.ghcp_id desc]]>
+case when ghp.ga_sif_trat_par_mayor='Nc' then 'x' else ' ' end ga_sif_trat_par_mayorNc, ghp.ghcp_id
+from ginecologia_historia_clinica_per as ghp, ginecologia_historia_clinica as gh, paciente as p
+where ghp.ghc_id=gh.ghc_id and p.paciente_id=gh.paciente_id and p.paciente_dni=$P{cedula}
+order by ghp.ghcp_id desc limit 1
+)as D inner join consultas_antenatales as ca on D.ghcp_id = ca.ghcp_id
+order by ca_edad_ges asc]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="apellido" class="java.lang.String"/>
@@ -492,6 +497,7 @@ order by ghp.ghcp_id desc]]>
 	<field name="ga_sif_trat_par_mayorsi" class="java.lang.String"/>
 	<field name="ga_sif_trat_par_mayorsd" class="java.lang.String"/>
 	<field name="ga_sif_trat_par_mayornc" class="java.lang.String"/>
+	<field name="ghcp_id" class="java.lang.Integer"/>
 	<field name="fecha_cita" class="java.lang.String"/>
 	<field name="ca_edad_ges" class="java.lang.Integer"/>
 	<field name="ca_peso" class="java.math.BigDecimal"/>

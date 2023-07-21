@@ -16,16 +16,25 @@
         <title>Historia de Evolución</title>
     </head>
     <body>
+        <%
+            HttpSession s = request.getSession();
+            String usuario=(String)s.getAttribute("galeno_user11");
+            if(usuario==null)
+            {
+                response.sendRedirect("index.jsp");
+            }
+            //variables de session
+        %>
         <header id="header" style=" background: #007653 !important;">
         <a class="logo" href="Principal.jsp"></a>
         <nav class="nav-tp"></nav>
         </header>     
         <div class="div-head-tittle"><h2></h2></div>
         
-        <form id="form1" action="AddMgHistoriaEvolucion" method="GET" enctype="multipart/form-data">
+        <form  id="divv" action="AddMgHistoriaEvolucion" method="GET" enctype="multipart/form-data">
         <section class="sec-main">
             
-            <div id="divv" class="div-cont-main">
+            <div class="div-cont-main">
                 <div class="div-cont-ced">
                     <input type="button" id="btn-actionb" class="inp-search" value="Buscar"/>
                     <input type="text" id="txt-cede" class="inp-ced" onkeypress='return validaNumericos(event)' placeholder="Cédula" name="Identificacion" maxlength="15"/>

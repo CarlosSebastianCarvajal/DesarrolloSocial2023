@@ -22,9 +22,14 @@
          <div class="div-head-tittle1"><h2></h2></div>
         <form name="form1" method="post" action="REPORTESesiones.jsp" target="_blank">
             <%
-                HttpSession s = request.getSession();
-                //variables de session
-            %>
+            HttpSession s = request.getSession();
+            String usuario=(String)s.getAttribute("galeno_user11");
+            if(usuario==null)
+            {
+                response.sendRedirect("index.jsp");
+            }
+            //variables de session
+        %>
              <section class="sec-main">
                 <div class="div-cont-main"> 
                     <div class="div-cont-ced">

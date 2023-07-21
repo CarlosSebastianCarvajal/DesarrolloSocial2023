@@ -197,7 +197,7 @@
             
             function nuevaHistoriaNormal(){
               // Aqui coloca lo de ingresar historia clinica Cholota
-              alert('Usted va a registrar una nueva historia clínica a una paciente. El seguimiento a la paciente ahora estará basada en la nueva historia clínica, en caso que desee cancelar la accion puede ralizarlo presionando el boton CANCELAR al fianl de la página');
+              //alert('Usted va a registrar una nueva historia clínica a una paciente. El seguimiento a la paciente ahora estará basada en la nueva historia clínica, en caso que desee cancelar la accion puede ralizarlo presionando el boton CANCELAR al final de la página');
               window.location.href = "./HistoriaClinica_Ginecologia.jsp?user="+document.getElementById("usuario").innerHTML;
               
             }

@@ -16,6 +16,15 @@
         <title>Historia Clínica</title>
     </head>
     <body>
+        <%
+            HttpSession s = request.getSession();
+            String usuario=(String)s.getAttribute("galeno_user11");
+            if(usuario==null)
+            {
+                response.sendRedirect("index.jsp");
+            }
+            //variables de session
+        %>
         <header id="header" style=" background: #007653 !important; margin-top:-40px">
             
                 <a class="logo" href="Principal.jsp" id="ulUserData"> 
@@ -306,7 +315,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <input hidden type="text" id="txt-tabla-datos-medicamentos" name="txt-tabla-datos-medicamentos" class="inp-lname"/>
-                                                                <td><div class="div-cont-lname"><input type="text" onkeyup="mayus(this);" id="txt-medicamento" class="inp-lname" placeholder="Medicamento" name="medicamento"/></div></td>
+                                                                <td><div class="div-cont-lname"><input type="text" onkeyup="mayus(this);" id="txt-medicamento" class="inp-name" placeholder="Medicamento" name="medicamento"/></div></td>
                                                                 <td><div class="div-cont-name"><input type="text"onkeyup="mayus(this);" id="txt-med-indicacion" class="inp-name" placeholder="Indicación Médica" name="indicaciones"/></div></td>
                                                                 <td><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="button" id="btn-action-receta" class="btn-accept" value="+"> 
                                                             </tr>

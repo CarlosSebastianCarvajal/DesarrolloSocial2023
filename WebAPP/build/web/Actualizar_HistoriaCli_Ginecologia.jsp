@@ -15,8 +15,18 @@
         <a href="../src/java/DAO/Buscador.java"></a>
         <link href="css/Ingresos_2.css" rel="stylesheet" type="text/css"/>
         <title>Historia Clínica</title>
+        
     </head>
     <body>
+        <%
+            HttpSession s = request.getSession();
+            String usuario=(String)s.getAttribute("galeno_user11");
+            if(usuario==null)
+            {
+                response.sendRedirect("index.jsp");
+            }
+            //variables de session
+        %>
         <header id="header" style=" background: #007653 !important; margin-top:-40px">
             
                 <a class="logo" href="Principal.jsp" id="ulUserData"> 

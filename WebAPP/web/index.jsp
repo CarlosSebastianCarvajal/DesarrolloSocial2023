@@ -74,6 +74,14 @@
                                 <a id="LinkButton1" class="waves-effect waves-light btn modal-trigger" href="AgregarGaleno.jsp">
                                     <strong style="color:#007653; font-size:16px; font-size: 85%" class="textgrueso">Agregar nuevo galeno</strong>
                                 </a>
+                                <br><br><br>
+                                <a id="LinkButton1" class="waves-effect waves-light btn modal-trigger" href="equipoTrabajo.html">
+                                    <strong style="color:#007653; font-size:16px; font-size: 85%" class="textgrueso">Equipo de trabajo</strong>
+                                </a>
+                                <br>
+                                <a id="LinkButton1" class="waves-effect waves-light btn modal-trigger" href="MenuManuales.jsp">
+                                    <strong style="color:#007653; font-size:16px; font-size: 85%" class="textgrueso">Manuales de usuario</strong>
+                                </a>
                             </p>
                         </div>
                        
