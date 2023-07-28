@@ -158,7 +158,7 @@
                         <tr>
                             <td>
                                 <div class="col-sm-4 col-xs well">
-                                    <a href="#info2" class="inf"><h3>PRESCRIPCIONES</h3></a>
+                                    <a href="#info2" class="inf"><h3>Agregar Receta Médica</h3></a>
                                 </div>
                             </td>
                             
