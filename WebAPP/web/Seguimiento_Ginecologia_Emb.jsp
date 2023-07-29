@@ -36,9 +36,9 @@
         <div class="div-head-titl" style="margin-top:-18px"><h2></h2></div>
 
 
-        <form class="form1" action="AddGineHistoriaEvolucionEmb" method="GET">
+        <form class="form1" action="AddGineHistoriaEvolucionEmb" method="GET" id="divv" >
             <section class="sec-main">
-                <div id="divv" class="div-cont-main" style="margin-top: 9900px">
+                <div class="div-cont-main" >
                         <div class="div-cont-ced">
                             <input type="button" id="btn-actionb" class="inp-search" value="Buscar"/>
                             <input type="text" id="txt-cede" class="inp-ced" onkeypress='return validaNumericos(event)' placeholder="Cédula" name="Identificacion" maxlength="15"/>

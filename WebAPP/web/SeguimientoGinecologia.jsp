@@ -31,10 +31,9 @@
         </header>     
         <div class="div-head-tittle"><h2></h2></div>
         
-        <form id="form1" action="AddGineHistoriaEvolucion" method="GET" enctype="multipart/form-data">
+        <form id="divv"  action="AddGineHistoriaEvolucion" method="GET" enctype="multipart/form-data">
         <section class="sec-main">
-            
-            <div id="divv" class="div-cont-main">
+            <div class="div-cont-main">
                 <div class="div-cont-ced">
                     <input type="button" id="btn-actionb" class="inp-search" value="Buscar"/>
                     <input type="text" id="txt-cede" class="inp-ced" onkeypress='return validaNumericos(event)' placeholder="Cédula" name="Identificacion" maxlength="15"/>

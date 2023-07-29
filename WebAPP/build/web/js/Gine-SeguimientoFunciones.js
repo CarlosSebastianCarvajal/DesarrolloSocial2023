@@ -6,24 +6,24 @@
 
 
 var divv = document.getElementById('divv');
-var porc_div = 40;
+var porc_div = 140;
 
 $(document).ready(function () {
-    
+    divv.style.marginTop= porc_div + "px";
     $(".oculto").hide();              
     $(".inf").click(function(){
           var nodo = $(this).attr("href");  
           
           if ($(nodo).is(":visible")){
                $(nodo).hide();
-               porc_div = 40;
-               divv.style.marginTop= porc_div + "%";
+               porc_div = 140;
+               divv.style.marginTop= porc_div + "px";
                return false;
           }else{
             $(".oculto").hide("slow");                             
             $(nodo).fadeToggle("fast");
-            porc_div = 60;
-            divv.style.marginTop= porc_div + "%";
+            porc_div = 280;
+            divv.style.marginTop= porc_div + "px";
             return false;
           }
     });

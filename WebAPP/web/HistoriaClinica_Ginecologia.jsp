@@ -16,6 +16,7 @@
         <title>Historia Clínica</title>
     </head>
     <body>
+        
         <%
             HttpSession s = request.getSession();
             String usuario=(String)s.getAttribute("galeno_user11");
@@ -35,7 +36,7 @@
         <div class="div-head-titl" style="margin-top:-18px"><h2></h2></div>
 
 
-        <form class="form1" action="AddGineHistoriaClinica" method="GET" style="margin-top:140px" id="divv"  >
+        <form class="form1" action="AddGineHistoriaClinica" method="GET" id="divv"  >
             <section class="sec-main">
                 <div class="div-cont-main2">
                         <div class="div-cont-ced">

@@ -150,7 +150,7 @@
                         </div>
                     </section>
                     
-                      <!-- HISTORIAL -->
+                    <!-- HISTORIAL -->
                     <section class="animadoagregarinformacion">
                         <div class="content">
                             <header>

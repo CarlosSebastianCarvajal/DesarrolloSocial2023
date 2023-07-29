@@ -40,7 +40,7 @@
                             </header>
                             <p>Visualice el manual de usuario correspondiente al area de Terapia Física</p>
                             <!--<a href="MenuTerapiaFisica.jsp" class="button primary" style=" background: #007653 !important;">Ingresar</a>-->
-                            <a href="DownloadServlet?fileName=ManualTerapiaFisica.pdf" class="button primary" style=" background: #007653 !important;">Descargar Archivo</a>
+                            <a href="DownloadManual?fileName=ManualTerapiaFisica.pdf" class="button primary" style=" background: #007653 !important;">Descargar Archivo</a>
                         </div>
                     </section>
                     
@@ -55,7 +55,7 @@
 
                             </header>
                             <p>Visualice el manual de usuario correspondiente al area de Ginecología</p>
-                            <a href="DownloadServlet?fileName=ManualGinecologia.pdf" class="button primary" style=" background: #007653 !important;">Descargar Archivo</a>
+                            <a href="DownloadManual?fileName=ManualGinecologia.pdf" class="button primary" style=" background: #007653 !important;">Descargar Archivo</a>
                         </div>
                     </section>
                     
@@ -70,7 +70,7 @@
 
                             </header>
                             <p>Visualice el manual de usuario correspondiente al area de Psicología</p>
-                            <a href="DownloadServlet?fileName=ManualPsicologia.pdf" class="button primary" style=" background: #007653 !important;">Descargar Archivo</a>
+                            <a href="DownloadManual?fileName=ManualPsicologia.pdf" class="button primary" style=" background: #007653 !important;">Descargar Archivo</a>
                         </div>
                     </section>
                     
@@ -85,7 +85,7 @@
 
                             </header>
                             <p>Visualice el manual de usuario correspondiente al area de Medicina General</p>
-                            <a href="DownloadServlet?fileName=ManualMedicinaGeneral.pdf" class="button primary" style=" background: #007653 !important;">Descargar Archivo</a>
+                            <a href="DownloadManual?fileName=ManualMedicinaGeneral.pdf" class="button primary" style=" background: #007653 !important;">Descargar Archivo</a>
                         </div>
                     </section>
                     
@@ -100,7 +100,7 @@
 
                             </header>
                             <p>Visualice el manual de usuario correspondiente al area de Enfermería</p>
-                            <a href="DownloadServlet?fileName=ManualEnfermeria.pdf" class="button primary" style=" background: #007653 !important;">Descargar Archivo</a>
+                            <a href="DownloadManual?fileName=ManualEnfermeria.pdf" class="button primary" style=" background: #007653 !important;">Descargar Archivo</a>
                         </div>
                     </section>
                 </div>

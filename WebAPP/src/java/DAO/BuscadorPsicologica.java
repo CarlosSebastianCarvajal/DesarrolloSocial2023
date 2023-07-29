@@ -32,11 +32,18 @@ public class BuscadorPsicologica {
         pst = null;
         rs = null;
         try {
-            sql_command = "SELECT paciente_dni, paciente_apellido_paterno, paciente_primer_nombre, paciente_fnacimiento, \n" +
-            "paciente_direccion, paciente_telefono, paciente_genero, paciente_apellido_materno, \n" +
-            "paciente_segundo_nombre, paciente_estado_civil, paciente_escolaridad, paciente_ocupacion, \n" +
-            "paciente_religion, paciente_orientacion_sexual, paciente_tipo_discapacidad, paciente_porcentaje_discapacidad, cast(paciente_edad as text)\n" +
-            "FROM public.paciente where paciente_dni='" + cedula + "'";
+            sql_command = "SELECT paciente_dni, paciente_apellido_paterno, paciente_primer_nombre, paciente_fnacimiento,\n" +
+"            paciente_genero, paciente_apellido_materno,\n" +
+"            paciente_segundo_nombre, paciente_estado_civil, cast(paciente_edad as text),\n" +
+"            case when paciente_telefono IS NULL then ' ' else paciente_telefono end paciente_telefono,\n" +
+"			case when paciente_escolaridad IS NULL then ' ' else paciente_escolaridad end paciente_escolaridad,\n" +
+"			case when paciente_ocupacion IS NULL then ' ' else paciente_ocupacion end paciente_ocupacion,\n" +
+"			case when paciente_religion IS NULL then ' ' else paciente_religion end paciente_religion,\n" +
+"			case when paciente_orientacion_sexual IS NULL then ' ' else paciente_orientacion_sexual end paciente_orientacion_sexual,\n" +
+"			case when paciente_direccion IS NULL then ' ' else paciente_direccion end paciente_direccion,\n" +
+"			case when paciente_tipo_discapacidad IS NULL then ' ' else paciente_tipo_discapacidad end paciente_tipo_discapacidad,\n" +
+"			case when paciente_porcentaje_discapacidad IS NULL then ' ' else paciente_porcentaje_discapacidad end paciente_porcentaje_discapacidad\n" +
+"			FROM public.paciente where paciente_dni='" + cedula + "'";
             pst = cn.getConecction().prepareStatement(sql_command);
             rs = pst.executeQuery();
             while (rs.next()) {
@@ -81,9 +88,12 @@ public class BuscadorPsicologica {
         pst = null;
         rs = null;
         try {
-            sql_command = "SELECT  c.primer_apellido, c.primer_nombre, c.parentezco, \n" +
-            "c.cedula, c.telefono FROM public.contacto_referencia as c, public.paciente p \n" +
-            "where p.paciente_id=c.paciente_id and p.paciente_dni='" + cedula + "'";
+            sql_command = "SELECT  case when c.primer_apellido IS NULL then ' ' else c.primer_apellido end primer_apellido,\n" +
+"case when c.primer_nombre IS NULL then ' ' else c.primer_nombre end primer_nombre,\n" +
+"case when c.parentezco IS NULL then ' ' else c.parentezco end parentezco,\n" +
+"case when c.cedula IS NULL then ' ' else c.cedula end cedula,\n" +
+"case when c.telefono IS NULL then ' ' else c.telefono end telefono FROM public.contacto_referencia as c, public.paciente p \n" +
+"            where p.paciente_id=c.paciente_id and p.paciente_dni='" + cedula + "'";
             pst = cn.getConecction().prepareStatement(sql_command);
             rs = pst.executeQuery();
             while (rs.next()) {
@@ -116,12 +126,28 @@ public class BuscadorPsicologica {
         rs = null;
         try {
             sql_command = "SELECT CONCAT(g.galeno_primer_nombre, ' ',g.galeno_segundo_nombre, ' ',g.galeno_apellido_paterno,\n" +
-            "' ',g.galeno_apellido_materno) as nombre, a.fecha, a.hora, a.historia_personal, a.antecedentes_familiares, \n" +
-            "a.desarrollo, a.atencion_psiquiatrica_psicologica, a.enfermedad_cronica, a.actividad_interes, \n" +
-            "a.orientacion, a.pensamiento, a.lenguaje, a.memoria, a.atencion, a.afectividad, a.juicio, a.apariencia, \n" +
-            "a.compormatientos, a.otros, a.recomendacion, a.motivo FROM public.antecedente_observacion as a, \n" +
-            "public.paciente p, public.galeno g where p.paciente_id=a.paciente_id and g.galeno_id=a.galeno_id \n" +
-            "and p.paciente_dni='" + cedula + "'";
+"            ' ',g.galeno_apellido_materno) as nombre, a.fecha, a.hora, \n" +
+"			case when a.historia_personal IS NULL then ' ' else a.historia_personal end historia_personal,\n" +
+"case when a.antecedentes_familiares IS NULL then ' ' else a.antecedentes_familiares end antecedentes_familiares,\n" +
+"case when a.desarrollo IS NULL then ' ' else a.desarrollo end desarrollo,\n" +
+"case when a.atencion_psiquiatrica_psicologica IS NULL then ' ' else a.atencion_psiquiatrica_psicologica end atencion_psiquiatrica_psicologica,\n" +
+"case when a.enfermedad_cronica IS NULL then ' ' else a.enfermedad_cronica end enfermedad_cronica,\n" +
+"case when a.actividad_interes IS NULL then ' ' else a.actividad_interes end actividad_interes,\n" +
+"case when a.orientacion IS NULL then ' ' else a.orientacion end orientacion, \n" +
+"case when a.pensamiento IS NULL then ' ' else a.pensamiento end pensamiento,\n" +
+"case when a.lenguaje IS NULL then ' ' else a.lenguaje end lenguaje,\n" +
+"case when a.memoria IS NULL then ' ' else a.memoria end memoria,\n" +
+"case when a.atencion IS NULL then ' ' else a.atencion end atencion,\n" +
+"case when a.afectividad IS NULL then ' ' else a.afectividad end afectividad,\n" +
+"case when a.juicio IS NULL then ' ' else a.juicio end juicio, \n" +
+"case when a.apariencia IS NULL then ' ' else a.apariencia end apariencia, \n" +
+"case when a.compormatientos IS NULL then ' ' else a.compormatientos end compormatientos, \n" +
+"case when a.otros IS NULL then ' ' else a.otros end otros,\n" +
+"case when a.recomendacion IS NULL then ' ' else a.recomendacion end recomendacion, \n" +
+"case when a.motivo IS NULL then ' ' else a.motivo end motivo\n" +
+"			FROM public.antecedente_observacion as a, \n" +
+"            public.paciente p, public.galeno g where p.paciente_id=a.paciente_id and g.galeno_id=a.galeno_id \n" +
+"            and p.paciente_dni='" + cedula + "'";
             pst = cn.getConecction().prepareStatement(sql_command);
             rs = pst.executeQuery();
             while (rs.next()) {

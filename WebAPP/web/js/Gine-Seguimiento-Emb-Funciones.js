@@ -1,21 +1,22 @@
 var divv = document.getElementById('divv');
-var porc_div = 9900;
+const porc_div1 = 3000;
+var porc_div = 3050;
 
 $(document).ready(function () {
-    
+    divv.style.marginTop= porc_div + "px";
     $(".oculto").hide();              
     $(".inf").click(function(){
           var nodo = $(this).attr("href");  
           
           if ($(nodo).is(":visible")){
                $(nodo).hide();
-               porc_div = 9900;
+               porc_div = porc_div - 200;
                divv.style.marginTop= porc_div + "px";
                return false;
           }else{
             $(".oculto").hide("slow");                             
             $(nodo).fadeToggle("fast");
-            porc_div = 10100;
+            porc_div = porc_div + 200;
             divv.style.marginTop= porc_div + "px";
             return false;
           }
@@ -365,6 +366,8 @@ $(function () {
                 $("#body_antenatales").html("");
                 var output = ``;
                 for(var i = 0; i < data.length; i++) {
+                    porc_div = porc_div + 15;
+                    divv.style.marginTop= porc_div + "px";
                     output += `
                         <tr>
                             <td style="border: solid #d5ddda;">${data[i].ca_fecha}</th>
@@ -405,6 +408,8 @@ $(function () {
                 $("#body_imc").html("");
                 var output = ``;
                 for(var i = 0; i < data.length; i++) {
+                    porc_div = porc_div + 15;
+                    divv.style.marginTop= porc_div + "px";
                     output += `
                         <tr>
                             <td style="border: solid #d5ddda;">${data[i].imc_semana}</th>

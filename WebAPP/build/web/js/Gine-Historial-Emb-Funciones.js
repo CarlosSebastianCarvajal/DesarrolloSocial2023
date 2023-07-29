@@ -8,7 +8,7 @@ var divv = document.getElementById('divv');
 var porc_div = 2850;
 
 $(document).ready(function () {
-    
+    divv.style.marginTop= porc_div + "px";
     $(".oculto").hide();              
     $(".inf").click(function(){
           var nodo = $(this).attr("href");  

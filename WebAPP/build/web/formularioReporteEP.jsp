@@ -66,7 +66,7 @@
             }
             
             function Regresar(){
-              window.location.href = "./MenuReportesPsicologia.jsp";
+              window.location.href = "./MenuReportesMedGeneral.jsp";
             }
         </script>
     </body>

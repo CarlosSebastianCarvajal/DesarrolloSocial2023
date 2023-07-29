@@ -72,7 +72,21 @@
                             
                         </div>
                     </section>
-                    
+                    <!-- HISTORIAL -->
+                    <section class="animadoagregarinformacion">
+                        <div class="content">
+                            <header>
+                                <a href="">
+                                    <img alt="" src="img/icons8_accounting_96px.png" width="96" height="96">
+                                    <span class="label"></span></a>
+                                <h3 style="color:#007653; font-weight: bold">HISTORIAL</h3>
+
+                            </header>
+                            <p>Mostrar la información de las actividades de los pacientes</p>
+                            <input type="button" onclick="javascript:historial();" value="Ver Historial" class="button primary" style=" background: #007653 !important;"/>
+                        </div>
+                    </section> 
+
                 </div>
             </div>
         </section>
@@ -90,6 +104,10 @@
             
             function SignosVitales(){
               window.location.href = "./SignosVitales.jsp?user="+document.getElementById("usuario").innerHTML;
+            }
+            
+            function historial(){
+              window.location.href = "./HistorialPacienteS.jsp";
             }
             
             

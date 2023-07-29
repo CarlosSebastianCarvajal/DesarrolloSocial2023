@@ -37,7 +37,7 @@
         <div class="div-head-titl" style="margin-top:-18px"><h2></h2></div>
 
 
-        <form class="form1" action="ActulizarHC_Ginecologia" method="GET" style="margin-top:140px">
+        <form class="form1" action="ActulizarHC_Ginecologia" method="GET" style="margin-top:130px">
             <section class="sec-main">
                 <div class="div-cont-main2">
                         <div class="div-cont-ced">
