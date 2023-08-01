@@ -15,7 +15,7 @@
 con la siguiente linea de codigo*/
     conexion conexion1 = new conexion();
     /*Establecemos la ruta del reporte*/
-    File reportFile = new File(application.getRealPath("/Reportes/pacienteatencionesMG.jasper"));
+    File reportFile = new File(application.getRealPath("/Reportes/EvolucionMedicinax.jasper"));
     /*Enviamos parámetros porque nuestro reporte los necesita asi que escriba 
 y seguiremos el formato del método runReportToPdf*/
  /*Con Map y el HaspMap nos servira para crear los paramentros*/
@@ -28,7 +28,7 @@ varchar(5), lo almacenamos en una String*/
 llamado $P{CODIGO}, pero solo se escribira "CODIGO", el String que capturamos lo colocamos, en este caso el 
 reporte solo nos pide un parametro*/
     
-    parameters.put("p_cedula", cedula);
+    parameters.put("cedula", cedula);
     //parameters.put("cedula", cedula);
     
     /*Enviamos la ruta del reporte, los parámetros y la conexión(objeto Connection)*/

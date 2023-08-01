@@ -51,7 +51,7 @@
                             smt = con.getConecction().createStatement();
                             rs = smt.executeQuery("select p.paciente_dni as cedula, CONCAT(p.paciente_primer_nombre,' ',p.paciente_segundo_nombre,' ',p.paciente_apellido_paterno,' ',p.paciente_apellido_materno)as nombre, s.sesion_numero as numero, cast(s.fecha as text)as fecha from seguimiento as s, paciente as p, galeno as g where s.paciente_id=p.paciente_id and  g.galeno_id=s.galeno_id and g.galeno_user='" + session.getAttribute("galeno_user11") + "' order by s.fecha");
                             if (rs.next()) {
-                                rs = smt.executeQuery("select p.paciente_dni as cedula, CONCAT(p.paciente_primer_nombre,' ',p.paciente_segundo_nombre,' ',p.paciente_apellido_paterno,' ',p.paciente_apellido_materno)as nombre, s.sesion_numero as numero, cast(s.fecha as text)as fecha from seguimiento as s, paciente as p, galeno as g where s.paciente_id=p.paciente_id and  g.galeno_id=s.galeno_id and g.galeno_user='" + session.getAttribute("galeno_user11") + "' order by s.fecha");
+                                rs = smt.executeQuery("select p.paciente_dni as cedula, CONCAT(p.paciente_primer_nombre,' ',p.paciente_segundo_nombre,' ',p.paciente_apellido_paterno,' ',p.paciente_apellido_materno)as nombre, s.sesion_numero as numero, TO_CHAR (s.fecha:: DATE, 'dd-mm-yyyy') as fecha from seguimiento as s, paciente as p, galeno as g where s.paciente_id=p.paciente_id and  g.galeno_id=s.galeno_id and g.galeno_user='" + session.getAttribute("galeno_user11") + "' order by s.fecha");
                         %>
                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>

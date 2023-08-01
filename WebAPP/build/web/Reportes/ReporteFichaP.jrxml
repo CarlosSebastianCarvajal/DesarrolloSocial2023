@@ -11,7 +11,8 @@ case when p.paciente_telefono IS NULL then ' ' else p.paciente_telefono end paci
 case when p.paciente_escolaridad IS NULL then ' ' else p.paciente_escolaridad end paciente_escolaridad,
 case when p.paciente_ocupacion IS NULL then ' ' else p.paciente_ocupacion end paciente_ocupacion,
 p.paciente_estado_civil, p.paciente_genero,
-p.paciente_edad, p.paciente_fnacimiento, 
+cast(extract(YEAR FROM (age(current_date, p.paciente_fnacimiento::DATE)))as integer) as paciente_edad,
+TO_CHAR ( p.paciente_fnacimiento:: DATE, 'dd-mm-yyyy') as paciente_fnacimiento, 
 case when p.paciente_religion IS NULL then ' ' else p.paciente_religion end paciente_religion,
 case when p.paciente_orientacion_sexual IS NULL then ' ' else p.paciente_orientacion_sexual end paciente_orientacion_sexual,
 case when p.paciente_direccion IS NULL then ' ' else p.paciente_direccion end paciente_direccion,
@@ -21,7 +22,7 @@ case when c.primer_nombre IS NULL then ' ' else c.primer_nombre end primer_nombr
 case when c.parentezco IS NULL then ' ' else c.parentezco end parentezco,
 case when c.cedula IS NULL then ' ' else c.cedula end cedula,
 case when c.telefono IS NULL then ' ' else c.telefono end telefono,
-cast(a.fecha as text), cast(a.hora as text), 
+TO_CHAR ( a.fecha:: DATE, 'dd-mm-yyyy') as fecha, cast(a.hora as text), 
 case when a.historia_personal IS NULL then ' ' else a.historia_personal end historia_personal,
 case when a.antecedentes_familiares IS NULL then ' ' else a.antecedentes_familiares end antecedentes_familiares,
 case when a.desarrollo IS NULL then ' ' else a.desarrollo end desarrollo,
@@ -194,7 +195,7 @@ where p.paciente_id=c.paciente_id and a.galeno_id=g.galeno_id and a.paciente_id=
 				<reportElement x="212" y="39" width="105" height="18" backcolor="#FFFFFF" uuid="bbd30b8e-8426-42db-9d59-7899c0a775eb"/>
 			</rectangle>
 			<textField>
-				<reportElement x="212" y="38" width="105" height="20" uuid="4e07ab6e-61a8-44b6-ae12-5ffca10193f9"/>
+				<reportElement x="211" y="38" width="105" height="20" uuid="4e07ab6e-61a8-44b6-ae12-5ffca10193f9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{paciente_primer_nombre}]]></textFieldExpression>
 			</textField>
@@ -202,12 +203,12 @@ where p.paciente_id=c.paciente_id and a.galeno_id=g.galeno_id and a.paciente_id=
 				<reportElement x="318" y="39" width="105" height="18" backcolor="#FFFFFF" uuid="6ee5065f-9444-4662-9202-a1e7bc451969"/>
 			</rectangle>
 			<textField>
-				<reportElement x="318" y="38" width="105" height="20" uuid="d9674cad-dbc5-4d8c-8ae4-a75b3ef8b40c"/>
+				<reportElement x="318" y="39" width="105" height="20" uuid="d9674cad-dbc5-4d8c-8ae4-a75b3ef8b40c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{paciente_segundo_nombre}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement x="423" y="40" width="132" height="18" backcolor="#FFFFFF" uuid="a7b24409-915c-4b82-b68e-6fbd30bdf47a"/>
+				<reportElement x="423" y="39" width="132" height="18" backcolor="#FFFFFF" uuid="a7b24409-915c-4b82-b68e-6fbd30bdf47a"/>
 			</rectangle>
 			<textField>
 				<reportElement x="423" y="38" width="132" height="20" uuid="55733ece-35f0-48fa-a724-2a653bd62290"/>

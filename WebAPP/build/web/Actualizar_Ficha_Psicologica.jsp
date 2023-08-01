@@ -37,7 +37,7 @@
 
         <form class="form1" action="ActualizarFichaPsicologica" method="GET" style="margin-top:-20px">
             <section class="sec-main">
-                <div class="div-cont-main">
+                <div class="div-cont-mainnn">
                 <div class="div-cont-ced">
                     <input type="button" id="btn-actionbu" class="inp-search" value="Buscar"/>
                     <input type="text" id="txt-cedee" class="inp-ced" onkeypress='return validaNumericos(event)' placeholder="Cédula" name="cedula" maxlength="15"/>

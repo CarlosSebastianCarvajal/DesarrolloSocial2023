@@ -34,7 +34,7 @@
 
         <form class="form1" action="AddSeguimiento" method="GET" style="margin-top:-30px">
             <section class="sec-main">
-                <div class="div-cont-main1">
+                <div class="div-cont-main11">
                     <div class="div-cont-ced">
                     <input type="button" id="btn-actionbu" class="inp-search" value="Buscar"/>
                     <input type="text" id="txt-cedee" class="inp-ced" onkeypress='return validaNumericos(event)' placeholder="Cédula" name="cedula" maxlength="15"/>

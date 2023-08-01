@@ -32,7 +32,7 @@
 
         <form class="form1" action="AddFichaPsicologica" method="GET" style="margin-top:-20px">
             <section class="sec-main">
-                <div class="div-cont-main2">
+                <div class="div-cont-main22">
 
                     <table align="center" style='width: 98%; margin-left: 10px; margin-top: 30px'>
                        <thead>

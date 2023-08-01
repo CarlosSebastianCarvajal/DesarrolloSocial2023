@@ -209,8 +209,8 @@ public class AddMgHistoriaEvolucion extends HttpServlet {
                     }else{
                         // Guardar Notas de evolucion sin receta
                         String sqlNotas = "INSERT INTO public.mg_seguimiento(\n" +
-                                            "	idmedicinageneral, signos_id, notas, fecha, hora, examen)\n" +
-                                            "	VALUES (?, ?, ?, now(), now(), ?);";
+                                            "	idmedicinageneral, signos_id, id_recetamedica, notas, fecha, hora, examen)\n" +
+                                            "	VALUES (?, ?, 1, ?, now(), now(), ?);";
                             ps = c.getConecction().prepareStatement(sqlNotas);
                             ps.setInt(1, Integer.parseInt(id_mg));
                             ps.setInt(2, id_signos);
