@@ -30,6 +30,7 @@ select DA.*,
 			s.se_diagnostico as diagnostico,
 			s.se_procedimiento as procedimiento,
 		  	s.se_evaluacion as evaluacion,
+			s.se_id,
 			c.cita_codigo_factura as Codigo_Factura,
 		  	c.paciente_id as NumeroUsuario,
 			(p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre || ' ' ||
@@ -57,6 +58,7 @@ select DA.*,
 			s.se_diagnostico as diagnostico,
 			s.se_procedimiento as procedimiento,
 		  	s.se_evaluacion as evaluacion,
+			s.se_id,
 			c.cita_codigo_factura as Codigo_Factura,
 		  	c.paciente_id as NumeroUsuario,
 			(p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre || ' ' ||
@@ -69,7 +71,7 @@ select DA.*,
 			inner join sesiones as s on c.cita_id = s.cita_id
 		where p.paciente_dni = $P{p_cedula} AND c.cita_fecha >= $P{p_finicio} AND c.cita_fecha <= $P{p_ffin}
 	) as DA inner join galeno as g on DA.galeno_id = g.galeno_id
-	where g.galeno_user = $P{p_usuario}	order by DA.fecha desc limit 1
+	where g.galeno_user = $P{p_usuario} order by DA.se_id desc limit 1
 )as TB]]>
 	</queryString>
 	<field name="ultimo_diagnostico" class="java.lang.String"/>
@@ -80,6 +82,7 @@ select DA.*,
 	<field name="diagnostico" class="java.lang.String"/>
 	<field name="procedimiento" class="java.lang.String"/>
 	<field name="evaluacion" class="java.lang.String"/>
+	<field name="se_id" class="java.lang.Integer"/>
 	<field name="codigo_factura" class="java.lang.String"/>
 	<field name="numerousuario" class="java.lang.Integer"/>
 	<field name="nombre_paciente" class="java.lang.String"/>

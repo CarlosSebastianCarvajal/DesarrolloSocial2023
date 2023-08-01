@@ -1,21 +1,21 @@
 var divv = document.getElementById('divv');
-var porc_div = 65;
+var porc_div = 40;
 
 $(document).ready(function () {
-    
+    divv.style.marginTop= porc_div + "%";
     $(".oculto").hide();              
     $(".inf").click(function(){
           var nodo = $(this).attr("href");  
           
           if ($(nodo).is(":visible")){
                $(nodo).hide();
-               porc_div = 65;
+               porc_div = 40;
                divv.style.marginTop= porc_div + "%";
                return false;
           }else{
             $(".oculto").hide("slow");                             
             $(nodo).fadeToggle("fast");
-            porc_div = 85;
+            porc_div = 55;
             divv.style.marginTop= porc_div + "%";
             return false;
           }
@@ -77,7 +77,34 @@ $(function () {
                 $("#txt-ayudaeconomica").val(data.paciente_ayudasocial);
                 //$("#txt-nacionalidad").val(data.paciente_nacionalidad);
                 $("#txt-tiposangre").val(data.paciente_correoelectronico);
+                
+                //diagnostico(data.paciente_dni);
             }
+        });
+    };
+    
+    const diagnostico = (cedula) => {
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "ControllerDiagnosticoTF",
+            data: {cedula: cedula},
+            dataType: 'json',
+            error: function (request, status, error)
+            {
+                alert(request, status, error);
+            },
+            success: function (data)
+            {
+                console.log(data);
+                if(isEmptyObject(data)){
+                    alert('vacio');
+                }else{
+                    alert(data.se_diagnostico);
+                }
+            }
+
         });
     };
 });
@@ -115,11 +142,48 @@ $(function () {
                 $("#txt-ayudaeconomica").val(data.paciente_ayudasocial);
                 //$("#txt-nacionalidad").val(data.paciente_nacionalidad);
                 $("#txt-tiposangre").val(data.paciente_correoelectronico);
+                
+                //diagnostico(data.paciente_dni);
+                
+            }
+
+        });
+    };
+    
+    const diagnostico = (cedula) => {
+        alert(cedula);
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "ControllerDiagnosticoTF",
+            data: {cedula: cedula},
+            dataType: 'json',
+            error: function (request, status, error)
+            {
+                alert('errror');
+            },
+            success: function (data)
+            {
+                console.log(data);
+                if(isEmptyObject(data)){
+                    alert('vacio');
+                }else{
+                    alert(data.se_diagnostico);
+                }
             }
 
         });
     };
 });
+
+function isEmptyObject(obj) {
+    for (var property in obj) {
+        if (obj.hasOwnProperty(property)) {
+            return false;
+        }
+    }
+    return true;
+}
 
 //Datos del paciente
 var ideusuario;
