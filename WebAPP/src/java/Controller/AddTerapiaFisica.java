@@ -15,10 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import BD.conexion;
 import static java.awt.SystemColor.window;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.time.LocalTime;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpSession;
@@ -47,7 +50,7 @@ public class AddTerapiaFisica extends HttpServlet {
             out = response.getWriter();
             session = request.getSession(true);
             //int pacienteid;
-            String pacienteid, codigof, motivo, diagnostico, procedimiento, evaluacion, d_tabla_recomendaciones, d_tabla_medicamentos;
+            String pacienteid, codigof, motivo, diagnostico, procedimiento, evaluacion, d_tabla_recomendaciones, d_tabla_medicamentos, hora_in, hora_out;
             String galenoid = "";
             pacienteid = request.getParameter("txtid");
             codigof = request.getParameter("codigof");
@@ -58,8 +61,15 @@ public class AddTerapiaFisica extends HttpServlet {
             evaluacion = request.getParameter("evaluaciont");
             d_tabla_recomendaciones = request.getParameter("txt-tabla-datos-recomendacion");
             d_tabla_medicamentos = request.getParameter("txt-tabla-datos-medicamentos");
+            
+            
+            hora_in = request.getParameter("hora_in");
+            hora_out = request.getParameter("hora_out");
+            
+            
             String galenoUser = (String) session.getAttribute("galeno_user11");
             System.out.println(codigof);
+            
             try {
                 System.out.println("connection done");
                 
@@ -89,14 +99,16 @@ public class AddTerapiaFisica extends HttpServlet {
                     if (resultSet.next()) {
                         id = resultSet.getInt(1);
                         // Ingresar Sesion
-                        String sqlSesion = "INSERT INTO sesiones(cita_id, se_motivo, se_diagnostico, se_procedimiento, se_evaluacion)\n"
-                                + "	VALUES (?, ?, ?, ?, ?)";
+                        String sqlSesion = "INSERT INTO sesiones(cita_id, se_motivo, se_diagnostico, se_procedimiento, se_evaluacion, hora_in, hora_out)\n"
+                                + "	VALUES (?, ?, ?, ?, ?, ?, ?)";
                         ps = c.getConecction().prepareStatement(sqlSesion);
                         ps.setInt(1, id);
                         ps.setString(2, motivo);
                         ps.setString(3, diagnostico);
                         ps.setString(4, procedimiento);
                         ps.setString(5, evaluacion);
+                        ps.setTime(6, Time.valueOf(LocalTime.parse(hora_in)));
+                        ps.setTime(7, Time.valueOf(LocalTime.parse(hora_out)));
                         int resSe = 0;
 
                         resSe = ps.executeUpdate();

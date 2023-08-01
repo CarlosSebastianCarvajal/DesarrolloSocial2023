@@ -66,90 +66,76 @@
                     </tbody>
                     <thead>
                         <tr>
-                            <td>Discapacidad</td>
-                            <td>Telefono convencional</td>
                             <td>Celular</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-
-                            <td> <div class="div-cont-name"><input type="text" id="txt-namef" class="inp-name" placeholder="Discapacidad" name="Discapacidad"disabled="true" disabled="true" onkeyup="mayus(this);"/></div> </td>
-                            <td> <div class="div-cont-lname"><input type="text" id="txt-lnamet" class="inp-lname" placeholder="Telefono Convencional" name="convencional" onkeypress='return validaNumericos(event)'disabled="true"/></div> </td>
-                            <td> <div class="div-cont-edad"><input type="text" id="txt-cel" class="inp-edad" placeholder="Celular" name="Celular" onkeypress='return validaNumericos(event)'disabled="true"/></div>  </td>
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <td>Provincia</td>
-                            <td>Direccion</td>
-                            <td>Genero</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>  <div class="div-cont-lname"><input type="text" id="txt-provin" class="inp-lname" placeholder="Provincia" name="Provincia" onkeypress="return soloLetras(event)"disabled="true"/></div>  </td>
-                            <td> <div class="div-cont-lname"><input type="text" id="txt-direccion" class="inp-lname" placeholder="Direccion" name="Direccion"disabled="true"/></div> </td>
-                            <td> <div class="div-cont-lname"><input type="text" id="txt-genero" class="inp-lname" placeholder="Genero" name="Genero" onkeypress="return soloLetras(event)"disabled="true"/></div> </td>
-                        </tr> 
-                    </tbody>
-
-                    <thead>
-                        <tr>
-                            <th>Ayuda economica</th>
-                            <th>Nacionalidad</th>
                             <th>Correo Electronico</th>
+                            <th>Exonerado</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr> 
-                            <td><div class="div-cont-lname"><input type="text" id="txt-ayudaeconomica" class="inp-lname" placeholder="Ayuda economica" name="Ayuda economica" onkeypress="return soloLetras(event)"disabled="true"/></div></td>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-nacionalidad" class="inp-lname" placeholder="Nacionalidad" name="Nacionalidad" onkeypress="return soloLetras(event)"disabled="true"/></div></td>
+                        <tr>
+                            <td> <div class="div-cont-edad"><input type="text" id="txt-cel" class="inp-edad" placeholder="Celular" name="Celular" onkeypress='return validaNumericos(event)'disabled="true"/></div>  </td>
                             <td><div class="div-cont-lname"><input type="text" id="txt-tiposangre" class="inp-lname" placeholder="Correo Electronico" name="Correo Electronico" onkeypress="return soloLetras(event)"disabled="true"/></div></td>
+                            <td><div class="div-cont-lname"><input type="text" id="txt-ayudaeconomica" class="inp-lname" placeholder="Ayuda economica" name="Ayuda economica" onkeypress="return soloLetras(event)"disabled="true"/></div></td>
                         </tr>
                     </tbody>
+                    
                 </table>
-                <hr />
-
-                <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
+                
+                 <table style='width: 98%; margin-left: 10px; '>
                     <thead>
+                        <tr>
+                            <th style='background: #afadac; text-align: left;' colspan="1" >Datos de la terapia</th>
+                        </tr>
+                    </thead>
+                </table>  
+                
+                <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
+                    
+                    <!-- NO SE ESTA USANDO -->
+                    <thead hidden>
                         <tr>
                             <th>Código Factura</th> 
                             <th>Motivo de Terapia</th> 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody hidden>
                         <tr>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-motivocon" class="inp-lname" placeholder="Código Factura" name="codigof"/></div></td> 
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-motivocon" class="inp-lname" required=""placeholder="Motivo de Terapia" name="motivot" onkeyup="mayus(this);"style='height: 85px;'/></textarea> </td> 
+                            <td><div class="div-cont-lname"><input type="text" id="txt-motivocon" class="inp-lname" placeholder="Código Factura" name="codigof" value="."/></div></td> 
+                            <td><div class="div-cont-lname"><textarea type="text" id="txt-motivocon" class="inp-lname" placeholder="Motivo de Terapia" name="motivot" onkeyup="mayus(this);"style='height: 85px;' value="."/></textarea> </td> 
                         </tr>
                     </tbody>
+                    <!-- ---------------- -->
+                    
                     <thead>
                         <tr>
-                            <td>Diagnostico</td> 
+                            <td>Diagnóstico</td> 
                             <td>Procedimiento Realizado</td> 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                         <tr>
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-diagnostico" class="inp-lname"required="" placeholder="Diagnostico" name="diagnosticot" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td>
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-procedimiento" class="inp-lname" required="" placeholder="Procedimeinto Realizado" name="procedimientot" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td> 
+                            <td style="width: 50%;"><div class="div-cont-lname"><textarea type="text" id="txt-diagnostico" class="inp-lname"required="" placeholder="Diagnóstico" name="diagnosticot" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td>
+                            <td style="width: 50%;"><div class="div-cont-lname"><textarea type="text" id="txt-procedimiento" class="inp-lname" required="" placeholder="Procedimeinto Realizado" name="procedimientot" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td> 
                         </tr>
                     </tbody>
-                    
-                    
+                </table>
+                <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
                     <thead>
                         <tr>
-                            <td>Evaluación al paciente</td> 
+                            
+                            <td>Logro</td> 
+                            <th>Hora Ingreso</th> 
+                            <th>Hora Salida</th> 
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="div-cont-lname"><textarea type="text" id="txt-evaluacion" class="inp-lname"required="" placeholder="Evaluación al paciente" name="evaluaciont" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td>
+                            
+                            <td style="width: 50%;"><div class="div-cont-lname"><textarea type="text" id="txt-evaluacion" class="inp-lname"required="" placeholder="Logro del paciente" name="evaluaciont" onkeyup="mayus(this);"style='height: 85px;'/></textarea></td>
+                            <td style="width: 25%;"><div class="div-cont-lname"><input style="width: 60%;" type="time" id="txt-hi" class="inp-lname" placeholder="Código Factura" name="hora_in" /></div></td> 
+                            <td style="width: 25%;"><div class="div-cont-lname"><input style="width: 60%;" type="time" id="txt-hs" class="inp-lname" placeholder="Código Factura" name="hora_out" /></div></td> 
                         </tr>
                     </tbody>
-                    
-                    
                     
                     
                 </table > 

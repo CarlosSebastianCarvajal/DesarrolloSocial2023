@@ -87,7 +87,7 @@
                                 <th style='background: #007653; text-align: left' colspan="4">SIGNOS VITALES</th>
                             </tr>
                        </thead>
-                       </table>   
+                </table>   
                        <label style='margin-left: 10px;' id="signos-res"></label>
                 <table style='width: 100%; text-align: center;  margin-top: 30px'>
                     <thead >
