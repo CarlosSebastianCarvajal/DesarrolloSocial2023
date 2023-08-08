@@ -163,7 +163,7 @@ public class AddMedicinaGeneral extends HttpServlet {
                 
                 if (resSignos != 0) {
                                          
-                    // Guardar la Histoia clínica Gineco-Obstetrico
+                    // Guardar la Histoia clínica
                     String sqlHistorial = "INSERT INTO public.medicinageneral(\n" +
                                         "	paciente_id, galeno_id, signos_id, antecedentesalergicos, antecedentespersonales, antecedentesfamiliares, antecedentesquirurgicos, fechaconsulta, "
                                         + "motivoconsulta, enfermedad, diagnositico, tipo)\n" +
@@ -246,8 +246,8 @@ public class AddMedicinaGeneral extends HttpServlet {
                             }else{
                                 // Guardar Notas de evolucion sin receta
                                 String sqlNotas = "INSERT INTO public.mg_seguimiento(\n" +
-                                                    "	idmedicinageneral, signos_id, id_recetamedica, notas, fecha, hora, examen)\n" +
-                                                    "	VALUES (?, ?, 1, ?, now(), now(), ?);";
+                                                    "	idmedicinageneral, signos_id, notas, fecha, hora, examen)\n" +
+                                                    "	VALUES (?, ?, ?, now(), now(), ?);";
                                     ps = c.getConecction().prepareStatement(sqlNotas);
                                     ps.setInt(1, id_mg);
                                     ps.setInt(2, id_signos);

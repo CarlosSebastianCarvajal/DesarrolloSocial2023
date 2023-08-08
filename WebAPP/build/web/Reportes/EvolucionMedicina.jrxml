@@ -1,31 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="26eb5c59-5d47-4a89-9567-a5b5c5155553">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="cedula" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select p.paciente_dni, (p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre) as nombres,
-(p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as apellidos,
-TO_CHAR (mg.fecha:: DATE, 'dd-mm-yyyy')as fecha, TO_CHAR (mg.hora:: TIME, 'HH24:MI')as HORA,
-string_agg(dr.medicamento, '' || CHR(13))as medicamento, string_agg(dr.indicaciones, ''|| CHR(13)) as indicacion,
-('PA: '|| s.pa_sistolica || '/' || s.pa_diastolica || CHR(13) || 'FC: '|| s.frecuencia_cardiaca || 'x' || CHR(13) ||
+		<![CDATA[select  
+	p.paciente_dni, (p.paciente_primer_nombre || ' ' || p.paciente_segundo_nombre) as nombres,
+	(p.paciente_apellido_paterno || ' ' || p.paciente_apellido_materno) as apellidos,
+	datos.fecha, datos.hora, datos.evolucion,
+	case when datos.medicamento is null then ' ' else datos.medicamento end medicamento,
+	case when datos.indicacion is null then ' ' else datos.indicacion end indicacion
+from(
+select dat.*, string_agg(dr.medicamento, '' || CHR(13))as medicamento, string_agg(dr.indicaciones, ''|| CHR(13)) as indicacion
+from(
+select  m.paciente_id, mg.id_recetamedica,
+		TO_CHAR (mg.fecha:: DATE, 'dd-mm-yyyy')as fecha, TO_CHAR (mg.hora:: TIME, 'HH24:MI')as HORA,
+	    ('PA: '|| s.pa_sistolica || '/' || s.pa_diastolica || CHR(13) || 'FC: '|| s.frecuencia_cardiaca || 'x' || CHR(13) ||
 	   'FR: ' || s.fr || 'x'|| CHR(13) || 'SPO: '|| s.saturacion || '%' || CHR(13) || 'T: '|| s.temperatura || 'ºC'|| CHR(13) ||
 	   'Peso: ' || s.peso || 'kg' || CHR(13) || 'Talla: ' || s.estatura || 'cm' || CHR(13) || 'HEA= ' || mg.notas) as evolucion
-from medicinageneral as m, signos_vitales as s, paciente as p, mg_seguimiento as mg, recetamedica as r, detalle_recetamedica as dr
-where m.signos_id=s.signos_id and m.paciente_id=p.paciente_id and mg.idmedicinageneral=m.idmedicinageneral and
-r.id_recetamedica=mg.id_recetamedica and dr.id_recetamedica=r.id_recetamedica and p.paciente_dni= $P{cedula}
-group by 1, s.pa_sistolica, s.pa_diastolica, s.frecuencia_cardiaca, s.fr, s.saturacion, s.temperatura, s.peso,
-s.estatura, mg.notas, mg.hora, mg.fecha, p.paciente_primer_nombre, p.paciente_segundo_nombre, paciente_apellido_paterno,
-p.paciente_apellido_materno, p.paciente_dni]]>
+		from
+		medicinageneral as m 
+		inner join mg_seguimiento as mg on m.idmedicinageneral = mg.idmedicinageneral
+		left join signos_vitales as s on s.signos_id = mg.signos_id
+)as dat left join recetamedica as r on dat.id_recetamedica = r.id_recetamedica
+	left join detalle_recetamedica as dr on r.id_recetamedica = dr.id_recetamedica
+	group by dat.fecha, dat.hora, dat.id_recetamedica, dat.paciente_id, dat.evolucion
+)as datos inner join paciente as p on datos.paciente_id = p.paciente_id
+where p.paciente_dni = $P{cedula}
+order by datos.fecha, datos.hora]]>
 	</queryString>
 	<field name="paciente_dni" class="java.lang.String"/>
 	<field name="nombres" class="java.lang.String"/>
 	<field name="apellidos" class="java.lang.String"/>
 	<field name="fecha" class="java.lang.String"/>
 	<field name="hora" class="java.lang.String"/>
+	<field name="evolucion" class="java.lang.String"/>
 	<field name="medicamento" class="java.lang.String"/>
 	<field name="indicacion" class="java.lang.String"/>
-	<field name="evolucion" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -137,6 +151,14 @@ p.paciente_apellido_materno, p.paciente_dni]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="1" y="20" width="127" height="20" uuid="c414c432-4549-46ce-814f-1c7f0176ad0c"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font size="7"/>
+					<paragraph lineSpacing="AtLeast"/>
+				</textElement>
+				<text><![CDATA[Dirección de Gestión de Desarrollo Social]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>

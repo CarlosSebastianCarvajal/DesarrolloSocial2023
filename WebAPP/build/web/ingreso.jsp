@@ -122,7 +122,7 @@
                         </tbody>
                         <thead >
                             <tr>                                
-                                <th>Ayuda Social</th>
+                                <th>Exonerado ?</th>
                                 <th>Nacionalidad</th>
                                 <th>Discapacidad</th>
                             </tr>
@@ -130,12 +130,11 @@
                         <tbody>
                             <tr> 
                                 <td><div class="div-cont-sel-dep-to-transf"  ><select class="sel-dep-to-transf"required=""  name="Ayuda">
-                                            <option>Recibe Ayuda Social</option>
-                                            <option>Si</option>
                                             <option>No</option>
+                                            <option>Si</option>
                                         </select></div></td> 
                                 <td><div class="div-cont-lname"><input type="text" id="nacionalidad" class="inp-lname" placeholder="nacionalidad"required="" value="Ecuatoriana" name="nacionalidad" onkeyup="mayus(this);"/></div></td>
-                                <td><div class="div-cont-lname"><input type="text" id="txt-lname" class="inp-lname" placeholder="Discapacidad" value="Ninguna" required=""  name="discapacidad" onkeyup="mayus(this);"/></div></td>
+                                <td><div class="div-cont-lname"><input type="text" id="txt-lname" class="inp-lname" placeholder="Discapacidad" value="Ninguna"   name="discapacidad" onkeyup="mayus(this);"/></div></td>
 
                             </tr>
                         </tbody>
@@ -151,10 +150,9 @@
                                 <td>
                                     <div class="div-cont-sel-dep-to-transf"  >
                                         <select class="sel-dep-to-transf"required=""  name="paciente_etnia">
-                                            <option>Eliga etnia</option>
+                                            <option>Mestiza</option>
                                             <option>Blanca</option>
                                             <option>Indigena</option>
-                                            <option>Mestiza</option>
                                             <option>Negra</option>
                                             <option>Otra</option>
                                         </select>
@@ -163,7 +161,6 @@
                                 <td>
                                     <div class="div-cont-sel-dep-to-transf"  >
                                         <select class="sel-dep-to-transf"required=""  name="paciente_nivel_estudio">
-                                            <option>Eliga nivel de estudios</option>
                                             <option>Ninguno</option>
                                             <option>Basico</option>
                                             <option>Bachillerato</option>

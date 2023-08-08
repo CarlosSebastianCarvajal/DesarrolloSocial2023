@@ -15,7 +15,7 @@
 con la siguiente linea de codigo*/
     conexion conexion1 = new conexion();
     /*Establecemos la ruta del reporte*/
-    File reportFile = new File(application.getRealPath("/Reportes/EvolucionMedicinax.jasper"));
+    File reportFile = new File(application.getRealPath("/Reportes/EvolucionMedicina.jasper"));
     /*Enviamos parámetros porque nuestro reporte los necesita asi que escriba 
 y seguiremos el formato del método runReportToPdf*/
  /*Con Map y el HaspMap nos servira para crear los paramentros*/
