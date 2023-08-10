@@ -69,12 +69,7 @@ public class AddPaciente extends HttpServlet {
             String paciente_nivel_estudio = request.getParameter("paciente_nivel_estudio");
             String paciente_anios_nivel = request.getParameter("paciente_anios_nivel");
 
-            if (!TipoIden.equalsIgnoreCase("") && !Identificacion.equalsIgnoreCase("") && !PrimerNombre.equalsIgnoreCase("") && !PrimerApellido.equalsIgnoreCase("") && !SegundoApellido.equalsIgnoreCase("")
-                    && !Fechadenacimiento.equalsIgnoreCase("") && !convencional.equalsIgnoreCase("") && !Celular.equalsIgnoreCase("")
-                    && !Provincia.equalsIgnoreCase("") && !canton.equalsIgnoreCase("") && !Direccion.equalsIgnoreCase("")
-                    && !parroquia.equalsIgnoreCase("") && !estadoCivil.equalsIgnoreCase("") && !Ayuda1.equalsIgnoreCase("")
-                    && !nacionalidad.equalsIgnoreCase("") && !discapacidad.equalsIgnoreCase("") && !tipoSangre.equalsIgnoreCase("") && !email.equalsIgnoreCase("")
-                    && !genero.equalsIgnoreCase("")) {
+            
                 ControladorPaciente busuario = new ControladorPaciente(TipoIden, Identificacion, PrimerApellido, PrimerNombre, Fechadenacimiento, Direccion, Celular, genero, discapacidad,
                         Ayuda1, SegundoApellido, SegundoNombre, Provincia, canton, parroquia, nacionalidad, estadoCivil, convencional, tipoSangre,email, paciente_etnia, paciente_nivel_estudio, paciente_anios_nivel);
                 boolean sw = InsertAddPaciente.agregarUsuario(busuario);
@@ -96,7 +91,7 @@ public class AddPaciente extends HttpServlet {
                 } else {
                     out.println("Si estas viendo este mensaje es por que algo salio mal, no se pudo completar tu solicitud.");
                 }
-            }
+            
         }
     }
 

@@ -67,7 +67,7 @@
 
                             <td><div class="div-cont-lname"><input type="text" id="txt-lnamesp2" class="inp-lname" placeholder="Segundo Apellido" name="SegundoApellidos"required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             <td><div class="div-cont-lname"><input type="date" id="txt-lnamefa" class="inp-lname" placeholder="Fecha de nacimiento"required=""  name="Fechadenacimiento"/></div></td> 
-                            <td><div class="div-cont-lname"><input type="text" id="txt-lnametca" class="inp-lname" placeholder="Telefono Convencional" name="convencional"required=""  onkeypress='return validaNumericos(event)'/></div></td>
+                            <td><div class="div-cont-lname"><input type="text" id="txt-lnametca" class="inp-lname" placeholder="Telefono Convencional" name="convencional"  onkeypress='return validaNumericos(event)'/></div></td>
                         </tr>
                     </tbody>
                     <thead >
@@ -79,11 +79,11 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="div-cont-edad"><input type="text" id="txt-celua" class="inp-edad" placeholder="Celular" name="celular"required=""  onkeypress='return validaNumericos(event)'/></div> </td>                      
+                            <td><div class="div-cont-edad"><input type="text" id="txt-celua" class="inp-edad" placeholder="Celular" name="celular" onkeypress='return validaNumericos(event)'/></div> </td>                      
                             <td><div class="div-cont-sel-dep-to-transf" ><select class="sel-dep-to-transf"  name="Provincia" onchange="cargarPueblos();" id="txt-provinciaa" >
                                         <option>Seleccione una provincia</option>
                                     </select></div></td> 
-                            <td><div class="div-cont-lname"><input type="text" id="txt-lnamepara" class="inp-lname" placeholder="Parroquia"required=""  name="parroquia" onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td> 
+                            <td><div class="div-cont-lname"><input type="text" id="txt-lnamepara" class="inp-lname" placeholder="Parroquia"  name="parroquia" onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td> 
                         </tr> 
                     </tbody>
                     <thead >
@@ -95,13 +95,13 @@
                     </thead>
                     <tbody>
                         <tr> 
-                            <td><div class="div-cont-lname"><input type="text" id="txt-lnamedi" class="inp-lname" placeholder="Direccion"required=""  name="Direccion" onkeyup="mayus(this);"/></div></td> 
+                            <td><div class="div-cont-lname"><input type="text" id="txt-lnamedi" class="inp-lname" placeholder="Direccion" name="Direccion" onkeyup="mayus(this);"/></div></td> 
                             <td><div class="div-cont-sel-dep-to-transf"  ><select class="sel-dep-to-transf" name="genero"id="txt-lnamege">   
-                                        <option>Seleccione genero</option>
+                                        <option>Desconocido</option>
                                         <option>Masculino</option>
                                         <option>Femenino</option></select></div></td> 
                             <td><div class="div-cont-sel-dep-to-transf"  ><select class="sel-dep-to-transf"required=""  name="estadoCivil"id="txt-lnamediec">
-                                        <option>Seleccione el estado civil</option>
+                                        <option>Desconocido</option>
                                         <option>Soltero</option>
                                         <option>Casado</option>
                                         <option>Union libre</option>
@@ -121,12 +121,12 @@
                         <tr> 
 
                             <td><div class="div-cont-sel-dep-to-transf"  ><select class="sel-dep-to-transf"required=""  name="Ayuda" id="txt-lnameayu">
-                                        <option>Recibe Ayuda Social</option>
-                                        <option>Si</option>
                                         <option>No</option>
+                                        <option>Si</option>
+                                        
                                     </select></div></td>
-                            <td><div class="div-cont-lname" ><input type="text" id="nacionalidad" class="inp-lname" placeholder="nacionalidad" required="" value="Ecuatoriana" name="nacionalidad" onkeyup="mayus(this);"/></div></td>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-lnamedis" class="inp-lname" placeholder="Discapacidad"required=""  name="discapacidad" onkeyup="mayus(this);"/></div></td>
+                            <td><div class="div-cont-lname" ><input type="text" id="nacionalidad" class="inp-lname" placeholder="nacionalidad" value="Ecuatoriana" name="nacionalidad" onkeyup="mayus(this);"/></div></td>
+                            <td><div class="div-cont-lname"><input type="text" id="txt-lnamedis" class="inp-lname" placeholder="Discapacidad"  name="discapacidad" onkeyup="mayus(this);"/></div></td>
                         </tr>
                     </tbody>
                     
@@ -142,10 +142,9 @@
                                 <td>
                                     <div class="div-cont-sel-dep-to-transf"  >
                                         <select class="sel-dep-to-transf"required=""  name="paciente_etnia" id="txt-etnia">
-                                            <option>Eliga etnia</option>
-                                            <option>Blanca</option>
-                                            <option>Indigena</option>
                                             <option>Mestiza</option>
+                                            <option>Blanca</option>
+                                            <option>Indigena</option
                                             <option>Negra</option>
                                             <option>Otra</option>
                                         </select>
@@ -154,7 +153,6 @@
                                 <td>
                                     <div class="div-cont-sel-dep-to-transf"  >
                                         <select class="sel-dep-to-transf"required=""  name="paciente_nivel_estudio" id="txt-nivel">
-                                            <option>Eliga nivel de estudios</option>
                                             <option>Ninguno</option>
                                             <option>Basico</option>
                                             <option>Bachillerato</option>
@@ -162,7 +160,7 @@
                                         </select>
                                     </div>
                                 </td>
-                                <td><div style='margin-top: -40px !important;'class="div-cont-ced"><input type="text" id="txt-anio-nivel" minlength="1" maxlength="2" class="inp-ced" placeholder="Años en el nivel de estudio" name="paciente_anios_nivel" required="" onkeypress='return validaNumericos(event)'/></div></td>
+                                <td><div style='margin-top: -40px !important;'class="div-cont-ced"><input type="text" id="txt-anio-nivel" minlength="1" maxlength="2" class="inp-ced" placeholder="Años en el nivel de estudio" name="paciente_anios_nivel"  onkeypress='return validaNumericos(event)'/></div></td>
 
                             </tr>
                         </tbody>
@@ -175,8 +173,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="div-cont-lname"><input type="text" id="txt-lnametiposangre" class="inp-lname" placeholder="Tipo de sangre"required="" name="tipoSangre" onkeyup="mayus(this);"/> </div></td> 
-                            <td><div class="div-cont-lname"><input type="email" id="txt-lnamecorreo" class="inp-lname" placeholder="correo electronico"required="" name="email"/> </div></td> 
+                            <td><div class="div-cont-lname"><input type="text" id="txt-lnametiposangre" class="inp-lname" placeholder="Tipo de sangre" name="tipoSangre" onkeyup="mayus(this);"/> </div></td> 
+                            <td><div class="div-cont-lname"><input type="email" id="txt-lnamecorreo" class="inp-lname" placeholder="correo electronico" name="email"/> </div></td> 
                             <td><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="submit" id="btn-action" class="btn-accept" value="Guardar"/> </div></td>
                         </tr>
                     </tbody>

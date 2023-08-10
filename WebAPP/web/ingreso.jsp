@@ -44,8 +44,8 @@
                         <tbody>
                             <tr>
                                 <td><div class="div-cont-sel-dep-to-transf" ><select class="sel-dep-to-transf" name="TipoIden">
-                                            <option>Tipo de identificacion</option>
-                                            <option>Cedula</option><option>Pasaporte</option></select></div></td>
+                                            <option>Cedula</option>
+                                            <option>Pasaporte</option></select></div></td>
                                 <td><div style='margin-top: -40px !important;'class="div-cont-ced"><input type="text" id="txt-ced" minlength="10" maxlength="10" class="inp-ced" placeholder="Numero de identificacion" name="Identificacion" required="" onkeypress='return validaNumericos(event)'/></div></td>
                                 <td><div class="div-cont-name"><input type="text" id="txt-name" class="inp-name" placeholder="Primer Nombre" name="PrimerNombre" required=""  onkeypress="return soloLetras(event)" onkeyup="mayus(this);"/></div></td>
                             </tr>
@@ -75,7 +75,7 @@
                             <tr>
                                 <td><div class="div-cont-lname"><input type="date" id="txt-lname" class="inp-lname" placeholder="Fecha de nacimiento"required=""  name="Fechadenacimiento"/></div></td>
                                 <td><div class="div-cont-lname"><input type="text" id="txt-lname" class="inp-lname" placeholder="Telefono Convencional" name="convencional" value=""  onkeypress='return validaNumericos(event)'/></div></td>
-                                <td><div class="div-cont-edad"><input type="text" id="txt-edad" class="inp-edad" placeholder="Celular" name="celular" value="" required="" onkeypress='return validaNumericos(event)'/></div> </td>
+                                <td><div class="div-cont-edad"><input type="text" id="txt-edad" class="inp-edad" placeholder="Celular" name="celular" value="" onkeypress='return validaNumericos(event)'/></div> </td>
                             </tr> 
                         </tbody>
                         <thead >
@@ -88,12 +88,12 @@
                         <tbody>
                             <tr> 
                                 <td><div class="div-cont-sel-dep-to-transf" ><select class="sel-dep-to-transf"required="" id="Provincia" name="Provincia" onchange="cargarPueblos();">
-                                            <option>Seleccione una provincia</option>
+                                            
                                         </select></div></td> 
                                 <td><div class="div-cont-sel-dep-to-transf" ><select class="sel-dep-to-transf"required="" name="canton" id="canton">
-                                            <option>Seleccione un canton</option>
+                                           
                                         </select></div></td> 
-                                <td><div class="div-cont-lname"><input type="text" id="txt-lname" class="inp-lname" placeholder="Parroquia"required=""  name="parroquia" onkeyup="mayus(this);"/></div></td> 
+                                <td><div class="div-cont-lname"><input type="text" id="txt-lname" class="inp-lname" placeholder="Parroquia" name="parroquia" onkeyup="mayus(this);"/></div></td> 
                             </tr>
                         </tbody>
                         <thead >
@@ -105,13 +105,13 @@
                         </thead>
                         <tbody>
                             <tr> 
-                                <td><div class="div-cont-lname"><input type="text" id="txt-lname" class="inp-lname" placeholder="Direccion" required=""  name="Direccion" onkeyup="mayus(this);"/></div></td> 
+                                <td><div class="div-cont-lname"><input type="text" id="txt-lname" class="inp-lname" placeholder="Direccion"  name="Direccion" onkeyup="mayus(this);"/></div></td> 
                                 <td><div class="div-cont-sel-dep-to-transf"  ><select class="sel-dep-to-transf" name="genero">   
-                                            <option>Seleccione genero</option>
+                                            <option>Desconocido</option>
                                             <option>Masculino</option>
                                             <option>Femenino</option></select></div></td> 
                                 <td><div class="div-cont-sel-dep-to-transf"  ><select class="sel-dep-to-transf"required=""  name="estadoCivil">
-                                            <option>Seleccione el estado civil</option>
+                                            <option>Desconocido</option>
                                             <option>Soltero</option>
                                             <option>Casado</option>
                                             <option>Union libre</option>
@@ -168,7 +168,7 @@
                                         </select>
                                     </div>
                                 </td>
-                                <td><div style='margin-top: -40px !important;'class="div-cont-ced"><input type="text" id="txt-ced" minlength="1" maxlength="2" class="inp-ced" placeholder="Años en el nivel de estudio" name="paciente_anios_nivel" required="" onkeypress='return validaNumericos(event)'/></div></td>
+                                <td><div style='margin-top: -40px !important;'class="div-cont-ced"><input type="text" id="txt-ced" minlength="1" maxlength="2" class="inp-ced" placeholder="Años en el nivel de estudio" name="paciente_anios_nivel" value="0" onkeypress='return validaNumericos(event)'/></div></td>
 
                             </tr>
                         </tbody>
@@ -180,8 +180,8 @@
                         </thead>
                         <tbody>
                             <tr> 
-                                <td><div class="div-cont-lname"><input type="text" id="txt-lname" class="inp-lname" placeholder="Tipo de sangre"required="" name="tipoSangre" onkeyup="mayus(this);"/> </div></td> 
-                                <td><div class="div-cont-lname"><input type="email" id="txt-lname" class="inp-lname" placeholder="correo electronico" value="" required="" name="email"/> </div></td> 
+                                <td><div class="div-cont-lname"><input type="text" id="txt-lname" class="inp-lname" placeholder="Tipo de sangre" name="tipoSangre" onkeyup="mayus(this);"/> </div></td> 
+                                <td><div class="div-cont-lname"><input type="email" id="txt-lname" class="inp-lname" placeholder="correo electronico" value=""  name="email"/> </div></td> 
                                 <td><div style='margin-top: -20px !important;'class="div-cont-lname"><input type="submit" id="btn-action" class="btn-accept" value="Guardar"/> </div></td>
                             </tr>
                         </tbody>
@@ -194,10 +194,13 @@
                                     
                                     
                                     function cargarProvincias() {
-                                        var array = ["Azuay", "Bolívar", "Cañar", "Carchi", "Chimborazo", "Cotopaxi", "El Oro", "Esmeraldas", "Galápagos", "Guayas", "Imbabura", "Loja", "Los Ríos",
-                                            "Manabí", "Morona Santiago", "Napo", "Orellana", "Pastaza", "Pichincha", "Santa Elena", "Santo Domingo", "Sucumbíos", "Tungurahua", "Zamora Chinchipe"];
+                                        var array = ["Azuay", "Bolivar", "Cañar", "Carchi", "Chimborazo", "Cotopaxi", "El Oro", "Esmeraldas", "Galapagos", "Guayas", "Imbabura", "Loja", "Los Rios",
+                                            "Manabi", "Morona Santiago", "Napo", "Orellana", "Pastaza", "Pichincha", "Santa Elena", "Santo Domingo", "Sucumbios", "Tungurahua", "Zamora Chinchipe"];
                                         array.sort();
                                         addOptions("Provincia", array);
+                                        
+                                        cargarPueblos();
+                                        
                                     }
 
                                     function addOptions(domElement, array) {
@@ -207,25 +210,26 @@
                                             opcion.text = array[Provincia];
                                             opcion.value = array[Provincia].toLowerCase()
                                             selector.add(opcion);
+                                            selector.selectedIndex = 12;
                                         }
                                     }
                                     function cargarPueblos() {
                                         // Objeto de provincias con pueblos
                                         var listaPueblos = {
-                                            azuay: ["Cuenca", "camilo ponce Enriquez", "Chordeleg", "El pan", "Girón", "Guachapala", "Gualaceo", "Nabón", "Oña", "Paute", "Pucará", "San Fernando", "Santa Isabel", "Sevilla de oro", "Sígsig"],
-                                            bolívar: ["Guaranda", "Caluma", "Chillanes", "Chimbo", "Echeandía", "Las naves", "San Miguel"],
-                                            cañar: ["Azogues", "Biblián", "Cañar", "Déleg", "El Tambo", "La Troncal", "Suscal"],
-                                            carchi: ["Tulcán", " Bolívar", "Espejo", "Mira", "Montúfar", "San Pedro de Huaca"],
-                                            chimborazo: ["Riobamba", "Alausí", "Chambo", "Chunchi", "Colta", "Cumandá", "Guamote", "Guano", "Pallatanga", "Penipe"],
-                                            cotopaxi: ["Latacunga", "La Maná", "Pangua", "Pujilí", "Salcedo", "Saquisilí", "Sigchos"],
-                                            oro: ["Machala", "Arenillas", "Atahualpa", "Balsas", "Chilla", "El Guabo", "Huaquillas", "Las Lajas", "Marcabelí", "Pasaje", "Piñas", "Portovelo", "Santa Rosa", "Zaruma"],
-                                            esmeraldas: ["Esmeraldas", "Atacames", "Eloy Alfaro", "Muisne", "Quinindé", "Rioverde", "San Lorenzo"],
-                                            galápagos: ["San Cristóbal", "Isabela", "Santa Cruz"],
-                                            guayas: ["Guayaquil", "Alfredo Baquerizo Moreno", "Balao", "Balzar", "Colimes", "Daule", "Durán", "El Empalme", "El Triunfo", "General Antonio Elizalde", "Isidro Ayora", "Lomas de Sargentillo", "Marcelino Maridueña", "Milagro", "Naranjal", "Naranjito", "Nobol", "Palestina", "Pedro Carbo", "Playas", "Salitre", "Samborondón", "Santa Lucía", "Simón Bolívar", "Yaguachi"],
-                                            imbabura: ["Ibarra", " Antonio Ante", "Cotacachi", " Otavalo", "Pimampiro", "San Miguel de Urcuquí"],
-                                            loja: ["Loja", "Calvas", "Catamayo", "Celica", "Chaguarpamba", "Espíndola", "Gonzanamá", "Macará", "Olmedo", "Paltas", "Pindal", "Puyango", "Quilanga", "Saraguro", "Sozoranga", "Zapotillo"],
-                                            losríos: ["Babahoyo", "Baba", "Buena Fe", "Mocache", "Montalvo", "Palenque", "Puebloviejo", "Quevedo", " Quinsaloma", "Urdaneta", "Valencia", "Ventanas", "Vinces"],
-                                            manabí: ["Portoviejo", "24 de Mayo", "Bolívar", "Chone", "El Carmen", " Flavio Alfaro", "Jama", "Jaramijó", "Jipijapa", "Junín", "Manta", "Montecristi", "Olmedo", "Paján", "Pedernales", "Pichincha", "Puerto López", " Rocafuerte", "San Vicente", "Santa Ana", "Sucre", " Tosagua"],
+                                            azuay: ["Cuenca", "camilo ponce Enriquez", "Chordeleg", "El pan", "Giron", "Guachapala", "Gualaceo", "Nabon", "Oña", "Paute", "Pucará", "San Fernando", "Santa Isabel", "Sevilla de oro", "Sigsig"],
+                                            bolivar: ["Guaranda", "Caluma", "Chillanes", "Chimbo", "Echeandía", "Las naves", "San Miguel"],
+                                            cañar: ["Azogues", "Biblian", "Cañar", "Deleg", "El Tambo", "La Troncal", "Suscal"],
+                                            carchi: ["Tulcan", " Bolivar", "Espejo", "Mira", "Montufar", "San Pedro de Huaca"],
+                                            chimborazo: ["Riobamba", "Alausi", "Chambo", "Chunchi", "Colta", "Cumanda", "Guamote", "Guano", "Pallatanga", "Penipe"],
+                                            cotopaxi: ["Latacunga", "La Mana", "Pangua", "Pujili", "Salcedo", "Saquisili", "Sigchos"],
+                                            oro: ["Machala", "Arenillas", "Atahualpa", "Balsas", "Chilla", "El Guabo", "Huaquillas", "Las Lajas", "Marcabeli", "Pasaje", "Piñas", "Portovelo", "Santa Rosa", "Zaruma"],
+                                            esmeraldas: ["Esmeraldas", "Atacames", "Eloy Alfaro", "Muisne", "Quininde", "Rioverde", "San Lorenzo"],
+                                            galapagos: ["San Cristobal", "Isabela", "Santa Cruz"],
+                                            guayas: ["Guayaquil", "Alfredo Baquerizo Moreno", "Balao", "Balzar", "Colimes", "Daule", "Duran", "El Empalme", "El Triunfo", "General Antonio Elizalde", "Isidro Ayora", "Lomas de Sargentillo", "Marcelino Maridueña", "Milagro", "Naranjal", "Naranjito", "Nobol", "Palestina", "Pedro Carbo", "Playas", "Salitre", "Samborondon", "Santa Lucia", "Simon Bolivar", "Yaguachi"],
+                                            imbabura: ["Ibarra", " Antonio Ante", "Cotacachi", " Otavalo", "Pimampiro", "San Miguel de Urcuqui"],
+                                            loja: ["Loja", "Calvas", "Catamayo", "Celica", "Chaguarpamba", "Espindola", "Gonzanama", "Macara", "Olmedo", "Paltas", "Pindal", "Puyango", "Quilanga", "Saraguro", "Sozoranga", "Zapotillo"],
+                                            losrios: ["Babahoyo", "Baba", "Buena Fe", "Mocache", "Montalvo", "Palenque", "Puebloviejo", "Quevedo", " Quinsaloma", "Urdaneta", "Valencia", "Ventanas", "Vinces"],
+                                            manabi: ["Portoviejo", "24 de Mayo", "Bolívar", "Chone", "El Carmen", " Flavio Alfaro", "Jama", "Jaramijó", "Jipijapa", "Junín", "Manta", "Montecristi", "Olmedo", "Paján", "Pedernales", "Pichincha", "Puerto López", " Rocafuerte", "San Vicente", "Santa Ana", "Sucre", " Tosagua"],
                                             moronasantiago: ["Morona", " Gualaquiza", "Huamboya", "Limón Indanza", "Logroño", "Pablo Sexto", "Palora", "San Juan Bosco", "Santiago de Méndez", "Sucúa", "Taisha", "Tiwintza"],
                                             napo: ["Tena", "Archidona", "Carlos Julio Arosemena Tola", "El Chaco", "Quijos"],
                                             orellana: ["Francisco de Orellana", "Aguarico", "La Joya de los Sachas", "Loreto"],
@@ -233,7 +237,7 @@
                                             pichincha: [" Quito", "Cayambe", "Mejía", "Pedro Moncayo", " Pedro Vicente Maldonado", "Puerto Quito", " Rumiñahui", "San Miguel de los Bancos"],
                                             santaelena: ["Santa Elena", "La Libertad", "Salinas"],
                                             santodomingo: ["Santo Domingo", "La Concordia"],
-                                            sucumbíos: ["Lago Agrio", "Cascales", "Cuyabeno", "Gonzalo Pizarro", "Putumayo", "Shushufindi", "Sucumbíos"],
+                                            sucumbios: ["Lago Agrio", "Cascales", "Cuyabeno", "Gonzalo Pizarro", "Putumayo", "Shushufindi", "Sucumbíos"],
                                             tungurahua: ["Ambato", " Baños", "Cevallos", "Mocha", "Patate", "Pelileo", "Quero", "Santiago de Píllaro", "Tisaleo"],
                                             zamorachinchipe: ["Zamora", "Centinela del Cóndor", "Chinchipe", "El Pangui", "Nangaritza", "Palanda", " Paquisha", "Yacuambi", "Yantzaza"]
 
@@ -245,7 +249,7 @@
                                         provinciaSeleccionada=provinciaSeleccionada.replace(' ','');
 
                                         // Se limpian los pueblos
-                                        pueblos.innerHTML = '<option value="">Seleccione un canton...</option>'
+                                        pueblos.innerHTML = '';
 
                                         if (provinciaSeleccionada !== '') {
                                             // Se seleccionan los pueblos y se ordenan
@@ -259,6 +263,9 @@
                                                 opcion.text = pueblo;
                                                 pueblos.add(opcion);
                                             });
+                                            if(provincias.selectedIndex === 12) {
+                                                pueblos.selectedIndex = 8;
+                                            }
                                         }
 
                                     }
