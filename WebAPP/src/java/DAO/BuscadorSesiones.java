@@ -35,7 +35,7 @@ public class BuscadorSesiones {
             sql_command = "select s.*\n" +
 "		from paciente as p right join cita as c on p.paciente_id = c.paciente_id\n" +
 "			inner join sesiones as s on c.cita_id = s.cita_id\n" +
-"		where p.paciente_dni = '" + cedula + "'";
+"		where p.paciente_dni = '" + cedula + "' order by s.se_id desc limit 1";
             pst = cn.getConecction().prepareStatement(sql_command);
             rs = pst.executeQuery();
             while (rs.next()) {
