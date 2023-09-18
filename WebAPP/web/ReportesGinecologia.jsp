@@ -48,7 +48,7 @@
                                     <th><div ></div>Ingrese Fecha Fin</th>
                                 </tr>
                                 <tr>
-                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="Usuario" class="inp-ced" placeholder="Su usuario es" name="Usuario"/></div></td>
+                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="Usuario" class="inp-ced" placeholder="Su usuario es" name="Usuario" required=""/></div></td>
                                     <td><div class="div-cont-lname"><label for="fechaInicio"></label><input type="date" id="fechaInicio" class="inp-lname" placeholder="Fecha Inicio"required=""  name="fechaInicio"onchange="myFunction(value)"/></div></td>
                                     <td><div class="div-cont-lname"><label for="fechaFin"></label><input type="date" id="fechaFin" class="inp-lname" placeholder="Fecha Fin"required=""  name="fechaFin"onchange="myFunction(value)"/></div></td>
                                 </tr>
@@ -81,7 +81,7 @@
                                     <th></th>
                                 </tr>
                                 <tr>
-                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Ingrese Cédula del Paciente" name="cedulaPaciente"/></div></td> 
+                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Ingrese Cédula del Paciente" name="cedulaPaciente" required=""/></div></td> 
                                     <td></td> 
                                     <td><input type="submit" name="button" id="btn-actiong" class="btn-accept" value="Generar Reporte" style='width: 200px;'/></td> 
                                     
@@ -110,8 +110,8 @@
                                     <th><div></div>Ingrese Fecha de la cita</th>
                                 </tr>
                                 <tr>
-                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="Usuario" class="inp-ced" placeholder="Su usuario es" name="Usuario"/></div></td>
-                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Cédula del paciente" name="cedulaPaciente"/></div></td>
+                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="Usuario" class="inp-ced" placeholder="Su usuario es" name="Usuario" required=""/></div></td>
+                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Cédula del paciente" name="cedulaPaciente" required=""/></div></td>
                                     <td><div class="div-cont-lname"><label for="fechaConsulta"></label><input type="date" id="fechaConsulta" class="inp-lname" placeholder="Fecha"required=""  name="fechaConsulta"onchange="myFunction(value)"/></div></td>
                                 </tr>
                                 <tr>
@@ -145,7 +145,7 @@
                                     <th><div></div>Ingrese Fecha de la Solicitud</th>
                                 </tr>
                                 <tr>
-                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="Cedula" class="inp-ced" placeholder="Cédula del paciente" name="Cedula"/></div></td>
+                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="Cedula" class="inp-ced" placeholder="Cédula del paciente" name="Cedula" required=""/></div></td>
                                     <td><div class="div-cont-lname"><label for="fechaSolicitud"></label><input type="date" id="fechaSolicitud" class="inp-lname" placeholder="Fecha"required=""  name="fechaSolicitud"/></div></td>
                                 </tr>
                                 <tr>
@@ -173,7 +173,7 @@
                                     <th><div></div>Ingrese Cédula del paciente</th>
                                 </tr>
                                 <tr>
-                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Cédula del paciente" name="cedulaPaciente"/></div></td>
+                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Cédula del paciente" name="cedulaPaciente" required=""/></div></td>
                                 </tr>
                                 <tr>
                                     <td></td> 
@@ -200,7 +200,7 @@
                                     <th><div></div>Ingrese Cédula del paciente</th>
                                 </tr>
                                 <tr>
-                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Cédula del paciente" name="cedulaPaciente"/></div></td>
+                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Cédula del paciente" name="cedulaPaciente" required=""/></div></td>
                                 </tr>
                                 <tr>
                                     <td></td> 

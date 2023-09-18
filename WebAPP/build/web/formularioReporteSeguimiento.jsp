@@ -44,8 +44,8 @@
                             </thead> 
                             <tbody>
                                 <tr>                                  
-                                    <td><div class="div-cont-ced"><label for="cedulaPaciente"></label><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Cedula del Paciente" name="cedulaPaciente"/></div></td>
-                                    <td><div class="div-cont-ced"><label for="numeroSesion"></label><input type="text" id="numeroSesion" class="inp-ced" placeholder="Número de Sesión" name="numeroSesion"/></div></td>  
+                                    <td><div class="div-cont-ced"><label for="cedulaPaciente"></label><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Cedula del Paciente" name="cedulaPaciente" required="" minlength="10" maxlength="10"/></div></td>
+                                    <td><div class="div-cont-ced"><label for="numeroSesion"></label><input type="text" id="numeroSesion" class="inp-ced" placeholder="Número de Sesión" name="numeroSesion" required="" minlength="1"/></div></td>  
                                  </tr>  
                             </tbody>  
                             <tbody>

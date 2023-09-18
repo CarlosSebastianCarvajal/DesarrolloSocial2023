@@ -42,7 +42,7 @@
                             </thead> 
                             <tbody>
                                 <tr>                                  
-                                    <td><div class="div-cont-ced"><label for="cedulaPaciente"></label><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Cedula del Paciente" name="cedulaPaciente"/></div></td>
+                                    <td><div class="div-cont-ced"><label for="cedulaPaciente"></label><input type="text" id="cedulaPaciente" class="inp-ced" placeholder="Cedula del Paciente" name="cedulaPaciente" required="" minlength="10" maxlength="10"/></div></td>
                                     <td><input type="submit" name="button" id="btn-actiong" class="btn-accept" value="Generar Reporte"/></td> 
                                     <td><input type="button" onclick="javascript:Regresar();" value="Cancelar" class="btn-accept"/></td> 
                                  </tr>  

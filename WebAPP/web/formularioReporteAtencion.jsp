@@ -44,8 +44,8 @@
                             </thead> 
                             <tbody>
                                 <tr>                                  
-                                    <td><div class="div-cont-ced"><label for="fecha_desde"></label><input type="date" id="cedulaPaciente" class="inp-ced" placeholder="desde" name="fecha_desde"/></div></td>
-                                    <td><div class="div-cont-ced"><label for="fecha_hasta"></label><input type="date" id="numeroSesion" class="inp-ced" placeholder="hasta" name="fecha_hasta"/></div></td>  
+                                    <td><div class="div-cont-ced"><label for="fecha_desde"></label><input type="date" id="cedulaPaciente" class="inp-ced" placeholder="desde" name="fecha_desde" required=""/></div></td>
+                                    <td><div class="div-cont-ced"><label for="fecha_hasta"></label><input type="date" id="numeroSesion" class="inp-ced" placeholder="hasta" name="fecha_hasta" required=""/></div></td>  
                                  </tr>  
                             </tbody>  
                             <tbody>

@@ -6,12 +6,18 @@
 	<parameter name="p_usuario" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="f_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
 	pa.paciente_dni,
 	concat(pa.paciente_primer_nombre || ' ' || pa.paciente_segundo_nombre) as pa_nombres,
 	concat(pa.paciente_apellido_paterno || ' ' || pa.paciente_apellido_materno) as pa_apellidos,
-	pa.paciente_tipo_discapacidad,
+	pa.paciente_grupo,
 	pa.paciente_ayudasocial,
 	ga.galeno_dni,
 TO_CHAR (mg.fecha:: DATE, 'dd-mm-yyyy')as fecha,
@@ -20,12 +26,13 @@ TO_CHAR (mg.fecha:: DATE, 'dd-mm-yyyy')as fecha,
 	ga.galeno_correoelectronico
 	FROM paciente pa, medicinageneral ma, galeno ga, mg_seguimiento mg
 	WHERE ma.paciente_id = pa.paciente_id AND ma.galeno_id = ga.galeno_id AND mg.idmedicinageneral=ma.idmedicinageneral and
-		  ga.galeno_user =$P{p_usuario}]]>
+		  ga.galeno_user =$P{p_usuario}
+and mg.fecha >= $P{f_inicio} and mg.fecha <= $P{f_fin}]]>
 	</queryString>
 	<field name="paciente_dni" class="java.lang.String"/>
 	<field name="pa_nombres" class="java.lang.String"/>
 	<field name="pa_apellidos" class="java.lang.String"/>
-	<field name="paciente_tipo_discapacidad" class="java.lang.String"/>
+	<field name="paciente_grupo" class="java.lang.String"/>
 	<field name="paciente_ayudasocial" class="java.lang.String"/>
 	<field name="galeno_dni" class="java.lang.String"/>
 	<field name="fecha" class="java.lang.String"/>
@@ -204,7 +211,7 @@ TO_CHAR (mg.fecha:: DATE, 'dd-mm-yyyy')as fecha,
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{paciente_tipo_discapacidad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{paciente_grupo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="516" y="0" width="57" height="20" uuid="26427daa-51a3-416d-8783-a621f1571caa"/>

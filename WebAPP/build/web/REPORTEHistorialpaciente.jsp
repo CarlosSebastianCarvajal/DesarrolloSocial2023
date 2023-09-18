@@ -4,6 +4,7 @@
     Author     : Unknown
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="BD.conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="net.sf.jasperreports.engine.*" %> 
@@ -23,11 +24,21 @@ y seguiremos el formato del método runReportToPdf*/
     /*Capturamos el valor de nuestra formulario que es el codigo del cliente que es un
 varchar(5), lo almacenamos en una String*/
     String usuarioss = request.getParameter("Usuario");
+    String fi_ = request.getParameter("fechaInicio");
+    String ff_ = request.getParameter("fechaFin");
+    
+    
+    SimpleDateFormat objSDF = new SimpleDateFormat("yyyy-MM-dd");
+    Date fi = objSDF.parse(fi_);
+    Date ff = objSDF.parse(ff_);
 
     /*Digitamos la siguiente linea de codigo entre parentesis ira el parametro que agregamos en nuestro reporte
 llamado $P{CODIGO}, pero solo se escribira "CODIGO", el String que capturamos lo colocamos, en este caso el 
 reporte solo nos pide un parametro*/
     parameters.put("p_usuario", usuarioss);
+    parameters.put("f_inicio", fi);
+    parameters.put("f_fin", ff);
+    
     /*Enviamos la ruta del reporte, los parámetros y la conexión(objeto Connection)*/
     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conexion1.getConecction());
 

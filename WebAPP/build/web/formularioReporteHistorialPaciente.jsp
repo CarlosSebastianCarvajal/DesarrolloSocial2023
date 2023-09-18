@@ -25,22 +25,31 @@
             <section class="sec-main">
                 <div class="div-cont-main"> 
                     <div class="div-cont-ced">
-
-                        <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px'>
-                            <tr>
+                        <table style='width: 100%; text-align: center; margin-left: 20px; margin-top: 30px' >
                             <thead>
+                                <h1 class="textgrueso"  style='text-align: center; '>REPORTE DE PACIENTES ATENDIDOS</h1>
+                            </thead>
+                            <tbody>
                                 <tr>
-                                    <%--<th width="168">SU USUARIO ES:</th>--%>   
-                                    <td><div class="div-cont-ced" style='margin-top: 40px !important;'><input type="text" id="Usuario" class="inp-ced" placeholder="SU USUARIO ES" name="Usuario"/></div></td>
-                                    <td><input type="submit" name="button" id="btn-actiong" class="btn-accept" value="Generar Reporte"/></td>           
-                                        <%--<th width="415"><label for="usuario"></label><input type="text" name="usuario" id="usuario"></th>                                                                            
-                                              <td><input type="submit" name="button" id="button" value="Generar Reporte "></td> --%>  
-                                         </tr>
-                            </thead>   
+                                    <th><div ></div> Ingrese Su Usuario </th>
+                                    <th><div ></div>Ingrese Fecha Inicio</th>
+                                    <th><div ></div>Ingrese Fecha Fin</th>
+                                </tr>
+                                <tr>
+                                    <td><div class="div-cont-ced" style='margin-top: 10px !important;'><input type="text" id="Usuario" class="inp-ced" placeholder="Su usuario es" name="Usuario" required=""/></div></td>
+                                    <td><div class="div-cont-lname"><label for="fechaInicio"></label><input type="date" id="fechaInicio" class="inp-lname" placeholder="Fecha Inicio"required=""  name="fechaInicio"onchange="myFunction(value)"/></div></td>
+                                    <td><div class="div-cont-lname"><label for="fechaFin"></label><input type="date" id="fechaFin" class="inp-lname" placeholder="Fecha Fin"required=""  name="fechaFin"onchange="myFunction(value)"/></div></td>
+                                </tr>
+                                <tr>
+                                    <td></td> 
+                                    <td><input type="submit" name="button" id="btn-actiong" class="btn-accept" value="Generar Reporte" style='width: 200px;'/></td> 
+                                    <td></td> 
+                                </tr>
+                            </tbody>   
                         </table>
                     </div>           
                 </div>
-            </section>            
+            </section>          
         </form>
         <script>
             var a;
