@@ -58,7 +58,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td> <div class="div-cont-ced" style='margin-top: -40px !important;'><input type="text" id="txt-cedi" class="inp-ced" placeholder="Numero de identificacion" name="cedula" onkeypress='return validaNumericos(event)' readonly="true"/></div> </td>
+                            <td> <div class="div-cont-ced" style='margin-top: -40px !important;'><input type="text" id="txt-cedi" class="inp-ced" placeholder="Numero de identificacion" name="cedula" onkeypress='return validaNumericos(event)' readonly="true"  required=""/></div> </td>
                             <td> <div class="div-cont-name"  ><input type="text" id="txt-namen" class="inp-name" placeholder="Nombres" name="Nombres" onkeypress="return soloLetras(event)"disabled="true" onkeyup="mayus(this);"/></div> </td>
                             <td> <div class="div-cont-name"><input type="text" id="txt-namef" class="inp-name" placeholder="Discapacidad" name="Discapacidad"disabled="true" disabled="true" onkeyup="mayus(this);"/></div> </td>
                             <input hidden type="text" id="txt-id" class="inp-lname" placeholder="txt-id" name="txtid"/>
@@ -134,7 +134,7 @@
                     </thead>
                     <tbody align="center">
                         <tr>
-                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla" class="inp-name" placeholder="FR" name="fr" required=""  onkeypress="return validaNumericos(event)"/></div></td>
+                            <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-talla" class="inp-name" placeholder="FR" name="fr"  onkeypress="return validaNumericos(event)"/></div></td>
                             <td><div class="div-cont-name"><input style= 'text-align: center' type="text" id="txt-imc" class="inp-name" placeholder="Glucosa" name="glucosa"   onkeypress="return validaNumericos(event)"/></div></td>
                         </tr>
                     </tbody>

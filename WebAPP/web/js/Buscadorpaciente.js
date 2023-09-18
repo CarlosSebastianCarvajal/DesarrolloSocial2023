@@ -126,8 +126,9 @@ $(function () {
                     $("#txt-peso").val(data.peso);
                     $("#txt-talla").val(data.estatura);
                     $("#txt-imc").val(data.imc);
-                    $("#txt-fr").val(data.fr);
-                    $("#txt-glucosa").val(data.glucosa);
+                    if(data.fr === 'null'){$("#txt-fr").val('No se tomó FR');}else {$("#txt-fr").val(data.fr);}
+                    if(data.glucosa === 'null'){$("#txt-glucosa").val('No se tomó Glucosa');}else {$("#txt-glucosa").val(data.glucosa);}
+                
                 }
             }
         });
@@ -217,8 +218,8 @@ $(function () {
                     $("#txt-peso").val(data.peso);
                     $("#txt-talla").val(data.estatura);
                     $("#txt-imc").val(data.imc);
-                    $("#txt-fr").val(data.fr);
-                    $("#txt-glucosa").val(data.glucosa);
+                    if(data.fr === 'null'){$("#txt-fr").val('No se tomó FR');}else {$("#txt-fr").val(data.fr);}
+                    if(data.glucosa === 'null'){$("#txt-glucosa").val('No se tomó Glucosa');}else {$("#txt-glucosa").val(data.glucosa);}
                 }
             }
         });

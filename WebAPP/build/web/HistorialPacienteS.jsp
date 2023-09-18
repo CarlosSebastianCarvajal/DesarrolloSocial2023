@@ -74,6 +74,15 @@
                             </thead>
                             <tbody>
                                 <%while (rs.next()) {
+                                    String fr = "No tomado";
+                                    if(rs.getInt("fr") != 0){
+                                        fr = String.valueOf(rs.getInt("fr"));
+                                    }
+                                    
+                                    String glu = "No tomado";
+                                    if(rs.getInt("glucosa") != 0){
+                                        glu = String.valueOf(rs.getInt("glucosa"));
+                                    }
                                 %>
                                 <tr>
                                     <td class="text-center"><%= rs.getDate("fecha")%></td>
@@ -87,8 +96,8 @@
                                     <td class="text-center"><%= rs.getFloat("peso")%></td>
                                     <td class="text-center"><%= rs.getInt("estatura")%></td>
                                     <td class="text-center"><%= rs.getFloat("imc")%></td>
-                                    <td class="text-center"><%= rs.getInt("fr")%></td>
-                                    <td class="text-center"><%= rs.getInt("glucosa")%></td>
+                                    <td class="text-center"><%= fr%></td>
+                                    <td class="text-center"><%= glu%></td>
                                     
                                 </tr>
                                 <%}%>

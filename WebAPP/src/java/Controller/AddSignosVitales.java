@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -101,8 +102,10 @@ public class AddSignosVitales extends HttpServlet {
                 ps.setFloat(8, Float.parseFloat(peso));
                 ps.setInt(9, Integer.parseInt(estatura));
                 ps.setFloat(10, Float.parseFloat(imc));
-                ps.setInt(11, Integer.parseInt(fr));
-                ps.setInt(12, Integer.parseInt(glucosa));
+                if(fr != null && fr.length() > 0){ ps.setInt(11, Integer.parseInt(fr)); }else{ ps.setNull(11, Types.INTEGER); }
+                if(glucosa != null && glucosa.length() > 0){ ps.setInt(12, Integer.parseInt(glucosa)); }else{ ps.setNull(12, Types.INTEGER); }
+                //ps.setInt(11, Integer.parseInt(fr));
+                //ps.setInt(12, Integer.parseInt(glucosa));
                 int resSignos = 0;
                 resSignos = ps.executeUpdate();
                 
